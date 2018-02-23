@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutNoData"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvSubProductName"
+            style="@style/textview_title_wrap"
+            android:text="@string/no_data_found"
+            android:textColor="@color/dashboardTitleColor"/>
+    </LinearLayout>
+</layout>

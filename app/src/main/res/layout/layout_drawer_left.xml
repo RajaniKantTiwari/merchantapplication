@@ -1,0 +1,105 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <import type="com.app.merchant.utility.PreferenceUtils" />
+
+    </data>
+
+    <RelativeLayout
+        style="@style/match_match"
+        android:background="@color/dark_black_color">
+
+        <RelativeLayout
+            android:id="@+id/layoutIcon"
+            style="@style/match_wrap"
+            android:background="@color/color_drawer_header"
+            android:minHeight="@dimen/margin_120"
+            android:paddingStart="@dimen/margin_20"
+            android:paddingTop="@dimen/margin_30">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                style="@style/image_80"
+                android:scaleType="fitCenter"
+                android:src="@drawable/avatar" />
+
+            <ImageView
+                android:id="@+id/ivUpdate"
+                style="@style/wrap_wrap"
+                android:padding="@dimen/margin_5"
+                android:layout_marginStart="@dimen/margin_58"
+                android:background="@color/transulent_color"
+                android:src="@drawable/ic_ed_profile"
+                android:elevation="@dimen/margin_4"/>
+
+            <LinearLayout style="@style/wrap_wrap"
+                android:layout_marginStart="@dimen/margin_55"
+                android:layout_marginTop="@dimen/margin_55">
+                <ImageView
+                    style="@style/wrap_wrap"
+                    android:background="@drawable/bg_white"
+                    android:src="@drawable/star"
+                    android:padding="@dimen/margin_5"
+                    />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvStar"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginStart="@dimen/margin_4"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:text="4.5"
+                    android:textColor="@color/star_text_color" />
+            </LinearLayout>
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_below="@+id/ivProfile"
+                android:layout_marginBottom="@dimen/margin_8"
+                android:layout_marginTop="@dimen/margin_8"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvName"
+                    style="@style/textview_description_large_wrap"
+                    android:text="@{PreferenceUtils.userName}"
+                    android:textColor="@color/white" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvMobile"
+                    style="@style/textview_description_large_wrap"
+                    android:text="@{PreferenceUtils.userMono}"
+                    android:textColor="@color/white" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvShopName"
+                    style="@style/textview_description_large_wrap"
+                    android:text="@{PreferenceUtils.email}"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvDrawer"
+            style="@style/match_match"
+            android:layout_above="@+id/layoutLogout"
+            android:layout_below="@+id/layoutIcon"
+            android:padding="@dimen/margin_20" />
+
+        <RelativeLayout
+            android:id="@+id/layoutLogout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_50"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/margin_10">
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvLogout"
+                style="@style/textview_title_small_match"
+                android:layout_centerVertical="true"
+                android:paddingStart="@dimen/margin_20"
+                android:text="@string/logout"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+</layout>

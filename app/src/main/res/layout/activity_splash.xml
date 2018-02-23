@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout
+    style="@style/match_match"
+    android:background="@android:color/white"
+    android:gravity="center">
+    <com.app.merchant.widget.CustomTextView
+        style="@style/wrap_wrap"
+        android:text="@string/app_name"
+        android:drawableTop="@drawable/app_icon"
+        android:textSize="@dimen/textSize_app_name"
+        app:customFont="@string/font_bold"
+        android:gravity="center"/>
+</RelativeLayout>
+</layout>

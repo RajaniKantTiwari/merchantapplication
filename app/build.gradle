@@ -1,0 +1,142 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+
+android {
+    signingConfigs {
+        config {
+        }
+    }
+    flavorDimensions "environment"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.2"
+    defaultConfig {
+        applicationId "com.app.merchant"
+        minSdkVersion 21
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+    buildTypes {
+        debug {
+            //manifestPlaceholders = [googleMapToken: "AIzaSyAGlvMKJDRtfkLwpjrghlrtyOPv8PEOmLU"]
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    //adding product flavour
+    productFlavors {
+        dev {
+            signingConfig signingConfigs.config
+            applicationId 'com.app.merchant'
+            dimension "environment"
+            buildConfigField "String", "BASE_URL", "\"http://thephantomgrid.com/rest/web/v1/\""
+        }
+        qa {
+            signingConfig signingConfigs.config
+            applicationId 'com.app.merchant'
+            dimension "environment"
+        }
+        production {
+            signingConfig signingConfigs.config
+            applicationId 'com.app.merchant'
+            dimension "environment"
+        }
+        staging {
+            applicationId 'com.app.merchant'
+            signingConfig signingConfigs.config
+            dimension "environment"
+        }
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Google Support libs
+    implementation "com.android.support:design:${project.supportLibrary}"
+    implementation "com.android.support:recyclerview-v7:${project.supportLibrary}"
+    implementation "com.android.support:cardview-v7:${project.supportLibrary}"
+    implementation "com.android.support:appcompat-v7:${project.supportLibrary}"
+    implementation "com.android.support:support-annotations:${project.supportLibrary}"
+    //end
+
+    //multidex application support lib
+    implementation 'com.android.support:multidex:1.0.2'
+
+    //glide support lib
+    implementation "com.github.bumptech.glide:glide:${project.glideVersion}"
+    //end
+
+    //hawk support library
+    implementation 'com.orhanobut:hawk:2.0.1'
+//dagger 2 dependency injection
+    implementation 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    //end
+
+    //retrofit dependency
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    //end
+
+    //cropping image library
+    implementation 'com.yalantis:ucrop:2.2.0'
+    //end
+
+    //firebase library
+    implementation "com.google.firebase:firebase-core:${project.playServiceVersion}"
+    implementation "com.google.firebase:firebase-crash:${project.playServiceVersion}"
+    implementation "com.google.firebase:firebase-messaging:${project.playServiceVersion}"
+    implementation "com.google.firebase:firebase-auth:${project.playServiceVersion}"
+//end
+
+    //google play service
+    compile "com.google.android.gms:play-services-location:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-maps:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-gcm:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-places:${project.playServiceVersion}"
+    //
+    compile 'me.relex:circleindicator:1.2.2@aar'
+    compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'
+
+    //reactive support
+    compile "io.reactivex.rxjava2:rxandroid:$reactVersion"
+    compile "io.reactivex.rxjava2:rxjava:$reactVersion"
+
+    //end
+    compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
+    compile 'org.greenrobot:eventbus:3.1.1'
+    //to get exact location
+    compile 'io.nlopez.smartlocation:library:3.3.3'
+    compile 'com.roughike:bottom-bar:2.3.1'
+    compile 'me.leolin:ShortcutBadger:1.1.16@aar'
+    //cropping image library
+    implementation project(':cropper')
+    //end
+    //image from camera gallery
+    implementation project(':libary')
+    //end
+
+    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+        transitive = true
+    }
+}
+// ADD THIS AT THE BOTTOM
+apply plugin: 'com.google.gms.google-services'

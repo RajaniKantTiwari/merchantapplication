@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/wrap_wrap"
+        android:layout_margin="@dimen/margin_5"
+        android:orientation="vertical">
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvProductName"
+            style="@style/textview_description_small_wrap"
+            app:customFont="@string/font_regular"
+            android:layout_marginBottom="@dimen/margin_4"/>
+        <RelativeLayout
+            style="@style/image_100"
+            android:background="@drawable/grey_corner_ten">
+
+            <ImageView
+                android:id="@+id/productImage"
+                style="@style/match_match"
+                android:scaleType="centerInside" />
+
+            <ImageView
+                android:id="@+id/cameraImage"
+                style="@style/image_30"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/camera" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

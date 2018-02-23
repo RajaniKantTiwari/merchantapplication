@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <RelativeLayout
+        android:id="@+id/layoutOffer"
+        style="@style/match_wrap"
+        android:background="@drawable/offer_bg"
+        android:layout_marginBottom="@dimen/margin_20">
+
+        <ImageView
+            android:id="@+id/ivOffer"
+            style="@style/image_100_70"
+            android:background="@drawable/order_detail"/>
+    <RelativeLayout
+        android:id="@+id/layoutRelative"
+        style="@style/match_wrap"
+        android:minHeight="@dimen/margin_70"
+        android:layout_toEndOf="@+id/ivOffer"
+        android:gravity="center_vertical"
+        android:layout_marginStart="@dimen/margin_10">
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvOffer"
+            android:layout_marginEnd="@dimen/margin_7"
+            style="@style/textview_description_ex_large_match"
+            android:layout_alignParentEnd="true"
+            android:gravity="right"
+            android:textColor="@color/deal_color"
+            android:textAllCaps="true"
+            android:text="Chinese President Xi finping"
+            />
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvProduct"
+            android:layout_marginTop="@dimen/margin_3"
+            android:layout_marginEnd="@dimen/margin_7"
+            style="@style/textview_description_ex_large_match"
+            android:gravity="right"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/tvOffer"
+            android:textColor="@color/deal_color"
+            android:text="Chinese President Xi finping"
+            />
+    </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/layoutProduct"
+            style="@style/match_wrap"
+            android:orientation="vertical"
+            android:layout_below="@+id/layoutRelative"
+            android:paddingBottom="@dimen/margin_14">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_1_5"
+                android:background="@color/greyish_color"/>
+        <com.app.merchant.widget.CustomTextView
+            style="@style/textview_title_wrap"
+            android:textColor="@color/deal_color_product"
+            android:text="Mother Dairy"
+            android:textAllCaps="true"
+            android:layout_margin="@dimen/margin_7"
+            />
+        <com.app.merchant.widget.CustomTextView
+            android:layout_marginStart="@dimen/margin_7"
+            style="@style/textview_description_small_wrap"
+            android:textColor="@color/color_black"
+            android:text="3 freshly drink product"
+            />
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</layout>

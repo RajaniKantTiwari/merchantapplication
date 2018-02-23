@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_match"
+    android:background="@color/white">
+    <LinearLayout
+        android:id="@+id/layoutMain"
+        style="@style/match_match"
+        android:orientation="vertical">
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_180">
+
+            <ImageView
+                style="@style/match_match"
+                android:scaleType="centerCrop"
+                android:src="@drawable/background_placeholder" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_30">
+
+           <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOfferType"
+               style="@style/match_wrap"/>
+        </LinearLayout>
+
+        <ImageView style="@style/view_layout_brown" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvOffer"
+            style="@style/match_match"
+            android:padding="@dimen/margin_10" />
+    </LinearLayout>
+    <include
+        android:id="@+id/layoutNoData"
+        layout="@layout/layout_no_data_found"
+        android:visibility="gone"
+        />
+</FrameLayout>
+</layout>

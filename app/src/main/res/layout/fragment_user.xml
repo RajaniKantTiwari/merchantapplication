@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<data>
+    <import type="com.app.merchant.utility.PreferenceUtils"/>
+</data>
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            style="@style/match_match"
+            android:background="@color/background_color"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:background="@color/dark_black_color"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_15">
+                <ImageButton
+                    android:id="@+id/ivEdit"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/margin_20"
+                    android:src="@drawable/ic_ed_profile"
+                    android:visibility="visible"
+                    android:layout_alignParentEnd="true"/>
+                <ImageView
+                    android:id="@+id/ivProfile"
+                    style="@style/image_80"
+                    android:layout_marginTop="@dimen/margin_15_minus"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/avatar" />
+
+                <LinearLayout
+                    style="@style/wrap_wrap"
+                    android:layout_marginBottom="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:orientation="vertical">
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvName"
+                        style="@style/textview_description_large_wrap"
+                        android:text="@{PreferenceUtils.userName}"
+                        android:textColor="@color/white" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvMobile"
+                        android:text="@{PreferenceUtils.userMono}"
+                        style="@style/textview_description_large_wrap"
+                        android:textColor="@color/white" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvShopName"
+                        style="@style/textview_description_large_wrap"
+                        android:text="@{PreferenceUtils.paymentOption}"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/prefered_payment_option"
+                android:layout_marginTop="@dimen/margin_15"
+                style="@style/textview_description_ex_large_wrap"
+                android:text="@string/prefered_payment_option" />
+            <com.app.merchant.widget.CustomTextView
+                android:layout_marginTop="@dimen/margin_15"
+                style="@style/textview_description_large_wrap"
+                android:text="@{PreferenceUtils.paymentOption}"/>
+            <com.app.merchant.widget.CustomTextView
+                android:layout_marginTop="@dimen/margin_15"
+                style="@style/textview_description_large_wrap"
+                android:text="@{PreferenceUtils.cardNumber}"/>
+
+        </LinearLayout>
+
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone" />
+    </FrameLayout>
+</layout>

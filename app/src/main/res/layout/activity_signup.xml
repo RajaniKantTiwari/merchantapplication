@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+
+            <ImageView
+                style="@style/wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/app_icon" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_title_match"
+                android:gravity="center"
+                android:text="@string/resister"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_black_color" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/location" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edLocation"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/location"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/address" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edAddress"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/location"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView style="@style/view_layout_dark_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvLocateMe"
+                style="@style/textview_description_smaller_wrap"
+                android:layout_gravity="right"
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingStart="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_7"
+                android:text="@string/locate_me"
+                android:textColor="@color/forgot_pass_color"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/store_name" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edStore"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_your_store_name"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_15" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_wrap"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/type_of_store"
+                app:customFont="@string/font_regular" />
+
+            <LinearLayout style="@style/match_wrap"
+                android:layout_marginStart="@dimen/margin_5_minus">
+
+                <LinearLayout
+                    android:id="@+id/layoutYes"
+                    style="@style/wrap_wrap"
+                    >
+
+                    <RadioButton
+                        android:id="@+id/radioYes"
+                        style="@style/textview_description_wrap"
+                        android:buttonTint="@color/radio_button_color"
+                        android:clickable="false"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/textview_description_large_wrap"
+                        android:paddingEnd="@dimen/margin_15"
+                        android:text="@string/yes"
+                        android:textColor="@color/gr_color"
+                        app:customFont="@string/font_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutNo"
+                    style="@style/wrap_wrap"
+                    android:paddingEnd="@dimen/margin_15"
+                    android:paddingStart="@dimen/margin_15">
+
+                    <RadioButton
+                        android:id="@+id/radioNo"
+                        style="@style/textview_description_wrap"
+                        android:buttonTint="@color/radio_button_color"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/textview_description_large_wrap"
+                        android:text="@string/no"
+                        android:textColor="@color/gr_color"
+                        app:customFont="@string/font_regular" />
+                </LinearLayout>
+            </LinearLayout>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/store_photos"
+                android:layout_marginTop="@dimen/margin_7"
+                android:layout_marginBottom="@dimen/margin_15"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvDocument"
+                style="@style/match_wrap"
+                android:paddingStart="@dimen/margin_4" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvNext"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_12"
+                android:text="@string/next"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_bold" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

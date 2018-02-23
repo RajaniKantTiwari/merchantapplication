@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layoutCamera"
+        style="@style/match_wrap">
+
+        <ImageView
+            style="@style/image_50"
+            android:padding="@dimen/margin_7"
+            android:src="@drawable/camera" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/match_wrap"
+            android:layout_gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/textSize_description_smaller"
+            android:text="@string/choose_from_camera"
+            android:textSize="@dimen/textSize_header" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutGallery"
+        style="@style/match_wrap">
+
+        <ImageView
+            style="@style/image_50"
+            android:padding="@dimen/margin_7"
+            android:src="@drawable/icon_placeholder" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/match_wrap"
+            android:layout_gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/textSize_description_smaller"
+            android:text="@string/choose_from_library"
+            android:textSize="@dimen/textSize_description_ex_large" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutCancel"
+        style="@style/match_wrap">
+
+        <ImageView
+            style="@style/image_50"
+            android:padding="@dimen/margin_15"
+            android:src="@drawable/ic_close_grey" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/match_wrap"
+            android:layout_gravity="center_vertical"
+            android:lineSpacingExtra="@dimen/textSize_description_smaller"
+            android:text="@string/cancel"
+            android:textSize="@dimen/textSize_description_ex_large" />
+    </LinearLayout>
+</LinearLayout>

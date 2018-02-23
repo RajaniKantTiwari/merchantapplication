@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    style="@style/wrap_wrap"
+    android:layout_height="@dimen/margin_30">
+    <com.app.merchant.widget.CustomTextView
+        android:id="@+id/tvOfferType"
+        style="@style/textview_description_wrap"
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/margin_15"
+        android:paddingEnd="@dimen/margin_15"
+        android:gravity="center"
+        android:text="@string/fab_deal"
+        android:textColor="@color/deal_color" />
+
+</LinearLayout>
+</layout>

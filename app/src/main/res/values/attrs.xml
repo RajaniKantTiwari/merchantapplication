@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CustomTextView">
+        <attr name="customFont" format="string" />
+        <attr name="errorMsg" format="string" />
+        <attr name="emptyMsg" format="string" />
+        <attr name="validation" format="string"/>
+    </declare-styleable>
+    <declare-styleable name="CustomButton">
+        <attr name="customBackground" format="reference" />
+    </declare-styleable>
+</resources>

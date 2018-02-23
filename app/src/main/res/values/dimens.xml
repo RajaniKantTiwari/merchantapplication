@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margin_0">0dp</dimen>
+    <dimen name="margin_0_5">0.5dp</dimen>
+
+    <dimen name="margin_1">1dp</dimen>
+    <dimen name="margin_1_5">1.5dp</dimen>
+    <dimen name="margin_2">2dp</dimen>
+    <dimen name="margin_3">3dp</dimen>
+    <dimen name="margin_4">4dp</dimen>
+    <dimen name="margin_5">5dp</dimen>
+    <dimen name="margin_6">6dp</dimen>
+    <dimen name="margin_7">7dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="margin_9">9dp</dimen>
+    <dimen name="margin_10">10dp</dimen>
+    <dimen name="margin_11">11dp</dimen>
+    <dimen name="margin_12">12dp</dimen>
+    <dimen name="margin_13">13dp</dimen>
+    <dimen name="margin_14">14dp</dimen>
+    <dimen name="margin_15">15dp</dimen>
+    <dimen name="margin_16">16dp</dimen>
+    <dimen name="margin_17">17dp</dimen>
+    <dimen name="margin_18">18dp</dimen>
+    <dimen name="margin_19">19dp</dimen>
+    <dimen name="margin_20">20dp</dimen>
+    <dimen name="margin_21">21dp</dimen>
+    <dimen name="margin_22">22dp</dimen>
+    <dimen name="margin_23">23dp</dimen>
+    <dimen name="margin_24">24dp</dimen>
+    <dimen name="margin_25">25dp</dimen>
+    <dimen name="margin_35">35dp</dimen>
+    <dimen name="margin_45">45dp</dimen>
+
+    <dimen name="margin_56">56dp</dimen>
+    <dimen name="margin_60">60dp</dimen>
+    <dimen name="textSize_app_name">28sp</dimen>
+
+    <dimen name="textSize_header_large">21sp</dimen>
+    <dimen name="textSize_header">19sp</dimen>
+    <dimen name="textSize_header_small">17sp</dimen>
+    <dimen name="textSize_header_smaller">16sp</dimen>
+    <dimen name="textSize_title">15sp</dimen>
+    <dimen name="textSize_title_small">14sp</dimen>
+    <dimen name="textSize_description_ex_large">13sp</dimen>
+    <dimen name="textSize_description_large">12sp</dimen>
+    <dimen name="textSize_description">11sp</dimen>
+    <dimen name="textSize_description_small">10sp</dimen>
+    <dimen name="textSize_description_smaller">8.3sp</dimen>
+    <dimen name="edit_textSize_larger">14sp</dimen>
+    <dimen name="edit_textSize_large">13sp</dimen>
+    <dimen name="edit_textSize_medium">12sp</dimen>
+    <dimen name="edit_textSize_small">11sp</dimen>
+    <dimen name="edit_textSize_smaller">10sp</dimen>
+    <dimen name="button_very_small">9sp</dimen>
+    <dimen name="button_smaller">10sp</dimen>
+    <dimen name="button_small">11sp</dimen>
+    <dimen name="button_medium">12sp</dimen>
+    <dimen name="button_large">13sp</dimen>
+    <dimen name="textsize_very_small">6sp</dimen>
+
+
+    <dimen name="default_padding">4dp</dimen>
+
+    <!--Animation Duration-->
+    <integer name="duration">400</integer>
+    <integer name="zoom_duration">800</integer>
+
+    <dimen name="tab_height">56dp</dimen>
+
+    <dimen name="profile_size">100dp</dimen>
+    <dimen name="location_card_height">300dp</dimen>
+    <dimen name="margin_50">50dp</dimen>
+    <dimen name="margin_30">30dp</dimen>
+    <dimen name="margin_40">40dp</dimen>
+    <dimen name="margin_100">100dp</dimen>
+    <dimen name="margin_70">70dp</dimen>
+    <dimen name="margin_200">200dp</dimen>
+    <dimen name="margin_80">80dp</dimen>
+    <dimen name="margin_120">120dp</dimen>
+    <dimen name="margin_140">140dp</dimen>
+    <dimen name="margin_65">65dp</dimen>
+    <dimen name="margin_150">150dp</dimen>
+    <dimen name="margin_5_minus">-5dp</dimen>
+    <dimen name="margin_270">270dp</dimen>
+    <dimen name="margin_118">118dp</dimen>
+    <dimen name="margin_29">29dp</dimen>
+    <dimen name="list_item_height">48dp</dimen>
+    <dimen name="margin_31">31dp</dimen>
+    <dimen name="margin_90">90dp</dimen>
+    <dimen name="stroke_green_radius">5dp</dimen>
+    <dimen name="dialog_margin">13dp</dimen>
+    <dimen name="dialog_radius">6dp</dimen>
+    <dimen name="margin_250">250dp</dimen>
+    <dimen name="margin_170">170dp</dimen>
+    <dimen name="margin_190">190dp</dimen>
+    <dimen name="margin_3_minus">-3dp</dimen>
+    <dimen name="margin_230">230dp</dimen>
+    <dimen name="margin_210">210dp</dimen>
+    <dimen name="margin_240">240dp</dimen>
+    <dimen name="margin_28">28dp</dimen>
+    <dimen name="margin_33">33dp</dimen>
+
+    <dimen name="margin_180">180dp</dimen>
+    <dimen name="margin_15_minus">-15dp</dimen>
+    <dimen name="margin_25_minus">-25dp</dimen>
+    <dimen name="margin_20_minus">-20dp</dimen>
+    <dimen name="margin_55">55dp</dimen>
+    <dimen name="margin_75">75dp</dimen>
+    <dimen name="margin_78">78dp</dimen>
+    <dimen name="margin_58">58dp</dimen>
+    <dimen name="drawerview_height">35dp</dimen>
+    <dimen name="welcome_margin_start">10dp</dimen>
+    <dimen name="welcome_margin_end">10dp</dimen>
+    <dimen name="bottom_navi_height">45dp</dimen>
+    <dimen name="margin_110">110dp</dimen>
+    <dimen name="margin_8_minus">-8dp</dimen>
+
+    <dimen name="margin_10_minus">-10dp</dimen>
+
+
+    <integer name="mono_length">10</integer>
+
+
+</resources>

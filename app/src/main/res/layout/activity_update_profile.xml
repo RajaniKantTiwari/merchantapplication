@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white">
+
+        <ScrollView
+            style="@style/match_match"
+            android:background="@android:color/white">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:background="@color/dark_black_color"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/margin_15">
+                    <include
+                        android:id="@+id/layoutHeader"
+                        layout="@layout/toolbar_layout" />
+                    <RelativeLayout
+                        style="@style/wrap_wrap">
+                    <ImageView
+                        android:id="@+id/ivProfile"
+                        style="@style/image_80"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/avatar" />
+                        <ImageView
+                            android:id="@+id/imgEditPic"
+                            style="@style/wrap_wrap"
+                            android:layout_marginTop="@dimen/margin_60"
+                            android:layout_marginStart="@dimen/margin_60"
+
+                            android:src="@drawable/ic_edit_profile_pic" />
+                    </RelativeLayout>
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edName"
+                        style="@style/edit_text_style_medium"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/name"
+                        android:paddingBottom="@dimen/margin_5"
+                        android:paddingTop="@dimen/margin_5"
+                        android:textColor="@color/white"
+                        android:textCursorDrawable="@drawable/cursor_white"
+                        android:textColorHint="@color/hint_color_light" />
+
+                    <ImageView style="@style/view_layout_brown" />
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/tvMobile"
+                        style="@style/textview_description_large_wrap"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:hint="@string/mobileNumber"
+                        android:textColor="@color/white"
+                        android:textCursorDrawable="@drawable/cursor_white"
+                        android:textColorHint="@color/hint_color_light" />
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edEmail"
+                        style="@style/edit_text_style_medium"
+                        android:layout_marginTop="@dimen/margin_10"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:paddingBottom="@dimen/margin_5"
+                        android:paddingTop="@dimen/margin_5"
+                        android:textColor="@color/white"
+                        android:textCursorDrawable="@drawable/cursor_white"
+                        android:textColorHint="@color/hint_color_light" />
+
+                    <ImageView style="@style/view_layout_brown" />
+                </LinearLayout>
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/tvChangePaymentOption"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_marginTop="@dimen/margin_15"
+                    android:text="@string/select_payment_method" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPayment"
+                    style="@style/match_wrap" />
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/edCreditDetails"
+                    style="@style/edit_text_style_medium"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center_horizontal"
+                    android:hint="@string/email"
+                    android:inputType="number"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:textColorHint="@color/hint_color_light" />
+
+                <ImageView style="@style/view_layout" />
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/tvDone"
+                    android:layout_width="@dimen/margin_200"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/light_black_bg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/margin_12"
+                    android:text="@string/update"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/button_large"
+                    app:customFont="@string/font_bold" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"
+            android:visibility="gone" />
+    </FrameLayout>
+</layout>

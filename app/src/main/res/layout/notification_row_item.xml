@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_10"
+        android:layout_marginTop="@dimen/margin_10"
+        android:layout_marginStart="@dimen/margin_10">
+
+        <RelativeLayout style="@style/wrap_wrap">
+
+            <ImageView
+                android:id="@+id/ivNotification"
+                style="@style/image_40"
+                android:src="@drawable/ic_notification"/>
+
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
+                android:layout_toEndOf="@+id/ivNotification"
+                android:layout_toStartOf="@+id/tvMessageStatus">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/reviewer_name"
+                    style="@style/textview_description_wrap"
+                    android:text="App Name"
+                    />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/post_time"
+                    style="@style/textview_description_smaller_wrap"
+                    android:layout_below="@+id/reviewer_name"
+                    android:text="9:34 am"
+                    />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/post_date"
+                    style="@style/textview_description_smaller_wrap"
+                    android:layout_below="@+id/reviewer_name"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:layout_toRightOf="@+id/post_time"
+                    android:text="22 may, 2017"
+                    />
+            </RelativeLayout>
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvMessageStatus"
+                style="@style/textview_description_large_wrap"
+                android:text="Read"
+                android:textColor="@color/blue"
+                android:layout_alignParentEnd="true"
+                />
+        </RelativeLayout>
+
+        <com.app.merchant.widget.CustomTextView
+            android:layout_marginTop="@dimen/margin_10"
+            style="@style/textview_description_smaller_wrap"
+            android:text="@string/lorem_ipsum" />
+    </LinearLayout>
+</layout>

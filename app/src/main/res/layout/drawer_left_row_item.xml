@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layoutUserItem"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/margin_50"
+        android:orientation="vertical"
+        android:gravity="center_vertical">
+
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvMenuName"
+            style="@style/textview_title_small_match"
+            android:textColor="@color/white" />
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvChange"
+            style="@style/textview_description_smaller_wrap"
+            android:text="@string/change_location"
+            android:maxLines="2"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+</layout>

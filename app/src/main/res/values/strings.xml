@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE resources [
+    <!ENTITY appname "Merchant App">
+    <!ENTITY author "MrGreen">
+    ]>
+<resources>
+    <!-- App String -->
+    <string name="app_name">&appname;</string>
+    <string name="server_error">Server Error</string>
+    <!-- setting Map Key Here-->
+    <!--<string name="google_api_key">AIzaSyARxWYiJxPPGiVAzsO-v4aA_Shfjzckjwg</string>-->
+    <string name="google_application_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
+    <string name="no_internet"> Internet Connection is not Available </string>
+
+
+    <string name="font_default">Quicksand-Bold.otf</string>
+    <string name="font_bold">Quicksand-Bold.otf</string>
+    <string name="font_semi_bold">Quicksand-Bold.otf</string>
+    <string name="font_light">Quicksand-Light.otf</string>
+    <string name="font_semi_light">Quicksand-Light.otf</string>
+    <string name="font_regular">Quicksand-Regular.otf</string>
+
+    <string name="google_service_not_present">Google Service not Present</string>
+    <string name="please_enter_password">Please enter password</string>
+    <string name="please_enter_mobile_number">Please enter mobile number</string>
+
+    <string name="home">Home</string>
+    <string name="login"> Login </string>
+    <string name="signup"> Signup </string>
+    <string name="cancel"> Cancel </string>
+    <string name="name"> Name </string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="select_payment_method">Select Payment Method </string>
+
+    <string name="get_otp">Get Otp</string>
+    <string name="signup_for_account">Signup for an account</string>
+    <string name="please_enter_address">Please enter Address</string>
+    <string name="cash_on_delivery">Cash On Delivery</string>
+    <string name="credit_debit_card">Credit/Debit Card</string>
+    <string name="paytm">Paytm</string>
+
+    <!--  Form Strings -->
+    <string name="full_name"> Full Name </string>
+    <string name="first_name"> First Name </string>
+    <string name="last_name"> Last Name </string>
+    <string name="email"> Email </string>
+    <string name="email_address"> Email Address </string>
+    <string name="update">Update</string>
+    <string name="update_password"> Update Password </string>
+    <string name="no_data_found">No Data Found</string>
+    <string name="search_city_product_service">Search City, Product, Service</string>
+    <string name="choose_from_camera">Take Photo</string>
+    <string name="choose_from_library">Choose from Library</string>
+    <string name="change_location">Change Location</string>
+    <string name="my_waranty">My Warranties</string>
+    <string name="my_insurance">My Insurance</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="help">Help</string>
+    <string name="senior_citizen">Senior Citizen Helpline</string>
+    <string name="term_condition">Terms and Conditions</string>
+    <string name="logout">Logout</string>
+    <string name="verify_account">Verify Account</string>
+    <string name="please_enter_verification_code">Please enter the verification code we \nsent to your email address</string>
+    <string name="resend_otp">Resend OTP</string>
+    <string name="change_number">Change Number</string>
+    <string name="otp_has_been_send">Otp has been send</string>
+    <string name="ok">Ok</string>
+    <string name="notification">Notifications</string>
+    <string name="prefered_payment_option">Your Prefered Payment Option</string>
+    <string name="user">User</string>
+    <string name="submit">Submit</string>
+    <string name="any_other_feedback">Any Other Feedback (Optional)</string>
+
+    <string name="lorem_ipsum">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </string>
+    <string name="password">Password</string>
+    <string name="user_name">User name</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="new_user_signup_now">New User/Sign up now</string>
+    <string name="resister">Resister</string>
+    <string name="location">Location</string>
+    <string name="address">Address</string>
+    <string name="locate_me">Locate me</string>
+    <string name="store_name">Store Name</string>
+    <string name="enter_your_store_name">Enter your store name</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="type_of_store">Type of store</string>
+    <string name="store_photos">Store Photos</string>
+    <string name="next">Next</string>
+    <string name="please_enter_location">Please Enter Location</string>
+    <string name="store_details">Store Details</string>
+    <string name="legal_name_of_company">Legal Name Of Company</string>
+    <string name="legal_name">Legal name</string>
+    <string name="pan_card_number">Pan Card Number</string>
+    <string name="enter_pan_number">Enter pan no</string>
+    <string name="gst_number">GST NO.</string>
+    <string name="enter_gst_number">enter GST no.</string>
+    <string name="bank_setup">Bank Setup</string>
+    <string name="bank_name">bank name</string>
+    <string name="account_number">account no.</string>
+    <string name="branch">branch</string>
+    <string name="ifsc_code">ifsc code</string>
+    <string name="payment_option">Payment Option</string>
+    <string name="cash">Cash</string>
+    <string name="card">Card</string>
+    <string name="other">Other</string>
+    <string name="shipping_delivery_charge">Shipping/Delivery Charge</string>
+    <string name="rupees">Rupees</string>
+    <string name="servicing_areas">Servicing Areas</string>
+    <string name="add_more_areas">Add more areas</string>
+    <string name="agreement_details_signup">Agreement Details &amp; Sign Up</string>
+    <string name="agreement_status">Agreement Status</string>
+    <string name="not_started">Not Started</string>
+    <string name="done">Done</string>
+    <string name="off_on">off valid till</string>
+    <string name="fab_deal">Fab &amp; Deal</string>
+    <string name="food_drinks">Food &amp; Drinks</string>
+    <string name="spas">Spas</string>
+    <string name="saloons">Saloons</string>
+    <string name="offer">Offer</string>
+    <string name="date">22\nmay</string>
+    <string name="welcome">Welcome</string>
+    <string name="my_order">My Order</string>
+    <string name="my_inventory">My Inventory</string>
+
+    <string-array name="left_drawer">
+        <item>@string/home</item>
+        <item>@string/my_waranty</item>
+        <item>@string/my_insurance</item>
+        <item>@string/edit_profile</item>
+        <item>@string/help</item>
+        <item>@string/senior_citizen</item>
+        <item>@string/term_condition</item>
+    </string-array>
+</resources>

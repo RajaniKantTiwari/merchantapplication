@@ -1,0 +1,65 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:background="@drawable/white_round_btnbg"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_20">
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvMessage"
+                style="@style/wrap_wrap"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/textSize_header_smaller"
+                android:textColor="@color/color_blue"
+                app:customFont="@string/font_bold" />
+            <ImageView style="@style/view_layout" />
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMobileNumber"
+                style="@style/edit_text_style"
+                android:layout_marginTop="@dimen/margin_15"
+                android:paddingBottom="@dimen/margin_5"
+                android:paddingTop="@dimen/margin_5"
+                android:hint="@string/mobileNumber"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/textSize_header_smaller"
+                app:customFont="@string/font_bold"
+                android:inputType="number"
+                android:visibility="gone"/>
+            <ImageView style="@style/view_layout" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:padding="@dimen/margin_10">
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCancel"
+                    style="@style/wrap_wrap"
+                    android:layout_marginStart="@dimen/margin_30"
+                    android:text="@string/cancel"
+                    android:textSize="@dimen/textSize_header"
+                    app:customFont="@string/font_regular"
+                    android:textColor="@color/color_blue"
+                    android:layout_weight="1"
+                    />
+                <ImageView style="@style/view_layout_vertical" />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvOk"
+                    style="@style/wrap_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_30"
+                    android:text="@string/ok"
+                    android:textSize="@dimen/textSize_header"
+                    app:customFont="@string/font_bold"
+                    android:textColor="@color/color_blue"
+                    android:layout_weight="1"
+                    android:gravity="end"/>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

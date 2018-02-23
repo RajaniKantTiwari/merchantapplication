@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/match_match"
+    android:background="@android:color/white">
+    <LinearLayout
+        style="@style/match_match"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_15">
+
+        <ImageView
+            style="@style/wrap_wrap"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/app_icon" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/textview_title_match"
+            android:gravity="center"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_black_color" />
+
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_25">
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20"
+                android:textColorHint="@color/text_hint">
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/edName"
+                    style="@style/edit_text_style_medium"
+                    android:hint="@string/user_name"
+                    android:imeOptions="actionNext"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:singleLine="true"
+                    app:customFont="@string/font_bold" />
+
+                <ImageView style="@style/view_layout_dark_grey" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_20"
+                android:textColorHint="@color/text_hint">
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/edPassword"
+                    style="@style/edit_text_style_medium"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:hint="@string/password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:maxLength="@integer/mono_length"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"
+                    android:singleLine="true"
+                    app:customFont="@string/font_bold" />
+
+                <ImageView style="@style/view_layout_dark_grey" />
+            </android.support.design.widget.TextInputLayout>
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/forgotPassword"
+                style="@style/textview_description_smaller_wrap"
+                android:layout_gravity="right"
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingStart="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_7"
+                android:text="@string/forgot_password"
+                android:textAllCaps="true"
+                android:textColor="@color/forgot_pass_color"
+                app:customFont="@string/font_regular" />
+        </LinearLayout>
+
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvLogin"
+            android:layout_width="@dimen/margin_200"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/margin_40"
+            android:background="@drawable/light_black_bg"
+            android:elevation="@dimen/margin_5"
+            android:gravity="center_horizontal"
+            android:padding="@dimen/margin_12"
+            android:text="@string/login"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/button_large"
+            app:customFont="@string/font_bold" />
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvSignupForAccount"
+            style="@style/textview_description_large_match"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/margin_20"
+            android:layout_marginTop="@dimen/margin_10"
+            android:gravity="center"
+            android:padding="@dimen/margin_10"
+            android:text="@string/new_user_signup_now"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_color" />
+
+    </LinearLayout>
+</ScrollView>
+</layout>

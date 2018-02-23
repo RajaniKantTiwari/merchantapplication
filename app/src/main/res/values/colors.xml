@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--
+
+    0% = #00
+10% = #16
+20% = #32
+30% = #48
+40% = #64
+50% = #80
+60% = #96
+70% = #112
+80% = #128
+90% = #144
+    -->
+    <color name="colorPrimary">#9F9F9F</color>
+    <color name="colorPrimaryDark">#7F7F7F</color>
+
+    <color name="welcomeTitleColor">#939393</color>
+    <color name="dashboardTitleColor">#1E2630</color>
+
+    <color name="productTitleColor">#939393</color>
+
+
+
+
+    <color name="colorAccent">#000000</color>
+    <color name="light_grey_color">#EFEFEF</color>
+    <color name="progressColor">#65C358</color>
+    <color name="background">#FECB2F</color>
+    <color name="back_circle">#CDCDCD</color>
+    <color name="text_hint">#807F80</color>
+
+
+    <color name="dark_grey_color">#807F80</color>
+
+    <color name="selected_background">#676767</color>
+
+    <color name="active_tab_color">#EFEFEF</color>
+    <color name="inactive_tab_color">#EFEFEF</color>
+    <color name="color_voilet">#000066</color>
+
+    <color name="color_blue">#03a9f4</color>
+    <color name="color_blue_2">#03B3F2</color>
+
+    <color name="grey_color">#999999</color>
+    <color name="light_grey">#666666</color>
+    <color name="gr_color">#B3B3B3</color>
+
+
+    <color name="hint_color">#676767</color>
+    <color name="hint_color_light">#EFEFEF</color>
+
+    <color name="grey_white">#e6e5e6</color>
+    <color name="background_doctor">#FAFAFA</color>
+
+    <color name="black">#000000</color>
+
+    <color name="dark_black">#344453</color>
+    <color name="color_blackish">#000000</color>
+
+    <color name="color_black">#1A1A1A</color>
+    <color name="darker_black">#384152</color>
+    <color name="darker_black_color">#383336</color>
+
+    <color name="color_dark_blue">#18A3BF</color>
+    <color name="doctor_charge_color">#33cc33</color>
+    <color name="subscribe_color">#dddddd</color>
+
+
+    <color name="background_color">#E5E6E7</color>
+    <color name="light_grey_background_color">#F5F5F5</color>
+
+
+    <color name="blue">#17A4BF</color>
+    <color name="button_bg_color">#1a9fde</color>
+    <color name="button_color">#00B0F0</color>
+    <color name="dark_sky_blue">#3668C1</color>
+    <color name="color_dark_sky">#1893FF</color>
+    <color name="color_sky_blue">#009FE1</color>
+    <color name="radio_button_color">#593962</color>
+    <color name="tex_color">#366797</color>
+
+    <color name="deep_sky_blue">#00ADEF</color>
+    <color name="color_black_cart">#343851</color>
+    <color name="color_green_cart">#009933</color>
+
+
+    <color name="black_cart">#4D4D4D</color>
+    <color name="grey_cart">#D4D4D4</color>
+
+
+
+    <color name="color_dark_grey">#939598</color>
+    <color name="darker_blackish">#334254</color>
+    <color name="color_dark_black">#333852</color>
+
+    <color name="dark_black_color">#344253</color>
+
+
+    <color name="colorBackgroundNav">#F8F8F8</color>
+    <color name="colorNavAccentSelected">#18A3BF</color>
+    <color name="color_blue_order">#36A5E2</color>
+    <color name="radio_unchecked">#cccccc</color>
+
+
+    <color name="white">#ffffff</color>
+
+    <color name="transulent">#33FFFFFF</color>
+
+    <color name="transulent_color">#0F000000</color>
+
+    <color name="white_light">#F9F9F9</color>
+    <color name="yellow_color">#FF6600</color>
+    <color name="rating">#FFEC33</color>
+    <color name="yelloish">#FFCC00</color>
+    <color name="white_line">#f2f2f2</color>
+
+    <color name="dark_yellow">#ffcc00</color>
+    <color name="star_text_color">#ffcc00</color>
+    <color name="rs_text_color">#ffbb02</color>
+
+    <color name="rating_text_color">#FFCA01</color>
+
+
+    <color name="red">#FF0011</color>
+    <color name="forgot_pass_color">#FC0D1B</color>
+
+    <color name="red_color">#FF0066</color>
+    <color name="redish_color">#FF0000</color>
+    <color name="red_col">#FC091b</color>
+    <color name="redish_dark">#ED1B23</color>
+    <color name="ver_bg_color">#D0D2D4</color>
+
+    <color name="reddish">#FF3399</color>
+    <color name="color_green">#99CC33</color>
+    <color name="light_green">#33CC99</color>
+
+
+    <color name="greyish_color">#CCCCCC</color>
+
+
+    <color name="green_color">#65C358</color>
+    <color name="tab_usl_clr">#a4aab3</color>
+    <color name="tab_sel_clr">#1e5a3c</color>
+    <color name="tab_sel_txt_clr">#1e5a3c</color>
+    <color name="date_bg_color">#5c9FDB</color>
+
+    <color name="tab_selected">#283340</color>
+    <color name="color_drawer_header">#553b94</color>
+
+    <color name="search_bg_color">#DDDBDB</color>
+    <color name="deal_color">#492b4a</color>
+    <color name="deal_color_product">#d72563</color>
+
+    <color name="cat_background">#b8b8b8</color>
+    <color name="progresscolor">#c0c0c0</color>
+
+    <color name="background_tranparent">#55000000</color>
+
+    <color name="text_hint_color">#b2b2b2</color>
+
+
+</resources>
