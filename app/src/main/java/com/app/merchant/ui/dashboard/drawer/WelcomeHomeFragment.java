@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentHomeBinding;
+import com.app.merchant.event.InventoryEvent;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
+import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
+import com.app.merchant.utility.AppConstants;
 
 import javax.inject.Inject;
 
@@ -27,6 +30,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
     CommonPresenter presenter;
     private NotificationAdapter mNotificationAdapter;
     private FragmentHomeBinding mBinding;
+    private InventoryEvent event;
 
 
     @Nullable
@@ -34,9 +38,19 @@ public class WelcomeHomeFragment extends DashboardFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.home));
+        addFragment();
         return mBinding.getRoot();
     }
-
+    private void addFragment() {
+        mBinding.orderButton.setTag(R.drawable.bar_graph);
+        mBinding.orderButton.setVisibility(View.VISIBLE);
+        event = new InventoryEvent();
+        event.setOrderInventory(AppConstants.MY_ORDER);
+        getBaseActivity().pushChildFragment(getChildFragmentManager(), AppConstants.FRAGMENTS.MY_INVENYORY_FRAGMENT,
+                null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
+        getBaseActivity().pushChildFragment(getChildFragmentManager(), AppConstants.FRAGMENTS.MY_ORDER_FRAGMENT,
+                null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
+    }
     @Override
     public void initializeData() {
 

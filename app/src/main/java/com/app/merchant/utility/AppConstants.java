@@ -21,7 +21,8 @@ public interface AppConstants {
     String TIME_ZONE="GMT";
     String PROFILE_UPDATE_PARAMETER = "profileUrl";
     String OFFER = "offer";
-
+    int MY_ORDER = 1;
+    int MY_INVENTORY = 2;
     int LOGOUT = 101;
     String DEVICETYPE="1";
     int NO_OF_TAB = 4;
@@ -40,6 +41,8 @@ public interface AppConstants {
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {
+        int MY_INVENYORY_FRAGMENT = 16;
+        int MY_ORDER_FRAGMENT = 17;
         int WELCOME_HOME_FRAGMENT = 0;
         int OFFER_FRAGMENT=1;
         int NOTIFICATION_FRAGMENT=2;

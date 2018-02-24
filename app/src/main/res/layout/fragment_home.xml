@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
@@ -9,29 +9,32 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/margin_210"
             android:background="@drawable/imge"
-            android:textColor="@color/white"
             android:gravity="center_vertical"
             android:padding="@dimen/margin_21"
-            android:textSize="@dimen/textSize_header_large"/>
-        <LinearLayout
-            style="@style/match_wrap">
-            <LinearLayout
-                style="@style/wrap_wrap">
-            <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvHeading"
-                style="@style/textview_title_wrap"
-                android:layout_height="match_parent"
-                android:padding="@dimen/margin_10"
-                android:gravity="center"
-                android:background="@color/date_bg_color"
-                android:text="@string/date"
-                android:textAllCaps="true"
-                android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_header_large" />
+
+        <LinearLayout style="@style/match_wrap">
+
+            <LinearLayout style="@style/wrap_wrap">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvHeading"
+                    style="@style/textview_title_wrap"
+                    android:layout_height="match_parent"
+                    android:background="@color/date_bg_color"
+                    android:gravity="center"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/date"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
             </LinearLayout>
+
             <LinearLayout
                 style="@style/match_wrap"
                 android:orientation="vertical"
                 android:padding="@dimen/margin_2">
+
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_large_wrap"
                     android:gravity="center"
@@ -39,18 +42,20 @@
                     android:text="@string/welcome"
                     android:textAllCaps="true"
                     android:textColor="@color/grey_color" />
+
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_large_wrap"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="Mr. John Doe"
                     android:textAllCaps="true" />
+
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_large_wrap"
                     android:gravity="center"
                     android:maxLines="1"
                     android:text="@string/welcome"
-                    android:textAllCaps="true"/>
+                    android:textAllCaps="true" />
             </LinearLayout>
         </LinearLayout>
 
@@ -58,28 +63,44 @@
             style="@style/match_wrap"
             android:layout_height="@dimen/margin_50"
             android:background="@color/grey_white">
-            <RelativeLayout
-                style="@style/layout_hori_match_1">
+
+            <RelativeLayout style="@style/layout_hori_match_1">
+
                 <com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvMyOrder"
                     style="@style/textview_description_wrap"
+                    android:layout_centerInParent="true"
                     android:text="@string/my_order"
-                    android:textAllCaps="true"
-                    android:layout_centerInParent="true"/>
+                    android:textAllCaps="true" />
             </RelativeLayout>
+
             <ImageView
                 style="@style/view_layout_vertical_white"
-                android:layout_marginTop="@dimen/margin_7"
-                android:layout_marginBottom="@dimen/margin_7"/>
-            <RelativeLayout
-                style="@style/layout_hori_match_1">
+                android:layout_marginBottom="@dimen/margin_7"
+                android:layout_marginTop="@dimen/margin_7" />
+
+            <RelativeLayout style="@style/layout_hori_match_1">
+
                 <com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvMyInventory"
                     style="@style/textview_description_wrap"
+                    android:layout_centerInParent="true"
                     android:text="@string/my_inventory"
-                    android:textAllCaps="true"
-                    android:layout_centerInParent="true"/>
+                    android:textAllCaps="true" />
             </RelativeLayout>
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            style="@style/match_match">
+            <com.app.merchant.widget.MovableFloatingActionButton
+                android:id="@+id/orderButton"
+                style="@style/wrap_wrap"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="@dimen/margin_25"
+                android:layout_marginEnd="@dimen/margin_15"
+                android:src="@drawable/bar_graph"
+                app:backgroundTint="@color/white"/>
+        </FrameLayout>
     </LinearLayout>
 </layout>

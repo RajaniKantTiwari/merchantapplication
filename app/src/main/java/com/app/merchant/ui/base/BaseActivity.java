@@ -16,6 +16,8 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.app.merchant.R;
+import com.app.merchant.ui.dashboard.home.MyInventoryFragment;
+import com.app.merchant.ui.dashboard.home.MyOrderFragment;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.NetworkUtility;
@@ -28,6 +30,8 @@ import static com.app.merchant.ui.base.BaseActivity.AnimationType.FADE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.ZOOM;
+import static com.app.merchant.utility.AppConstants.FRAGMENTS.MY_INVENYORY_FRAGMENT;
+import static com.app.merchant.utility.AppConstants.FRAGMENTS.MY_ORDER_FRAGMENT;
 
 /**
  * Created by ashok on 01/11/17.
@@ -202,9 +206,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     private static Fragment getFragment(int fragmentId) {
         Fragment fragment = null;
         switch (fragmentId) {
-            /*case MERCHANT_MAP_FRAGMENT:
-                fragment = new ProductMapFragment();
-                break;*/
+            case MY_INVENYORY_FRAGMENT:
+                fragment = new MyInventoryFragment();
+                break;
+            case MY_ORDER_FRAGMENT:
+                fragment = new MyOrderFragment();
+                break;
 
         }
         return fragment;
