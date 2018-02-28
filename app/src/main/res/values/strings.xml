@@ -143,6 +143,7 @@
     <string name="please_enter_date_of_birth">Please Enter Date Of Birth</string>
     <string name="confirm_order">Confirm Order</string>
     <string name="not_confirm">Not Confirmed</string>
+    <string name="assign_new_delivery_boy">Assign New Delivery Boy</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

@@ -96,7 +96,7 @@ public class CommonUtility {
     }
 
 
-    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, ConfirmOrderDialogFragment.OrderDialogListener listener) {
+    public static void showConfirmOrderDialog(AppCompatActivity activity, Bundle bundle, ConfirmOrderDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         ConfirmOrderDialogFragment alertdFragment = new ConfirmOrderDialogFragment();
         alertdFragment.addListener(listener);

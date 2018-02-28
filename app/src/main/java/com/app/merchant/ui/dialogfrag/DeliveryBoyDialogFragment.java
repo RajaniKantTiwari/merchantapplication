@@ -12,7 +12,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.DialogConfirmOrderBinding;
+import com.app.merchant.databinding.DialogDeliveryBoyBinding;
 import com.app.merchant.ui.adapter.AsignAdapter;
 import com.app.merchant.utility.CommonUtility;
 
@@ -21,16 +21,14 @@ import java.util.Arrays;
 import java.util.List;
 
 
-public class ConfirmOrderDialogFragment extends DialogFragment implements View.OnClickListener {
+public class DeliveryBoyDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
-    private DialogConfirmOrderBinding mBinding;
+    private DialogDeliveryBoyBinding mBinding;
     private OrderDialogListener listener;
     private FragmentActivity mActivity;
 
     public interface OrderDialogListener {
-        void confirmed();
-
-        void notConfirmed();
+        void newDeliveryBoy();
     }
     public void addListener(OrderDialogListener listener) {
         this.listener = listener;
@@ -39,10 +37,10 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_confirm_order, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_delivery_boy, container, false);
         dialog = getDialog();
-        CommonUtility.setDialog(dialog);
         mActivity=getActivity();
+        CommonUtility.setDialog(dialog);
         initializeData();
         setListener();
         return mBinding.getRoot();
@@ -84,20 +82,16 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     }
 
     public void setListener() {
-        mBinding.tvConfirmOrder.setOnClickListener(this);
-        mBinding.tvNotConfirmed.setOnClickListener(this);
-
+        mBinding.tvNewDelivery.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.tvConfirmOrder) {
+        if (view == mBinding.tvNewDelivery) {
             dialog.cancel();
             if(CommonUtility.isNotNull(listener)){
-                listener.confirmed();
+                listener.newDeliveryBoy();
             }
-        }else if(view==mBinding.tvNotConfirmed){
-            listener.notConfirmed();
         }
     }
 }

@@ -9,28 +9,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentNotificationBinding;
 import com.app.merchant.databinding.FragmentOrderBinding;
 import com.app.merchant.event.InventoryEvent;
-import com.app.merchant.network.request.dashboard.home.MyOrder;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyOrderAdapter;
-import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
+import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import org.greenrobot.eventbus.Subscribe;
-
-import javax.inject.Inject;
 
 
 /**
  * Created by ashok on 13/11/17.
  */
 
-public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter.OrderListener {
+public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter.OrderListener,
+        ConfirmOrderDialogFragment.OrderDialogListener{
 
     private FragmentOrderBinding mBinding;
     private MyOrderAdapter myOrderAdapter;
@@ -90,12 +86,23 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
 
     @Override
     public void onViewClick(int position) {
-
+        Bundle bundle=new Bundle();
+         CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         CommonUtility.unregister(this);
+    }
+
+    @Override
+    public void confirmed() {
+
+    }
+
+    @Override
+    public void notConfirmed() {
+
     }
 }

@@ -17,15 +17,11 @@ import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.ui.adapter.StoreImageAdapter;
-import com.app.merchant.ui.authentication.VerifyAccountActivity;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.utility.AppConstants;
-import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
-import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
-import com.app.merchant.utility.PreferenceUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
