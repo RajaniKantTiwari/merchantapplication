@@ -61,6 +61,11 @@
         <item name="android:layout_height">@dimen/margin_2</item>
         <item name="android:background">@color/light_grey_color</item>
     </style>
+    <style name="view_layout_1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_1</item>
+        <item name="android:background">@color/light_grey_color</item>
+    </style>
 
     <style name="view_layout_dark_grey">
         <item name="android:layout_width">match_parent</item>
@@ -434,7 +439,11 @@
         <item name="android:layout_weight">4</item>
     </style>
 
-
+    <style name="layout_ver_match_0_8">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">0.8</item>
+    </style>
     <style name="layout_ver_match_1">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>

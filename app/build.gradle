@@ -134,6 +134,10 @@ dependencies {
     implementation project(':libary')
     //end
 
+    //cropping image library
+    implementation project(':anychart')
+    //end
+
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true
     }

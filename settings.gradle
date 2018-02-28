@@ -1,1 +1,1 @@
-include ':app', ':libary', ':cropper'
+include ':app', ':libary', ':cropper', ':anychart'

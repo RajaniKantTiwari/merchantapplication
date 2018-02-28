@@ -144,6 +144,10 @@
     <string name="confirm_order">Confirm Order</string>
     <string name="not_confirm">Not Confirmed</string>
     <string name="assign_new_delivery_boy">Assign New Delivery Boy</string>
+    <string name="performance_chart">Performance Chart</string>
+    <string name="order_received">Order Received</string>
+    <string name="order_confirmed">Order Confirmed</string>
+    <string name="order_out_for_delivery">Order out For Delivery</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

@@ -27,6 +27,7 @@ import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
+import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
 import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
 import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
@@ -133,7 +134,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
-                openFragment(new OfferFragment(), null, false, false, NONE);
+               // openFragment(new OfferFragment(), null, false, false, NONE);
+                openFragment(new AllPerformanceFragment(), null, false, false, NONE);
                 break;
             case NOTIFICATION_FRAGMENT:
                 openFragment(new NotificationFragment(), null, false, false, NONE);
