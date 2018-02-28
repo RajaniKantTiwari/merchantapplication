@@ -105,6 +105,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         CommonUtility.register(this);
+        pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
         attachView();

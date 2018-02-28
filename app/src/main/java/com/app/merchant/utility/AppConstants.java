@@ -4,6 +4,7 @@ import android.support.annotation.IntDef;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.util.regex.Pattern;
 
 import static com.app.merchant.utility.AppConstants.FRAGMENTS.NOTIFICATION_FRAGMENT;
 import static com.app.merchant.utility.AppConstants.FRAGMENTS.OFFER_FRAGMENT;
@@ -15,6 +16,8 @@ import static com.app.merchant.utility.AppConstants.FRAGMENTS.WELCOME_HOME_FRAGM
  */
 
 public interface AppConstants {
+    Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     String AUTHORIZATION = "Authorization";
     String SUCCESS = "success";
     String FORBIDDEN = "403";

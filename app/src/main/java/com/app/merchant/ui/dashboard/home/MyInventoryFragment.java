@@ -19,6 +19,7 @@ import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyInventoryAdapter;
 import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -41,6 +42,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_inventory, container, false);
+        CommonUtility.register(this);
         getDashboardActivity().setHeaderTitle(getString(R.string.notification));
         return mBinding.getRoot();
     }
@@ -90,5 +92,11 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtility.unregister(this);
     }
 }

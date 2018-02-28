@@ -15,7 +15,7 @@
 
         <android.support.v7.widget.CardView
             style="@style/match_wrap"
-            android:layout_height="@dimen/margin_50"
+            android:layout_height="@dimen/margin_70"
             android:layout_marginEnd="@dimen/margin_7"
             android:layout_marginStart="@dimen/margin_7"
             android:layout_marginTop="@dimen/margin_8"
@@ -24,7 +24,6 @@
 
             <LinearLayout
                 style="@style/match_match"
-                android:layout_height="@dimen/margin_50"
                 android:background="@drawable/stroke_dark_grey_bg">
 
                 <LinearLayout
@@ -49,7 +48,8 @@
                         <com.app.merchant.widget.CustomTextView
                             android:id="@+id/tvPrice"
                             style="@style/textview_description_smaller_wrap"
-                            android:text="500 gm" />
+                            android:text="500 gm"
+                            android:textColor="@color/color_dark_grey"/>
 
                         <com.app.merchant.widget.CustomTextView
                             android:id="@+id/tvProductName"
@@ -94,7 +94,6 @@
 
                 <RelativeLayout
                     style="@style/layout_hori_match_2"
-                    android:layout_height="@dimen/margin_50"
                     android:orientation="vertical">
 
                     <ImageView
@@ -108,7 +107,8 @@
                         android:layout_toEndOf="@+id/ivSep"
                         android:layout_toStartOf="@+id/ivAdd"
                         android:orientation="vertical"
-                        android:gravity="center_vertical">
+                        android:gravity="center_vertical"
+                        >
 
                         <com.app.merchant.widget.CustomTextView
                             android:id="@+id/tvAdd"
@@ -145,7 +145,8 @@
                         android:layout_marginBottom="@dimen/margin_7"
                         android:layout_marginTop="@dimen/margin_7"
                         android:padding="@dimen/margin_10"
-                        android:src="@drawable/rupee_blue" />
+                        android:src="@drawable/rupee_blue"
+                        android:layout_centerVertical="true"/>
 
                 </RelativeLayout>
             </LinearLayout>

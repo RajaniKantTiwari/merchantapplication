@@ -95,13 +95,18 @@ public class WelcomeHomeFragment extends DashboardFragment {
     }
 
     private void openInventory() {
-        mBinding.tvInventory.setText(getResources().getString(R.string.my_inventory));
+        //mBinding.tvInventory.setText(getResources().getString(R.string.my_inventory));
+        mBinding.tvInventory.setTextColor(CommonUtility.getColor(getDashboardActivity(),R.color.date_bg_color));
+        mBinding.tvMyOrder.setTextColor(CommonUtility.getColor(getDashboardActivity(),R.color.black));
+
         event.setOrderInventory(AppConstants.MY_INVENTORY);
         EventBus.getDefault().post(event);
     }
 
     private void openOrder() {
-        mBinding.tvMyOrder.setText(getResources().getString(R.string.my_order));
+        //mBinding.tvMyOrder.setText(getResources().getString(R.string.my_order));
+        mBinding.tvMyOrder.setTextColor(CommonUtility.getColor(getDashboardActivity(),R.color.date_bg_color));
+        mBinding.tvInventory.setTextColor(CommonUtility.getColor(getDashboardActivity(),R.color.black));
         event.setOrderInventory(AppConstants.MY_ORDER);
         EventBus.getDefault().post(event);
     }

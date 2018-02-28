@@ -19,6 +19,7 @@ import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyOrderAdapter;
 import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -38,6 +39,8 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order, container, false);
+        CommonUtility.register(this);
+
         getDashboardActivity().setHeaderTitle(getString(R.string.notification));
         return mBinding.getRoot();
     }
@@ -76,7 +79,7 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
     }
     @Subscribe
     public void onMessageEvent(InventoryEvent event) {
-        if (event.getOrderInventory() == AppConstants.MY_INVENTORY) {
+        if (event.getOrderInventory() == AppConstants.MY_ORDER) {
             mBinding.layoutOrder.setVisibility(View.VISIBLE);
             myOrderAdapter.setOrderList(event.getMyOrderList());
         } else{
@@ -88,5 +91,11 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
     @Override
     public void onViewClick(int position) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtility.unregister(this);
     }
 }
