@@ -27,7 +27,7 @@ import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
-import com.app.merchant.ui.dashboard.drawer.WelcomeHomeFragment;
+import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
 import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
 import com.app.merchant.ui.dashboard.drawer.TermConditionActivity;

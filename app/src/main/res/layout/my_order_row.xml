@@ -1,28 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
             name="payment"
             type="com.app.merchant.network.request.PaymentOption"/>
     </data>
-<LinearLayout
-    android:id="@+id/layoutRadio"
-    style="@style/match_wrap"
-    android:layout_height="@dimen/margin_40"
-    android:layout_marginEnd="@dimen/margin_10"
-    android:layout_marginStart="@dimen/margin_10"
-    android:background="@drawable/grey_corner_bg"
-    android:gravity="center_vertical"
-    android:padding="@dimen/margin_5">
-    <RadioButton
-        android:id="@+id/radioButton"
-        style="@style/textview_description_wrap"
-        android:buttonTint="@color/color_sky_blue"
-        android:clickable="false"
-        android:text="@={payment.paymentString}"
-        android:paddingStart="@dimen/margin_8"
-        android:textAllCaps="true"
-        android:textStyle="bold" />
-</LinearLayout>
+    <LinearLayout
+        android:id="@+id/layoutNews"
+        style="@style/match_wrap">
 
+        <android.support.v7.widget.CardView
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_35"
+            android:elevation="@dimen/margin_5"
+            app:cardCornerRadius="@dimen/margin_2"
+            android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginStart="@dimen/margin_7"
+            android:layout_marginEnd="@dimen/margin_7">
+            <RelativeLayout
+                style="@style/match_match"
+                android:background="@drawable/stroke_dark_grey_bg">
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvOrderCount"
+                    style="@style/textview_description_wrap"
+                    android:layout_height="match_parent"
+                    android:background="@color/yellow_color"
+                    android:paddingStart="@dimen/margin_10"
+                    android:paddingEnd="@dimen/margin_10"
+                    android:text="5432"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:ellipsize="end"
+                    />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvHeading"
+                    style="@style/textview_description_small_match"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:text="Order Received"
+                    android:layout_toStartOf="@+id/tvView"
+                    android:layout_toEndOf="@+id/tvOrderCount"
+                    android:maxLines="1"
+                    android:textAllCaps="true"/>
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvView"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:gravity="center"
+                    android:text="@string/view"
+                    android:textColor="@color/view_color"
+                    android:layout_marginEnd="@dimen/margin_5"
+                    android:paddingEnd="@dimen/margin_10"
+                    android:paddingStart="@dimen/margin_10"
+                    app:customFont="@string/font_regular" />
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
+    </LinearLayout>
 </layout>

@@ -31,8 +31,8 @@ import com.app.merchant.BuildConfig;
 import com.app.merchant.R;
 import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
-import com.app.merchant.ui.dialogfrag.FeedbackDialogFragment;
 import com.app.merchant.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -89,19 +89,19 @@ public class CommonUtility {
     public static void showDialog(AppCompatActivity activity, Bundle bundle, CustomDialogFragment.CustomDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         CustomDialogFragment alertdFragment = new CustomDialogFragment();
-        alertdFragment.DialogListener(listener);
+        alertdFragment.dialogListener(listener);
         alertdFragment.setArguments(bundle);
-        // Show Alert CustomDialogFragment
+        // Show Alert ConfirmOrderDialogFragment
         alertdFragment.show(fm, "");
     }
 
 
-    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, FeedbackDialogFragment.OrderDialogListener listener) {
+    public static void showOrderDialog(AppCompatActivity activity, Bundle bundle, ConfirmOrderDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
-        FeedbackDialogFragment alertdFragment = new FeedbackDialogFragment();
+        ConfirmOrderDialogFragment alertdFragment = new ConfirmOrderDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
-        // Show Alert CustomDialogFragment
+        // Show Alert ConfirmOrderDialogFragment
         alertdFragment.show(fm, "");
     }
 

@@ -81,6 +81,9 @@
     <color name="color_sky_blue">#009FE1</color>
     <color name="radio_button_color">#593962</color>
     <color name="tex_color">#366797</color>
+    <color name="view_color">#699bfc</color>
+    <color name="not_con_color">#fc0d1b</color>
+
 
     <color name="deep_sky_blue">#00ADEF</color>
     <color name="color_black_cart">#343851</color>
@@ -104,7 +107,7 @@
     <color name="color_blue_order">#36A5E2</color>
     <color name="radio_unchecked">#cccccc</color>
 
-
+    <color name="confirm_color">#0A6535</color>
     <color name="white">#ffffff</color>
 
     <color name="transulent">#33FFFFFF</color>

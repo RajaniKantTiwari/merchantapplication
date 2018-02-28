@@ -10,7 +10,9 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.MyInventoryRowBinding;
-import com.app.merchant.databinding.ProductRowBinding;
+import com.app.merchant.network.request.dashboard.home.MyInventory;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -19,14 +21,21 @@ import com.app.merchant.databinding.ProductRowBinding;
 public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private ProductListener listener;
-    public interface ProductListener{
+    private InventoryListener listener;
+    private ArrayList<MyInventory> myInventoryList;
+
+    public void setList(ArrayList<MyInventory> myInventoryList) {
+        this.myInventoryList = myInventoryList;
+    }
+
+    public interface InventoryListener {
         void onItemClick(int position);
     }
-    public MyInventoryAdapter(AppCompatActivity activity, ProductListener listener) {
+
+    public MyInventoryAdapter(AppCompatActivity activity, InventoryListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.listener=listener;
+        this.listener = listener;
     }
 
     @Override
@@ -54,7 +63,6 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
             super(itemView.getRoot());
             mBinding = itemView;
         }
-
 
 
         @Override

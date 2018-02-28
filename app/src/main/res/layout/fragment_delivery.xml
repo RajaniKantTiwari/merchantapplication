@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_title_match"
+                android:gravity="center"
+                android:text="@string/fill_details"
+                android:textAllCaps="true"
+                android:textColor="@color/dark_black_color" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/delivery_boy_name" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edName"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/john_doe"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/date_of_birth" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edDateOfBirth"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/dd_mm_yyyy"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20"/>
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/phone_number" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edPhone"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/phone_num"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_15" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvDocument"
+                style="@style/match_wrap"
+                android:paddingStart="@dimen/margin_4" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvDone"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_8"
+                android:text="@string/done"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_medium"
+                app:customFont="@string/font_bold" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

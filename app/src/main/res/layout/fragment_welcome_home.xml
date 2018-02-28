@@ -64,13 +64,16 @@
             android:layout_height="@dimen/margin_50"
             android:background="@color/grey_white">
 
-            <RelativeLayout style="@style/layout_hori_match_1">
+            <RelativeLayout
+                android:id="@+id/layoutOrder"
+                style="@style/layout_hori_match_1">
 
                 <com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvMyOrder"
                     style="@style/textview_description_wrap"
                     android:layout_centerInParent="true"
                     android:text="@string/my_order"
+                    android:textColor="@color/date_bg_color"
                     android:textAllCaps="true" />
             </RelativeLayout>
 
@@ -79,10 +82,12 @@
                 android:layout_marginBottom="@dimen/margin_7"
                 android:layout_marginTop="@dimen/margin_7" />
 
-            <RelativeLayout style="@style/layout_hori_match_1">
+            <RelativeLayout
+                android:id="@+id/layoutInventory"
+                style="@style/layout_hori_match_1">
 
                 <com.app.merchant.widget.CustomTextView
-                    android:id="@+id/tvMyInventory"
+                    android:id="@+id/tvInventory"
                     style="@style/textview_description_wrap"
                     android:layout_centerInParent="true"
                     android:text="@string/my_inventory"

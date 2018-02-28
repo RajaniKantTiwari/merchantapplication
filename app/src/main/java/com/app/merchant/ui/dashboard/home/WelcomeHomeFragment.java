@@ -1,4 +1,4 @@
-package com.app.merchant.ui.dashboard.drawer;
+package com.app.merchant.ui.dashboard.home;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentHomeBinding;
+import com.app.merchant.databinding.FragmentWelcomeHomeBinding;
 import com.app.merchant.event.InventoryEvent;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
@@ -16,6 +16,9 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -29,18 +32,19 @@ public class WelcomeHomeFragment extends DashboardFragment {
     @Inject
     CommonPresenter presenter;
     private NotificationAdapter mNotificationAdapter;
-    private FragmentHomeBinding mBinding;
+    private FragmentWelcomeHomeBinding mBinding;
     private InventoryEvent event;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome_home, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.home));
         addFragment();
         return mBinding.getRoot();
     }
+
     private void addFragment() {
         mBinding.orderButton.setTag(R.drawable.bar_graph);
         mBinding.orderButton.setVisibility(View.VISIBLE);
@@ -51,6 +55,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
         getBaseActivity().pushChildFragment(getChildFragmentManager(), AppConstants.FRAGMENTS.MY_ORDER_FRAGMENT,
                 null, R.id.container, true, false, BaseActivity.AnimationType.NONE);
     }
+
     @Override
     public void initializeData() {
 
@@ -58,6 +63,8 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
+        mBinding.layoutOrder.setOnClickListener(this);
+        mBinding.layoutInventory.setOnClickListener(this);
 
     }
 
@@ -78,6 +85,24 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     @Override
     public void onClick(View view) {
+        if (view == mBinding.layoutOrder) {
+            CommonUtility.clicked(mBinding.layoutOrder);
+            openOrder();
+        } else if (view == mBinding.layoutInventory) {
+            CommonUtility.clicked(mBinding.layoutInventory);
+            openInventory();
+        }
+    }
 
+    private void openInventory() {
+        mBinding.tvInventory.setText(getResources().getString(R.string.my_inventory));
+        event.setOrderInventory(AppConstants.MY_INVENTORY);
+        EventBus.getDefault().post(event);
+    }
+
+    private void openOrder() {
+        mBinding.tvMyOrder.setText(getResources().getString(R.string.my_order));
+        event.setOrderInventory(AppConstants.MY_ORDER);
+        EventBus.getDefault().post(event);
     }
 }

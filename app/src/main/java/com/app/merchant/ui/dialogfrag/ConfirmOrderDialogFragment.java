@@ -9,13 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FeedbackDialogBinding;
+import com.app.merchant.databinding.DialogConfirmOrderBinding;
+import com.app.merchant.ui.adapter.AsignAdapter;
 import com.app.merchant.utility.CommonUtility;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-public class FeedbackDialogFragment extends DialogFragment implements View.OnClickListener {
+
+public class ConfirmOrderDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
-    private FeedbackDialogBinding mBinding;
+    private DialogConfirmOrderBinding mBinding;
     private OrderDialogListener listener;
 
     public interface OrderDialogListener {
@@ -28,7 +33,7 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.feedback_dialog, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_confirm_order, container, false);
         dialog = getDialog();
         CommonUtility.setDialog(dialog);
         initializeData();
@@ -47,18 +52,22 @@ public class FeedbackDialogFragment extends DialogFragment implements View.OnCli
         if (CommonUtility.isNotNull(bundle)) {
 
         }
+        List<String> daysArrayList = new ArrayList<>();
+        daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
+        AsignAdapter adapter = new AsignAdapter(getContext(), daysArrayList);
+        adapter.setDropDownViewResource(R.layout.spinner_row);
     }
 
     public void setListener() {
-        mBinding.tvSubmit.setOnClickListener(this);
+        mBinding.tvConfirmOrder.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.tvSubmit) {
+        if (view == mBinding.tvConfirmOrder) {
             dialog.cancel();
             if(CommonUtility.isNotNull(listener)){
-                listener.submit(mBinding.edFeedBack.getText().toString());
+                //listener.submit(mBinding.edFeedBack.getText().toString());
             }
         }
     }

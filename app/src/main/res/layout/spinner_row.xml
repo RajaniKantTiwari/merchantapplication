@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvDays"
+            style="@style/mySpinnerLook"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_28"
+            android:maxLines="1"
+            android:padding="@dimen/margin_5"
+            android:textSize="@dimen/textSize_description_small"
+            android:background="@drawable/spiner_divider"/>
+</layout>

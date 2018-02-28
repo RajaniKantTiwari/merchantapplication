@@ -127,6 +127,22 @@
     <string name="welcome">Welcome</string>
     <string name="my_order">My Order</string>
     <string name="my_inventory">My Inventory</string>
+    <string name="view">View</string>
+    <string name="quantity">Quantity</string>
+    <string name="buy">Buy</string>
+    <string name="auto_request">Auto Request</string>
+    <string name="all_performance">All Performance</string>
+    <string name="fill_details">Fill Details</string>
+    <string name="delivery_boy_name">Delivery Boy Name</string>
+    <string name="john_doe">John Doe</string>
+    <string name="date_of_birth">Date Of Birth</string>
+    <string name="dd_mm_yyyy">DD/MM/YYYY</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="phone_num">9999999999</string>
+    <string name="please_enter_name">Please Enter Name</string>
+    <string name="please_enter_date_of_birth">Please Enter Date Of Birth</string>
+    <string name="confirm_order">Confirm Order</string>
+    <string name="not_confirm">Not Confirmed</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>
@@ -136,5 +152,12 @@
         <item>@string/help</item>
         <item>@string/senior_citizen</item>
         <item>@string/term_condition</item>
+    </string-array>
+    <string-array name="selected_type">
+        <item>Daily</item>
+        <item>Twice in a week</item>
+        <item>Monthly</item>
+        <item>Quaterly</item>
+        <item>Selected Days</item>
     </string-array>
 </resources>

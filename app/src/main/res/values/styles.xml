@@ -113,6 +113,13 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/ver_bg_color</item>
     </style>
+
+    <style name="view_layout_vertical_grey">
+        <item name="android:layout_width">@dimen/margin_1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/color_dark_grey</item>
+    </style>
+
     <style name="view_layout_vertical_white">
         <item name="android:layout_width">@dimen/margin_1</item>
         <item name="android:layout_height">match_parent</item>
@@ -203,6 +210,18 @@
     <style name="image_100" >
         <item name="android:layout_width">@dimen/margin_100</item>
         <item name="android:layout_height">@dimen/margin_100</item>
+    </style>
+    <style name="image_15" >
+        <item name="android:layout_height">@dimen/margin_15</item>
+        <item name="android:layout_width">@dimen/margin_15</item>
+    </style>
+    <style name="image_18" >
+        <item name="android:layout_height">@dimen/margin_18</item>
+        <item name="android:layout_width">@dimen/margin_18</item>
+    </style>
+    <style name="image_22" >
+        <item name="android:layout_height">@dimen/margin_22</item>
+        <item name="android:layout_width">@dimen/margin_22</item>
     </style>
     <style name="image_30" >
         <item name="android:layout_height">@dimen/margin_30</item>
@@ -514,5 +533,11 @@
     <style name="drawer_style" parent="match_wrap">
         <item name="android:layout_height">@dimen/drawerview_height</item>
     </style>
+    <style name="textview_window_btn">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/margin_24</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
 
+    </style>
 </resources>

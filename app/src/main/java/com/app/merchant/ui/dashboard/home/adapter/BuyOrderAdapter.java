@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.merchant.R;
+import com.app.merchant.databinding.BuyProductRowBinding;
 import com.app.merchant.databinding.MyOrderRowBinding;
 import com.app.merchant.network.request.dashboard.home.MyOrder;
 
@@ -18,7 +19,7 @@ import java.util.ArrayList;
  * Created by ashok on 25/12/17.
  */
 
-public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductViewHolder> {
+public class BuyOrderAdapter extends RecyclerView.Adapter<BuyOrderAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
     private OrderListener listener;
@@ -26,9 +27,10 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
 
 
     public interface OrderListener {
-        void onViewClick(int position);
+
+        void onBuyClick(int position);
     }
-    public MyOrderAdapter(AppCompatActivity activity, OrderListener listener) {
+    public BuyOrderAdapter(AppCompatActivity activity, OrderListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.listener=listener;
@@ -39,7 +41,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
     }
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyOrderRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.my_order_row, parent, false);
+        BuyProductRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.buy_product_row, parent, false);
         return new ProductViewHolder(mBinding);
     }
 
@@ -55,20 +57,20 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final MyOrderRowBinding mBinding;
+        private final BuyProductRowBinding mBinding;
         private ImageView productImage;
 
-        public ProductViewHolder(MyOrderRowBinding itemView) {
+        public ProductViewHolder(BuyProductRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-            itemView.tvView.setOnClickListener(this);
+            itemView.tvBuy.setOnClickListener(this);
         }
 
 
 
         @Override
         public void onClick(View view) {
-            listener.onViewClick(getAdapterPosition());
+            listener.onBuyClick(getAdapterPosition());
         }
     }
 }

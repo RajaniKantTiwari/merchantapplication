@@ -13,6 +13,7 @@ import android.view.Window;
 import com.app.merchant.R;
 import com.app.merchant.databinding.DialogfragmentBinding;
 import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
@@ -29,7 +30,7 @@ public class CustomDialogFragment extends DialogFragment implements View.OnClick
         void cancel();
     }
 
-    public void DialogListener(CustomDialogListener listener) {
+    public void dialogListener(CustomDialogListener listener) {
         this.listener = listener;
     }
 
@@ -70,7 +71,7 @@ public class CustomDialogFragment extends DialogFragment implements View.OnClick
                     dialog.cancel();
                     listener.ok(mobile);
                 } else {
-                    ((BaseActivity) getActivity()).showToast(getResources().getString(R.string.please_enter_password));
+                    ((BaseActivity) getActivity()).showToast(getResources().getString(R.string.please_enter_mobile_number));
                 }
             }else{
                 listener.ok(null);

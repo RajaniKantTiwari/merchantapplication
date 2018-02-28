@@ -21,7 +21,6 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.presenter.CommonPresenter;
-import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;

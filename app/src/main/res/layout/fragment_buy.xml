@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutInventory"
+    android:orientation="vertical"
+    style="@style/match_match">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvInventory"
+        style="@style/match_match"/>
+
+</LinearLayout>
+</layout>

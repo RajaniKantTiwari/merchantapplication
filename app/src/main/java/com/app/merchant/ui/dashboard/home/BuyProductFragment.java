@@ -9,38 +9,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
+import com.app.merchant.databinding.FragmentBuyBinding;
 import com.app.merchant.databinding.FragmentInventoryBinding;
-import com.app.merchant.databinding.FragmentNotificationBinding;
 import com.app.merchant.event.InventoryEvent;
-import com.app.merchant.network.request.dashboard.home.MyInventory;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyInventoryAdapter;
-import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
 import com.app.merchant.utility.AppConstants;
 
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
 
 
 /**
  * Created by ashok on 13/11/17.
  */
 
-public class MyInventoryFragment extends DashboardFragment implements MyInventoryAdapter.InventoryListener {
+public class BuyProductFragment extends DashboardFragment implements MyInventoryAdapter.InventoryListener {
 
-    private FragmentInventoryBinding mBinding;
+    private FragmentBuyBinding mBinding;
     private MyInventoryAdapter myInventoryAdapter;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_inventory, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_buy, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.notification));
         return mBinding.getRoot();
     }
@@ -60,7 +53,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public String getFragmentName() {
-        return MyInventoryFragment.class.getSimpleName();
+        return BuyProductFragment.class.getSimpleName();
     }
 
     @Override
