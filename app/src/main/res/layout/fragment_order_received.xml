@@ -5,76 +5,89 @@
         style="@style/match_match"
         android:orientation="vertical">
 
-        <RelativeLayout style="@style/layout_ver_match_1">
+        <com.app.merchant.widget.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_100"
+            android:background="@drawable/imge"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_21"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_header_large" />
 
-            <RelativeLayout
-                style="@style/match_match"
-                android:layout_above="@+id/layoutDate">
+        <LinearLayout style="@style/match_wrap">
+
+            <LinearLayout style="@style/wrap_match"
+                android:background="@color/date_bg_color"
+                android:paddingStart="@dimen/margin_7"
+                android:paddingEnd="@dimen/margin_7"
+                >
 
                 <com.app.merchant.widget.CustomTextView
-                    style="@style/match_match"
-                    android:background="@drawable/imge"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_21"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize_header_large" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutDate"
-                style="@style/match_wrap"
-                android:layout_above="@+id/layoutLine">
-
-                <LinearLayout style="@style/wrap_match">
-
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvHeading"
-                        style="@style/textview_description_wrap"
-                        android:layout_height="match_parent"
-                        android:background="@color/date_bg_color"
-                        android:gravity="center"
-                        android:padding="@dimen/margin_5"
-                        android:text="@string/date"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_2">
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/welcome"
-                        android:textAllCaps="true"
-                        android:textColor="@color/grey_color" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="Mr. John Doe"
-                        android:textAllCaps="true" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/welcome" />
-                </LinearLayout>
+                    android:id="@+id/tvHeading"
+                    style="@style/textview_description_large_wrap"
+                    android:layout_gravity="center"
+                    android:text="@string/date"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
             </LinearLayout>
 
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="vertical"
+                android:padding="@dimen/margin_2">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/welcome"
+                    android:textAllCaps="true"
+                    android:textColor="@color/grey_color" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="Mr. John Doe"
+                    android:textAllCaps="true" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/welcome"
+                    android:textAllCaps="true" />
+            </LinearLayout>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/layoutLine"
+            style="@style/view_layout_light_grey" />
+
+        <RelativeLayout
+            style="@style/layout_ver_match_1"
+            android:padding="@dimen/margin_7">
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvPerformance"
+                style="@style/textview_description_wrap"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textColor="@color/yellow_order"
+                android:text="@string/performance_chart"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_smaller_wrap"
+                android:layout_alignParentEnd="true"
+                android:maxLines="1"
+                android:text="@string/order_received"
+                android:drawableStart="@drawable/bg_circle_yellow_small"/>
             <ImageView
-                android:id="@+id/layoutLine"
-                style="@style/view_layout_dark_grey"
-                android:layout_alignParentBottom="true" />
-        </RelativeLayout>
-
-        <RelativeLayout style="@style/layout_ver_match_1">
-
+                android:id="@+id/layoutLi"
+                style="@style/view_layout_light_grey"
+                android:layout_below="@+id/tvPerformance"/>
+            <lecho.lib.hellocharts.view.LineChartView
+                android:id="@+id/lineChart"
+                style="@style/match_match"
+                android:layout_marginTop="@dimen/margin_7"
+                android:layout_below="@+id/layoutLi"/>
         </RelativeLayout>
 
         <RelativeLayout style="@style/layout_ver_match_1">

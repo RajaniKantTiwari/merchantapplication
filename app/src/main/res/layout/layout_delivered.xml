@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap"
+    android:gravity="center_vertical">
+<android.support.v4.widget.Space
+    style="@style/layout_hori_match_4" />
+    <com.app.merchant.widget.CustomTextView
+    style="@style/textview_description_smaller_wrap"
+    android:drawableStart="@drawable/bg_circle_blue_2"
+    android:drawablePadding="@dimen/margin_5"
+    android:text="@string/order_delivered"
+        android:layout_marginEnd="@dimen/margin_8"/>
+    <com.app.merchant.widget.CustomTextView
+        style="@style/textview_description_smaller_wrap"
+        android:drawableStart="@drawable/bg_circle_voilet"
+        android:drawablePadding="@dimen/margin_5"
+        android:text="@string/order_canceled"
+        android:layout_marginEnd="@dimen/margin_8"/>
+    <com.app.merchant.widget.CustomTextView
+        style="@style/textview_description_smaller_wrap"
+        android:drawableStart="@drawable/bg_circle_light_red"
+        android:drawablePadding="@dimen/margin_5"
+        android:text="@string/order_returned"/>
+</LinearLayout>

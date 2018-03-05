@@ -133,10 +133,10 @@ dependencies {
     //image from camera gallery
     implementation project(':libary')
     //end
-
-    //cropping image library
-    implementation project(':anychart')
+// Line Chart Library
+    implementation project(':hellocharts-library')
     //end
+
 
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true

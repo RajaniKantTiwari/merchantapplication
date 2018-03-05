@@ -7,10 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAllPerformanceBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -32,8 +36,25 @@ public class AllPerformanceFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
+        receivedChartData();
 
     }
+
+    private void receivedChartData() {
+        initializeDeliveredChart();
+        initializeReceivedChart();
+    }
+
+    private void initializeDeliveredChart() {
+
+    }
+
+    private void initializeReceivedChart() {
+
+
+    }
+
+
 
     @Override
     public void setListener() {

@@ -28,6 +28,7 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
+import com.app.merchant.ui.dashboard.home.OrderReceivedFragment;
 import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
 import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
@@ -61,8 +62,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public DashboardComponent mDashboardComponent;
     @Inject
     public DashboardPresenter mPresenter;
-    //Sliding drawer
-    private ActionBarDrawerToggle mDrawerToggleRight;
 
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
@@ -264,11 +263,15 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new OfferFragment(), null, R.id.container, true, false, NONE);
+
+            pushFragment(new AllPerformanceFragment(), null, R.id.container, true, false, NONE);
+
+            //pushFragment(new OfferFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar3) {
             changeIcon(NOTIFICATION_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new NotificationFragment(), null, R.id.container, true, false, NONE);
+            /*pushFragment(new NotificationFragment(), null, R.id.container, true, false, NONE);*/
+            pushFragment(new OrderReceivedFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();

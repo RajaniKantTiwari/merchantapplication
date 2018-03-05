@@ -1,1 +1,1 @@
-include ':app', ':libary', ':cropper', ':anychart'
+include ':app', ':libary', ':cropper', ':hellocharts-library'

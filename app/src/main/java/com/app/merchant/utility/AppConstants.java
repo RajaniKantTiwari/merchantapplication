@@ -16,8 +16,23 @@ import static com.app.merchant.utility.AppConstants.FRAGMENTS.WELCOME_HOME_FRAGM
  */
 
 public interface AppConstants {
-    Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+
+    Pattern EMAIL_PATTERN = Pattern
+            .compile("[a-zA-Z0-9+._%-+]{1,100}" + "@"
+                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,10}" + "(" + "."
+                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,20}" +
+                    ")+");
+
+    Pattern USERNAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern NAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern LAST_NAME_PATTERN = Pattern
+            .compile("[a-zA-Z0-9]{1,250}");
+    Pattern PASSWORD_PATTERN = Pattern
+            .compile("[a-zA-Z0-9+_.]{4,16}");
+    Pattern CONFIRM_PASSWORD_PATTERN = Pattern
+            .compile("[a-zA-Z0-9+_.]{4,16}");
     String AUTHORIZATION = "Authorization";
     String SUCCESS = "success";
     String FORBIDDEN = "403";

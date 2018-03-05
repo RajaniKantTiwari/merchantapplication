@@ -72,6 +72,11 @@
         <item name="android:layout_height">@dimen/margin_1</item>
         <item name="android:background">@color/dark_grey_color</item>
     </style>
+    <style name="view_layout_light_grey">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/margin_1</item>
+        <item name="android:background">@color/grey_divider</item>
+    </style>
 
     <style name="view_layout_black">
         <item name="android:layout_width">match_parent</item>

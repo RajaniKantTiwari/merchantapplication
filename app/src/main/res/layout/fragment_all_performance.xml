@@ -94,20 +94,31 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivLine"
                 android:layout_marginBottom="@dimen/margin_2" />
-            <com.anychart.anychart.AnyChartView
-                android:id="@+id/receivedStatus"
-                android:layout_below="@+id/layoutIndi"
-                style="@style/match_match"
-                />
+
         </RelativeLayout>
 
-        <RelativeLayout
+        <RelativeLayout style="@style/layout_ver_match_1"
             android:layout_marginTop="@dimen/margin_10"
-            style="@style/layout_ver_match_1">
-            <com.anychart.anychart.AnyChartView
-                android:id="@+id/deliveredStatus"
-                style="@style/match_match"
+            android:layout_marginStart="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_10">
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvPerform"
+                style="@style/textview_description_match"
+                android:text="@string/performance_chart"/>
+            <ImageView
+                android:id="@+id/ivLinec"
+                style="@style/view_layout_1"
+                android:layout_below="@+id/tvPerform"
+                android:layout_marginBottom="@dimen/margin_5"
                 />
+            <include
+                android:id="@+id/layoutIndi"
+                layout="@layout/layout_delivered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivLinec"
+                android:layout_marginBottom="@dimen/margin_2" />
+
         </RelativeLayout>
 
     </LinearLayout>

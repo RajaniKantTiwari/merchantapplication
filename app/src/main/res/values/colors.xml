@@ -111,6 +111,8 @@
     <color name="colorNavAccentSelected">#18A3BF</color>
     <color name="color_blue_order">#36A5E2</color>
     <color name="radio_unchecked">#cccccc</color>
+    <color name="grey_divider">#cccccc</color>
+
 
     <color name="confirm_color">#0A6535</color>
     <color name="white">#ffffff</color>
