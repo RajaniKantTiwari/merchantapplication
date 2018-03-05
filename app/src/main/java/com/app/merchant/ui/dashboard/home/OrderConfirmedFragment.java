@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentAllPerformanceBinding;
-import com.app.merchant.databinding.FragmentOrderReceivedBinding;
+import com.app.merchant.databinding.FragmentOrderConfirmedBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
-import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
+import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
+import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -35,9 +35,9 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderReceivedFragment extends DashboardFragment implements
-        OrderReceivedAdapter.OrderReceivedListener,ConfirmOrderDialogFragment.OrderDialogListener{
-    private FragmentOrderReceivedBinding mBinding;
+public class OrderConfirmedFragment extends DashboardFragment implements
+        OrderConfirmedAdapter.OrderConfirmedListener,DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
+    private FragmentOrderConfirmedBinding mBinding;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
@@ -62,8 +62,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_confirmed, container, false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_confirmed));
         return mBinding.getRoot();
     }
 
@@ -77,7 +77,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReceivedAdapter mAdapter=new OrderReceivedAdapter(getDashboardActivity(),this);
+        OrderConfirmedAdapter mAdapter=new OrderConfirmedAdapter(getDashboardActivity(),this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -123,7 +123,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
             }
 
             Line line = new Line(values);
-            line.setColor(ChartUtils.COLORS[0]);
+            line.setColor(ChartUtils.COLORS[1]);
             line.setShape(shape);
             line.setCubic(isCubic);
             line.setFilled(isFilled);
@@ -167,7 +167,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public String getFragmentName() {
-        return OrderReceivedFragment.class.getSimpleName();
+        return OrderConfirmedFragment.class.getSimpleName();
     }
 
     @Override
@@ -185,20 +185,18 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     }
 
+
+
     @Override
-    public void onOrderStatusClick(int position) {
+    public void onOrderConfirmClick(int position) {
         Bundle bundle=new Bundle();
-        CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
+        CommonUtility.showNewDeliveryDialog(getDashboardActivity(),bundle,this);
     }
 
     @Override
-    public void confirmed() {
-
-    }
-
-    @Override
-    public void notConfirmed() {
-
+    public void newDeliveryBoy() {
+        Bundle bundle=new Bundle();
+        getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

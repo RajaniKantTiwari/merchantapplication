@@ -76,6 +76,7 @@
                         android:layout_marginStart="@dimen/margin_10"
                         android:background="@drawable/confirm_bg"
                         android:text="@string/confirm_order"
+                        android:textAllCaps="true"
                         android:textColor="@color/confirm_color"
                         app:customFont="@string/font_regular" />
 
@@ -86,6 +87,7 @@
                         android:layout_marginEnd="@dimen/margin_10"
                         android:background="@drawable/not_confirm_bg"
                         android:text="@string/not_confirm"
+                        android:textAllCaps="true"
                         android:textColor="@color/not_con_color"
                         app:customFont="@string/font_regular" />
 

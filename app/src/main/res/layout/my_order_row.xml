@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="payment"
-            type="com.app.merchant.network.request.PaymentOption"/>
+            name="myorder"
+            type="com.app.merchant.network.request.dashboard.home.MyOrder"/>
     </data>
     <LinearLayout
         style="@style/match_wrap">
@@ -39,7 +39,7 @@
                     android:layout_centerInParent="true"
                     android:layout_marginStart="@dimen/margin_10"
                     android:layout_marginEnd="@dimen/margin_10"
-                    android:text="Order Received"
+                    android:text="@={myorder.orderStatus}"
                     android:layout_toStartOf="@+id/tvView"
                     android:layout_toEndOf="@+id/tvOrderCount"
                     android:maxLines="1"

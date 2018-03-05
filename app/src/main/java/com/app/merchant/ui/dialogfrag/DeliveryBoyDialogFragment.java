@@ -24,13 +24,13 @@ import java.util.List;
 public class DeliveryBoyDialogFragment extends DialogFragment implements View.OnClickListener {
     private Dialog dialog;
     private DialogDeliveryBoyBinding mBinding;
-    private OrderDialogListener listener;
+    private DeliveryBoyDialogListener listener;
     private FragmentActivity mActivity;
 
-    public interface OrderDialogListener {
+    public interface DeliveryBoyDialogListener {
         void newDeliveryBoy();
     }
-    public void addListener(OrderDialogListener listener) {
+    public void addListener(DeliveryBoyDialogListener listener) {
         this.listener = listener;
     }
 

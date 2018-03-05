@@ -49,6 +49,7 @@ public class DeliveryFragment extends DashboardFragment implements MvpView, View
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_delivery,container,false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.assign_new_delivery_boy));
         initializeAdapter();
         return mBinding.getRoot();
     }

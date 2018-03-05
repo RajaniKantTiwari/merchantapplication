@@ -73,14 +73,12 @@
                 style="@style/textview_description_wrap"
                 android:gravity="center"
                 android:maxLines="1"
-                android:paddingBottom="@dimen/margin_5"
                 android:textColor="@color/yellow_order"
                 android:text="@string/performance_chart"/>
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_smaller_wrap"
                 android:layout_alignParentEnd="true"
                 android:maxLines="1"
-                android:drawablePadding="@dimen/margin_5"
                 android:text="@string/order_received"
                 android:drawableStart="@drawable/bg_circle_yellow_small"/>
             <ImageView

@@ -29,15 +29,18 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
     public interface OrderListener {
         void onViewClick(int position);
     }
+
     public MyOrderAdapter(AppCompatActivity activity, OrderListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.listener=listener;
+        this.listener = listener;
     }
+
     public void setOrderList(ArrayList<MyOrder> myOrderList) {
-      this.myOrderList=myOrderList;
-      notifyDataSetChanged();
+        this.myOrderList = myOrderList;
+        notifyDataSetChanged();
     }
+
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyOrderRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.my_order_row, parent, false);
@@ -46,13 +49,13 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
+        holder.setOrderData(position);
 
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtility.isNotNull(myOrderList)?myOrderList.size():0;
+        return CommonUtility.isNotNull(myOrderList) ? myOrderList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -65,6 +68,11 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
             itemView.layoutView.setOnClickListener(this);
         }
 
+        public void setOrderData(int position) {
+            if (CommonUtility.isNotNull(myOrderList) && myOrderList.size() > position) {
+                mBinding.setMyorder(myOrderList.get(position));
+            }
+        }
 
 
         @Override

@@ -123,7 +123,8 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
             Bundle bundle=new Bundle();
             getDashboardActivity().addFragmentInContainer(new OrderReceivedFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==1){
-
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderConfirmedFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==2){
 
         }else if(position==3){
