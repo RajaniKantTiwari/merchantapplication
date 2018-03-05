@@ -151,6 +151,10 @@
     <string name="order_delivered">Order Delivered</string>
     <string name="order_canceled">Order Canceled</string>
     <string name="order_returned">Order Returned</string>
+    <string name="order_no">Order No.</string>
+    <string name="received_time">Received Time</string>
+    <string name="amount">Amount</string>
+    <string name="status">Status</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

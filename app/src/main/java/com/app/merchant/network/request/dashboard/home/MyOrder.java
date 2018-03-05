@@ -5,4 +5,13 @@ package com.app.merchant.network.request.dashboard.home;
  */
 
 public class MyOrder {
+    private String orderStatus;
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
+    }
 }

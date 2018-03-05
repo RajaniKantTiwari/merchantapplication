@@ -3,7 +3,9 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:clickable="true">
 
         <com.app.merchant.widget.CustomTextView
             android:layout_width="match_parent"
@@ -90,9 +92,55 @@
                 android:layout_below="@+id/layoutLi"/>
         </RelativeLayout>
 
-        <RelativeLayout style="@style/layout_ver_match_1">
-
-        </RelativeLayout>
+        <LinearLayout
+            style="@style/layout_ver_match_1"
+            android:orientation="vertical">
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_30"
+            android:background="@drawable/order_bg">
+            <com.app.merchant.widget.CustomTextView
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/order_no"
+                android:textSize="@dimen/textSize_description_small"
+                android:textColor="@color/black"
+                android:textAllCaps="true" />
+            <ImageView
+                style="@style/view_layout_vertical_light_grey"
+                android:layout_below="@+id/tvPerformance"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/received_time"
+                android:textSize="@dimen/textSize_description_small"
+                android:textColor="@color/black"
+                android:textAllCaps="true" />
+            <ImageView
+                style="@style/view_layout_vertical_light_grey"
+                android:layout_below="@+id/tvPerformance"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/amount"
+                android:textSize="@dimen/textSize_description_small"
+                android:textColor="@color/black"
+                android:textAllCaps="true" />
+            <ImageView
+                style="@style/view_layout_vertical_light_grey"
+                android:layout_below="@+id/tvPerformance"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/layout_hori_match_1"
+                android:gravity="center"
+                android:text="@string/status"
+                android:textSize="@dimen/textSize_description_small"
+                android:textColor="@color/black"
+                android:textAllCaps="true" />
+        </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOrder"
+                style="@style/match_match"/>
+        </LinearLayout>
 
     </LinearLayout>
 </layout>

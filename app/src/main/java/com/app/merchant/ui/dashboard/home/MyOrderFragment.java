@@ -11,7 +11,9 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderBinding;
 import com.app.merchant.event.InventoryEvent;
+import com.app.merchant.network.request.dashboard.home.MyOrder;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyOrderAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
@@ -20,24 +22,25 @@ import com.app.merchant.utility.CommonUtility;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by ashok on 13/11/17.
  */
 
-public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter.OrderListener,
-        ConfirmOrderDialogFragment.OrderDialogListener{
+public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter.OrderListener{
 
     private FragmentOrderBinding mBinding;
     private MyOrderAdapter myOrderAdapter;
+    private ArrayList<MyOrder> orderList;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order, container, false);
         CommonUtility.register(this);
-
-        getDashboardActivity().setHeaderTitle(getString(R.string.notification));
+        getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         return mBinding.getRoot();
     }
 
@@ -47,6 +50,35 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
         mBinding.rvOrder.setLayoutManager(notificationManager);
         myOrderAdapter = new MyOrderAdapter(getDashboardActivity(),this);
         mBinding.rvOrder.setAdapter(myOrderAdapter);
+        setOrderList();
+        myOrderAdapter.setOrderList(orderList);
+    }
+
+    private void setOrderList() {
+        orderList=new ArrayList<>();
+        MyOrder myOrder1=new MyOrder();
+        myOrder1.setOrderStatus("Order Received.");
+        orderList.add(myOrder1);
+
+        MyOrder myOrder2=new MyOrder();
+        myOrder2.setOrderStatus("Order Confirmed.");
+        orderList.add(myOrder2);
+
+        MyOrder myOrder3=new MyOrder();
+        myOrder3.setOrderStatus("Order Out for delivery");
+        orderList.add(myOrder3);
+
+        MyOrder myOrder4=new MyOrder();
+        myOrder4.setOrderStatus("Order Delivered.");
+        orderList.add(myOrder4);
+
+        MyOrder myOrder5=new MyOrder();
+        myOrder5.setOrderStatus("Order Canceled");
+        orderList.add(myOrder5);
+
+        MyOrder myOrder6=new MyOrder();
+        myOrder6.setOrderStatus("Order Returned");
+        orderList.add(myOrder6);
     }
 
     @Override
@@ -77,6 +109,7 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
     public void onMessageEvent(InventoryEvent event) {
         if (event.getOrderInventory() == AppConstants.MY_ORDER) {
             mBinding.layoutOrder.setVisibility(View.VISIBLE);
+            event.setMyOrderList(orderList);
             myOrderAdapter.setOrderList(event.getMyOrderList());
         } else{
             mBinding.layoutOrder.setVisibility(View.GONE);
@@ -86,23 +119,26 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
 
     @Override
     public void onViewClick(int position) {
-        Bundle bundle=new Bundle();
-         CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
+        if(position==0){
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderReceivedFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        }else if(position==1){
+
+        }else if(position==2){
+
+        }else if(position==3){
+
+        }else if(position==4){
+
+        }else if(position==5){
+
+        }
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         CommonUtility.unregister(this);
-    }
-
-    @Override
-    public void confirmed() {
-
-    }
-
-    @Override
-    public void notConfirmed() {
-
     }
 }

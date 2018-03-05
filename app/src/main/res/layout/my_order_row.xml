@@ -7,7 +7,6 @@
             type="com.app.merchant.network.request.PaymentOption"/>
     </data>
     <LinearLayout
-        android:id="@+id/layoutNews"
         style="@style/match_wrap">
 
         <android.support.v7.widget.CardView
@@ -19,6 +18,7 @@
             android:layout_marginStart="@dimen/margin_7"
             android:layout_marginEnd="@dimen/margin_7">
             <RelativeLayout
+                android:id="@+id/layoutView"
                 style="@style/match_match"
                 android:background="@drawable/stroke_dark_grey_bg">
                 <com.app.merchant.widget.CustomTextView

@@ -9,38 +9,28 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.MyOrderRowBinding;
-import com.app.merchant.network.request.dashboard.home.MyOrder;
-import com.app.merchant.utility.CommonUtility;
-
-import java.util.ArrayList;
+import com.app.merchant.databinding.OrderReceivedRowBinding;
 
 /**
  * Created by ashok on 25/12/17.
  */
 
-public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductViewHolder> {
+public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private OrderListener listener;
-    private ArrayList<MyOrder> myOrderList;
-
-
-    public interface OrderListener {
-        void onViewClick(int position);
+    private OrderReceivedListener listener;
+    public interface OrderReceivedListener {
+        void onOrderStatusClick(int position);
     }
-    public MyOrderAdapter(AppCompatActivity activity, OrderListener listener) {
+    public OrderReceivedAdapter(AppCompatActivity activity,OrderReceivedListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.listener=listener;
     }
-    public void setOrderList(ArrayList<MyOrder> myOrderList) {
-      this.myOrderList=myOrderList;
-      notifyDataSetChanged();
-    }
+
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        MyOrderRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.my_order_row, parent, false);
+        OrderReceivedRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_received_row, parent, false);
         return new ProductViewHolder(mBinding);
     }
 
@@ -52,25 +42,24 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        return CommonUtility.isNotNull(myOrderList)?myOrderList.size():0;
+        return 10;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final MyOrderRowBinding mBinding;
+        private final OrderReceivedRowBinding mBinding;
         private ImageView productImage;
 
-        public ProductViewHolder(MyOrderRowBinding itemView) {
+        public ProductViewHolder(OrderReceivedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-            itemView.layoutView.setOnClickListener(this);
+            itemView.layoutOrderStatus.setOnClickListener(this);
         }
 
 
 
         @Override
         public void onClick(View view) {
-            CommonUtility.clicked(mBinding.layoutView);
-            listener.onViewClick(getAdapterPosition());
+            listener.onOrderStatusClick(getAdapterPosition());
         }
     }
 }

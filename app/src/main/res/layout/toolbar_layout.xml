@@ -14,10 +14,10 @@
 
             <ImageView
                 android:id="@+id/ivDrawer"
-                style="@style/image_50"
+                style="@style/image_45"
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
-                android:padding="@dimen/margin_12"
+                android:padding="@dimen/margin_10"
                 android:background="@android:color/transparent"
                 android:src="@drawable/hamberg" />
 

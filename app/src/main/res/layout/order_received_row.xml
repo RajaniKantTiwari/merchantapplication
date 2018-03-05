@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_height="@dimen/margin_30"
+        android:background="@drawable/layer">
+        <com.app.merchant.widget.CustomTextView
+            style="@style/layout_hori_match_1"
+            android:gravity="center"
+            android:text="125"
+            android:maxLength="15"
+            android:textSize="@dimen/textSize_description_smaller"
+            android:textColor="@color/black"
+            android:textAllCaps="true" />
+        <ImageView
+            style="@style/view_layout_vertical_light_grey" />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/layout_hori_match_1"
+            android:gravity="center"
+            android:text="12:30"
+            android:maxLength="15"
+            android:textSize="@dimen/textSize_description_smaller"
+            android:textColor="@color/black"
+            android:textAllCaps="true" />
+        <ImageView
+            style="@style/view_layout_vertical_light_grey"/>
+        <com.app.merchant.widget.CustomTextView
+            style="@style/layout_hori_match_1"
+            android:gravity="center"
+            android:text="Rs. 1250"
+            android:maxLength="15"
+            android:textSize="@dimen/textSize_description_smaller"
+            android:textColor="@color/black"
+            android:textAllCaps="true" />
+        <ImageView
+            style="@style/view_layout_vertical_light_grey"
+            android:layout_below="@+id/tvPerformance"/>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/layoutOrderStatus"
+            style="@style/layout_hori_match_1"
+            android:gravity="center"
+            android:text="PENDING"
+            android:maxLength="15"
+            android:textSize="@dimen/textSize_description_smaller"
+            android:textColor="@color/black"
+            android:textAllCaps="true" />
+    </LinearLayout>
+
+</layout>

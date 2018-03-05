@@ -3,6 +3,7 @@ package com.app.merchant.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,9 @@ import com.app.merchant.databinding.FragmentAllPerformanceBinding;
 import com.app.merchant.databinding.FragmentOrderReceivedBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
+import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +35,8 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderReceivedFragment extends DashboardFragment {
+public class OrderReceivedFragment extends DashboardFragment implements
+        OrderReceivedAdapter.OrderReceivedListener,ConfirmOrderDialogFragment.OrderDialogListener{
     private FragmentOrderReceivedBinding mBinding;
     //for chart
     private LineChartData data;
@@ -42,7 +47,7 @@ public class OrderReceivedFragment extends DashboardFragment {
     float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
 
     private boolean hasAxes = true;
-    private boolean hasAxesNames = true;
+    private boolean hasAxesNames = false;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -66,6 +71,14 @@ public class OrderReceivedFragment extends DashboardFragment {
     @Override
     public void initializeData() {
       initializeChartData();
+      initializeOrderData();
+    }
+
+    private void initializeOrderData() {
+        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        mBinding.rvOrder.setLayoutManager(layoutManager);
+        OrderReceivedAdapter mAdapter=new OrderReceivedAdapter(getDashboardActivity(),this);
+        mBinding.rvOrder.setAdapter(mAdapter);
     }
 
     private void initializeChartData() {
@@ -171,6 +184,23 @@ public class OrderReceivedFragment extends DashboardFragment {
     public void onClick(View view) {
 
     }
+
+    @Override
+    public void onOrderStatusClick(int position) {
+        Bundle bundle=new Bundle();
+        CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
+    }
+
+    @Override
+    public void confirmed() {
+
+    }
+
+    @Override
+    public void notConfirmed() {
+
+    }
+
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 
         @Override

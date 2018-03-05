@@ -135,6 +135,11 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:background">@color/white</item>
     </style>
+    <style name="view_layout_vertical_light_grey">
+        <item name="android:layout_width">@dimen/margin_1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/grey_divider</item>
+    </style>
     <style name="otp_back">
         <item name="android:layout_width">@dimen/margin_45</item>
         <item name="android:layout_height">@dimen/margin_45</item>
@@ -205,7 +210,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
     <style name="toolbar" parent="match_wrap">
-        <item name="android:layout_height">@dimen/margin_56</item>
+        <item name="android:layout_height">@dimen/margin_45</item>
         <item name="android:layout_width">match_parent</item>
     </style>
 
@@ -244,6 +249,10 @@
     <style name="image_40" >
         <item name="android:layout_height">@dimen/margin_40</item>
         <item name="android:layout_width">@dimen/margin_40</item>
+    </style>
+    <style name="image_45" >
+        <item name="android:layout_width">@dimen/margin_45</item>
+        <item name="android:layout_height">@dimen/margin_45</item>
     </style>
     <style name="image_50" >
         <item name="android:layout_width">@dimen/margin_50</item>
