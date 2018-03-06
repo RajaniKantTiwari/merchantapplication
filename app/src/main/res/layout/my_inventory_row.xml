@@ -64,11 +64,10 @@
 
                 <LinearLayout
                     style="@style/layout_hori_match_1"
-                    android:layout_height="@dimen/margin_50"
                     android:orientation="horizontal">
 
                     <ImageView
-                        style="@style/view_layout_vertical_grey"
+                        style="@style/view_layout_vertical_light_grey"
                         android:layout_marginBottom="@dimen/margin_7"
                         android:layout_marginTop="@dimen/margin_7" />
 
@@ -98,7 +97,7 @@
 
                     <ImageView
                         android:id="@+id/ivSep"
-                        style="@style/view_layout_vertical_grey"
+                        style="@style/view_layout_vertical_light_grey"
                         android:layout_marginBottom="@dimen/margin_7"
                         android:layout_marginTop="@dimen/margin_7" />
 
@@ -120,6 +119,7 @@
                             android:paddingStart="@dimen/margin_12"
                             android:paddingTop="@dimen/margin_2"
                             android:text="@string/buy"
+                            android:textColor="@color/white"
                             android:textAllCaps="true" />
                         <com.app.merchant.widget.CustomTextView
                             style="@style/textview_description_smaller_wrap"

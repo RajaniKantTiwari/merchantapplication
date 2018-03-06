@@ -27,6 +27,7 @@
                     android:layout_toStartOf="@+id/ivSearch"
                     android:layout_toEndOf="@+id/ivDrawer"
                     android:gravity="center"
+                    android:textAllCaps="true"
                     android:layout_centerInParent="true"
                     android:textColor="@color/white" />
             <ImageView

@@ -102,6 +102,8 @@
 
     <color name="color_dark_grey">#939598</color>
     <color name="darker_blackish">#334254</color>
+    <color name="seperator_color">#D4D4D4</color>
+
     <color name="color_dark_black">#333852</color>
 
     <color name="dark_black_color">#344253</color>

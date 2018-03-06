@@ -35,6 +35,11 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
     public void setListener() {
         mBinding.tvDone.setOnClickListener(this);
+        mBinding.layoutPayment.layoutCash.setOnClickListener(this);
+        mBinding.layoutPayment.layoutCard.setOnClickListener(this);
+        mBinding.layoutPayment.layoutPaytm.setOnClickListener(this);
+        mBinding.layoutPayment.layoutOther.setOnClickListener(this);
+
     }
 
 
@@ -72,7 +77,43 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
                            PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }*/
+        }else if(view==mBinding.layoutPayment.layoutCash){
+            selectCash();
+        }else if(view==mBinding.layoutPayment.layoutCard){
+            selectCard();
+        }else if(view==mBinding.layoutPayment.layoutPaytm){
+            selectPaytm();
+        }else if(view==mBinding.layoutPayment.layoutOther){
+            selectOther();
         }
+    }
+
+    private void selectOther() {
+        mBinding.layoutPayment.radioCash.setChecked(false);
+        mBinding.layoutPayment.radioCard.setChecked(false);
+        mBinding.layoutPayment.radioPaytm.setChecked(false);
+        mBinding.layoutPayment.radioOther.setChecked(true);
+    }
+
+    private void selectPaytm() {
+        mBinding.layoutPayment.radioCash.setChecked(false);
+        mBinding.layoutPayment.radioCard.setChecked(false);
+        mBinding.layoutPayment.radioPaytm.setChecked(true);
+        mBinding.layoutPayment.radioOther.setChecked(false);
+    }
+
+    private void selectCard() {
+        mBinding.layoutPayment.radioCash.setChecked(false);
+        mBinding.layoutPayment.radioCard.setChecked(true);
+        mBinding.layoutPayment.radioPaytm.setChecked(false);
+        mBinding.layoutPayment.radioOther.setChecked(false);
+    }
+
+    private void selectCash() {
+        mBinding.layoutPayment.radioCash.setChecked(true);
+        mBinding.layoutPayment.radioCard.setChecked(false);
+        mBinding.layoutPayment.radioPaytm.setChecked(false);
+        mBinding.layoutPayment.radioOther.setChecked(false);
     }
 
     private boolean isValid() {

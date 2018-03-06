@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.app.merchant.R;
+import com.app.merchant.databinding.OrderConfirmedRowBinding;
 import com.app.merchant.databinding.OrderReceivedRowBinding;
 
 /**
@@ -30,7 +31,7 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        OrderReceivedRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_confirmed_row, parent, false);
+        OrderConfirmedRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_confirmed_row, parent, false);
         return new ProductViewHolder(mBinding);
     }
 
@@ -46,10 +47,10 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final OrderReceivedRowBinding mBinding;
+        private final OrderConfirmedRowBinding mBinding;
         private ImageView productImage;
 
-        public ProductViewHolder(OrderReceivedRowBinding itemView) {
+        public ProductViewHolder(OrderConfirmedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
             itemView.layoutOrderStatus.setOnClickListener(this);

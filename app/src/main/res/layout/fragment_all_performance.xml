@@ -5,88 +5,32 @@
         style="@style/match_match"
         android:orientation="vertical">
 
-        <RelativeLayout style="@style/layout_ver_match_0_8">
+        <include
+            android:id="@+id/layoutDate"
+            layout="@layout/layout_date" />
 
-            <RelativeLayout
-                style="@style/match_match"
-                android:layout_above="@+id/layoutDate">
+        <ImageView
+            android:id="@+id/layoutLine"
+            style="@style/view_layout_dark_grey"
+            android:layout_alignParentBottom="true" />
 
-                <com.app.merchant.widget.CustomTextView
-                    style="@style/match_match"
-                    android:background="@drawable/imge"
-                    android:gravity="center_vertical"
-                    android:padding="@dimen/margin_21"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/textSize_header_large" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutDate"
-                style="@style/match_wrap"
-                android:layout_above="@+id/layoutLine">
-
-                <LinearLayout style="@style/wrap_match">
-
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvHeading"
-                        style="@style/textview_description_wrap"
-                        android:layout_height="match_parent"
-                        android:background="@color/date_bg_color"
-                        android:gravity="center"
-                        android:padding="@dimen/margin_5"
-                        android:text="@string/date"
-                        android:textAllCaps="true"
-                        android:textColor="@color/white" />
-                </LinearLayout>
-
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:orientation="vertical"
-                    android:padding="@dimen/margin_2">
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/welcome"
-                        android:textAllCaps="true"
-                        android:textColor="@color/grey_color" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="Mr. John Doe"
-                        android:textAllCaps="true" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_small_wrap"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:text="@string/welcome" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/layoutLine"
-                style="@style/view_layout_dark_grey"
-                android:layout_alignParentBottom="true" />
-        </RelativeLayout>
-
-        <RelativeLayout style="@style/layout_ver_match_1"
-            android:layout_marginTop="@dimen/margin_10"
+        <RelativeLayout
+            style="@style/layout_ver_match_1"
+            android:layout_marginEnd="@dimen/margin_10"
             android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10">
+            android:layout_marginTop="@dimen/margin_10">
+
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvPerformance"
                 style="@style/textview_description_match"
-                android:text="@string/performance_chart"/>
+                android:text="@string/performance_chart" />
+
             <ImageView
                 android:id="@+id/ivLine"
                 style="@style/view_layout_1"
                 android:layout_below="@+id/tvPerformance"
-                android:layout_marginBottom="@dimen/margin_5"
-                />
+                android:layout_marginBottom="@dimen/margin_5" />
+
             <include
                 android:id="@+id/layoutIndi"
                 layout="@layout/layout_received"
@@ -97,20 +41,23 @@
 
         </RelativeLayout>
 
-        <RelativeLayout style="@style/layout_ver_match_1"
-            android:layout_marginTop="@dimen/margin_10"
+        <RelativeLayout
+            style="@style/layout_ver_match_1"
+            android:layout_marginEnd="@dimen/margin_10"
             android:layout_marginStart="@dimen/margin_10"
-            android:layout_marginEnd="@dimen/margin_10">
+            android:layout_marginTop="@dimen/margin_10">
+
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvPerform"
                 style="@style/textview_description_match"
-                android:text="@string/performance_chart"/>
+                android:text="@string/performance_chart" />
+
             <ImageView
                 android:id="@+id/ivLinec"
                 style="@style/view_layout_1"
                 android:layout_below="@+id/tvPerform"
-                android:layout_marginBottom="@dimen/margin_5"
-                />
+                android:layout_marginBottom="@dimen/margin_5" />
+
             <include
                 android:id="@+id/layoutIndi"
                 layout="@layout/layout_delivered"

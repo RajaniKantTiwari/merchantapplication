@@ -7,5 +7,5 @@
         android:radius="@dimen/margin_2"></corners>
     <stroke
         android:width="@dimen/margin_1"
-        android:color="@color/gr_color"/>
+        android:color="@color/background_color"/>
 </shape>

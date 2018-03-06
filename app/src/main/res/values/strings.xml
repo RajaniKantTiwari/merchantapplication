@@ -162,6 +162,7 @@
     <string name="reason">Reason</string>
     <string name="delhi">Delhi</string>
     <string name="enter_your_full_address">Enter your full address</string>
+    <string name="my_product">My Product</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

@@ -4,61 +4,9 @@
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
         android:orientation="vertical">
-
-        <com.app.merchant.widget.CustomTextView
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/margin_100"
-            android:background="@drawable/imge"
-            android:gravity="center_vertical"
-            android:padding="@dimen/margin_21"
-            android:textColor="@color/white"
-            android:textSize="@dimen/textSize_header_large" />
-
-        <LinearLayout style="@style/match_wrap">
-
-            <LinearLayout style="@style/wrap_match"
-                android:background="@color/date_bg_color"
-                android:paddingStart="@dimen/margin_7"
-                android:paddingEnd="@dimen/margin_7"
-                >
-
-                <com.app.merchant.widget.CustomTextView
-                    android:id="@+id/tvHeading"
-                    style="@style/textview_description_large_wrap"
-                    android:layout_gravity="center"
-                    android:text="@string/date"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-
-            <LinearLayout
-                style="@style/match_wrap"
-                android:orientation="vertical"
-                android:padding="@dimen/margin_2">
-
-                <com.app.merchant.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/welcome"
-                    android:textAllCaps="true"
-                    android:textColor="@color/grey_color" />
-
-                <com.app.merchant.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="Mr. John Doe"
-                    android:textAllCaps="true" />
-
-                <com.app.merchant.widget.CustomTextView
-                    style="@style/textview_description_small_wrap"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:text="@string/welcome"
-                    android:textAllCaps="true" />
-            </LinearLayout>
-        </LinearLayout>
+        <include
+            android:id="@+id/layoutDate"
+            layout="@layout/layout_date" />
 
         <LinearLayout
             style="@style/match_wrap"
@@ -73,7 +21,7 @@
                     android:id="@+id/tvMyOrder"
                     style="@style/textview_description_wrap"
                     android:layout_centerInParent="true"
-                    android:text="@string/my_order"
+                    android:text="@string/my_product"
                     android:textColor="@color/date_bg_color"
                     android:textAllCaps="true" />
             </RelativeLayout>

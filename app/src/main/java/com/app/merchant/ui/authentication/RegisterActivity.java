@@ -11,7 +11,6 @@ import android.view.View;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityResisterBinding;
-import com.app.merchant.databinding.ActivitySignupBinding;
 import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
@@ -35,7 +34,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class RegisterActivity extends CommonActivity implements MvpView, View.OnClickListener,StoreImageAdapter.ImageListener {
+public class RegisterActivity extends CommonActivity implements MvpView, View.OnClickListener, StoreImageAdapter.ImageListener {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     ActivityResisterBinding mBinding;
     @Inject
@@ -80,6 +79,9 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     public void setListener() {
         mBinding.tvNext.setOnClickListener(this);
+        mBinding.layoutYes.setOnClickListener(this);
+        mBinding.layoutNo.setOnClickListener(this);
+
     }
 
     public void initializeData() {
@@ -105,18 +107,18 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(isNotNull(response)){
-            if(response instanceof LoginResponse){
-                LoginResponse loginResponse=(LoginResponse)response;
-                if(isNotNull(loginResponse)){
-                    String type=loginResponse.getType();
-                    if(type.equals(AppConstants.SUCCESS)){
+        if (isNotNull(response)) {
+            if (response instanceof LoginResponse) {
+                LoginResponse loginResponse = (LoginResponse) response;
+                if (isNotNull(loginResponse)) {
+                    String type = loginResponse.getType();
+                    if (type.equals(AppConstants.SUCCESS)) {
                         PreferenceUtils.setUserName(address);
                         PreferenceUtils.setUserMono(location);
-                        Bundle bundle=new Bundle();
+                        Bundle bundle = new Bundle();
                         bundle.putString(BundleConstants.USER_NAME, address);
                         bundle.putString(BundleConstants.MOBILE_NUMBER, location);
-                        ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class,bundle);
+                        ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                     }
                 }
             }
@@ -126,34 +128,41 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     @Override
     public void onClick(View view) {
-        if(view==mBinding.tvNext){
+        if (view == mBinding.tvNext) {
             CommonUtility.clicked(mBinding.tvNext);
-            ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class);
+            ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class);
            /*if(isValid()){
                if(isNetworkConnected()){
                    presenter.getLoginDetail(this,new LoginRequest(address, location,
                            PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }*/
+        } else if (view == mBinding.layoutYes) {
+            mBinding.radioYes.setChecked(true);
+            mBinding.radioNo.setChecked(false);
+        } else if (view == mBinding.layoutNo) {
+            mBinding.radioYes.setChecked(false);
+            mBinding.radioNo.setChecked(true);
         }
     }
 
     private boolean isValid() {
-        location =mBinding.edLocation.getText().toString();
-        address =mBinding.edAddress.getText().toString();
-        if((isNotNull(location)&& location.trim().length()>0)&&(isNotNull(address)&& address.trim().length()>0)){
+        location = mBinding.edLocation.getText().toString();
+        address = mBinding.edAddress.getText().toString();
+        if ((isNotNull(location) && location.trim().length() > 0) && (isNotNull(address) && address.trim().length() > 0)) {
             return true;
-        }else if(isNull(location)|| location.trim().length()==0){
+        } else if (isNull(location) || location.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_location));
             return false;
-        }else if(isNull(address)|| address.trim().length()==0){
+        } else if (isNull(address) || address.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_address));
             return false;
-        }else {
+        } else {
             return false;
         }
 
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -175,6 +184,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             }
         }
     }
+
     private void setImageFromLocal(String filePath) {
         profilePicFilePath = filePath;
         if (productList.size() > adapterPosition) {
@@ -191,12 +201,14 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
                 .setGuidelines(CropImageView.Guidelines.ON)
                 .start(this);
     }
+
     @Override
     public void onItemClick(int position) {
         adapterPosition = position;
 
         showImageChooserDialog();
     }
+
     private void showImageChooserDialog() {
         //ImagePickerUtils.add(getSupportFragmentManager(), this);
 
@@ -229,6 +241,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         dialog.show();
 
     }
+
     /**
      * Open camera to capture image
      */

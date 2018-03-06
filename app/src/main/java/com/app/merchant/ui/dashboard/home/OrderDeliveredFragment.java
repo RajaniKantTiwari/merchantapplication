@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderDeliveredBinding;
-import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;

@@ -65,7 +65,7 @@ public class OrderReturnedFragment extends DashboardFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_returned, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_delivered));
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_returned));
         return mBinding.getRoot();
     }
 

@@ -18,7 +18,7 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     private DialogRatingBinding mBinding;
     private RatingDialogListener listener;
     private int id;
-    private int storeName;
+    private String storeName;
 
     public interface RatingDialogListener {
         void submit(int id, float rating, String feedback);
@@ -47,7 +47,6 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-            mBinding.tvName.setText(storeName);
         }
     }
 
