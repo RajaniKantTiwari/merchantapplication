@@ -31,11 +31,10 @@ import com.app.merchant.BuildConfig;
 import com.app.merchant.R;
 import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.base.BaseActivity;
-import com.app.merchant.ui.dashboard.DashBoardActivity;
-import com.app.merchant.ui.dashboard.home.OrderConfirmedFragment;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
+import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -476,6 +475,14 @@ public class CommonUtility {
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert DeliveryBoyDialogFragment
+        alertdFragment.show(fm, "");
+    }
+    public static void showRatingDialog(AppCompatActivity activity, Bundle bundle, RatingDialogFragment.RatingDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        RatingDialogFragment alertdFragment = new RatingDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
 }

@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.app.merchant.R;
+import com.app.merchant.databinding.ActivityResisterBinding;
 import com.app.merchant.databinding.ActivitySignupBinding;
 import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
@@ -17,7 +18,6 @@ import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.adapter.StoreImageAdapter;
 import com.app.merchant.ui.base.MvpView;
-import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
@@ -35,9 +35,9 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class SignupActivity extends CommonActivity implements MvpView, View.OnClickListener,StoreImageAdapter.ImageListener {
-    private static final String TAG = SignupActivity.class.getSimpleName();
-    ActivitySignupBinding mBinding;
+public class RegisterActivity extends CommonActivity implements MvpView, View.OnClickListener,StoreImageAdapter.ImageListener {
+    private static final String TAG = RegisterActivity.class.getSimpleName();
+    ActivityResisterBinding mBinding;
     @Inject
     CommonPresenter presenter;
     private String location;
@@ -50,7 +50,7 @@ public class SignupActivity extends CommonActivity implements MvpView, View.OnCl
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_signup);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_resister);
         initializeAdapter();
         setListener();
     }

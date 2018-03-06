@@ -31,7 +31,6 @@ public class WelcomeHomeFragment extends DashboardFragment {
 
     @Inject
     CommonPresenter presenter;
-    private NotificationAdapter mNotificationAdapter;
     private FragmentWelcomeHomeBinding mBinding;
     private InventoryEvent event;
 
@@ -40,7 +39,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome_home, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.home));
+        getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         addFragment();
         return mBinding.getRoot();
     }

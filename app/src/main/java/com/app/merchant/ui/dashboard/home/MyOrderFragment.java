@@ -40,7 +40,6 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order, container, false);
         CommonUtility.register(this);
-        getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         return mBinding.getRoot();
     }
 
@@ -126,13 +125,17 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
             Bundle bundle=new Bundle();
             getDashboardActivity().addFragmentInContainer(new OrderConfirmedFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==2){
-
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderOutForDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==3){
-
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderDeliveredFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==4){
-
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderReturnedCancelFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }else if(position==5){
-
+            Bundle bundle=new Bundle();
+            getDashboardActivity().addFragmentInContainer(new OrderReturnedFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
         }
 
     }

@@ -34,7 +34,7 @@
                 android:id="@+id/edLocation"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/location"
+                android:hint="@string/delhi"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
@@ -51,7 +51,7 @@
                 android:id="@+id/edAddress"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/location"
+                android:hint="@string/enter_your_full_address"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />

@@ -43,7 +43,6 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_inventory, container, false);
         CommonUtility.register(this);
-        getDashboardActivity().setHeaderTitle(getString(R.string.notification));
         return mBinding.getRoot();
     }
 

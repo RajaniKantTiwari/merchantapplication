@@ -11,13 +11,14 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
+import com.app.merchant.databinding.FragmentOrderReturnedBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderOutForDeliveryAdapter;
+import com.app.merchant.ui.dashboard.home.adapter.OrderDeliveredAdapter;
+import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
-import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +37,9 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderOutForDeliveryFragment extends DashboardFragment implements
-        OrderOutForDeliveryAdapter.OrderOutForDeliveryListener,
+public class OrderReturnedFragment extends DashboardFragment implements
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
-    private FragmentOrderOutForDeliveryBinding mBinding;
+    private FragmentOrderReturnedBinding mBinding;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
@@ -64,8 +64,8 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_out_for_delivery, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_out_for_delivery));
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_returned, container, false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_delivered));
         return mBinding.getRoot();
     }
 
@@ -79,7 +79,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderOutForDeliveryAdapter mAdapter=new OrderOutForDeliveryAdapter(getDashboardActivity(),this);
+        OrderReturnedAdapter mAdapter=new OrderReturnedAdapter(getDashboardActivity());
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -125,7 +125,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
             }
 
             Line line = new Line(values);
-            line.setColor(ChartUtils.COLORS[2]);
+            line.setColor(ChartUtils.COLORS[5]);
             line.setShape(shape);
             line.setCubic(isCubic);
             line.setFilled(isFilled);
@@ -169,7 +169,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
 
     @Override
     public String getFragmentName() {
-        return OrderOutForDeliveryFragment.class.getSimpleName();
+        return OrderReturnedFragment.class.getSimpleName();
     }
 
     @Override
@@ -186,21 +186,10 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     public void onClick(View view) {
 
     }
-
-
-
-
-
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
         getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
-    }
-
-    @Override
-    public void onRatingClick(int position) {
-        Bundle bundle=new Bundle();
-        CommonUtility.showRatingDialog(getDashboardActivity(), bundle,  this);
     }
 
     @Override

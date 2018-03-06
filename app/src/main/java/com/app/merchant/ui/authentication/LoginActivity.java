@@ -83,7 +83,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
            }*/
         }else if(view==mBinding.tvSignupForAccount){
             CommonUtility.clicked(mBinding.tvSignupForAccount);
-            ExplicitIntent.getsInstance().navigateTo(this,SignupActivity.class);
+            ExplicitIntent.getsInstance().navigateTo(this,RegisterActivity.class);
         }else if(view==mBinding.forgotPassword){
             CommonUtility.clicked(mBinding.forgotPassword);
         }

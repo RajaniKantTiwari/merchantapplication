@@ -158,6 +158,10 @@
     <string name="assign_to">Assign To</string>
     <string name="mode_of_payment">Mod of Payment</string>
     <string name="rating">Rating</string>
+    <string name="promise_time">Promise Time</string>
+    <string name="reason">Reason</string>
+    <string name="delhi">Delhi</string>
+    <string name="enter_your_full_address">Enter your full address</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

@@ -31,7 +31,7 @@
         <activity android:name="com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity" />
         <activity android:name="com.app.merchant.ui.dashboard.drawer.TermConditionActivity" />
         <activity android:name="com.app.merchant.ui.dashboard.drawer.WarantyActivity" />
-        <activity android:name=".ui.authentication.SignupActivity" />
+        <activity android:name=".ui.authentication.RegisterActivity" />
         <activity android:name=".ui.authentication.StoreDetailsActivity" />
 
 
