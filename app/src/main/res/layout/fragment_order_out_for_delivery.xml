@@ -77,7 +77,7 @@
                 android:textColor="@color/tex_color"
                 android:text="@string/performance_chart"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_smaller_wrap"
+                style="@style/textview_description_smallest_wrap"
                 android:layout_alignParentEnd="true"
                 android:maxLines="1"
                 android:drawablePadding="@dimen/margin_5"
@@ -113,7 +113,7 @@
             <ImageView
                 style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view"
+                style="@style/order_text_view_1_4"
                 android:text="@string/mode_of_payment"
                 />
             <ImageView
@@ -124,7 +124,7 @@
             <ImageView
                 style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view"
+                style="@style/order_text_view_1_4"
                 android:text="@string/rating" />
         </LinearLayout>
             <android.support.v7.widget.RecyclerView
