@@ -14,8 +14,8 @@ import lecho.lib.hellocharts.view.Chart;
  * Single line for line chart.
  */
 public class Line {
-    private static final int DEFAULT_LINE_STROKE_WIDTH_DP = 3;
-    private static final int DEFAULT_POINT_RADIUS_DP = 6;
+    private static final int DEFAULT_LINE_STROKE_WIDTH_DP = 1;
+    private static final int DEFAULT_POINT_RADIUS_DP = 3;
     private static final int DEFAULT_AREA_TRANSPARENCY = 64;
     public static final int UNINITIALIZED = 0;
     private int color = ChartUtils.DEFAULT_COLOR;
