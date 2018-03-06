@@ -102,42 +102,23 @@
             android:layout_height="@dimen/margin_30"
             android:background="@drawable/order_bg">
             <com.app.merchant.widget.CustomTextView
-                style="@style/layout_hori_match_1"
-                android:gravity="center"
-                android:text="@string/order_no"
-                android:textSize="@dimen/textSize_description_small"
-                android:textColor="@color/black"
-                android:textAllCaps="true" />
+                style="@style/order_text_view_large"
+                android:text="@string/order_no"/>
             <ImageView
-                style="@style/view_layout_vertical_light_grey"
-                android:layout_below="@+id/tvPerformance"/>
+                style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/layout_hori_match_1"
-                android:gravity="center"
-                android:text="@string/received_time"
-                android:textSize="@dimen/textSize_description_small"
-                android:textColor="@color/black"
-                android:textAllCaps="true" />
+                style="@style/order_text_view_large"
+                android:text="@string/received_time"/>
             <ImageView
-                style="@style/view_layout_vertical_light_grey"
-                android:layout_below="@+id/tvPerformance"/>
+                style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/layout_hori_match_1"
-                android:gravity="center"
-                android:text="@string/amount"
-                android:textSize="@dimen/textSize_description_small"
-                android:textColor="@color/black"
-                android:textAllCaps="true" />
+                style="@style/order_text_view_large"
+                android:text="@string/amount" />
             <ImageView
-                style="@style/view_layout_vertical_light_grey"
-                android:layout_below="@+id/tvPerformance"/>
+                style="@style/view_layout_vertical_light_grey" />
             <com.app.merchant.widget.CustomTextView
-                style="@style/layout_hori_match_1"
-                android:gravity="center"
-                android:text="@string/status"
-                android:textSize="@dimen/textSize_description_small"
-                android:textColor="@color/black"
-                android:textAllCaps="true" />
+                style="@style/order_text_view_large"
+                android:text="@string/status"/>
         </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvOrder"

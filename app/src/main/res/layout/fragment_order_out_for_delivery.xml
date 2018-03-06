@@ -74,15 +74,15 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingBottom="@dimen/margin_5"
-                android:textColor="@color/green_order"
+                android:textColor="@color/tex_color"
                 android:text="@string/performance_chart"/>
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_smaller_wrap"
                 android:layout_alignParentEnd="true"
                 android:maxLines="1"
                 android:drawablePadding="@dimen/margin_5"
-                android:text="@string/order_confirmed"
-                android:drawableStart="@drawable/bg_circle_green_small"
+                android:text="@string/order_out_for_delivery"
+                android:drawableStart="@drawable/bg_circle_blue_small"
                 />
             <ImageView
                 android:id="@+id/layoutLi"
@@ -103,23 +103,29 @@
             android:layout_height="@dimen/margin_30"
             android:background="@drawable/order_bg">
             <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
+                style="@style/order_text_view"
                 android:text="@string/order_no" />
             <ImageView
-                style="@style/view_layout_vertical_light_grey" />
+                style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
-                android:text="@string/address"/>
-            <ImageView
-                style="@style/view_layout_vertical_light_grey" />
-            <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
+                style="@style/order_text_view"
                 android:text="@string/amount"/>
             <ImageView
-                style="@style/view_layout_vertical_light_grey" />
+                style="@style/view_layout_vertical_light_grey"/>
             <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
+                style="@style/order_text_view"
+                android:text="@string/mode_of_payment"
+                />
+            <ImageView
+                style="@style/view_layout_vertical_light_grey"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view"
                 android:text="@string/assign_to" />
+            <ImageView
+                style="@style/view_layout_vertical_light_grey"/>
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view"
+                android:text="@string/rating" />
         </LinearLayout>
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvOrder"

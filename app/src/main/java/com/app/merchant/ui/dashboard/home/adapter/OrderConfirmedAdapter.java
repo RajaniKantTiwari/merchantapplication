@@ -30,7 +30,7 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        OrderReceivedRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_received_row, parent, false);
+        OrderReceivedRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_confirmed_row, parent, false);
         return new ProductViewHolder(mBinding);
     }
 

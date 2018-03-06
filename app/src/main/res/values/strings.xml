@@ -155,6 +155,9 @@
     <string name="received_time">Received Time</string>
     <string name="amount">Amount</string>
     <string name="status">Status</string>
+    <string name="assign_to">Assign To</string>
+    <string name="mode_of_payment">Mod of Payment</string>
+    <string name="rating">Rating</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>
