@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/layoutDate"
+        style="@style/match_wrap"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/margin_50"
+        android:layout_marginTop="@dimen/margin_15_minus"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="21 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="22 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="23 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="24 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="25 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="26 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="27 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="28 may" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="29 may" />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="30 may" />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="31 may" />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/date_label"
+            android:text="1 jun" />
+    </LinearLayout>
+</layout>

@@ -42,7 +42,13 @@
                 android:id="@+id/orderReceived"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/layoutIndi" />
+                android:layout_below="@+id/layoutIndi"
+                android:layout_above="@+id/layoutDate"
+                />
+
+            <include
+                android:id="@+id/layoutDate"
+                layout="@layout/layout_label" />
         </RelativeLayout>
 
         <RelativeLayout

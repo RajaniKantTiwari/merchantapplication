@@ -67,8 +67,12 @@ public class AllPerformanceFragment extends DashboardFragment {
 
 
     private void initializeReceivedChart() {
-        XAxis xAxis = mBinding.orderReceived.getXAxis();
-        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        /*XAxis xAxis = mBinding.orderReceived.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);*/
+        YAxis y = mBinding.orderReceived.getAxisLeft();
+        y.setLabelCount(5);
+        y.setAxisMaximum(100);
+        y.setAxisMinimum(20);
         mBinding.orderReceived.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
             @Override
             public void onValueSelected(Entry e, Highlight h) {
@@ -104,18 +108,22 @@ public class AllPerformanceFragment extends DashboardFragment {
         leftAxis.setValueFormatter(new MyAxisValueFormatter());
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         mBinding.orderReceived.getAxisRight().setEnabled(false);
+        mBinding.orderReceived.getLegend().setEnabled(false);
 
-        XAxis xLabels = mBinding.orderReceived.getXAxis();
-        xLabels.setPosition(XAxis.XAxisPosition.TOP);
-
+        /*XAxis xLabels = mBinding.orderReceived.getXAxis();
+        xLabels.setPosition(XAxis.XAxisPosition.BOTTOM);
+        mBinding.orderReceived.getXAxis().setEnabled(false);*/
+        mBinding.orderReceived.getXAxis().setTextColor(Color.TRANSPARENT);
         Legend l = mBinding.orderReceived.getLegend();
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM);
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.RIGHT);
         l.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         l.setDrawInside(false);
-        l.setFormSize(8f);
-        l.setFormToTextSpace(4f);
-        l.setXEntrySpace(6f);
+        l.setFormSize(18f);
+        l.setFormToTextSpace(14f);
+        l.setXEntrySpace(8f);
+
+
     }
     private void setReceivedChartData() {
 
@@ -145,7 +153,7 @@ public class AllPerformanceFragment extends DashboardFragment {
             set1 = new BarDataSet(yVals1, "");
             set1.setDrawIcons(false);
             set1.setColors(getReceivedColors());
-            //set1.setStackLabels(new String[]{"Births", "Divorces", "Marriages"});
+            set1.setStackLabels(new String[]{"Births", "Divorces", "Marriages"});
 
             ArrayList<IBarDataSet> dataSets = new ArrayList<>();
             dataSets.add(set1);
@@ -197,6 +205,7 @@ public class AllPerformanceFragment extends DashboardFragment {
         leftAxis.setValueFormatter(new MyAxisValueFormatter());
         leftAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
         mBinding.orderDelivered.getAxisRight().setEnabled(false);
+        mBinding.orderDelivered.getLegend().setEnabled(false);
 
         XAxis xLabels = mBinding.orderDelivered.getXAxis();
         xLabels.setPosition(XAxis.XAxisPosition.TOP);

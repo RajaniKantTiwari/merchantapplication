@@ -603,6 +603,13 @@
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">@dimen/textSize_description_small</item>
+    </style>
+
+    <style name="date_label">
+        <item name="android:layout_width">@dimen/margin_29</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/textSize_label</item>
+        <item name="android:textColor">@color/black</item>
 
     </style>
 </resources>
