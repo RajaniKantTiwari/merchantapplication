@@ -38,7 +38,11 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivLine"
                 android:layout_marginBottom="@dimen/margin_2" />
-
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/orderReceived"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layoutIndi" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -59,13 +63,17 @@
                 android:layout_marginBottom="@dimen/margin_5" />
 
             <include
-                android:id="@+id/layoutIndi"
+                android:id="@+id/layout"
                 layout="@layout/layout_delivered"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ivLinec"
                 android:layout_marginBottom="@dimen/margin_2" />
-
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/orderDelivered"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/layout" />
         </RelativeLayout>
 
     </LinearLayout>

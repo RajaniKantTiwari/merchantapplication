@@ -35,9 +35,9 @@
                         style="@style/layout_hori_match_2"
                         android:layout_marginStart="@dimen/margin_8"
                         android:layout_marginEnd="@dimen/margin_8"
-
                         android:text="Green Caynine"
                         android:textSize="@dimen/textSize_description"
+                        android:textColor="@color/black"
                         />
                     <com.app.merchant.widget.CustomTextView
                         style="@style/layout_hori_match_1"
@@ -77,8 +77,7 @@
                         android:background="@drawable/confirm_bg"
                         android:text="@string/confirm_order"
                         android:textAllCaps="true"
-                        android:textColor="@color/confirm_color"
-                        app:customFont="@string/font_regular" />
+                        android:textColor="@color/confirm_color"/>
 
                     <com.app.merchant.widget.CustomTextView
                         android:id="@+id/tvNotConfirmed"
@@ -89,7 +88,7 @@
                         android:text="@string/not_confirm"
                         android:textAllCaps="true"
                         android:textColor="@color/not_con_color"
-                        app:customFont="@string/font_regular" />
+                        />
 
                 </LinearLayout>
                 <RelativeLayout

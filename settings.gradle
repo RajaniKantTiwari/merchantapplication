@@ -1,1 +1,1 @@
-include ':app', ':libary', ':cropper', ':hellocharts-library'
+include ':app', ':libary', ':cropper', ':hellocharts-library', ':MPChartLib'

@@ -35,7 +35,7 @@
                         style="@style/layout_hori_match_2"
                         android:layout_marginStart="@dimen/margin_8"
                         android:layout_marginEnd="@dimen/margin_8"
-
+                        android:textColor="@color/black"
                         android:text="Green Caynine"
                         android:textSize="@dimen/textSize_description"
                         />

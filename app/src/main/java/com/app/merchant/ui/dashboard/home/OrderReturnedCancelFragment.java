@@ -16,7 +16,6 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedCancelAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
-import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -185,7 +184,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
     }
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 

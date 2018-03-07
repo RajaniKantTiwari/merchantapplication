@@ -10,12 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
 import com.app.merchant.databinding.FragmentOrderReturnedBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderDeliveredAdapter;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -189,7 +187,7 @@ public class OrderReturnedFragment extends DashboardFragment implements
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

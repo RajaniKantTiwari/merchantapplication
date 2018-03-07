@@ -67,6 +67,10 @@ public class OrderConfirmedFragment extends DashboardFragment implements
         return mBinding.getRoot();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 
     @Override
     public void initializeData() {
@@ -196,7 +200,7 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

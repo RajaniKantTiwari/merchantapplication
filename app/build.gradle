@@ -135,6 +135,8 @@ dependencies {
     //end
 // Line Chart Library
     implementation project(':hellocharts-library')
+    implementation project(':MPChartLib')
+
     //end
 
 

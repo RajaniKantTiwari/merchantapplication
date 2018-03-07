@@ -194,7 +194,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new DeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

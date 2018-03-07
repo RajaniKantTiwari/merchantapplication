@@ -1,5 +1,6 @@
 package com.app.merchant.ui.dashboard;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -99,12 +100,18 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        for (Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragment.onActivityResult(requestCode, resultCode, data);
+        }
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
-        CommonUtility.register(this);
         clearAllBackStack();
         pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
@@ -333,15 +340,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        CommonUtility.unregister(this);
-    }
-    @Subscribe
-    public void onUpdateProfileEvent(ProfileEvent event) {
-       /* GlideUtils.loadImageProfilePic(this, PreferenceUtils.getImage(), mBinding.layoutDrawerLeft.ivProfile, null, R.drawable.avatar);
-        mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
-        mBinding.layoutDrawerLeft.tvMobile.setText(PreferenceUtils.getUserMono());*/
-    }
+
+
 }
