@@ -55,6 +55,13 @@ public interface AppConstants {
     int PAYMENT_HEIGHT = 48;
     long SPLASH_TIME = 800;
     int CORNER_RADIUS = 10;
+    int CARTADDED = 10001;
+    String MERCHANT_ID = "merchant_id";
+    String MERCHANT_IMAGE = "merchant_image";
+    String MERCHANT_ADDRESS = "merchant_address";
+    String MERCHANT_BACKGROUND_COLOR = "merchant_background_color";
+    String PRODUCT_DATA = "product_data";
+    String POSITION = "position";
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

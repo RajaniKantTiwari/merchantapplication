@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:id="@+id/layoutCat"
+        android:layout_width="@dimen/margin_100"
+        android:layout_height="@dimen/margin_35"
+       >
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="@dimen/margin_12"
+            android:layout_height="@dimen/margin_12"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginStart="@dimen/margin_2"
+            android:layout_toStartOf="@+id/tvName"
+            android:visibility="visible" />
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvName"
+           style="@style/textview_description_smaller_wrap"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:maxLength="10"
+            android:maxLines="1"
+            android:text="@string/name"/>
+
+        <ImageView
+            android:id="@+id/ivArrow"
+            android:layout_width="@dimen/margin_8"
+            android:layout_height="@dimen/margin_8"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginStart="@dimen/margin_2"
+            android:layout_toEndOf="@+id/tvName"
+            android:src="@android:drawable/arrow_down_float"
+            android:visibility="gone" />
+
+        <View
+            android:layout_width="0.75dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:background="@color/color_dark_grey" />
+    </RelativeLayout>
+</layout>
+
+
+

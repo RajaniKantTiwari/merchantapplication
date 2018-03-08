@@ -163,6 +163,11 @@
     <string name="delhi">Delhi</string>
     <string name="enter_your_full_address">Enter your full address</string>
     <string name="my_product">My Product</string>
+    <string name="subscribe">Subscribe</string>
+    <string name="sub_total">Sub Total :</string>
+    <string name="please_add_data_in_cart_first">Cart is empty</string>
+    <string name="text_checkout">CheckOut Now</string>
+    <string name="you_can_not_add">You can not add more than 10 item in cart</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

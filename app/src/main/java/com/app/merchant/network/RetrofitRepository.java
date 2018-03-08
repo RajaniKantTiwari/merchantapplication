@@ -2,6 +2,8 @@ package com.app.merchant.network;
 
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.cart.CartListRequest;
+import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.VerifyMobileResponse;
 
@@ -31,5 +33,8 @@ public class RetrofitRepository implements Repository {
     public Completable logout() {
         return null;
     }
-
+    @Override
+    public Observable<BaseResponse> addForCartList(CartListRequest request) {
+        return apiService.addForCartList(request);
+    }
 }

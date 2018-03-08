@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="@dimen/margin_80"
+        android:layout_height="@dimen/margin_35"
+        android:orientation="horizontal">
+
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvName"
+            style="@style/textview_description_smaller_match"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/name"
+            android:ellipsize="marquee"
+            android:layout_toStartOf="@+id/viewLayout"/>
+
+        <View
+            android:id="@+id/viewLayout"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_dark_grey"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+</layout>
+
+
+

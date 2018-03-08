@@ -4,8 +4,10 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.orhanobut.hawk.Hawk;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -147,5 +149,11 @@ public class PreferenceUtils {
             e.printStackTrace();
         }
         return null;
+    }
+    public static void setCartData(ArrayList<ProductData> addCartList) {
+        Hawk.put(getUserMono(), addCartList);
+    }
+    public static ArrayList<ProductData> getCartData() {
+        return Hawk.get(getUserMono(),null);
     }
 }
