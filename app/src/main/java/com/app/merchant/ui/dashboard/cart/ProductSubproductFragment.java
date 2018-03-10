@@ -3,7 +3,6 @@ package com.app.merchant.ui.dashboard.cart;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,10 @@ import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.SubCategory;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+import com.app.merchant.ui.dashboard.cart.adapter.CartAdapter;
+import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
+import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
+import com.app.merchant.ui.dashboard.home.FullInformationFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.PreferenceUtils;
@@ -277,8 +280,6 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 }
                 break;
         }
-
-
     }
 
     private void setTotalAmount() {

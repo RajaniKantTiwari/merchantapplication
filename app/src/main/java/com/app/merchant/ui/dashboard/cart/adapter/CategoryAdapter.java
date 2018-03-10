@@ -1,4 +1,4 @@
-package com.app.merchant.ui.dashboard.cart;
+package com.app.merchant.ui.dashboard.cart.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;

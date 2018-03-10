@@ -65,10 +65,10 @@ public class AssignNewDeliveryFragment extends DashboardFragment implements MvpV
 
     private void setList() {
         StoreImage product1 = new StoreImage();
-        product1.setProductName("Delivery Boy Photo");
+        product1.setStoreName("Delivery Boy Photo");
         productList.add(product1);
         StoreImage product2 = new StoreImage();
-        product2.setProductName("Delivery Boy ID");
+        product2.setStoreName("Delivery Boy ID");
         productList.add(product2);
     }
 
@@ -117,7 +117,7 @@ public class AssignNewDeliveryFragment extends DashboardFragment implements MvpV
             getBaseActivity().onBackPressed();
            /*if(isValid()){
                if(isNetworkConnected()){
-                   presenter.getLoginDetail(this,new LoginRequest(dateOfBirth, name,
+                   presenter.registerMerchant(this,new RegisterRequest(dateOfBirth, name,
                            PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }*/

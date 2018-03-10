@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.InsetDrawable;
@@ -29,8 +31,10 @@ import android.widget.Toast;
 
 import com.app.merchant.BuildConfig;
 import com.app.merchant.R;
+import com.app.merchant.event.UpdateCartEvent;
 import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
@@ -484,5 +488,37 @@ public class CommonUtility {
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
+    }
+    public static void resetCart(DashBoardActivity dashBoardActivity) {
+        PreferenceUtils.setCartData(null);
+        dashBoardActivity.onUpdateCartEvent(new UpdateCartEvent());
+    }
+    public static String convertSecondsToHMmSs(long seconds) {
+        long s = seconds % 60;
+        long m = (seconds / 60) % 60;
+        long h = (seconds / (60 * 60)) % 24;
+        return String.format(Locale.getDefault(), "%02d:%02d:%02d", h, m, s);
+        //return String.format("%d:%02d:%02d", h,m,s);
+    }
+    public static String price(String sellingPrice) {
+
+        return sellingPrice + "/";
+    }
+    public static boolean checkValidEmail(String email){
+        return AppConstants.EMAIL_PATTERN.matcher(email).matches();
+    }
+    public static boolean checkValidName(String name){
+        return AppConstants.USERNAME_PATTERN.matcher(name).matches();
+    }
+    public static boolean checkValidPassword(String password){
+        return AppConstants.PASSWORD_PATTERN.matcher(password).matches();
+    }
+    public static boolean checkValidAddress(String address){
+        return AppConstants.ADDRESS_PATTERN.matcher(address).matches();
+    }
+
+    public static Bitmap getBitmap(String profilePicFilePath) {
+       return BitmapFactory.decodeFile(profilePicFilePath);
+
     }
 }

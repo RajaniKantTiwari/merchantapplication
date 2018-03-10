@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:fillViewport="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:orientation="vertical">
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/textView2"
+                style="@style/textview_header_match"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginTop="@dimen/margin_20"
+                android:gravity="center"
+                android:text="@string/checkout"
+                android:textColor="@color/color_black"
+                android:textAllCaps="true"/>
+
+            <android.support.v7.widget.CardView
+                style="@style/match_wrap"
+                android:layout_margin="@dimen/margin_10"
+                android:elevation="@dimen/margin_5">
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@color/white"
+                    android:orientation="vertical">
+
+                    <android.support.v7.widget.RecyclerView
+                        android:id="@+id/rvCartItem"
+                        style="@style/match_wrap"
+                        android:paddingStart="@dimen/margin_5"
+                        android:paddingEnd="@dimen/margin_5"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/est_delivery_time"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue"
+                    android:textSize="@dimen/textSize_description"
+                    />
+
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvTime"
+                    style="@style/textview_title_match"
+                    android:layout_marginBottom="@dimen/margin_20"
+                    android:gravity="center"
+                    android:text="30 Min"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue"
+                    android:textSize="@dimen/textSize_header"
+                    app:customFont="@string/font_bold" />
+
+                <!--<com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/coupon"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvCouponCode"
+                    style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_10"/>-->
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_margin="@dimen/margin_10"
+                    android:gravity="center"
+                    android:text="@string/delivery"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDelivery"
+                    style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_10"/>
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:text="@string/payment_option"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvPayment"
+                    style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_10"/>
+                <RelativeLayout style="@style/match_wrap"
+                    android:layout_marginTop="@dimen/margin_13">
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/textview_description_ex_large_wrap"
+                        android:padding="@dimen/margin_5"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:gravity="center"
+                        android:text="@string/delivery_at"
+                        android:textAllCaps="true"
+                        android:textColor="@color/color_sky_blue"/>
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/editAddress"
+                        style="@style/textview_description_ex_large_wrap"
+                        android:padding="@dimen/margin_5"
+                        android:layout_marginEnd="@dimen/margin_8"
+                        android:layout_alignParentEnd="true"
+                        android:gravity="center"
+                        android:text="@string/edit_address"
+                        android:textAllCaps="true"
+                        android:textColor="@color/redish_color"/>
+                </RelativeLayout>
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvAddress"
+                    style="@style/textview_description_match"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/grey_corner_bg"
+                    android:padding="@dimen/margin_10"
+                    android:textColor="@color/color_black"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_description" />
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_wrap"
+                    android:padding="@dimen/margin_5"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/location"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_sky_blue"/>
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvLocation"
+                    style="@style/textview_description_wrap"
+                    android:padding="@dimen/margin_5"
+                    android:layout_marginStart="@dimen/margin_5"
+                    android:gravity="center"
+                    android:text="@string/location"
+                    android:textAllCaps="true"
+                    />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvPromoCode"
+                    style="@style/textview_description_match"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/grey_corner_bg"
+                    android:padding="@dimen/margin_10"
+                    android:text="@string/add_promo_code"
+                    android:drawableEnd="@drawable/right_arrow"
+                    android:textColor="@color/color_sky_blue"
+                    android:textAllCaps="true"
+                    android:textSize="@dimen/textSize_description" />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvProceedToPay"
+                    style="@style/match_wrap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_60"
+                    android:layout_marginEnd="@dimen/margin_50"
+                    android:layout_marginStart="@dimen/margin_50"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:background="@drawable/blue_round_btnbg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/margin_12"
+                    android:paddingTop="@dimen/margin_12"
+                    android:text="@string/proced_to_pay"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/button_medium"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</layout>

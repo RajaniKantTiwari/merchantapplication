@@ -28,7 +28,7 @@
                 app:customFont="@string/font_regular" />
 
             <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edLocation"
+                android:id="@+id/edLegalName"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/legal_name"
@@ -46,10 +46,11 @@
                 app:customFont="@string/font_regular" />
 
             <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edAddress"
+                android:id="@+id/edPanNumber"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_pan_number"
+                android:maxLength="@integer/pan_length"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
@@ -65,11 +66,12 @@
                 app:customFont="@string/font_regular" />
 
             <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edStore"
+                android:id="@+id/edGstNumber"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_gst_number"
                 android:imeOptions="actionNext"
+                android:maxLength="@integer/gstin_length"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
@@ -201,7 +203,7 @@
                 style="@style/match_wrap"
                 android:orientation="vertical" />
             <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvAddPaymentMethod"
+                android:id="@+id/tvAddMoreAreas"
                 style="@style/textview_description_small_match"
                 android:padding="@dimen/margin_7"
                 android:text="@string/add_more_areas"

@@ -33,6 +33,8 @@ public interface AppConstants {
             .compile("[a-zA-Z0-9+_.]{4,16}");
     Pattern CONFIRM_PASSWORD_PATTERN = Pattern
             .compile("[a-zA-Z0-9+_.]{4,16}");
+    Pattern ADDRESS_PATTERN=Pattern.compile("[A-Za-z0-9'\\.\\-\\s\\,]");
+
     String AUTHORIZATION = "Authorization";
     String SUCCESS = "success";
     String FORBIDDEN = "403";
@@ -62,6 +64,12 @@ public interface AppConstants {
     String MERCHANT_BACKGROUND_COLOR = "merchant_background_color";
     String PRODUCT_DATA = "product_data";
     String POSITION = "position";
+    int VIEW_CART=1;
+    int CHECKOUT=2;
+    long COUNT_INTERVAL = 1000;
+    int STORE_IMAGE=0;
+    int FACULTY_IMAGE=1;
+    int OWNER_IMAGE=2;
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

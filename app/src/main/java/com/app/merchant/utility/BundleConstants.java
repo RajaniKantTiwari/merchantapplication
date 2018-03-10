@@ -9,4 +9,5 @@ public interface BundleConstants {
     String MOBILE_NUMBER = "mobile_number";
     String VISIBLE = "visible";
     String TITLE = "title";
+    String REGISTER_USER = "register_user";
 }

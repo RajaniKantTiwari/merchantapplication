@@ -16,6 +16,7 @@
                 style="@style/textview_description_wrap"
                 android:buttonTint="@color/radio_button_color"
                 android:clickable="false"
+                android:checked="true"
                 android:scaleX="0.7"
                 android:scaleY="0.7" />
 
@@ -37,7 +38,7 @@
                 android:id="@+id/radioCard"
                 style="@style/textview_description_wrap"
                 android:buttonTint="@color/radio_button_color"
-                android:checked="true"
+
                 android:clickable="false"
                 android:scaleX="0.7"
                 android:scaleY="0.7" />

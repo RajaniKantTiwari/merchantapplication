@@ -17,26 +17,26 @@ import android.view.View;
 import com.app.merchant.R;
 import com.app.merchant.MerchantApplication;
 import com.app.merchant.databinding.ActivityDashboardBinding;
-import com.app.merchant.event.ProfileEvent;
+import com.app.merchant.event.UpdateCartEvent;
 import com.app.merchant.injector.component.DaggerDashboardComponent;
 import com.app.merchant.injector.component.DashboardComponent;
 import com.app.merchant.injector.module.DashboardModule;
 import com.app.merchant.network.request.DeviceToken;
 import com.app.merchant.network.request.DeviceTokenRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
-import com.app.merchant.ui.dashboard.home.OrderReceivedFragment;
+import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
 import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
 import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
 import com.app.merchant.ui.dashboard.drawer.TermConditionActivity;
 import com.app.merchant.ui.dashboard.drawer.WarantyActivity;
 import com.app.merchant.ui.dashboard.notification.NotificationFragment;
-import com.app.merchant.ui.dashboard.offer.OfferFragment;
 import com.app.merchant.ui.dashboard.user.UserProfileFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
@@ -45,6 +45,8 @@ import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.PreferenceUtils;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -112,6 +114,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
+        CommonUtility.register(this);
         clearAllBackStack();
         pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
@@ -162,7 +165,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         pushFragment(fragment, bundle, R.id.container, addToBackStack, shouldAdd, animationType);
     }
 
-    private void changeIcon(int position) {
+    public void changeIcon(int position) {
         for (int i = 0; i < AppConstants.NO_OF_TAB; i++) {
             switch (i) {
                 case 0:
@@ -339,6 +342,30 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonUtility.unregister(this);
+    }
+
+    @Subscribe
+    public void onUpdateCartEvent(UpdateCartEvent event) {
+        int cartItem = 0;
+        if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            for (ProductData product : productList) {
+                if (CommonUtility.isNotNull(product)) {
+                    cartItem = cartItem + product.getQty();
+                }
+            }
+        }
+        if (cartItem > 0) {
+            mBinding.toolBar.tvCart.setText(String.valueOf(cartItem));
+            mBinding.toolBar.tvCart.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.toolBar.tvCart.setVisibility(View.GONE);
+        }
+    }
 
 
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutOrder"
+        style="@style/match_match"
+        android:background="@android:color/white"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/header_layout"
+            />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/textview_description_ex_large_match"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="@string/edit_address"
+            android:textAllCaps="true"
+            android:layout_marginStart="@dimen/margin_12"
+            android:textColor="@color/color_sky_blue"
+            android:textSize="@dimen/textSize_description"
+            />
+        <com.app.merchant.widget.CustomEditText
+            android:id="@+id/edNewAddress"
+            style="@style/edit_text_style_small"
+            android:layout_height="@dimen/margin_70"
+            android:layout_marginEnd="@dimen/margin_12"
+            android:layout_marginStart="@dimen/margin_12"
+            android:gravity="top"
+            android:padding="@dimen/margin_5"
+            android:hint="@string/enter_new_address"
+            android:background="@drawable/grey_edit_bg"
+            android:maxLines="3"
+            />
+        <com.app.merchant.widget.CustomTextView
+            style="@style/textview_description_ex_large_match"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10"
+            android:text="@string/select_address"
+            android:textAllCaps="true"
+            android:layout_marginStart="@dimen/margin_12"
+            android:textColor="@color/color_sky_blue"
+            android:textSize="@dimen/textSize_description"
+            />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvEditAddress"
+            style="@style/match_match"
+            android:padding="@dimen/margin_7" />
+    </LinearLayout>
+</layout>

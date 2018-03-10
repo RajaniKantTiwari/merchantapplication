@@ -23,11 +23,26 @@
                 android:text="@string/resister"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_black_color" />
-
-
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/email" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edEmail"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/abc"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
                 android:text="@string/location" />
 
             <com.app.merchant.widget.CustomEditText
@@ -94,14 +109,12 @@
 
             <LinearLayout style="@style/match_wrap"
                 android:layout_marginStart="@dimen/margin_5_minus">
-
                 <LinearLayout
-                    android:id="@+id/layoutYes"
-                    style="@style/wrap_wrap"
-                    >
+                    android:id="@+id/layoutProduct"
+                    style="@style/wrap_wrap">
 
                     <RadioButton
-                        android:id="@+id/radioYes"
+                        android:id="@+id/radioProduct"
                         style="@style/textview_description_wrap"
                         android:buttonTint="@color/radio_button_color"
                         android:clickable="false"
@@ -109,21 +122,21 @@
                         android:scaleY="0.5" />
 
                     <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_large_wrap"
+                        style="@style/textview_description_ex_large_wrap"
                         android:paddingEnd="@dimen/margin_15"
-                        android:text="@string/yes"
+                        android:text="@string/products"
                         android:textColor="@color/gr_color"
                         app:customFont="@string/font_regular" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layoutNo"
+                    android:id="@+id/layoutService"
                     style="@style/wrap_wrap"
                     android:paddingEnd="@dimen/margin_15"
                     android:paddingStart="@dimen/margin_15">
 
                     <RadioButton
-                        android:id="@+id/radioNo"
+                        android:id="@+id/radioService"
                         style="@style/textview_description_wrap"
                         android:buttonTint="@color/radio_button_color"
                         android:checked="true"
@@ -132,8 +145,8 @@
                         android:scaleY="0.5" />
 
                     <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_large_wrap"
-                        android:text="@string/no"
+                        style="@style/textview_description_ex_large_wrap"
+                        android:text="@string/services"
                         android:textColor="@color/gr_color"
                         app:customFont="@string/font_regular" />
                 </LinearLayout>

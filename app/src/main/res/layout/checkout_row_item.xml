@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap"
+        android:paddingTop="@dimen/margin_7"
+        android:paddingBottom="@dimen/margin_7">
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvProductName"
+            style="@style/textview_title_wrap"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/textSize_description"
+            android:layout_marginStart="@dimen/margin_10"
+            android:maxLines="1"
+            android:textAllCaps="true"/>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvProductPrice"
+            style="@style/textview_title_wrap"
+            android:layout_toEndOf="@+id/tvProductName"
+            android:gravity="end"
+            android:maxLines="1"
+            android:minWidth="@dimen/margin_100"
+            android:layout_alignParentEnd="true"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/textSize_description"
+            android:layout_marginEnd="@dimen/margin_25"/>
+    </RelativeLayout>
+</layout>

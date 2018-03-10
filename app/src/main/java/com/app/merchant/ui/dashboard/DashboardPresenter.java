@@ -5,10 +5,14 @@ import android.app.Activity;
 
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
+import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
+import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
+import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
+import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.utility.AppConstants;
@@ -18,6 +22,8 @@ import javax.inject.Inject;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+
+import static com.app.merchant.utility.AppConstants.VIEW_CART;
 
 
 public class DashboardPresenter implements Presenter<MvpView> {
@@ -206,6 +212,54 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+    public void viewCart(Activity activity) {
+        mView.showProgress();
+        mRepository.viewCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
+            @Override
+            public void onResponse(ProductDetailsData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, VIEW_CART);
+            }
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), VIEW_CART);
+            }
+        });
+    }
+    public void checkout(Activity activity, CheckoutRequest checkoutRequest) {
+        mView.showProgress();
+        mRepository.checkout(checkoutRequest).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
+    public void getProductDetails(Activity activity, ProductRequest request) {
+        mRepository.getProductDetail(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductFullInformationData>(activity) {
+            @Override
+            public void onResponse(ProductFullInformationData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 2);
             }
         });
     }

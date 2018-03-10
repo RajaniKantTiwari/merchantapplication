@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="com.app.merchant.utility.CommonUtility" />
+
+        <variable
+            name="product"
+            type="com.app.merchant.network.response.dashboard.cart.ProductData" />
+    </data>
+
+    <RelativeLayout
+        style="@style/match_wrap"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:clickable="true">
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/header"
+            style="@style/textview_title_match"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="25dp"
+            android:gravity="center_horizontal"
+            android:text="@string/full_information"
+            android:textAllCaps="true"
+            android:textColor="@color/color_black"
+            app:customFont="@string/font_regular" />
+
+        <RelativeLayout
+            android:id="@+id/layoutProduct"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_200"
+            android:layout_below="@+id/header">
+
+            <ImageView
+                android:id="@+id/ivProductImage"
+                style="@style/wrap_wrap"
+                android:layout_margin="@dimen/margin_5" />
+        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/layoutLine"
+            style="@style/view_layout"
+            android:layout_below="@+id/layoutProduct" />
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_below="@+id/layoutLine"
+            android:layout_margin="@dimen/margin_10"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/margin_5">
+
+            <LinearLayout style="@style/match_wrap">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_header_small_wrap"
+                    android:drawablePadding="@dimen/margin_5"
+                    android:drawableStart="@drawable/rupee_blue"
+                    android:text="@{CommonUtility.price(product.selling_price)}"
+                    android:textColor="@color/color_sky_blue" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_small_wrap"
+                    android:text="@={product.measure}"
+                    android:textColor="@color/color_sky_blue" />
+            </LinearLayout>
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_match"
+                android:layout_marginTop="@dimen/margin_2"
+                android:text="@={product.productname}"
+                android:textColor="@color/color_black" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_small_match"
+                android:layout_marginTop="@dimen/margin_15"
+                android:text="@={product.productdescription}"
+                android:textColor="@color/color_black" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_50"
+            android:layout_alignParentBottom="true"
+            android:background="@color/grey_white">
+
+            <LinearLayout
+                style="@style/wrap_wrap"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/margin_10">
+
+                <ImageView
+                    android:id="@+id/ivAdd"
+                    style="@style/add_sub_view_medium"
+                    android:src="@drawable/add_blue" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCart"
+                    style="@style/textview_title_wrap"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:textColor="@color/color_sky_blue" />
+
+                <ImageView
+                    android:id="@+id/ivSub"
+                    style="@style/add_sub_view_medium"
+                    android:src="@drawable/sub_blue" />
+            </LinearLayout>
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddToCart"
+                style="@style/textview_description_smaller_wrap"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:background="@drawable/blue_round_btnbg"
+                android:elevation="@dimen/margin_3"
+                android:gravity="center_horizontal"
+                android:paddingBottom="@dimen/margin_8"
+                android:paddingEnd="@dimen/margin_30"
+                android:paddingStart="@dimen/margin_30"
+                android:paddingTop="@dimen/margin_8"
+                android:text="@string/add_to_cart"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                app:customFont="@string/font_bold" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</layout>

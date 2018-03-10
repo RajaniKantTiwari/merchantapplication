@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 
 import com.app.merchant.R;
@@ -69,7 +70,7 @@ public class StoreImageAdapter extends RecyclerView.Adapter<StoreImageAdapter.Pr
 
         public void setData(StoreImage product) {
             if (CommonUtility.isNotNull(product)) {
-                mBinding.tvProductName.setText(product.getProductName());
+                mBinding.tvProductName.setText(product.getStoreName());
                 if (CommonUtility.isNotNull(product.getImageUrl())) {
                     mBinding.cameraImage.setVisibility(View.GONE);
                     GlideUtils.loadImageRoundedCorner(activity, product.getImageUrl(), mBinding.productImage, null,

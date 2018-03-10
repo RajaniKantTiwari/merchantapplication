@@ -15,7 +15,7 @@ import android.view.View;
 import com.app.merchant.MerchantApplication;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityVerifyAccountBinding;
-import com.app.merchant.network.request.LoginRequest;
+import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
@@ -87,8 +87,8 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     public void onClick(View view) {
         if (view == mBinding.tvResend) {
             CommonUtility.clicked(mBinding.tvResend);
-            presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
-                    PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
+            /*presenter.registerMerchant(this, new RegisterRequest(userName, mobileNumber,
+                    PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));*/
         } else if (view == mBinding.tvChange) {
             //CommonUtils.clicked(mBinding.tvChange);
             Bundle bundle = new Bundle();
@@ -235,8 +235,8 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Override
     public void ok(String str) {
         mobileNumber = str;
-        presenter.getLoginDetail(this, new LoginRequest(userName, mobileNumber,
-                PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
+        /*presenter.registerMerchant(this, new RegisterRequest(userName, mobileNumber,
+                PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));*/
         hideKeyboard();
     }
 

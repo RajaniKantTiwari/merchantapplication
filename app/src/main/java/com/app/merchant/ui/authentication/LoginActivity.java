@@ -77,7 +77,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
            /*if(isValid()){
                if(isNetworkConnected()){
-                   presenter.getLoginDetail(this,new LoginRequest(userName, password,
+                   presenter.registerMerchant(this,new RegisterRequest(userName, password,
                            PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }*/

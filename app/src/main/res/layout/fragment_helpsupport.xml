@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_60">
+
+            <LinearLayout
+                style="@style/layout_hori_match_1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvRecent"
+                    style="@style/textview_title_match"
+                    android:gravity="center"
+                    android:text="761359"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_match"
+                    android:gravity="center"
+                    android:text="Order no:"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+            </LinearLayout>
+
+            <ImageView style="@style/view_layout_vertical" />
+
+            <LinearLayout
+                style="@style/layout_hori_match_1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_title_wrap"
+                    android:layout_gravity="center"
+                    android:text="761359"
+                    android:drawablePadding="@dimen/margin_2"
+                    android:drawableStart="@drawable/rupee_black"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:layout_gravity="center"
+                    android:text="Order no:"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+
+            </LinearLayout>
+
+            <ImageView style="@style/view_layout_vertical" />
+
+            <LinearLayout
+                style="@style/layout_hori_match_1"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_title_match"
+                    android:gravity="center"
+                    android:text="761359"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_match"
+                    android:gravity="center"
+                    android:text="Order no:"
+                    android:textColor="@color/dark_black_color"
+                    app:customFont="@string/font_regular" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView style="@style/view_layout" />
+
+        <com.app.merchant.widget.CustomTextView
+            style="@style/textview_title_match"
+            android:layout_marginTop="@dimen/margin_5"
+            android:padding="@dimen/margin_10"
+            android:layout_marginStart="@dimen/margin_9"
+            android:text="@string/selection_option"
+            android:textAllCaps="true"
+            android:textColor="@color/dark_black_color"
+            app:customFont="@string/font_regular" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvChoice"
+            style="@style/match_wrap"
+            android:padding="@dimen/margin_10" />
+    </LinearLayout>
+</layout>

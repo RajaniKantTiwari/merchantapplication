@@ -1,4 +1,4 @@
-package com.app.merchant.ui.dashboard.home;
+package com.app.merchant.ui.dashboard.home.graphfragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -10,12 +10,12 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentOrderReturnedCancelBinding;
+import com.app.merchant.databinding.FragmentOrderReceivedBinding;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedCancelAdapter;
-import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
+import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
+import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,9 +34,9 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderReturnedCancelFragment extends DashboardFragment implements
-        DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
-    private FragmentOrderReturnedCancelBinding mBinding;
+public class OrderReceivedFragment extends DashboardFragment implements
+        OrderReceivedAdapter.OrderReceivedListener,ConfirmOrderDialogFragment.OrderDialogListener{
+    private FragmentOrderReceivedBinding mBinding;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
@@ -61,8 +61,8 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_returned_cancel, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_returned));
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
         return mBinding.getRoot();
     }
 
@@ -76,7 +76,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReturnedCancelAdapter mAdapter=new OrderReturnedCancelAdapter(getDashboardActivity());
+        OrderReceivedAdapter mAdapter=new OrderReceivedAdapter(getDashboardActivity(),this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -84,7 +84,9 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
         generateValues();
+
         generateData();
+
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
 
@@ -120,7 +122,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
             }
 
             Line line = new Line(values);
-            line.setColor(ChartUtils.COLORS[4]);
+            line.setColor(ChartUtils.COLORS[0]);
             line.setShape(shape);
             line.setCubic(isCubic);
             line.setFilled(isFilled);
@@ -164,7 +166,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
 
     @Override
     public String getFragmentName() {
-        return OrderReturnedCancelFragment.class.getSimpleName();
+        return OrderReceivedFragment.class.getSimpleName();
     }
 
     @Override
@@ -181,11 +183,23 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     public void onClick(View view) {
 
     }
+
     @Override
-    public void newDeliveryBoy() {
+    public void onOrderStatusClick(int position) {
         Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
     }
+
+    @Override
+    public void confirmed() {
+
+    }
+
+    @Override
+    public void notConfirmed() {
+
+    }
+
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 
         @Override

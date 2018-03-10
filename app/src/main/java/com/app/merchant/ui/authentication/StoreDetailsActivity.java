@@ -1,12 +1,13 @@
 package com.app.merchant.ui.authentication;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.ActivityLoginBinding;
 import com.app.merchant.databinding.ActivityStoreDetailsBinding;
+import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.presenter.CommonPresenter;
@@ -25,12 +26,31 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     ActivityStoreDetailsBinding mBinding;
     @Inject
     CommonPresenter presenter;
+    private String legalName;
+    private String panNumber;
+    private String gstNumber;
+    private String bankName;
+    private String branchName;
+    private String accountNumber;
+    private String ifscCode;
+    private String deliveryCharge;
+    private String serviceArea;
+    private RegisterRequest register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_store_details);
+        initilizeData();
         setListener();
+    }
+
+    private void initilizeData() {
+        Intent intent = getIntent();
+        if (CommonUtility.isNotNull(intent)) {
+            Bundle bundle = intent.getExtras();
+            register = bundle.getParcelable(BundleConstants.REGISTER_USER);
+        }
     }
 
     public void setListener() {
@@ -52,39 +72,72 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(isNotNull(response)){
-            if(response instanceof LoginResponse){
-                LoginResponse loginResponse=(LoginResponse)response;
-                if(isNotNull(loginResponse)){
-                    String type=loginResponse.getType();
-                    if(type.equals(AppConstants.SUCCESS)){
-
+        if (isNotNull(response)) {
+            if (response instanceof LoginResponse) {
+                LoginResponse loginResponse = (LoginResponse) response;
+                if (isNotNull(loginResponse)) {
+                    String type = loginResponse.getType();
+                    if (type.equals(AppConstants.SUCCESS)) {
+                        Bundle bundle = new Bundle();
+                      /*  PreferenceUtils.setUserName(address);
+                        PreferenceUtils.setUserMono(location);
+                        bundle.putString(BundleConstants.USER_NAME, address);
+                        bundle.putString(BundleConstants.MOBILE_NUMBER, location);*/
+                        ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                     }
                 }
             }
         }
-
     }
 
     @Override
     public void onClick(View view) {
-        if(view==mBinding.tvDone){
+        if (view == mBinding.tvDone) {
             CommonUtility.clicked(mBinding.tvDone);
-            ExplicitIntent.getsInstance().navigateTo(this,DashBoardActivity.class);
-           /*if(isValid()){
-               if(isNetworkConnected()){
-                   presenter.getLoginDetail(this,new LoginRequest(userName, password,
-                           PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
-               }
-           }*/
-        }else if(view==mBinding.layoutPayment.layoutCash){
+            ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
+            if (isValid()) {
+                setRegisterData();
+                if (isNetworkConnected()) {
+                    presenter.registerMerchant(this,register);
+                }
+            }
+        } else if (view == mBinding.layoutPayment.layoutCash) {
             selectCash();
-        }else if(view==mBinding.layoutPayment.layoutCard){
+        } else if (view == mBinding.layoutPayment.layoutCard) {
             selectCard();
-        }else if(view==mBinding.layoutPayment.layoutPaytm){
+        } else if (view == mBinding.layoutPayment.layoutPaytm) {
             selectPaytm();
-        }else if(view==mBinding.layoutPayment.layoutOther){
+        } else if (view == mBinding.layoutPayment.layoutOther) {
             selectOther();
+        }
+    }
+
+    private void setRegisterData() {
+        if (CommonUtility.isNotNull(register)) {
+            register.setLegalname(legalName);
+            register.setPannumber(panNumber);
+            register.setGst(gstNumber);
+            register.setBankname(bankName);
+            register.setBranch(branchName);
+            register.setAccountno(accountNumber);
+            register.setIfsc(ifscCode);
+            setPaymentOption();
+            register.setDelivery(deliveryCharge);
+            register.setServicingarea(legalName);
+            //register.setOtherServiceArea(legalName);
+
+        }
+    }
+
+    private void setPaymentOption() {
+        if (mBinding.layoutPayment.radioCash.isChecked()) {
+            register.setPaymentmode(getResources().getString(R.string.optioncash));
+        } else if (mBinding.layoutPayment.radioCard.isChecked()) {
+            register.setPaymentmode(getResources().getString(R.string.optioncard));
+        } else if (mBinding.layoutPayment.radioPaytm.isChecked()) {
+            register.setPaymentmode(getResources().getString(R.string.optionpaytm));
+        } else if (mBinding.layoutPayment.radioOther.isChecked()) {
+            register.setPaymentmode(getResources().getString(R.string.optionother));
         }
     }
 
@@ -117,7 +170,53 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     }
 
     private boolean isValid() {
-        return false;
+        legalName = mBinding.edLegalName.getText().toString();
+        panNumber = mBinding.edPanNumber.getText().toString();
+        gstNumber = mBinding.edGstNumber.getText().toString();
+        bankName = mBinding.edBankName.getText().toString();
+        branchName = mBinding.edBranch.getText().toString();
+        accountNumber = mBinding.edAccountNumber.getText().toString();
+        ifscCode = mBinding.edIFSCCode.getText().toString();
+        deliveryCharge = mBinding.edDelivery.getText().toString();
+        serviceArea = mBinding.edServiceArea.getText().toString();
+        if (isNotNull(legalName) || legalName.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_legalname_of_company));
+            return false;
+        } else if (!CommonUtility.checkValidName(legalName.trim())) {
+            showToast(getResources().getString(R.string.please_enter_valid_name_of_company));
+            return false;
+        } else if (isNotNull(panNumber) || panNumber.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_pan_number));
+            return false;
+        } else if (panNumber.trim().length() != 10) {
+            showToast(getResources().getString(R.string.please_enter_valid_pan_number));
+            return false;
+        } else if (isNotNull(gstNumber) || gstNumber.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_gst_number));
+            return false;
+        } else if (gstNumber.trim().length() != 15) {
+            showToast(getResources().getString(R.string.please_enter_valid_gst_number));
+            return false;
+        } else if (isNotNull(bankName) || bankName.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_bank_name));
+            return false;
+        } else if (isNotNull(branchName) || branchName.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_branch_name));
+            return false;
+        } else if (isNotNull(accountNumber) || accountNumber.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_account_number));
+            return false;
+        } else if (isNotNull(ifscCode) || ifscCode.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_ifsc_code));
+            return false;
+        } else if (isNotNull(deliveryCharge) || deliveryCharge.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_delivery_charge));
+            return false;
+        } else if (isNotNull(serviceArea) || serviceArea.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_service_area));
+            return false;
+        }
+        return true;
 
     }
 

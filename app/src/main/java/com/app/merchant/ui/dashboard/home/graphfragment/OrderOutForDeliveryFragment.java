@@ -1,4 +1,4 @@
-package com.app.merchant.ui.dashboard.home;
+package com.app.merchant.ui.dashboard.home.graphfragment;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -10,13 +10,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentOrderDeliveredBinding;
+import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderDeliveredAdapter;
+import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.adapter.OrderOutForDeliveryAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +37,10 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderDeliveredFragment extends DashboardFragment implements
+public class OrderOutForDeliveryFragment extends DashboardFragment implements
+        OrderOutForDeliveryAdapter.OrderOutForDeliveryListener,
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
-    private FragmentOrderDeliveredBinding mBinding;
+    private FragmentOrderOutForDeliveryBinding mBinding;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
@@ -62,8 +65,8 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_delivered, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_delivered));
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_out_for_delivery, container, false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_out_for_delivery));
         return mBinding.getRoot();
     }
 
@@ -77,7 +80,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderDeliveredAdapter mAdapter=new OrderDeliveredAdapter(getDashboardActivity());
+        OrderOutForDeliveryAdapter mAdapter=new OrderOutForDeliveryAdapter(getDashboardActivity(),this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -123,7 +126,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
             }
 
             Line line = new Line(values);
-            line.setColor(ChartUtils.COLORS[3]);
+            line.setColor(ChartUtils.COLORS[2]);
             line.setShape(shape);
             line.setCubic(isCubic);
             line.setFilled(isFilled);
@@ -167,7 +170,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
 
     @Override
     public String getFragmentName() {
-        return OrderDeliveredFragment.class.getSimpleName();
+        return OrderOutForDeliveryFragment.class.getSimpleName();
     }
 
     @Override
@@ -184,10 +187,21 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     public void onClick(View view) {
 
     }
+
+
+
+
+
     @Override
     public void newDeliveryBoy() {
         Bundle bundle=new Bundle();
         getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+    }
+
+    @Override
+    public void onRatingClick(int position) {
+        Bundle bundle=new Bundle();
+        CommonUtility.showRatingDialog(getDashboardActivity(), bundle,  this);
     }
 
     @Override

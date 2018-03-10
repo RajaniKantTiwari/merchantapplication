@@ -30,6 +30,30 @@
                     android:textAllCaps="true"
                     android:layout_centerInParent="true"
                     android:textColor="@color/white" />
+            <RelativeLayout
+                android:id="@+id/layoutCart"
+                style="@style/image_45_50"
+                android:layout_toStartOf="@+id/ivSearch">
+
+                <ImageView
+                    style="@style/wrap_wrap"
+                    android:layout_centerVertical="true"
+                    android:contentDescription="@null"
+                    android:padding="@dimen/margin_12"
+                    android:src="@drawable/shopping_cart" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCart"
+                    style="@style/textview_description_small_wrap"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:background="@drawable/black_cart_dot"
+                    android:gravity="center"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
             <ImageView
                 android:id="@+id/ivSearch"
                 style="@style/wrap_wrap"

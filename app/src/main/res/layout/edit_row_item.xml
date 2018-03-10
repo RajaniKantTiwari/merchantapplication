@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap">
+
+    <com.app.merchant.widget.CustomTextView
+        android:id="@+id/tvAddress"
+        style="@style/textview_title_match"
+        android:textColor="@color/color_black"
+        android:textSize="@dimen/textSize_description"
+        android:padding="@dimen/margin_5"
+        android:textAllCaps="true"/>
+</RelativeLayout>
+</layout>
