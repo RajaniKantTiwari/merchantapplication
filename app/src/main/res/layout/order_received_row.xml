@@ -3,7 +3,7 @@
 <data>
     <variable
         name="orderReceived"
-        type="com.app.merchant.network.response.dashboard.chartdata.OrderReceived"/>
+        type="com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceived"/>
 </data>
     <LinearLayout
         style="@style/match_wrap"

@@ -12,10 +12,12 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -40,4 +42,8 @@ public interface Repository {
     Observable<OrderConfirmedChartData> getOrderConfirmedChart();
 
     Observable<OrderConfirmedData> getOrderConfirmed();
+
+    Observable<OrderOutForDeliveryChartData> getOrderOutForDeliveryChart();
+
+    Observable<OrderOutForDeliveryData> getOrderOutForDelivery();
 }

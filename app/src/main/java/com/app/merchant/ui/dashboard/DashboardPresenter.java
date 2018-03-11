@@ -13,10 +13,12 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.utility.AppConstants;
@@ -274,13 +276,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(OrderReceivedChartData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.ORDER_RECEIVED_CHART);
+                mView.onSuccess(response, AppConstants.CHART_DATA);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED_CHART);
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
             }
         });
     }
@@ -291,13 +293,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(OrderReceivedData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.ORDER_RECEIVED);
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED);
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
             }
         });
     }
@@ -308,13 +310,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(OrderConfirmedChartData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.ORDER_RECEIVED_CHART);
+                mView.onSuccess(response, AppConstants.CHART_DATA);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED_CHART);
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
             }
         });
     }
@@ -325,13 +327,47 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(OrderConfirmedData response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.ORDER_RECEIVED);
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED);
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void getOrderOutForDeliveryChart(DashBoardActivity activity) {
+        mRepository.getOrderOutForDeliveryChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderOutForDeliveryChartData>(activity) {
+            @Override
+            public void onResponse(OrderOutForDeliveryChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.CHART_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
+            }
+        });
+    }
+
+    public void getOrderOutForDelivery(DashBoardActivity activity) {
+        mRepository.getOrderOutForDelivery().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderOutForDeliveryData>(activity) {
+            @Override
+            public void onResponse(OrderOutForDeliveryData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
             }
         });
     }

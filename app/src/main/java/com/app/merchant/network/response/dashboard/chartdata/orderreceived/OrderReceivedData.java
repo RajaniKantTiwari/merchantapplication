@@ -1,4 +1,4 @@
-package com.app.merchant.network.response.dashboard.chartdata;
+package com.app.merchant.network.response.dashboard.chartdata.orderreceived;
 
 import com.app.merchant.network.response.BaseResponse;
 

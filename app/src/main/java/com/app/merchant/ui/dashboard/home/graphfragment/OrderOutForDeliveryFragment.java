@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChart;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
@@ -25,6 +26,7 @@ import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -45,9 +47,9 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
+    private int numberOfOrderForDelivery;
 
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
+    float[][] orderOutForDeliveryTab = new float[maxNumberOfLines][numberOfOrderForDelivery];
 
     private boolean hasAxes = true;
     private boolean hasAxesNames = false;
@@ -73,8 +75,10 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-      initializeChartData();
-      initializeOrderData();
+        getPresenter().getOrderOutForDeliveryChart(getDashboardActivity());
+        getPresenter().getOrderOutForDelivery(getDashboardActivity());
+
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
@@ -84,45 +88,49 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderOutForDeliveryChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
-
-        generateData();
-
+        generateValues(data);
+        generateData(data);
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-
         resetViewport();
-
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfOrderForDelivery - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
-    private void generateValues() {
-        for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+    private void generateValues(ArrayList<OrderOutForDeliveryChart> data) {
+        if (CommonUtility.isNotNull(data)) {
+            numberOfOrderForDelivery = data.size();
+            orderOutForDeliveryTab = new float[maxNumberOfLines][numberOfOrderForDelivery];
+            for (int i = 0; i < maxNumberOfLines; ++i) {
+                for (int j = 0; j < numberOfOrderForDelivery; ++j) {
+                    orderOutForDeliveryTab[i][j] = data.get(j).getOrders_count();
+                }
             }
         }
     }
 
-    private void generateData() {
+    private void generateData(ArrayList<OrderOutForDeliveryChart> data) {
 
         List<Line> lines = new ArrayList<Line>();
+        List<AxisValue> axisValues = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
-
-            List<PointValue> values = new ArrayList<PointValue>();
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            List<PointValue> values = new ArrayList<>();
+            for (int j = 0; j < numberOfOrderForDelivery; ++j) {
+                values.add(new PointValue(j, orderOutForDeliveryTab[i][j]));
+                if(CommonUtility.isNotNull(data)&&data.size()>j){
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -140,25 +148,11 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
             }
             lines.add(line);
         }
-
-        data = new LineChartData(lines);
-
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
 
     }
 

@@ -66,8 +66,8 @@ public interface AppConstants {
     int STORE_IMAGE=0;
     int FACULTY_IMAGE=1;
     int OWNER_IMAGE=2;
-    int ORDER_RECEIVED_CHART =1;
-    int ORDER_RECEIVED =2;
+    int CHART_DATA =1;
+    int ORDER_DATA =2;
 
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})

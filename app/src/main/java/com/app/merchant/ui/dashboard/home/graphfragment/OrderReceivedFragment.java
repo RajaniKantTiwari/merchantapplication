@@ -12,10 +12,10 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReceivedBinding;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceived;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChart;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
-import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceived;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
@@ -174,9 +174,9 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == AppConstants.ORDER_RECEIVED_CHART) {
+        if (requestCode == AppConstants.CHART_DATA) {
             setChartResponse(response);
-        } else if (requestCode == AppConstants.ORDER_RECEIVED) {
+        } else if (requestCode == AppConstants.ORDER_DATA) {
             setOrderResponse(response);
         }
     }
