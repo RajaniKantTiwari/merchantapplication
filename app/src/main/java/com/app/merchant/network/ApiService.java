@@ -13,6 +13,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
@@ -50,10 +52,10 @@ public interface ApiService {
     Observable<OrderReceivedData> getOrderReceived();
 
     @POST("shopping/get_merchant_orders_confirmed_chart")
-    Observable<BaseResponse> getOrderConfirmedChart();
+    Observable<OrderConfirmedChartData> getOrderConfirmedChart();
 
     @POST("shopping/get_merchant_orders_confirmed")
-    Observable<BaseResponse> getOrderConfirmed();
+    Observable<OrderConfirmedData> getOrderConfirmed();
 
     @POST("shopping/get_merchant_orders_orderoutfordelivery_chart")
     Observable<BaseResponse> getOrderOutForDeliveryChart();

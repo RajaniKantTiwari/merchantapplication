@@ -13,6 +13,8 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 import com.app.merchant.ui.base.MvpView;
@@ -288,6 +290,40 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReceivedData>(activity) {
             @Override
             public void onResponse(OrderReceivedData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_RECEIVED);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED);
+            }
+        });
+    }
+
+    public void getOrderConfirmedChart(DashBoardActivity activity) {
+        mRepository.getOrderConfirmedChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderConfirmedChartData>(activity) {
+            @Override
+            public void onResponse(OrderConfirmedChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_RECEIVED_CHART);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED_CHART);
+            }
+        });
+    }
+
+    public void getOrderConfirmed(DashBoardActivity activity) {
+        mRepository.getOrderConfirmed().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderConfirmedData>(activity) {
+            @Override
+            public void onResponse(OrderConfirmedData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, AppConstants.ORDER_RECEIVED);
             }

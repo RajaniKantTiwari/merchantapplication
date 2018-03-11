@@ -521,4 +521,19 @@ public class CommonUtility {
        return BitmapFactory.decodeFile(profilePicFilePath);
 
     }
+
+    public static String formatDate(String date) {
+        String createdDate=null;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            Date cDate=dateFormat.parse(date);
+            DateFormat newDateFormat = new SimpleDateFormat("dd-MM");
+            newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            return newDateFormat.format(cDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createdDate;
+    }
 }

@@ -12,6 +12,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
@@ -76,5 +78,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderReceivedData> getOrderReceived() {
         return apiService.getOrderReceived();
+    }
+
+    @Override
+    public Observable<OrderConfirmedChartData> getOrderConfirmedChart() {
+        return apiService.getOrderConfirmedChart();
+    }
+
+    @Override
+    public Observable<OrderConfirmedData> getOrderConfirmed() {
+        return apiService.getOrderConfirmed();
     }
 }

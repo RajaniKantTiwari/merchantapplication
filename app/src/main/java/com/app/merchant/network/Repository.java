@@ -12,6 +12,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
@@ -34,4 +36,8 @@ public interface Repository {
     Observable<OrderReceivedChartData> getOrderReceivedChart();
 
     Observable<OrderReceivedData> getOrderReceived();
+
+    Observable<OrderConfirmedChartData> getOrderConfirmedChart();
+
+    Observable<OrderConfirmedData> getOrderConfirmed();
 }

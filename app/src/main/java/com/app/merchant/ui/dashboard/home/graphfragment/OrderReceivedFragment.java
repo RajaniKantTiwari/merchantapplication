@@ -27,6 +27,7 @@ import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -91,14 +92,10 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
         generateValues(data);
-
-        generateData();
-
+        generateData(data);
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-
         resetViewport();
-
     }
 
     private void resetViewport() {
@@ -113,9 +110,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
     }
 
     private void generateValues(ArrayList<OrderReceivedChart> data) {
-        if(CommonUtility.isNotNull(data))
-        {
-            numberOfOrderReceived =data.size();
+        if (CommonUtility.isNotNull(data)) {
+            numberOfOrderReceived = data.size();
             orderReceivedTab = new float[maxNumberOfLines][numberOfOrderReceived];
             for (int i = 0; i < maxNumberOfLines; ++i) {
                 for (int j = 0; j < numberOfOrderReceived; ++j) {
@@ -125,14 +121,16 @@ public class OrderReceivedFragment extends DashboardFragment implements
         }
     }
 
-    private void generateData() {
-
+    private void generateData(ArrayList<OrderReceivedChart> data) {
         List<Line> lines = new ArrayList<>();
+        List<AxisValue> axisValues = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
-
-            List<PointValue> values = new ArrayList<PointValue>();
+            List<PointValue> values = new ArrayList<>();
             for (int j = 0; j < numberOfOrderReceived; ++j) {
                 values.add(new PointValue(j, orderReceivedTab[i][j]));
+                if(CommonUtility.isNotNull(data)&&data.size()>j){
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -150,25 +148,11 @@ public class OrderReceivedFragment extends DashboardFragment implements
             }
             lines.add(line);
         }
-
-        data = new LineChartData(lines);
-
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
 
     }
 
@@ -242,7 +226,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Number Of Order : " + value.getY(), Toast.LENGTH_SHORT).show();
         }
 
         @Override

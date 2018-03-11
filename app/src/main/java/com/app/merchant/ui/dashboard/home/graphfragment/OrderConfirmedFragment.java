@@ -24,6 +24,7 @@ import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -75,6 +76,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
+        getPresenter().getOrderConfirmedChart(getDashboardActivity());
+        getPresenter().getOrderConfirmed(getDashboardActivity());
       initializeChartData();
       initializeOrderData();
     }
@@ -90,12 +93,9 @@ public class OrderConfirmedFragment extends DashboardFragment implements
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
         generateValues();
-
         generateData();
-
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-
         resetViewport();
 
     }
@@ -120,9 +120,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     private void generateData() {
 
         List<Line> lines = new ArrayList<Line>();
+        List<PointValue> values = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
-
-            List<PointValue> values = new ArrayList<PointValue>();
             for (int j = 0; j < numberOfPoints; ++j) {
                 values.add(new PointValue(j, randomNumbersTab[i][j]));
             }
@@ -144,7 +143,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
         }
 
         data = new LineChartData(lines);
-
+        // For build-up animation you have to disable viewport recalculation.
+        mBinding.lineChart.setViewportCalculationEnabled(false);
         if (hasAxes) {
             Axis axisX = new Axis();
             Axis axisY = new Axis().setHasLines(true);
@@ -208,7 +208,7 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
         @Override
         public void onValueSelected(int lineIndex, int pointIndex, PointValue value) {
-            Toast.makeText(getActivity(), "Selected: " + value, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(), "Number Of Order : " + value.getY(), Toast.LENGTH_SHORT).show();
         }
 
         @Override
