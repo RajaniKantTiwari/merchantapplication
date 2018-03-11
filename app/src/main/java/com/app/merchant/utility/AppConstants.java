@@ -16,12 +16,8 @@ import static com.app.merchant.utility.AppConstants.FRAGMENTS.WELCOME_HOME_FRAGM
  */
 
 public interface AppConstants {
-
     Pattern EMAIL_PATTERN = Pattern
-            .compile("[a-zA-Z0-9+._%-+]{1,100}" + "@"
-                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,10}" + "(" + "."
-                    + "[a-zA-Z0-9][a-zA-Z0-9-]{0,20}" +
-                    ")+");
+            .compile("^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$");
 
     Pattern USERNAME_PATTERN = Pattern
             .compile("[a-zA-Z0-9]{1,250}");
@@ -70,6 +66,9 @@ public interface AppConstants {
     int STORE_IMAGE=0;
     int FACULTY_IMAGE=1;
     int OWNER_IMAGE=2;
+    int ORDER_RECEIVED_CHART =1;
+    int ORDER_RECEIVED =2;
+
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

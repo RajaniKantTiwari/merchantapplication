@@ -12,6 +12,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -39,6 +41,9 @@ public class RetrofitRepository implements Repository {
     public Completable logout() {
         return null;
     }
+
+
+
     @Override
     public Observable<BaseResponse> addForCartList(CartListRequest request) {
         return apiService.addForCartList(request);
@@ -60,5 +65,16 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest) {
         return apiService.getProductDetail(productRequest);
+    }
+
+
+    @Override
+    public Observable<OrderReceivedChartData> getOrderReceivedChart() {
+        return apiService.getOrderReceivedChart();
+    }
+
+    @Override
+    public Observable<OrderReceivedData> getOrderReceived() {
+        return apiService.getOrderReceived();
     }
 }

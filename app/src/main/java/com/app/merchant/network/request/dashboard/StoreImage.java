@@ -1,15 +1,37 @@
 package com.app.merchant.network.request.dashboard;
 
 import android.graphics.Bitmap;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by rajnikant on 11/02/18.
  */
 
-public class StoreImage {
+public class StoreImage implements Parcelable {
     private String storeName;
     private String imageUrl;
-    private Bitmap bitmap;
+
+    public StoreImage() {
+
+    }
+
+    protected StoreImage(Parcel in) {
+        storeName = in.readString();
+        imageUrl = in.readString();
+    }
+
+    public static final Creator<StoreImage> CREATOR = new Creator<StoreImage>() {
+        @Override
+        public StoreImage createFromParcel(Parcel in) {
+            return new StoreImage(in);
+        }
+
+        @Override
+        public StoreImage[] newArray(int size) {
+            return new StoreImage[size];
+        }
+    };
 
     public String getStoreName() {
         return storeName;
@@ -27,11 +49,15 @@ public class StoreImage {
         this.imageUrl = imageUrl;
     }
 
-    public void setBitMap(Bitmap bitmap) {
-        this.bitmap = bitmap;
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public Bitmap getBitmap() {
-        return bitmap;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(storeName);
+        parcel.writeString(imageUrl);
     }
 }

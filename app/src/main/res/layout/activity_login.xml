@@ -35,9 +35,11 @@
                 android:textColorHint="@color/text_hint">
 
                 <com.app.merchant.widget.CustomEditText
-                    android:id="@+id/edName"
+                    android:id="@+id/edEmail"
                     style="@style/edit_text_style_medium"
                     android:hint="@string/user_name"
+                    android:maxLines="1"
+                    android:inputType="textEmailAddress"
                     android:imeOptions="actionNext"
                     android:paddingBottom="@dimen/margin_5"
                     android:paddingTop="@dimen/margin_5"

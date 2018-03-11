@@ -25,7 +25,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
     @Inject
     CommonPresenter presenter;
     private String password;
-    private String userName;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +56,10 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                 if(isNotNull(loginResponse)){
                     String type=loginResponse.getType();
                     if(type.equals(AppConstants.SUCCESS)){
-                        PreferenceUtils.setUserName(userName);
+                        PreferenceUtils.setUserName(email);
                         PreferenceUtils.setUserMono(password);
                         Bundle bundle=new Bundle();
-                        bundle.putString(BundleConstants.USER_NAME,userName);
+                        bundle.putString(BundleConstants.USER_NAME, email);
                         bundle.putString(BundleConstants.MOBILE_NUMBER, password);
                         ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class,bundle);
                     }
@@ -77,7 +77,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
            /*if(isValid()){
                if(isNetworkConnected()){
-                   presenter.registerMerchant(this,new RegisterRequest(userName, password,
+                   presenter.registerMerchant(this,new RegisterRequest(email, password,
                            PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
                }
            }*/
@@ -91,17 +91,18 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
     private boolean isValid() {
         password =mBinding.edPassword.getText().toString();
-        userName=mBinding.edName.getText().toString();
-        if((isNotNull(password)&& password.trim().length()>0)&&(isNotNull(userName)&&userName.trim().length()>0)){
-            return true;
-        }else if(isNull(userName)||userName.trim().length()==0){
-            showToast(getResources().getString(R.string.please_enter_address));
+        email =mBinding.edEmail.getText().toString();
+        if(isNull(email)|| email.trim().length()==0){
+            showToast(getResources().getString(R.string.please_enter_email_address));
             return false;
-        }else{
+        }else if(!CommonUtility.checkValidEmail(email)){
+            showToast(getResources().getString(R.string.please_enter_valid_email));
+            return false;
+        }else if(isNull(password)|| password.trim().length()==0){
             showToast(getResources().getString(R.string.please_enter_password));
             return false;
         }
-
+        return true;
     }
 
 

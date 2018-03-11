@@ -15,6 +15,7 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
+import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 
 public class OrderReceivedFragment extends DashboardFragment implements
-        OrderReceivedAdapter.OrderReceivedListener,ConfirmOrderDialogFragment.OrderDialogListener{
+        OrderReceivedAdapter.OrderReceivedListener, ConfirmOrderDialogFragment.OrderDialogListener {
     private FragmentOrderReceivedBinding mBinding;
     //for chart
     private LineChartData data;
@@ -69,14 +70,16 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-      initializeChartData();
-      initializeOrderData();
+        getPresenter().getOrderReceivedChart(getDashboardActivity());
+        getPresenter().getOrderReceived(getDashboardActivity());
+        initializeChartData();
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReceivedAdapter mAdapter=new OrderReceivedAdapter(getDashboardActivity(),this);
+        OrderReceivedAdapter mAdapter = new OrderReceivedAdapter(getDashboardActivity(), this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -93,6 +96,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
         resetViewport();
 
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
@@ -103,6 +107,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
+
     private void generateValues() {
         for (int i = 0; i < maxNumberOfLines; ++i) {
             for (int j = 0; j < numberOfPoints; ++j) {
@@ -113,7 +118,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     private void generateData() {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
 
             List<PointValue> values = new ArrayList<PointValue>();
@@ -131,7 +136,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+            if (pointsHaveDifferentColor) {
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
             }
             lines.add(line);
@@ -171,12 +176,16 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (requestCode == AppConstants.ORDER_RECEIVED_CHART) {
 
+        } else if (requestCode == AppConstants.ORDER_RECEIVED) {
+
+        }
     }
 
     @Override
@@ -186,8 +195,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void onOrderStatusClick(int position) {
-        Bundle bundle=new Bundle();
-        CommonUtility.showConfirmOrderDialog(getDashboardActivity(),bundle,this);
+        Bundle bundle = new Bundle();
+        CommonUtility.showConfirmOrderDialog(getDashboardActivity(), bundle, this);
     }
 
     @Override

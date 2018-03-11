@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/match_wrap">
+    <com.app.merchant.widget.CustomEditText
+        android:id="@+id/edServiceArea"
+        style="@style/edit_text_style_medium"
+        android:layout_marginTop="@dimen/margin_10"
+        android:hint="@string/servicing_areas"
+        android:imeOptions="actionNext"
+        android:layout_toStartOf="@+id/ivClose"
+        android:paddingBottom="@dimen/margin_3"
+        android:paddingTop="@dimen/margin_7" />
+
+    <ImageView
+        android:layout_below="@+id/edServiceArea"
+        style="@style/view_layout_dark_grey"
+        />
+    <ImageView
+        android:id="@+id/ivClose"
+        style="@style/image_30"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/ic_close_grey"
+        android:padding="@dimen/margin_8"
+        android:visibility="gone"/>
+</RelativeLayout>

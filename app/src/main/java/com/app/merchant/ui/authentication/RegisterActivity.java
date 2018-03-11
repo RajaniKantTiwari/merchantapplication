@@ -2,12 +2,9 @@ package com.app.merchant.ui.authentication;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -17,7 +14,6 @@ import com.app.merchant.event.EncodedBitmap;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.adapter.StoreImageAdapter;
 import com.app.merchant.ui.base.MvpView;
@@ -27,7 +23,6 @@ import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
-import com.app.merchant.utility.PreferenceUtils;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -48,18 +43,15 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     private String location;
     private String address;
     private StoreImageAdapter productAdapter;
-    private List<StoreImage> storeImageList = new ArrayList<>();
+    private ArrayList<StoreImage> storeImageList = new ArrayList<>();
     private int adapterPosition;
     private String profilePicFilePath;
     private String email;
     private String storeName;
-    private RegisterRequest register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CommonUtility.register(this);
-        register = new RegisterRequest();
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_resister);
         initializeAdapter();
         setListener();
@@ -114,9 +106,9 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         if (view == mBinding.tvNext) {
             CommonUtility.clicked(mBinding.tvNext);
             if (isValid()) {
-                Bundle bundle = new Bundle();
-                setBundle(bundle);
-                ExplicitIntent.getsInstance().navigateTo(this, StoreDetailsActivity.class);
+                Intent  intent = new Intent(this,StoreDetailsActivity.class);
+                setIntentData(intent);
+                    ExplicitIntent.getsInstance().navigateTo(this, StoreDetailsActivity.class,intent);
             }
         } else if (view == mBinding.layoutProduct) {
             mBinding.radioProduct.setChecked(true);
@@ -127,7 +119,8 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         }
     }
 
-    private void setBundle(Bundle bundle) {
+    private void setIntentData(Intent intent) {
+        RegisterRequest register = new RegisterRequest();
         register.setEmail(email);
         register.setLocation(location);
         register.setAddress(address);
@@ -137,16 +130,8 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         } else if (mBinding.radioProduct.isChecked()) {
             register.setStoretype(getResources().getString(R.string.service));
         }
-        if (CommonUtility.isNotNull(storeImageList) && storeImageList.size() > 0) {
-            storeImage(AppConstants.STORE_IMAGE, storeImageList.get(0).getImageUrl());
-        }
-        if (CommonUtility.isNotNull(storeImageList) && storeImageList.size() > 1) {
-            storeImage(AppConstants.FACULTY_IMAGE, storeImageList.get(1).getImageUrl());
-        }
-        if (CommonUtility.isNotNull(storeImageList) && storeImageList.size() > 2) {
-            storeImage(AppConstants.OWNER_IMAGE, storeImageList.get(2).getImageUrl());
-        }
-        bundle.putParcelable(BundleConstants.REGISTER_USER, register);
+        register.setStoreList(storeImageList);
+        intent.putExtra(BundleConstants.REGISTER_USER, register);
     }
 
     private boolean isValid() {
@@ -154,34 +139,37 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         location = mBinding.edLocation.getText().toString();
         address = mBinding.edAddress.getText().toString();
         storeName = mBinding.edStore.getText().toString();
-        if (isNotNull(email) || email.trim().length() == 0) {
+        if (isNull(email) || email.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_email_address));
+            mBinding.edEmail.requestFocus();
             return false;
         } else if (!CommonUtility.checkValidEmail(email)) {
+            mBinding.edEmail.requestFocus();
             showToast(getResources().getString(R.string.please_enter_valid_email));
             return false;
         } else if (isNull(location) || location.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_location));
+            mBinding.edLocation.requestFocus();
             return false;
         } else if (isNull(address) || address.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_address));
-            return false;
-        } else if (!CommonUtility.checkValidAddress(address)) {
-            showToast(getResources().getString(R.string.please_enter_valid_address));
+            mBinding.edAddress.requestFocus();
             return false;
         } else if (isNull(storeName) || storeName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_store_name));
+            mBinding.edStore.requestFocus();
             return false;
         } else if (!CommonUtility.checkValidName(storeName)) {
+            mBinding.edStore.requestFocus();
             showToast(getResources().getString(R.string.please_enter_valid_store_name));
             return false;
-        } else if (isNotNull(storeImageList.get(0).getImageUrl()) || storeImageList.get(0).getImageUrl().trim().length() == 0) {
+        }else if (isNull(storeImageList.get(0).getImageUrl()) || storeImageList.get(0).getImageUrl().trim().length() == 0) {
             showToast(getResources().getString(R.string.please_select_store_image));
             return false;
-        } else if (isNotNull(storeImageList.get(1).getImageUrl()) || storeImageList.get(1).getImageUrl().trim().length() == 0) {
+        } else if (isNull(storeImageList.get(1).getImageUrl()) || storeImageList.get(1).getImageUrl().trim().length() == 0) {
             showToast(getResources().getString(R.string.please_select_faculty_image));
             return false;
-        } else if (isNotNull(storeImageList.get(2).getImageUrl()) || storeImageList.get(2).getImageUrl().trim().length() == 0) {
+        } else if (isNull(storeImageList.get(2).getImageUrl()) || storeImageList.get(2).getImageUrl().trim().length() == 0) {
             showToast(getResources().getString(R.string.please_select_owner_image));
             return false;
         }
@@ -215,7 +203,6 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         if (storeImageList.size() > adapterPosition) {
             StoreImage storeImage = storeImageList.get(adapterPosition);
             storeImage.setImageUrl(profilePicFilePath);
-            storeImage(adapterPosition, storeImageList.get(adapterPosition).getImageUrl());
             storeImageList.set(adapterPosition, storeImage);
             productAdapter.notifyDataSetChanged();
         }
@@ -302,31 +289,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         profilePicFilePath = "";
     }
 
-    private void storeImage(int type, String imageUrl) {
-        try {
-            UploadImage postImage = new UploadImage(this, CommonUtility.getBitmap(imageUrl), type);
-            postImage.execute();
-        } catch (Exception e) {
-            LogUtils.LOGE("StoreImage", e.toString());
-        }
-    }
 
-    @Subscribe
-    public void onImageEncoded(EncodedBitmap event) {
-        int type = event.getType();
-        if (type == AppConstants.STORE_IMAGE) {
-            register.setStoreimage(event.getEncodeImage());
-        } else if (type == AppConstants.FACULTY_IMAGE) {
-            register.setFacultyimage(event.getEncodeImage());
-        } else if (type == AppConstants.OWNER_IMAGE) {
-            register.setOwnerimage(event.getEncodeImage());
-        }
 
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        CommonUtility.unregister(this);
-    }
 }

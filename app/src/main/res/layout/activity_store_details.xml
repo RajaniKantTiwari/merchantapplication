@@ -32,6 +32,8 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/legal_name"
+                android:inputType="text"
+                android:maxLines="1"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
@@ -51,7 +53,11 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_pan_number"
                 android:maxLength="@integer/pan_length"
+                android:inputType="text"
+                android:maxLines="1"
                 android:imeOptions="actionNext"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                android:textAllCaps="true"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
@@ -63,6 +69,11 @@
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:text="@string/gst_number"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
+                android:textAllCaps="true"
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
                 app:customFont="@string/font_regular" />
 
             <com.app.merchant.widget.CustomEditText
@@ -70,8 +81,11 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_gst_number"
+                android:inputType="text"
+                android:maxLines="1"
                 android:imeOptions="actionNext"
                 android:maxLength="@integer/gstin_length"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
@@ -98,6 +112,8 @@
                         style="@style/edit_text_style_small"
                         android:layout_marginTop="@dimen/margin_3"
                         android:hint="@string/bank_name"
+                        android:inputType="text"
+                        android:maxLines="1"
                         android:imeOptions="actionNext"
                         android:paddingBottom="@dimen/margin_3"
                         android:paddingTop="@dimen/margin_7"
@@ -111,9 +127,11 @@
                         android:id="@+id/edBranch"
                         style="@style/edit_text_style_medium"
                         android:hint="@string/branch"
-                        android:imeOptions="actionNext"
                         android:paddingBottom="@dimen/margin_3"
                         android:paddingTop="@dimen/margin_7"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
                         app:customFont="@string/font_regular" />
 
                     <ImageView style="@style/view_layout_dark_grey" />
@@ -129,6 +147,8 @@
                         style="@style/edit_text_style_small"
                         android:layout_marginTop="@dimen/margin_3"
                         android:hint="@string/account_number"
+                        android:inputType="number"
+                        android:maxLines="1"
                         android:imeOptions="actionNext"
                         android:paddingBottom="@dimen/margin_3"
                         android:paddingTop="@dimen/margin_7"
@@ -142,6 +162,8 @@
                         android:id="@+id/edIFSCCode"
                         style="@style/edit_text_style_medium"
                         android:hint="@string/ifsc_code"
+                        android:inputType="text"
+                        android:maxLines="1"
                         android:imeOptions="actionNext"
                         android:paddingBottom="@dimen/margin_3"
                         android:paddingTop="@dimen/margin_7" />
@@ -170,6 +192,8 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/rupees"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
                 android:drawableStart="@drawable/rupee_black"
@@ -199,9 +223,15 @@
                 style="@style/view_layout_dark_grey"
                 />
             <LinearLayout
+                android:id="@+id/layoutMoreService"
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="vertical" />
+            <LinearLayout
                 android:id="@+id/layoutAddMoreAreas"
                 style="@style/match_wrap"
                 android:orientation="vertical" />
+
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvAddMoreAreas"
                 style="@style/textview_description_small_match"

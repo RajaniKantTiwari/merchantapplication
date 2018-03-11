@@ -210,6 +210,21 @@
         <item name="android:textSize">@dimen/edit_textSize_smaller</item>
         <item name="android:textColor">@color/black</item>
     </style>
+    <style name="edit_text_name_larger" parent="edit_text_style_larger">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_large" parent="edit_text_style_large">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_medium" parent="edit_text_style_medium">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_small" parent="edit_text_style_small">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
+    <style name="edit_text_name_smaller" parent="edit_text_style_smaller">
+        <item name="android:digits">ABCDEFGHIJKLMNOPQRSTUVWXYZ abcdefghijklmnopqrstuvwxyz</item>
+    </style>
     <style name="toolbar" parent="match_wrap">
         <item name="android:layout_height">@dimen/margin_45</item>
         <item name="android:layout_width">match_parent</item>

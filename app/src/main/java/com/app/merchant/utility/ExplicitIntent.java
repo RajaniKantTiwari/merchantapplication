@@ -55,6 +55,10 @@ public class ExplicitIntent {
         activity.startActivity(intent);
         activity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
     }
+    public void navigateTo(Activity activity, Class<?> aClass, Intent intent){
+        activity.startActivity(intent);
+        activity.overridePendingTransition(R.anim.fade_in,R.anim.fade_out);
+    }
     public void navigateTo(Activity activity, Class<?> aClass, int flag){
         Intent  intent = new Intent(activity,aClass);
         intent.setFlags(flag);

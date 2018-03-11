@@ -13,6 +13,8 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.utility.AppConstants;
@@ -260,6 +262,40 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
+
+    public void getOrderReceivedChart(Activity activity) {
+        mRepository.getOrderReceivedChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReceivedChartData>(activity) {
+            @Override
+            public void onResponse(OrderReceivedChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_RECEIVED_CHART);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED_CHART);
+            }
+        });
+    }
+
+    public void getOrderReceived(Activity activity) {
+        mRepository.getOrderReceived().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReceivedData>(activity) {
+            @Override
+            public void onResponse(OrderReceivedData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_RECEIVED);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_RECEIVED);
             }
         });
     }

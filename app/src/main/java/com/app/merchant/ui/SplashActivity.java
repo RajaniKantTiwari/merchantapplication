@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.app.merchant.MerchantApplication;
 import com.app.merchant.R;
 import com.app.merchant.ui.authentication.LoginActivity;
+import com.app.merchant.ui.authentication.StoreDetailsActivity;
 import com.app.merchant.ui.authentication.VerifyAccountActivity;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.utility.AppConstants;

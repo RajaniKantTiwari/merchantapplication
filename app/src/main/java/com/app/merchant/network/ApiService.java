@@ -13,6 +13,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -40,4 +42,83 @@ public interface ApiService {
 
     @POST("product/getproductdetails")
     Observable<ProductFullInformationData> getProductDetail(@Body ProductRequest request);
+
+    @POST("shopping/get_merchant_orders_received_chart")
+    Observable<OrderReceivedChartData> getOrderReceivedChart();
+
+    @POST("shopping/get_merchant_orders_received")
+    Observable<OrderReceivedData> getOrderReceived();
+
+    @POST("shopping/get_merchant_orders_confirmed_chart")
+    Observable<BaseResponse> getOrderConfirmedChart();
+
+    @POST("shopping/get_merchant_orders_confirmed")
+    Observable<BaseResponse> getOrderConfirmed();
+
+    @POST("shopping/get_merchant_orders_orderoutfordelivery_chart")
+    Observable<BaseResponse> getOrderOutForDeliveryChart();
+
+    @POST("shopping/get_merchant_orders_orderoutfordelivery")
+    Observable<BaseResponse> getOrderOutForDelivery();
+
+    @POST("shopping/get_merchant_orders_delivered_chart")
+    Observable<BaseResponse> getOrderDeliveredChart();
+
+    @POST("shopping/get_merchant_orders_delivered")
+    Observable<BaseResponse> getOrderDelivered();
+
+    @POST("shopping/get_merchant_orders_canceled_chart")
+    Observable<BaseResponse> getOrderCancelledChart();
+
+    @POST("shopping/get_merchant_orders_canceled")
+    Observable<BaseResponse> getOrderCancelled();
+
+    @POST("shopping/get_merchant_orders_returned_chart")
+    Observable<BaseResponse> getOrderReturnedChart();
+
+    @POST("shopping/get_merchant_orders_returned")
+    Observable<BaseResponse> getOrderReturned();
+
+    @POST("shopping/get_merchant_orders_assigned_delivery_boy")
+    Observable<ProductFullInformationData> assignDeliveryBoy();
+
+    @POST("shopping/get_merchant_orders_assigned_delivery_boy_chart")
+    Observable<BaseResponse> assignDeliveryBoyChart();
+
+    @POST("shopping/get_delivery_boys")
+    Observable<ProductFullInformationData> getDeliveryBoyList();
+
+    @POST("shopping/get_partial_order_details")
+    Observable<BaseResponse> getPartialOrderDetail();
+
+    @POST("shopping/assign_delivery_boy_to_order")
+    Observable<ProductFullInformationData> assignDeliveryBoyToOrder();
+
+    @POST("shopping/get_all_orders")
+    Observable<BaseResponse> getAllOrders();
+
+    @POST("shopping/get_merchant_orders_return_requested_chart")
+    Observable<BaseResponse> getOrderReturnedRequestChart();
+
+    @POST("shopping/get_merchant_orders_return_requested")
+    Observable<ProductFullInformationData> getOrderReturnedRequest();
+
+
+    @POST("shopping/get_merchant_orders_cancel_requested_chart")
+    Observable<BaseResponse> getCancelRequestChart();
+
+    @POST("shopping/get_merchant_cancel_requested")
+    Observable<ProductFullInformationData> getCancelRequest();
+
+
+
+
+
+
+
+
+
+
+
+
 }

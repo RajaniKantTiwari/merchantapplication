@@ -4,6 +4,10 @@ package com.app.merchant.network.request;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.app.merchant.network.request.dashboard.StoreImage;
+
+import java.util.ArrayList;
+
 public class RegisterRequest implements Parcelable {
     private String email;
     private String mobile;
@@ -27,6 +31,8 @@ public class RegisterRequest implements Parcelable {
     private String ownerimage;
     private double lat;
     private double lng;
+    private ArrayList<StoreImage> storeList;
+    private ArrayList<String> otherServiceArea;
 
     public RegisterRequest() {
 
@@ -55,6 +61,8 @@ public class RegisterRequest implements Parcelable {
         lat = in.readDouble();
         lng = in.readDouble();
         pannumber=in.readString();
+        storeList = in.createTypedArrayList(StoreImage.CREATOR);
+        otherServiceArea=in.createStringArrayList();
     }
 
     public static final Creator<RegisterRequest> CREATOR = new Creator<RegisterRequest>() {
@@ -68,6 +76,22 @@ public class RegisterRequest implements Parcelable {
             return new RegisterRequest[size];
         }
     };
+
+    public ArrayList<String> getOtherServiceArea() {
+        return otherServiceArea;
+    }
+
+    public void setOtherServiceArea(ArrayList<String> otherServiceArea) {
+        this.otherServiceArea = otherServiceArea;
+    }
+
+    public ArrayList<StoreImage> getStoreList() {
+        return storeList;
+    }
+
+    public void setStoreList(ArrayList<StoreImage> storeList) {
+        this.storeList = storeList;
+    }
 
     public String getPannumber() {
         return pannumber;
@@ -274,5 +298,8 @@ public class RegisterRequest implements Parcelable {
         parcel.writeDouble(lat);
         parcel.writeDouble(lng);
         parcel.writeString(pannumber);
+        parcel.writeTypedList(storeList);
+        parcel.writeStringList(otherServiceArea);
     }
+
 }

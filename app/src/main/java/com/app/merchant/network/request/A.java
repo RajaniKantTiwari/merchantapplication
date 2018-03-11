@@ -3,6 +3,8 @@ package com.app.merchant.network.request;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.app.merchant.network.request.dashboard.StoreImage;
+
 import java.util.ArrayList;
 
 /**
@@ -10,10 +12,10 @@ import java.util.ArrayList;
  */
 
 public class A implements Parcelable{
-    private ArrayList<String> arrayList;
+    private ArrayList<StoreImage> arrayList;
 
     protected A(Parcel in) {
-        arrayList = in.createStringArrayList();
+        arrayList = in.createTypedArrayList(StoreImage.CREATOR);
     }
 
     public static final Creator<A> CREATOR = new Creator<A>() {
@@ -35,6 +37,6 @@ public class A implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringList(arrayList);
+        parcel.writeTypedList(arrayList);
     }
 }

@@ -12,6 +12,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -28,4 +30,8 @@ public interface Repository {
     Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest);
 
     Completable logout();
+
+    Observable<OrderReceivedChartData> getOrderReceivedChart();
+
+    Observable<OrderReceivedData> getOrderReceived();
 }
