@@ -16,13 +16,14 @@
 
         <RelativeLayout
             style="@style/layout_ver_match_1"
-            android:padding="@dimen/margin_7">
+            android:layout_marginTop="@dimen/margin_7">
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvPerformance"
                 style="@style/textview_description_wrap"
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingBottom="@dimen/margin_5"
+                android:layout_marginStart="@dimen/margin_10"
                 android:textColor="@color/voilet_order"
                 android:text="@string/performance_chart"/>
             <com.app.merchant.widget.CustomTextView
@@ -31,14 +32,18 @@
                 android:maxLines="1"
                 android:drawablePadding="@dimen/margin_5"
                 android:text="@string/order_returned"
+                android:layout_marginEnd="@dimen/margin_10"
                 android:drawableStart="@drawable/bg_circle_voilet_small"/>
             <ImageView
                 android:id="@+id/layoutLi"
                 style="@style/view_layout_light_grey"
+                android:layout_marginStart="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_10"
                 android:layout_below="@+id/tvPerformance"/>
             <lecho.lib.hellocharts.view.LineChartView
                 android:id="@+id/lineChart"
                 style="@style/match_match"
+                android:padding="@dimen/margin_10"
                 android:layout_marginTop="@dimen/margin_7"
                 android:layout_below="@+id/layoutLi"/>
         </RelativeLayout>
