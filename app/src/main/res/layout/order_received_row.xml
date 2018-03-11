@@ -1,25 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
+<data>
+    <variable
+        name="orderReceived"
+        type="com.app.merchant.network.response.dashboard.chartdata.OrderReceived"/>
+</data>
     <LinearLayout
         style="@style/match_wrap"
         android:layout_height="@dimen/margin_30"
         android:background="@drawable/layer">
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view_large"
-            android:text="125"
+            android:text="@={orderReceived.id}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view_large"
-            android:text="12:30"
+            android:text="@={orderReceived.createdAt}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view_large"
-            android:text="Rs. 1250"
+            android:text="@={orderReceived.totaldue}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>

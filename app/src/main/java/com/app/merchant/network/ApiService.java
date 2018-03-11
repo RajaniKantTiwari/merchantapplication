@@ -110,15 +110,4 @@ public interface ApiService {
     @POST("shopping/get_merchant_cancel_requested")
     Observable<ProductFullInformationData> getCancelRequest();
 
-
-
-
-
-
-
-
-
-
-
-
 }

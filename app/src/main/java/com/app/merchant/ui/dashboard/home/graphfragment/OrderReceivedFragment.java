@@ -12,6 +12,10 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReceivedBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceived;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChart;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.OrderReceivedData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
@@ -38,13 +42,13 @@ import lecho.lib.hellocharts.util.ChartUtils;
 public class OrderReceivedFragment extends DashboardFragment implements
         OrderReceivedAdapter.OrderReceivedListener, ConfirmOrderDialogFragment.OrderDialogListener {
     private FragmentOrderReceivedBinding mBinding;
+    private ArrayList<OrderReceived> orderReceivedList = new ArrayList<>();
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
-
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
+    private int numberOfOrderReceived;
+    float[][] orderReceivedTab = new float[maxNumberOfLines][numberOfOrderReceived];
 
     private boolean hasAxes = true;
     private boolean hasAxesNames = false;
@@ -57,6 +61,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     private boolean hasLabelForSelected = false;
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
+    private OrderReceivedAdapter mAdapter;
     //End Chart
 
     @Nullable
@@ -72,21 +77,20 @@ public class OrderReceivedFragment extends DashboardFragment implements
     public void initializeData() {
         getPresenter().getOrderReceivedChart(getDashboardActivity());
         getPresenter().getOrderReceived(getDashboardActivity());
-        initializeChartData();
         initializeOrderData();
     }
 
     private void initializeOrderData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReceivedAdapter mAdapter = new OrderReceivedAdapter(getDashboardActivity(), this);
+        mAdapter = new OrderReceivedAdapter(getDashboardActivity(), orderReceivedList, this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderReceivedChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
+        generateValues(data);
 
         generateData();
 
@@ -103,15 +107,20 @@ public class OrderReceivedFragment extends DashboardFragment implements
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfOrderReceived - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
 
-    private void generateValues() {
-        for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+    private void generateValues(ArrayList<OrderReceivedChart> data) {
+        if(CommonUtility.isNotNull(data))
+        {
+            numberOfOrderReceived =data.size();
+            orderReceivedTab = new float[maxNumberOfLines][numberOfOrderReceived];
+            for (int i = 0; i < maxNumberOfLines; ++i) {
+                for (int j = 0; j < numberOfOrderReceived; ++j) {
+                    orderReceivedTab[i][j] = data.get(j).getOrders_count();
+                }
             }
         }
     }
@@ -122,8 +131,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
         for (int i = 0; i < numberOfLines; ++i) {
 
             List<PointValue> values = new ArrayList<PointValue>();
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            for (int j = 0; j < numberOfOrderReceived; ++j) {
+                values.add(new PointValue(j, orderReceivedTab[i][j]));
             }
 
             Line line = new Line(values);
@@ -182,10 +191,30 @@ public class OrderReceivedFragment extends DashboardFragment implements
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (requestCode == AppConstants.ORDER_RECEIVED_CHART) {
-
+            setChartResponse(response);
         } else if (requestCode == AppConstants.ORDER_RECEIVED) {
-
+            setOrderResponse(response);
         }
+    }
+
+    private void setOrderResponse(BaseResponse response) {
+        if (CommonUtility.isNotNull(response) && response instanceof OrderReceivedData) {
+            OrderReceivedData data = (OrderReceivedData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                orderReceivedList.addAll(data.getData());
+                mAdapter.notifyDataSetChanged();
+            }
+        }
+    }
+
+    private void setChartResponse(BaseResponse response) {
+        if (CommonUtility.isNotNull(response) && response instanceof OrderReceivedChartData) {
+            OrderReceivedChartData data = (OrderReceivedChartData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                initializeChartData(data.getData());
+            }
+        }
+
     }
 
     @Override
