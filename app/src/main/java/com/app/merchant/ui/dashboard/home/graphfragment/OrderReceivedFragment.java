@@ -16,10 +16,13 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreceived.Order
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChart;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -43,7 +46,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
 public class OrderReceivedFragment extends DashboardFragment implements
         OrderReceivedAdapter.OrderReceivedListener, ConfirmOrderDialogFragment.OrderDialogListener {
     private FragmentOrderReceivedBinding mBinding;
-    private ArrayList<OrderReceived> orderReceivedList = new ArrayList<>();
+    private ArrayList<OrderReceived> orderReceivedList;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
@@ -51,8 +54,6 @@ public class OrderReceivedFragment extends DashboardFragment implements
     private int numberOfOrderReceived;
     float[][] orderReceivedTab = new float[maxNumberOfLines][numberOfOrderReceived];
 
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -60,9 +61,10 @@ public class OrderReceivedFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    /* private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
     private OrderReceivedAdapter mAdapter;
+    private ArrayList<DeliveryBoy> deliveryBoyList;
     //End Chart
 
     @Nullable
@@ -70,6 +72,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
+        orderReceivedList = new ArrayList<>();
+        deliveryBoyList=new ArrayList<>();
         return mBinding.getRoot();
     }
 
@@ -78,6 +82,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     public void initializeData() {
         getPresenter().getOrderReceivedChart(getDashboardActivity());
         getPresenter().getOrderReceived(getDashboardActivity());
+        getPresenter().getDeliveryBoyList(getDashboardActivity());
         initializeOrderData();
     }
 
@@ -128,7 +133,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
             List<PointValue> values = new ArrayList<>();
             for (int j = 0; j < numberOfOrderReceived; ++j) {
                 values.add(new PointValue(j, orderReceivedTab[i][j]));
-                if(CommonUtility.isNotNull(data)&&data.size()>j){
+                if (CommonUtility.isNotNull(data) && data.size() > j) {
                     axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
                 }
             }
@@ -143,9 +148,9 @@ public class OrderReceivedFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor) {
+           /* if (pointsHaveDifferentColor) {
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
         this.data = new LineChartData(lines);
@@ -178,6 +183,22 @@ public class OrderReceivedFragment extends DashboardFragment implements
             setChartResponse(response);
         } else if (requestCode == AppConstants.ORDER_DATA) {
             setOrderResponse(response);
+        } else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
+            setDeliveryBoyList(response);
+        }
+    }
+
+    private void setDeliveryBoyList(BaseResponse response) {
+        if (CommonUtility.isNotNull(response) && response instanceof DeliveryBoyData) {
+            DeliveryBoyData data = (DeliveryBoyData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                deliveryBoyList.clear();
+               deliveryBoyList.addAll(data.getData());
+                DeliveryBoy deliveryBoy=new DeliveryBoy();
+                deliveryBoy.setId(-1);
+                deliveryBoy.setName(getResources().getString(R.string.assign_to));
+                deliveryBoyList.add(deliveryBoy);
+            }
         }
     }
 
@@ -209,6 +230,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     @Override
     public void onOrderStatusClick(int position) {
         Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST,deliveryBoyList);
         CommonUtility.showConfirmOrderDialog(getDashboardActivity(), bundle, this);
     }
 

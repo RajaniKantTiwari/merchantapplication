@@ -1,10 +1,10 @@
-package com.app.merchant.network.response.dashboard.chartdata.orderconfirmed;
+package com.app.merchant.network.response.dashboard.chartdata.orderdelivered;
 
 /**
  * Created by rajnikant on 11/03/18.
  */
 
-public class OrderConfirmedChart {
+public class OrderDeliveredChart {
     private int orders_count;
     private String invoiceDate;
 

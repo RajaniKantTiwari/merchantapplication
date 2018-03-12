@@ -9,8 +9,9 @@ import android.widget.TextView;
 
 
 import com.app.merchant.R;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by rajnikant on 24/01/18.
@@ -20,7 +21,7 @@ public class AsignAdapter extends ArrayAdapter<String> {
     private final LayoutInflater mInflator;
     private final Context context;
 
-    public AsignAdapter(Context context, List<String> daysList) {
+    public AsignAdapter(Context context, ArrayList<String> daysList) {
         super(context, 0, daysList);
         this.context=context;
         mInflator = LayoutInflater.from(context);

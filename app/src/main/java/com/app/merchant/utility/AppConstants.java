@@ -68,6 +68,7 @@ public interface AppConstants {
     int OWNER_IMAGE=2;
     int CHART_DATA =1;
     int ORDER_DATA =2;
+    int DELIVERY_BOY_DATA = 10091;
 
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})

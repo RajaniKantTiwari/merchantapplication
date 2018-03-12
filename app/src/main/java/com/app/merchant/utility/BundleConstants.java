@@ -10,4 +10,5 @@ public interface BundleConstants {
     String VISIBLE = "visible";
     String TITLE = "title";
     String REGISTER_USER = "register_user";
+    String DELIVERY_BOY_LIST = "delivery_boy_list";
 }

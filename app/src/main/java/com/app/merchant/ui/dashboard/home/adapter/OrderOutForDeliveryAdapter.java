@@ -10,6 +10,11 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderOutForDeliveryRowBinding;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDelivery;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
+import com.app.merchant.utility.CommonUtility;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -18,13 +23,15 @@ import com.app.merchant.databinding.OrderOutForDeliveryRowBinding;
 public class OrderOutForDeliveryAdapter extends RecyclerView.Adapter<OrderOutForDeliveryAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<OrderOutForDelivery> deliveryList;
     private OrderOutForDeliveryListener listener;
     public interface OrderOutForDeliveryListener {
         void onRatingClick(int position);
     }
-    public OrderOutForDeliveryAdapter(AppCompatActivity activity, OrderOutForDeliveryListener listener) {
+    public OrderOutForDeliveryAdapter(AppCompatActivity activity, ArrayList<OrderOutForDelivery> deliveryList, OrderOutForDeliveryListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
+        this.deliveryList=deliveryList;
         this.listener=listener;
     }
 
@@ -42,12 +49,11 @@ public class OrderOutForDeliveryAdapter extends RecyclerView.Adapter<OrderOutFor
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(deliveryList)?deliveryList.size():0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final OrderOutForDeliveryRowBinding mBinding;
-        private ImageView productImage;
 
         public ProductViewHolder(OrderOutForDeliveryRowBinding itemView) {
             super(itemView.getRoot());

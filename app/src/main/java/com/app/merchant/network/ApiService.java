@@ -15,10 +15,13 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -66,10 +69,10 @@ public interface ApiService {
     Observable<OrderOutForDeliveryData> getOrderOutForDelivery();
 
     @POST("shopping/get_merchant_orders_delivered_chart")
-    Observable<BaseResponse> getOrderDeliveredChart();
+    Observable<OrderDeliveredChartData> getOrderDeliveredChart();
 
     @POST("shopping/get_merchant_orders_delivered")
-    Observable<BaseResponse> getOrderDelivered();
+    Observable<OrderDeliveredData> getOrderDelivered();
 
     @POST("shopping/get_merchant_orders_canceled_chart")
     Observable<BaseResponse> getOrderCancelledChart();
@@ -90,7 +93,7 @@ public interface ApiService {
     Observable<BaseResponse> assignDeliveryBoyChart();
 
     @POST("shopping/get_delivery_boys")
-    Observable<ProductFullInformationData> getDeliveryBoyList();
+    Observable<DeliveryBoyData> getDeliveryBoyList();
 
     @POST("shopping/get_partial_order_details")
     Observable<BaseResponse> getPartialOrderDetail();

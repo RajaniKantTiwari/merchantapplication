@@ -12,13 +12,17 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderOutForDeliveryBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDelivery;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderOutForDeliveryAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
+import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -41,18 +45,15 @@ import lecho.lib.hellocharts.util.ChartUtils;
 
 public class OrderOutForDeliveryFragment extends DashboardFragment implements
         OrderOutForDeliveryAdapter.OrderOutForDeliveryListener,
-        DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
+        DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
     private FragmentOrderOutForDeliveryBinding mBinding;
+    private ArrayList<OrderOutForDelivery> deliveryList = new ArrayList<>();
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
     private int numberOfOrderForDelivery;
-
     float[][] orderOutForDeliveryTab = new float[maxNumberOfLines][numberOfOrderForDelivery];
-
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -62,6 +63,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     private boolean hasLabelForSelected = false;
     private boolean pointsHaveDifferentColor;
     private boolean hasGradientToTransparent = false;
+    private OrderOutForDeliveryAdapter mAdapter;
     //End Chart
 
     @Nullable
@@ -76,15 +78,14 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     @Override
     public void initializeData() {
         getPresenter().getOrderOutForDeliveryChart(getDashboardActivity());
-        getPresenter().getOrderOutForDelivery(getDashboardActivity());
-
+        //getPresenter().getOrderOutForDelivery(getDashboardActivity());
         initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderOutForDeliveryAdapter mAdapter=new OrderOutForDeliveryAdapter(getDashboardActivity(),this);
+        mAdapter = new OrderOutForDeliveryAdapter(getDashboardActivity(), deliveryList, this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -108,6 +109,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
+
     private void generateValues(ArrayList<OrderOutForDeliveryChart> data) {
         if (CommonUtility.isNotNull(data)) {
             numberOfOrderForDelivery = data.size();
@@ -128,7 +130,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
             List<PointValue> values = new ArrayList<>();
             for (int j = 0; j < numberOfOrderForDelivery; ++j) {
                 values.add(new PointValue(j, orderOutForDeliveryTab[i][j]));
-                if(CommonUtility.isNotNull(data)&&data.size()>j){
+                if (CommonUtility.isNotNull(data) && data.size() > j) {
                     axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
                 }
             }
@@ -143,7 +145,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+            if (pointsHaveDifferentColor) {
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
             }
             lines.add(line);
@@ -169,12 +171,27 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+       getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == AppConstants.CHART_DATA) {
+                OrderOutForDeliveryChartData chartData=(OrderOutForDeliveryChartData)response;
+                if(CommonUtility.isNotNull(chartData)){
+                    initializeChartData(chartData.getData());
+                }
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                OrderOutForDeliveryData deliveryData=(OrderOutForDeliveryData)response;
+                if(CommonUtility.isNotNull(deliveryData)){
+                    if(CommonUtility.isNotNull(deliveryData.getData())){
+                        deliveryList.addAll(deliveryData.getData());
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -183,24 +200,21 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     }
 
 
-
-
-
     @Override
     public void newDeliveryBoy() {
-        Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override
     public void onRatingClick(int position) {
-        Bundle bundle=new Bundle();
-        CommonUtility.showRatingDialog(getDashboardActivity(), bundle,  this);
+        Bundle bundle = new Bundle();
+        CommonUtility.showRatingDialog(getDashboardActivity(), bundle, this);
     }
 
     @Override
     public void submit(int id, float rating, String feedback) {
-       getDashboardActivity().showToast("Rating Submitted");
+        getDashboardActivity().showToast("Rating Submitted");
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

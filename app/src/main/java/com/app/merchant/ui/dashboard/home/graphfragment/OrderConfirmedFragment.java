@@ -12,11 +12,18 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderConfirmedBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmed;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
+import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -38,18 +45,17 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 
 public class OrderConfirmedFragment extends DashboardFragment implements
-        OrderConfirmedAdapter.OrderConfirmedListener,DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
+        OrderConfirmedAdapter.OrderConfirmedListener, DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
     private FragmentOrderConfirmedBinding mBinding;
+    private ArrayList<OrderConfirmed> orderList;
+    private ArrayList<DeliveryBoy> deliveryBoyList;
+
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
-
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
-
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
+    private int numberOfConfirmedOrder;
+    float[][] confirmedOrderNumbersTab = new float[maxNumberOfLines][numberOfConfirmedOrder];
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -57,8 +63,9 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
+    private OrderConfirmedAdapter mAdapter;
     //End Chart
 
     @Nullable
@@ -66,6 +73,9 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_confirmed, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_confirmed));
+        deliveryBoyList=new ArrayList<>();
+        orderList=new ArrayList<>();
+
         return mBinding.getRoot();
     }
 
@@ -78,52 +88,63 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     public void initializeData() {
         getPresenter().getOrderConfirmedChart(getDashboardActivity());
         getPresenter().getOrderConfirmed(getDashboardActivity());
-      initializeChartData();
-      initializeOrderData();
+        getPresenter().getDeliveryBoyList(getDashboardActivity());
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderConfirmedAdapter mAdapter=new OrderConfirmedAdapter(getDashboardActivity(),this);
+        mAdapter = new OrderConfirmedAdapter(getDashboardActivity(),orderList, this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderConfirmedChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
-        generateData();
+        generateValues(data);
+        generateData(data);
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
         resetViewport();
 
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfConfirmedOrder - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
-    private void generateValues() {
-        for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+
+    private void generateValues(ArrayList<OrderConfirmedChart> data) {
+        if (CommonUtility.isNotNull(data)) {
+            numberOfConfirmedOrder = data.size();
+            confirmedOrderNumbersTab = new float[maxNumberOfLines][numberOfConfirmedOrder];
+            for (int i = 0; i < maxNumberOfLines; ++i) {
+                for (int j = 0; j < numberOfConfirmedOrder; ++j) {
+                    confirmedOrderNumbersTab[i][j] = data.get(j).getOrders_count();
+                }
             }
         }
     }
 
-    private void generateData() {
+    private void generateData(ArrayList<OrderConfirmedChart> data) {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         List<PointValue> values = new ArrayList<>();
+        List<AxisValue> axisValues = new ArrayList<>();
+
         for (int i = 0; i < numberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            for (int j = 0; j < numberOfConfirmedOrder; ++j) {
+                values.add(new PointValue(j, confirmedOrderNumbersTab[i][j]));
+                if(CommonUtility.isNotNull(data)&&data.size()>j){
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -136,31 +157,20 @@ public class OrderConfirmedFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+            /*if (pointsHaveDifferentColor) {
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
 
-        data = new LineChartData(lines);
+        this.data = new LineChartData(lines);
         // For build-up animation you have to disable viewport recalculation.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
 
     }
 
@@ -177,31 +187,57 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == AppConstants.CHART_DATA) {
+                    OrderConfirmedChartData data = (OrderConfirmedChartData) response;
+                    if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                        initializeChartData(data.getData());
+                    }
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                OrderConfirmedData confirmedData=(OrderConfirmedData)response;
+                if(CommonUtility.isNotNull(confirmedData)&&CommonUtility.isNotNull(confirmedData.getData())){
+                    orderList.addAll(confirmedData.getData());
+                    mAdapter.notifyDataSetChanged();
+                }
+            }else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
+                setDeliveryBoyList(response);
+            }
+        }
     }
-
+    private void setDeliveryBoyList(BaseResponse response) {
+        if (CommonUtility.isNotNull(response) && response instanceof DeliveryBoyData) {
+            DeliveryBoyData data = (DeliveryBoyData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                deliveryBoyList.clear();
+                deliveryBoyList.addAll(data.getData());
+                DeliveryBoy deliveryBoy=new DeliveryBoy();
+                deliveryBoy.setId(-1);
+                deliveryBoy.setName(getResources().getString(R.string.assign_to));
+                deliveryBoyList.add(deliveryBoy);
+            }
+        }
+    }
     @Override
     public void onClick(View view) {
 
     }
 
 
-
     @Override
     public void onOrderConfirmClick(int position) {
-        Bundle bundle=new Bundle();
-        CommonUtility.showNewDeliveryDialog(getDashboardActivity(),bundle,this);
+        Bundle bundle = new Bundle();
+        CommonUtility.showNewDeliveryDialog(getDashboardActivity(), bundle, this);
     }
 
     @Override
     public void newDeliveryBoy() {
-        Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

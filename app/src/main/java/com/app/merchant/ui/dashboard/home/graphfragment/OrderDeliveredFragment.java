@@ -71,7 +71,8 @@ public class OrderDeliveredFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-      initializeChartData();
+        getPresenter().getOrderDeliveredChart(getDashboardActivity());
+        getPresenter().getOrderDelivered(getDashboardActivity());
       initializeOrderData();
     }
 

@@ -15,10 +15,13 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.utility.AppConstants;
@@ -49,126 +52,6 @@ public class DashboardPresenter implements Presenter<MvpView> {
         this.mRepository = repository;
     }
 
-   /* public void getMerchantListBySearch(Activity activity, String search) {
-        mView.showProgress();
-        mRepository.getMerchantListBySearch(new MerchantSearchRequest(search)).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<SearchResponseData>(activity) {
-            @Override
-            public void onResponse(SearchResponseData response) {
-                mView.hideProgress();
-                        mView.onSuccess(response,0);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),0);
-            }
-        });
-    }*/
-
-
-   /* public void getCategory(Activity activity, CategoryRequest categoryRequest) {
-        mView.showProgress();
-        LogUtils.LOGD("","Repos=="+mRepository);
-        mRepository.getCategory(categoryRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<CategoryResponse>(activity) {
-            @Override
-            public void onResponse(CategoryResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response,1);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),1);
-            }
-        });
-    }*/
-
-   /* public void addToCart(Activity activity, CartRequest cartRequest) {
-        mView.showProgress();
-        mRepository.addToCart(cartRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response,1);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),1);
-            }
-        });
-    }*/
-
-    /*public void deleteFromCart(Activity activity) {
-        mView.showProgress();
-        mRepository.deleteCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response,1);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),1);
-            }
-        });
-    }*/
-   /* public void viewCart(Activity activity, CartRequest cartRequest) {
-        mView.showProgress();
-        mRepository.viewCart(cartRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
-            @Override
-            public void onResponse(ProductDetailsData response) {
-                mView.hideProgress();
-                mView.onSuccess(response,1);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(baseResponse.getMsg(),1);
-            }
-        });
-    }*/
-
-
-
-   /* public void setDeviceToken(DashBoardActivity activity, DeviceTokenRequest token) {
-        mRepository.setDeviceToken(token).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                activity.onSuccess(response,AppConstants.DEVICE_TOKEN_RESPONSE);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                activity.onError(baseResponse.getMsg(),AppConstants.DEVICE_TOKEN_RESPONSE);
-            }
-        });
-    }*/
-
-
-
-   /* public void logout(DashBoardActivity activity) {
-        activity.showProgress();
-        mRepository.logout().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-            @Override
-            public void onResponse(BaseResponse response) {
-                activity.hideProgress();
-                activity.onSuccess(response, AppConstants.LOGOUT);
-            }
-
-            @Override
-            public void onError(Throwable call, BaseResponse baseResponse) {
-                activity.hideProgress();
-                activity.onError(baseResponse.getMsg(), AppConstants.LOGOUT);
-            }
-        });
-    }*/
    public void addForCartList(DashBoardActivity activity, CartListRequest request, MvpView mView) {
        if (mView == null) {
            activity.showProgress();
@@ -254,6 +137,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
     public void getProductDetails(Activity activity, ProductRequest request) {
+        mView.showProgress();
         mRepository.getProductDetail(request).subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductFullInformationData>(activity) {
             @Override
@@ -271,6 +155,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderReceivedChart(Activity activity) {
+        mView.showProgress();
         mRepository.getOrderReceivedChart().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReceivedChartData>(activity) {
             @Override
@@ -288,6 +173,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderReceived(Activity activity) {
+        mView.showProgress();
         mRepository.getOrderReceived().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReceivedData>(activity) {
             @Override
@@ -305,6 +191,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderConfirmedChart(DashBoardActivity activity) {
+        mView.showProgress();
         mRepository.getOrderConfirmedChart().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderConfirmedChartData>(activity) {
             @Override
@@ -322,6 +209,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderConfirmed(DashBoardActivity activity) {
+        mView.showProgress();
         mRepository.getOrderConfirmed().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderConfirmedData>(activity) {
             @Override
@@ -339,6 +227,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderOutForDeliveryChart(DashBoardActivity activity) {
+        mView.showProgress();
         mRepository.getOrderOutForDeliveryChart().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderOutForDeliveryChartData>(activity) {
             @Override
@@ -356,10 +245,66 @@ public class DashboardPresenter implements Presenter<MvpView> {
     }
 
     public void getOrderOutForDelivery(DashBoardActivity activity) {
+        mView.showProgress();
         mRepository.getOrderOutForDelivery().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderOutForDeliveryData>(activity) {
             @Override
             public void onResponse(OrderOutForDeliveryData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void getDeliveryBoyList(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getDeliveryBoyList().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<DeliveryBoyData>(activity) {
+            @Override
+            public void onResponse(DeliveryBoyData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.DELIVERY_BOY_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.DELIVERY_BOY_DATA);
+            }
+        });
+    }
+
+
+    public void getOrderDeliveredChart(Activity activity) {
+        mView.showProgress();
+        mRepository.getOrderDeliveredChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderDeliveredChartData>(activity) {
+            @Override
+            public void onResponse(OrderDeliveredChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.CHART_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
+            }
+        });
+    }
+
+    public void getOrderDelivered(Activity activity) {
+        mView.showProgress();
+        mRepository.getOrderDelivered().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderDeliveredData>(activity) {
+            @Override
+            public void onResponse(OrderDeliveredData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, AppConstants.ORDER_DATA);
             }

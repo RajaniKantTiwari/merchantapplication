@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.DialogConfirmOrderBinding;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 import com.app.merchant.ui.adapter.AsignAdapter;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     private DialogConfirmOrderBinding mBinding;
     private OrderDialogListener listener;
     private FragmentActivity mActivity;
-
+    private ArrayList<DeliveryBoy> deliveryBoyList;
     public interface OrderDialogListener {
         void confirmed();
 
@@ -57,18 +59,21 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-
+            deliveryBoyList=bundle.getParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST);
         }
-        List<String> daysArrayList = new ArrayList<>();
-        daysArrayList.addAll(Arrays.asList(getResources().getStringArray(R.array.selected_type)));
-        AsignAdapter adapter = new AsignAdapter(getContext(), daysArrayList);
+        ArrayList<String> deliveryBoyNameList=new ArrayList<>();
+        for(int i=0;i<deliveryBoyList.size();i++){
+            deliveryBoyNameList.add(deliveryBoyList.get(i).getName());
+        }
+
+        AsignAdapter adapter = new AsignAdapter(getContext(), deliveryBoyNameList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
         mBinding.selectedSpiner.setAdapter(adapter);
         mBinding.selectedSpiner.setSelection(adapter.getCount());
         mBinding.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                if (position != daysArrayList.size() - 1) {
+                if (position != deliveryBoyNameList.size() - 1) {
                     if (CommonUtility.isNotNull(view)) {
                         view.setBackgroundResource(0);
                         Toast.makeText(mActivity, "" + position, Toast.LENGTH_SHORT).show();

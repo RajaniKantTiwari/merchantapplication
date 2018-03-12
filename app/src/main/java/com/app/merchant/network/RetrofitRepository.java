@@ -14,10 +14,13 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -100,5 +103,21 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderOutForDeliveryData> getOrderOutForDelivery() {
         return apiService.getOrderOutForDelivery();
+    }
+
+    @Override
+    public Observable<DeliveryBoyData> getDeliveryBoyList() {
+        return apiService.getDeliveryBoyList();
+
+    }
+
+    @Override
+    public Observable<OrderDeliveredChartData> getOrderDeliveredChart() {
+        return apiService.getOrderDeliveredChart();
+    }
+
+    @Override
+    public Observable<OrderDeliveredData> getOrderDelivered() {
+        return apiService.getOrderDelivered();
     }
 }
