@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
+import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.response.BaseResponse;
@@ -37,11 +38,11 @@ public class CommonPresenter implements Presenter<MvpView> {
 
     public void registerMerchant(Activity activity, RegisterRequest register) {
         mView.showProgress();
-        mRepository.getLoginDetail(register).
+        mRepository.registerMerchant(register).
                 subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<LoginResponse>(activity) {
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
-            public void onResponse(LoginResponse response) {
+            public void onResponse(BaseResponse response) {
                mView.hideProgress();
                 mView.onSuccess(response, 2);
             }
@@ -74,9 +75,11 @@ public class CommonPresenter implements Presenter<MvpView> {
     }
 
 
-    public void get(Activity activity, RegisterRequest loginRequest) {
+
+
+    public void loginMerchant(Activity activity, LoginRequest loginRequest) {
         mView.showProgress();
-        mRepository.getLoginDetail(loginRequest).
+        mRepository.loginMerchant(loginRequest).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<LoginResponse>(activity) {
             @Override

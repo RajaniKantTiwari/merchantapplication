@@ -247,6 +247,10 @@
     <string name="optioncard">card</string>
     <string name="optionpaytm">paytm</string>
     <string name="optionother">other</string>
+    <string name="forgot_pass">Forgot Password?</string>
+    <string name="we_just_need_your_registered_email_id">We just need your registered email Id \nto send you password reset instructions.</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="registered_email_id">Registered Email Id</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

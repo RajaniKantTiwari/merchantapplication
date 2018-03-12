@@ -45,6 +45,26 @@
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
+                android:text="@string/password" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edPassword"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/password"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
                 android:text="@string/location" />
 
             <com.app.merchant.widget.CustomEditText

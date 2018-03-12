@@ -10,7 +10,6 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderConfirmedRowBinding;
-import com.app.merchant.databinding.OrderReceivedRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmed;
 
 import java.util.ArrayList;

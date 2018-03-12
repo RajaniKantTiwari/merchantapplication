@@ -1,6 +1,7 @@
 package com.app.merchant.network;
 
 
+import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
@@ -21,6 +22,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
@@ -33,7 +36,9 @@ import retrofit2.http.POST;
 
 public interface ApiService {
     @POST("register/user")
-    Observable<LoginResponse> getLoginDetail(@Body RegisterRequest request);
+    Observable<BaseResponse> registerMerchant(RegisterRequest register);
+    @POST("register/login")
+    Observable<LoginResponse> loginMerchant(@Body LoginRequest request);
 
     @POST("register/verifyotp")
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);
@@ -83,10 +88,10 @@ public interface ApiService {
     Observable<OrderReturnedCancelData> getOrderCancelled();
 
     @POST("shopping/get_merchant_orders_returned_chart")
-    Observable<BaseResponse> getOrderReturnedChart();
+    Observable<OrderReturnedChartData> getOrderReturnedChart();
 
     @POST("shopping/get_merchant_orders_returned")
-    Observable<BaseResponse> getOrderReturned();
+    Observable<OrderReturnedData> getOrderReturned();
 
     @POST("shopping/get_merchant_orders_assigned_delivery_boy")
     Observable<ProductFullInformationData> assignDeliveryBoy();
@@ -118,5 +123,6 @@ public interface ApiService {
 
     @POST("shopping/get_merchant_cancel_requested")
     Observable<ProductFullInformationData> getCancelRequest();
+
 
 }

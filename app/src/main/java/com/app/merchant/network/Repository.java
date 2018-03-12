@@ -1,5 +1,6 @@
 package com.app.merchant.network;
 
+import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
@@ -31,7 +32,9 @@ import io.reactivex.Observable;
 
 
 public interface Repository {
-    Observable<LoginResponse> getLoginDetail(RegisterRequest request);
+    Observable<BaseResponse> registerMerchant(RegisterRequest register);
+
+    Observable<LoginResponse> loginMerchant(LoginRequest request);
 
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
     Observable<BaseResponse> addForCartList(CartListRequest request);
@@ -67,4 +70,5 @@ public interface Repository {
     Observable<OrderReturnedChartData> getOrderReturnedChart();
 
     Observable<OrderReturnedData> getOrderReturned();
+
 }

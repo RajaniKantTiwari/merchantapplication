@@ -116,8 +116,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
             if (response instanceof LoginResponse) {
                 LoginResponse loginResponse = (LoginResponse) response;
                 if (isNotNull(loginResponse)) {
-                    String type = loginResponse.getType();
-                    if (type.equals(AppConstants.SUCCESS)) {
+                    if (loginResponse.getStatus().equals(AppConstants.SUCCESS)) {
                         showToast(getResources().getString(R.string.otp_has_been_send));
                     }
                 }

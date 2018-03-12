@@ -125,6 +125,7 @@
     <dimen name="margin_8_minus">-8dp</dimen>
 
     <dimen name="margin_10_minus">-10dp</dimen>
+    <dimen name="margin_176">176dp</dimen>
 
 
     <integer name="mono_length">10</integer>

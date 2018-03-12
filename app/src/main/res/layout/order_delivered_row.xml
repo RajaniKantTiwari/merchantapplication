@@ -18,7 +18,7 @@
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view"
-            android:text="@={CommonUtility.formatDate(deliveredData.createdAt)}"
+            android:text="@{CommonUtility.formatDate(deliveredData.createdAt)}"
             android:maxLength="12"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>

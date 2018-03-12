@@ -7,43 +7,14 @@ import android.os.Parcelable;
  * Created by arvind on 03/11/17.
  */
 
-public class LoginResponse extends BaseResponse implements Parcelable {
-    private String type;
+public class LoginResponse extends BaseResponse {
+   private String authkey;
 
-    public String getType() {
-        return type;
+    public String getAuthkey() {
+        return authkey;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public LoginResponse(){
-
-    }
-    protected LoginResponse(Parcel in) {
-        type = in.readString();
-    }
-
-    public static final Creator<LoginResponse> CREATOR = new Creator<LoginResponse>() {
-        @Override
-        public LoginResponse createFromParcel(Parcel in) {
-            return new LoginResponse(in);
-        }
-
-        @Override
-        public LoginResponse[] newArray(int size) {
-            return new LoginResponse[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(type);
+    public void setAuthkey(String authkey) {
+        this.authkey = authkey;
     }
 }

@@ -34,6 +34,7 @@
         <activity android:name=".ui.authentication.RegisterActivity" />
         <activity android:name=".ui.authentication.StoreDetailsActivity" />
         <activity android:name=".ui.otheractivity.EditAddressActivity" />
+        <activity android:name="com.app.merchant.ui.authentication.ForgotPasswordActivity" />
 
         <activity
             android:name="com.app.merchant.ui.dashboard.DashBoardActivity"

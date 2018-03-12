@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityLoginBinding;
+import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.presenter.CommonPresenter;
@@ -50,18 +51,13 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(isNotNull(response)){
-            if(response instanceof LoginResponse){
-                LoginResponse loginResponse=(LoginResponse)response;
-                if(isNotNull(loginResponse)){
-                    String type=loginResponse.getType();
-                    if(type.equals(AppConstants.SUCCESS)){
-                        PreferenceUtils.setUserName(email);
-                        PreferenceUtils.setUserMono(password);
-                        Bundle bundle=new Bundle();
-                        bundle.putString(BundleConstants.USER_NAME, email);
-                        bundle.putString(BundleConstants.MOBILE_NUMBER, password);
-                        ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class,bundle);
+        if (isNotNull(response)) {
+            if (response instanceof LoginResponse) {
+                LoginResponse loginResponse = (LoginResponse) response;
+                if (isNotNull(loginResponse)) {
+                    if (loginResponse.getStatus().equals(AppConstants.SUCCESS)) {
+                         PreferenceUtils.setAuthToken(loginResponse.getAuthkey());
+
                     }
                 }
             }
@@ -71,34 +67,32 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
     @Override
     public void onClick(View view) {
-        if(view==mBinding.tvLogin){
+        if (view == mBinding.tvLogin) {
             CommonUtility.clicked(mBinding.tvLogin);
-            ExplicitIntent.getsInstance().navigateTo(this,DashBoardActivity.class);
-
-           /*if(isValid()){
-               if(isNetworkConnected()){
-                   presenter.registerMerchant(this,new RegisterRequest(email, password,
-                           PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));
-               }
-           }*/
-        }else if(view==mBinding.tvSignupForAccount){
+            if (isValid()) {
+                if (isNetworkConnected()) {
+                    presenter.loginMerchant(this, new LoginRequest(email, password));
+                }
+            }
+        } else if (view == mBinding.tvSignupForAccount) {
             CommonUtility.clicked(mBinding.tvSignupForAccount);
-            ExplicitIntent.getsInstance().navigateTo(this,RegisterActivity.class);
-        }else if(view==mBinding.forgotPassword){
+            ExplicitIntent.getsInstance().navigateTo(this, RegisterActivity.class);
+        } else if (view == mBinding.forgotPassword) {
             CommonUtility.clicked(mBinding.forgotPassword);
+            ExplicitIntent.getsInstance().navigateTo(this, ForgotPasswordActivity.class);
         }
     }
 
     private boolean isValid() {
-        password =mBinding.edPassword.getText().toString();
-        email =mBinding.edEmail.getText().toString();
-        if(isNull(email)|| email.trim().length()==0){
+        password = mBinding.edPassword.getText().toString();
+        email = mBinding.edEmail.getText().toString();
+        if (isNull(email) || email.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_email_address));
             return false;
-        }else if(!CommonUtility.checkValidEmail(email)){
+        } else if (!CommonUtility.checkValidEmail(email)) {
             showToast(getResources().getString(R.string.please_enter_valid_email));
             return false;
-        }else if(isNull(password)|| password.trim().length()==0){
+        } else if (isNull(password) || password.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_password));
             return false;
         }

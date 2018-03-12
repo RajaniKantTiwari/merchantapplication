@@ -98,8 +98,7 @@ public class AssignNewDeliveryFragment extends DashboardFragment implements MvpV
             if(response instanceof LoginResponse){
                 LoginResponse loginResponse=(LoginResponse)response;
                 if(isNotNull(loginResponse)){
-                    String type=loginResponse.getType();
-                    if(type.equals(AppConstants.SUCCESS)){
+                    if(response.getStatus().equals(AppConstants.SUCCESS)){
                         Bundle bundle=new Bundle();
 
                         /*ExplicitIntent.getsInstance().navigateTo(this,VerifyAccountActivity.class,bundle);*/

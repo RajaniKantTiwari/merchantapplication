@@ -94,19 +94,12 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (isNotNull(response)) {
-            if (response instanceof LoginResponse) {
-                LoginResponse loginResponse = (LoginResponse) response;
-                if (isNotNull(loginResponse)) {
-                    String type = loginResponse.getType();
-                    if (type.equals(AppConstants.SUCCESS)) {
-                        Bundle bundle = new Bundle();
-                        ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
-                    }
+                if (response.getStatus().equals(AppConstants.SUCCESS)) {
+                    Bundle bundle = new Bundle();
+                    ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
-            }
         }
     }
-
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvDone) {
