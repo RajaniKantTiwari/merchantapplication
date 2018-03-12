@@ -20,6 +20,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Completable;
@@ -55,4 +57,9 @@ public interface Repository {
     Observable<OrderDeliveredChartData> getOrderDeliveredChart();
 
     Observable<OrderDeliveredData> getOrderDelivered();
+
+    Observable<OrderReturnedCancelChartData> getOrderCancelledChart();
+
+    Observable<OrderReturnedCancelData> getOrderCancelled();
+
 }

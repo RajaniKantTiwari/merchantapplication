@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 <data>
+    <import type="com.app.merchant.utility.CommonUtility"/>
     <variable
         name="orderReceived"
         type="com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceived"/>
@@ -17,7 +18,7 @@
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view_large"
-            android:text="@={orderReceived.createdAt}"
+            android:text="@={CommonUtility.formatDate(orderReceived.createdAt)}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>

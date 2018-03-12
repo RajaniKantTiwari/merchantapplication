@@ -21,6 +21,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Observable;
@@ -75,10 +77,10 @@ public interface ApiService {
     Observable<OrderDeliveredData> getOrderDelivered();
 
     @POST("shopping/get_merchant_orders_canceled_chart")
-    Observable<BaseResponse> getOrderCancelledChart();
+    Observable<OrderReturnedCancelChartData> getOrderCancelledChart();
 
     @POST("shopping/get_merchant_orders_canceled")
-    Observable<BaseResponse> getOrderCancelled();
+    Observable<OrderReturnedCancelData> getOrderCancelled();
 
     @POST("shopping/get_merchant_orders_returned_chart")
     Observable<BaseResponse> getOrderReturnedChart();

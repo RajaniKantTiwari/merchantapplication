@@ -10,6 +10,10 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderDeliveredRowBinding;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDelivered;
+import com.app.merchant.utility.CommonUtility;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -18,13 +22,16 @@ import com.app.merchant.databinding.OrderDeliveredRowBinding;
 public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<OrderDelivered> deliveredList;
+
     //private OrderOutForDeliveryListener listener;
     /*public interface OrderOutForDeliveryListener {
         void onRatingClick(int position);
     }*/
-    public OrderDeliveredAdapter(AppCompatActivity activity/*, OrderOutForDeliveryListener listener*/) {
+    public OrderDeliveredAdapter(AppCompatActivity activity,/*, OrderOutForDeliveryListener listener*/ArrayList<OrderDelivered> deliveredList) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
+        this.deliveredList = deliveredList;
         /*this.listener=listener;*/
     }
 
@@ -36,18 +43,18 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
-
+        if (CommonUtility.isNotNull(deliveredList) && deliveredList.size() > position) {
+            holder.setData(position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(deliveredList) ? deliveredList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final OrderDeliveredRowBinding mBinding;
-        private ImageView productImage;
 
         public ProductViewHolder(OrderDeliveredRowBinding itemView) {
             super(itemView.getRoot());
@@ -56,9 +63,12 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
         }
 
 
-
         @Override
         public void onClick(View view) {
+        }
+
+        public void setData(int position) {
+            mBinding.setDeliveredData(deliveredList.get(position));
         }
     }
 }

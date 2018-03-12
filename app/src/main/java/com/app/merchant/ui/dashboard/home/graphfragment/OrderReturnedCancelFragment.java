@@ -55,7 +55,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+   /* private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
     //End Chart
 
@@ -70,7 +70,8 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-      initializeChartData();
+        getPresenter().getOrderCancelledChart(getDashboardActivity());
+        getPresenter().getOrderCancelled(getDashboardActivity());
       initializeOrderData();
     }
 
@@ -130,9 +131,9 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+           /* if (pointsHaveDifferentColor){
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
 

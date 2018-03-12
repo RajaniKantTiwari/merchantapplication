@@ -52,7 +52,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
     private int numberOfOrderReceived;
-    float[][] orderReceivedTab = new float[maxNumberOfLines][numberOfOrderReceived];
+    float[][] orderReceivedTab;
 
     private boolean hasLines = true;
     private boolean hasPoints = true;

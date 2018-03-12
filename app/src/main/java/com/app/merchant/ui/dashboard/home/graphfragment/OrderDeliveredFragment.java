@@ -12,18 +12,26 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderDeliveredBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDelivered;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderDeliveredAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
+import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -38,17 +46,16 @@ import lecho.lib.hellocharts.util.ChartUtils;
 
 public class OrderDeliveredFragment extends DashboardFragment implements
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
+
     private FragmentOrderDeliveredBinding mBinding;
+    private OrderDeliveredAdapter mAdapter;
+    private ArrayList<OrderDelivered> deliveredList;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
-
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
-
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
+    private int numberOfOrderDelivered ;
+    float[][] orderDeliveredTab;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -56,7 +63,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
     //End Chart
 
@@ -65,6 +72,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_delivered, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_delivered));
+        deliveredList=new ArrayList<>();
         return mBinding.getRoot();
     }
 
@@ -79,16 +87,16 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderDeliveredAdapter mAdapter=new OrderDeliveredAdapter(getDashboardActivity());
+        mAdapter=new OrderDeliveredAdapter(getDashboardActivity(),deliveredList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderDeliveredChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
+        generateValues(data);
 
-        generateData();
+        generateData(data);
 
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
@@ -102,26 +110,34 @@ public class OrderDeliveredFragment extends DashboardFragment implements
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfOrderDelivered - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
-    private void generateValues() {
-        for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+    private void generateValues(ArrayList<OrderDeliveredChart> data) {
+        if (CommonUtility.isNotNull(data)) {
+            numberOfOrderDelivered = data.size();
+            orderDeliveredTab = new float[maxNumberOfLines][numberOfOrderDelivered];
+            for (int i = 0; i < maxNumberOfLines; ++i) {
+                for (int j = 0; j < numberOfOrderDelivered; ++j) {
+                    orderDeliveredTab[i][j] = data.get(j).getOrders_count();
+                }
             }
         }
     }
 
-    private void generateData() {
+    private void generateData(ArrayList<OrderDeliveredChart> data) {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
+        List<AxisValue> axisValues = new ArrayList<>();
+
         for (int i = 0; i < numberOfLines; ++i) {
-
-            List<PointValue> values = new ArrayList<PointValue>();
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            List<PointValue> values = new ArrayList<>();
+            for (int j = 0; j < numberOfOrderDelivered; ++j) {
+                values.add(new PointValue(j, orderDeliveredTab[i][j]));
+                if (CommonUtility.isNotNull(data) && data.size() > j) {
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -134,31 +150,17 @@ public class OrderDeliveredFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+           /* if (pointsHaveDifferentColor){
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
 
-        data = new LineChartData(lines);
-
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
-
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
     }
 
 
@@ -179,6 +181,29 @@ public class OrderDeliveredFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+           if(CommonUtility.isNotNull(response)){
+               if (requestCode == AppConstants.CHART_DATA) {
+                   setChartResponse(response);
+               } else if (requestCode == AppConstants.ORDER_DATA) {
+                   setOrderResponse(response);
+               }
+           }
+    }
+
+    private void setOrderResponse(BaseResponse response) {
+        OrderDeliveredData data = (OrderDeliveredData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                deliveredList.clear();
+                deliveredList.addAll(data.getData());
+                mAdapter.notifyDataSetChanged();
+            }
+    }
+
+    private void setChartResponse(BaseResponse response) {
+            OrderDeliveredChartData data = (OrderDeliveredChartData) response;
+            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+                initializeChartData(data.getData());
+            }
 
     }
 

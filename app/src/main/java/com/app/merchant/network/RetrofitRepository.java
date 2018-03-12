@@ -20,6 +20,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery
 import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery.OrderOutForDeliveryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Completable;
@@ -119,5 +121,15 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderDeliveredData> getOrderDelivered() {
         return apiService.getOrderDelivered();
+    }
+
+    @Override
+    public Observable<OrderReturnedCancelChartData> getOrderCancelledChart() {
+        return apiService.getOrderCancelledChart();
+    }
+
+    @Override
+    public Observable<OrderReturnedCancelData> getOrderCancelled() {
+        return apiService.getOrderCancelled();
     }
 }
