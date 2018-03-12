@@ -96,6 +96,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         if (isNotNull(response)) {
                 if (response.getStatus().equals(AppConstants.SUCCESS)) {
                     Bundle bundle = new Bundle();
+                    bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
                     ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
         }
@@ -148,7 +149,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private void setRegisterData() {
         if (CommonUtility.isNotNull(register)) {
             register.setLegalname(legalName);
-            register.setPannumber(panNumber);
+            register.setPancard(panNumber);
             register.setGst(gstNumber);
             register.setBankname(bankName);
             register.setBranch(branchName);
@@ -218,40 +219,40 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         ifscCode = mBinding.edIFSCCode.getText().toString();
         deliveryCharge = mBinding.edDelivery.getText().toString();
         serviceArea = mBinding.edServiceArea.getText().toString();
-        if (isNotNull(legalName) || legalName.trim().length() == 0) {
+        if (isNull(legalName) || legalName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_legalname_of_company));
             return false;
         } else if (!CommonUtility.checkValidName(legalName.trim())) {
             showToast(getResources().getString(R.string.please_enter_valid_name_of_company));
             return false;
-        } else if (isNotNull(panNumber) || panNumber.trim().length() == 0) {
+        } else if (isNull(panNumber) || panNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_pan_number));
             return false;
         } else if (panNumber.trim().length() != 10) {
             showToast(getResources().getString(R.string.please_enter_valid_pan_number));
             return false;
-        } else if (isNotNull(gstNumber) || gstNumber.trim().length() == 0) {
+        } else if (isNull(gstNumber) || gstNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_gst_number));
             return false;
         } else if (gstNumber.trim().length() != 15) {
             showToast(getResources().getString(R.string.please_enter_valid_gst_number));
             return false;
-        } else if (isNotNull(bankName) || bankName.trim().length() == 0) {
+        } else if (isNull(bankName) || bankName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_bank_name));
             return false;
-        } else if (isNotNull(branchName) || branchName.trim().length() == 0) {
+        } else if (isNull(branchName) || branchName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_branch_name));
             return false;
-        } else if (isNotNull(accountNumber) || accountNumber.trim().length() == 0) {
+        } else if (isNull(accountNumber) || accountNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_account_number));
             return false;
-        } else if (isNotNull(ifscCode) || ifscCode.trim().length() == 0) {
+        } else if (isNull(ifscCode) || ifscCode.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_ifsc_code));
             return false;
-        } else if (isNotNull(deliveryCharge) || deliveryCharge.trim().length() == 0) {
+        } else if (isNull(deliveryCharge) || deliveryCharge.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_delivery_charge));
             return false;
-        } else if (isNotNull(serviceArea) || serviceArea.trim().length() == 0) {
+        } else if (isNull(serviceArea) || serviceArea.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_service_area));
             return false;
         }

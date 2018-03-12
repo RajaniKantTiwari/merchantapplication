@@ -12,6 +12,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.util.concurrent.TimeUnit;
+
 import dagger.Module;
 import dagger.Provides;
 import okhttp3.OkHttpClient;
@@ -46,11 +48,19 @@ public class NetworkModule {
         GsonConverterFactory gsonConverterFactory = GsonConverterFactory.create(gson);
         HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
+        httpClient.connectTimeout(1200,TimeUnit.SECONDS);
+        httpClient.readTimeout(1200,TimeUnit.SECONDS);
+        httpClient.writeTimeout(1200,TimeUnit.SECONDS);
+
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
             //String accessToken = PreferenceUtils.getAuthToken();
-            String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
+           // String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
+            //hamara dost Auth Bearer
+            String accessToken ="ly5hT6byu0mONyphtwbtX-fATyNo9h79";
+
             if(accessToken!=null){
                 Request.Builder requestBuilder = original.newBuilder()
                         .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)
@@ -62,6 +72,7 @@ public class NetworkModule {
             }
         });
         httpClient.addInterceptor(logging);
+
         return new Retrofit.Builder()
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(httpClient.build())

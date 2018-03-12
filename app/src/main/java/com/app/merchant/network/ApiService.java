@@ -36,7 +36,7 @@ import retrofit2.http.POST;
 
 public interface ApiService {
     @POST("register/user")
-    Observable<BaseResponse> registerMerchant(RegisterRequest register);
+    Observable<BaseResponse> registerMerchant(@Body RegisterRequest register);
     @POST("register/login")
     Observable<LoginResponse> loginMerchant(@Body LoginRequest request);
 

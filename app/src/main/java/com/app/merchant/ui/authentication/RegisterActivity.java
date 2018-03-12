@@ -48,6 +48,8 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     private String profilePicFilePath;
     private String email;
     private String storeName;
+    private String password;
+    private String mobileNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     private void setIntentData(Intent intent) {
         RegisterRequest register = new RegisterRequest();
         register.setEmail(email);
+        register.setPassword(password);
         register.setLocation(location);
         register.setAddress(address);
         register.setMerchantname(storeName);
@@ -136,6 +139,8 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     private boolean isValid() {
         email = mBinding.edEmail.getText().toString();
+        password=mBinding.edPassword.getText().toString();
+        mobileNumber=mBinding.edMobileNumber.getText().toString();
         location = mBinding.edLocation.getText().toString();
         address = mBinding.edAddress.getText().toString();
         storeName = mBinding.edStore.getText().toString();
@@ -146,6 +151,22 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         } else if (!CommonUtility.checkValidEmail(email)) {
             mBinding.edEmail.requestFocus();
             showToast(getResources().getString(R.string.please_enter_valid_email));
+            return false;
+        }else if (isNull(password) || password.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_password));
+            mBinding.edPassword.requestFocus();
+            return false;
+        }else if (isNull(password) || password.trim().length() <8) {
+            showToast(getResources().getString(R.string.password_length_should_be_atleast_eight_character));
+            mBinding.edPassword.requestFocus();
+            return false;
+        }else if (isNull(mobileNumber) || mobileNumber.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_mobile_number));
+            mBinding.edPassword.requestFocus();
+            return false;
+        }else if (isNull(mobileNumber) || mobileNumber.trim().length() ==10) {
+            showToast(getResources().getString(R.string.please_enter_valid_mobilenumber));
+            mBinding.edPassword.requestFocus();
             return false;
         } else if (isNull(location) || location.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_location));

@@ -28,6 +28,7 @@ import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
+import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
@@ -74,7 +75,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
-                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
+
+                //openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
+                openFragment(new ProductSubproductFragment(), null, false, false, NONE);
+
                 break;
             case AppConstants.MYWARANTY:
                 ExplicitIntent.getsInstance().navigateTo(this, WarantyActivity.class);

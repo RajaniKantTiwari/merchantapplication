@@ -12,9 +12,8 @@ public class RegisterRequest implements Parcelable {
     private String email;
     private String mobile;
     private String legalname;
-    private String pannumber;
     private String merchantname;
-    private String leganame;
+    private String pancard;
     private String gst;
     private String bankname;
     private String accountno;
@@ -29,10 +28,11 @@ public class RegisterRequest implements Parcelable {
     private String storeimage;
     private String facultyimage;
     private String ownerimage;
-    private double lat;
-    private double lng;
+    private double lat=28.544869;
+    private double lng=77.128134;
     private ArrayList<StoreImage> storeList;
     private ArrayList<String> otherServiceArea;
+    private String password;
 
     public RegisterRequest() {
 
@@ -40,10 +40,10 @@ public class RegisterRequest implements Parcelable {
 
     protected RegisterRequest(Parcel in) {
         email = in.readString();
+        password=in.readString();
         mobile = in.readString();
         legalname = in.readString();
         merchantname = in.readString();
-        leganame = in.readString();
         gst = in.readString();
         bankname = in.readString();
         accountno = in.readString();
@@ -60,7 +60,7 @@ public class RegisterRequest implements Parcelable {
         ownerimage = in.readString();
         lat = in.readDouble();
         lng = in.readDouble();
-        pannumber=in.readString();
+        pancard=in.readString();
         storeList = in.createTypedArrayList(StoreImage.CREATOR);
         otherServiceArea=in.createStringArrayList();
     }
@@ -93,12 +93,12 @@ public class RegisterRequest implements Parcelable {
         this.storeList = storeList;
     }
 
-    public String getPannumber() {
-        return pannumber;
+    public String getPancard() {
+        return pancard;
     }
 
-    public void setPannumber(String pannumber) {
-        this.pannumber = pannumber;
+    public void setPancard(String pancard) {
+        this.pancard = pancard;
     }
 
     public String getEmail() {
@@ -123,14 +123,6 @@ public class RegisterRequest implements Parcelable {
 
     public void setMerchantname(String merchantname) {
         this.merchantname = merchantname;
-    }
-
-    public String getLeganame() {
-        return leganame;
-    }
-
-    public void setLeganame(String leganame) {
-        this.leganame = leganame;
     }
 
     public String getGst() {
@@ -268,6 +260,13 @@ public class RegisterRequest implements Parcelable {
     public void setMobile(String mobile) {
         this.mobile = mobile;
     }
+    public void setPassword(String password) {
+         this.password=password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 
     @Override
     public int describeContents() {
@@ -277,10 +276,10 @@ public class RegisterRequest implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(email);
+        parcel.writeString(password);
         parcel.writeString(mobile);
         parcel.writeString(legalname);
         parcel.writeString(merchantname);
-        parcel.writeString(leganame);
         parcel.writeString(gst);
         parcel.writeString(bankname);
         parcel.writeString(accountno);
@@ -297,9 +296,10 @@ public class RegisterRequest implements Parcelable {
         parcel.writeString(ownerimage);
         parcel.writeDouble(lat);
         parcel.writeDouble(lng);
-        parcel.writeString(pannumber);
+        parcel.writeString(pancard);
         parcel.writeTypedList(storeList);
         parcel.writeStringList(otherServiceArea);
     }
+
 
 }

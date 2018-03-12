@@ -251,6 +251,8 @@
     <string name="we_just_need_your_registered_email_id">We just need your registered email Id \nto send you password reset instructions.</string>
     <string name="reset_password">Reset Password</string>
     <string name="registered_email_id">Registered Email Id</string>
+    <string name="password_length_should_be_atleast_eight_character">Password should be atleast eight character long</string>
+    <string name="please_enter_valid_mobilenumber">Please Enter 10 digits valid mobile number</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

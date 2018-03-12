@@ -21,6 +21,7 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.presenter.CommonPresenter;
+import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -40,8 +41,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Inject
     CommonPresenter presenter;
     private String mobileNumber;
-    private String userName;
-    private static String TAG =VerifyAccountActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,7 +77,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
             Bundle bundle = intent.getExtras();
             if (isNotNull(bundle)) {
                 mobileNumber = bundle.getString(BundleConstants.MOBILE_NUMBER);
-                userName = bundle.getString(BundleConstants.USER_NAME);
             }
         }
     }
@@ -136,8 +134,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             PreferenceUtils.setUserId(verifyMobileResponse.getId());
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setLogin(true);
-
-                            //setToken();
                             ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, StoreDetailsActivity.class);
                             finish();
                         } else {
@@ -201,8 +197,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Override
     public void afterTextChanged(Editable s) {
         if (otpNumber.length() == 4) {
-            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, StoreDetailsActivity.class);
-
             presenter.verifyMobileNumber(this, new VerifyMobileRequest(mobileNumber, Integer.parseInt(otpNumber.toString())));
         }
     }
