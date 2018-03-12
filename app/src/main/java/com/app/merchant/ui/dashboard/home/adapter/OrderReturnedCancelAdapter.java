@@ -9,6 +9,10 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderReturnedCancelRowBinding;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancel;
+import com.app.merchant.utility.CommonUtility;
+
+import java.util.ArrayList;
 
 /**
  * Created by ashok on 25/12/17.
@@ -17,10 +21,12 @@ import com.app.merchant.databinding.OrderReturnedCancelRowBinding;
 public class OrderReturnedCancelAdapter extends RecyclerView.Adapter<OrderReturnedCancelAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<OrderReturnedCancel> returnList;
 
-    public OrderReturnedCancelAdapter(AppCompatActivity activity) {
+    public OrderReturnedCancelAdapter(AppCompatActivity activity, ArrayList<OrderReturnedCancel> returnList) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
+        this.returnList = returnList;
     }
 
     @Override
@@ -31,23 +37,26 @@ public class OrderReturnedCancelAdapter extends RecyclerView.Adapter<OrderReturn
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
-
+        if (CommonUtility.isNotNull(returnList) && returnList.size() > position) {
+            holder.setData(position);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(returnList) ? returnList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         private final OrderReturnedCancelRowBinding mBinding;
-        private ImageView productImage;
 
         public ProductViewHolder(OrderReturnedCancelRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
         }
 
+        public void setData(int position) {
+            mBinding.setOrderReturned(returnList.get(position));
+        }
     }
 }

@@ -12,17 +12,25 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReturnedCancelBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancel;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedCancelAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
+import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -38,14 +46,13 @@ import lecho.lib.hellocharts.util.ChartUtils;
 public class OrderReturnedCancelFragment extends DashboardFragment implements
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
     private FragmentOrderReturnedCancelBinding mBinding;
+    private ArrayList<OrderReturnedCancel> returnList;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
-
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
-
+    private int numberOfReturnedCancel;
+    float[][] orderReturnedCancelTab;
     private boolean hasAxes = true;
     private boolean hasAxesNames = false;
     private boolean hasLines = true;
@@ -55,8 +62,9 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-   /* private boolean pointsHaveDifferentColor;*/
+    /* private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
+    private OrderReturnedCancelAdapter mAdapter;
     //End Chart
 
     @Nullable
@@ -64,6 +72,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_returned_cancel, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_returned));
+        returnList = new ArrayList<>();
         return mBinding.getRoot();
     }
 
@@ -72,53 +81,64 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     public void initializeData() {
         getPresenter().getOrderCancelledChart(getDashboardActivity());
         getPresenter().getOrderCancelled(getDashboardActivity());
-      initializeOrderData();
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReturnedCancelAdapter mAdapter=new OrderReturnedCancelAdapter(getDashboardActivity());
+        mAdapter = new OrderReturnedCancelAdapter(getDashboardActivity(),returnList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderReturnedCancelChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
-        generateData();
+        generateValues(data);
+        generateData(data);
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
 
         resetViewport();
 
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfReturnedCancel - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
-    private void generateValues() {
-        for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+
+    private void generateValues(ArrayList<OrderReturnedCancelChart> data) {
+        if (CommonUtility.isNotNull(data)) {
+            numberOfReturnedCancel = data.size();
+            orderReturnedCancelTab = new float[maxNumberOfLines][numberOfReturnedCancel];
+            for (int i = 0; i < maxNumberOfLines; ++i) {
+                for (int j = 0; j < numberOfReturnedCancel; ++j) {
+                    orderReturnedCancelTab[i][j] = data.get(j).getOrders_count();
+                }
             }
         }
     }
 
-    private void generateData() {
+    private void generateData(ArrayList<OrderReturnedCancelChart> data) {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
+        List<AxisValue> axisValues = new ArrayList<>();
+
         for (int i = 0; i < numberOfLines; ++i) {
 
-            List<PointValue> values = new ArrayList<PointValue>();
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            List<PointValue> values = new ArrayList<>();
+            for (int j = 0; j < numberOfReturnedCancel; ++j) {
+                values.add(new PointValue(j, orderReturnedCancelTab[i][j]));
+                if (CommonUtility.isNotNull(data) && data.size() > j) {
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -136,25 +156,11 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
             }*/
             lines.add(line);
         }
-
-        data = new LineChartData(lines);
-
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
 
     }
 
@@ -176,6 +182,28 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == AppConstants.CHART_DATA) {
+                setChartResponse(response);
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                setOrderResponse(response);
+            }
+        }
+    }
+
+    private void setOrderResponse(BaseResponse response) {
+        OrderReturnedCancelData data = (OrderReturnedCancelData) response;
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            returnList.addAll(data.getData());
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void setChartResponse(BaseResponse response) {
+        OrderReturnedCancelChartData data = (OrderReturnedCancelChartData) response;
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            initializeChartData(data.getData());
+        }
 
     }
 
@@ -183,11 +211,13 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     public void onClick(View view) {
 
     }
+
     @Override
     public void newDeliveryBoy() {
-        Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
+
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 
         @Override

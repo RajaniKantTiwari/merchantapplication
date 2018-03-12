@@ -3,7 +3,7 @@
 <data>
     <variable
         name="orderReturned"
-        type="com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancel"/>
+        type="com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned"/>
 </data>
     <LinearLayout
         style="@style/match_wrap"
@@ -11,7 +11,7 @@
         android:background="@drawable/layer">
         <com.app.merchant.widget.CustomTextView
             style="@style/order_text_view"
-            android:text="@={orderReturned.id}"
+            android:text="125"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey" />

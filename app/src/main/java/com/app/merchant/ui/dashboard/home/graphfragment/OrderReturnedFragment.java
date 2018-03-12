@@ -12,18 +12,26 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReturnedBinding;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
+import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
 import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.AxisValue;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
@@ -37,18 +45,15 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 
 public class OrderReturnedFragment extends DashboardFragment implements
-        DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
+        DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
     private FragmentOrderReturnedBinding mBinding;
+    private ArrayList<OrderReturned> orderReturnedList;
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfPoints = 12;
-
-    float[][] randomNumbersTab = new float[maxNumberOfLines][numberOfPoints];
-
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
+    private int numberOfOrderReturned;
+    float[][] orderReturnedTab;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -56,8 +61,9 @@ public class OrderReturnedFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
+    private OrderReturnedAdapter mAdapter;
     //End Chart
 
     @Nullable
@@ -65,62 +71,72 @@ public class OrderReturnedFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_returned, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_returned));
+        orderReturnedList=new ArrayList<>();
         return mBinding.getRoot();
     }
 
 
     @Override
     public void initializeData() {
-      initializeChartData();
-      initializeOrderData();
+        getPresenter().getOrderReturnedChart(getDashboardActivity());
+        getPresenter().getOrderReturned(getDashboardActivity());
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        OrderReturnedAdapter mAdapter=new OrderReturnedAdapter(getDashboardActivity());
+        mAdapter = new OrderReturnedAdapter(getDashboardActivity(),orderReturnedList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData() {
+    private void initializeChartData(ArrayList<OrderReturnedChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
-        generateValues();
-
-        generateData();
-
+        generateValues(data);
+        generateData(data);
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-
         resetViewport();
 
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfPoints - 1;
+        v.right = numberOfOrderReturned - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
-    private void generateValues() {
+
+    private void generateValues(ArrayList<OrderReturnedChart> data) {
+
+        numberOfOrderReturned = data.size();
+        orderReturnedTab = new float[maxNumberOfLines][numberOfOrderReturned];
         for (int i = 0; i < maxNumberOfLines; ++i) {
-            for (int j = 0; j < numberOfPoints; ++j) {
-                randomNumbersTab[i][j] = (float) Math.random() * 100f;
+            for (int j = 0; j < numberOfOrderReturned; ++j) {
+                orderReturnedTab[i][j] = data.get(j).getOrders_count();
             }
         }
+
     }
 
-    private void generateData() {
+    private void generateData(ArrayList<OrderReturnedChart> data) {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
+        List<AxisValue> axisValues = new ArrayList<>();
+
         for (int i = 0; i < numberOfLines; ++i) {
 
-            List<PointValue> values = new ArrayList<PointValue>();
-            for (int j = 0; j < numberOfPoints; ++j) {
-                values.add(new PointValue(j, randomNumbersTab[i][j]));
+            List<PointValue> values = new ArrayList<>();
+            for (int j = 0; j < numberOfOrderReturned; ++j) {
+                values.add(new PointValue(j, orderReturnedTab[i][j]));
+                if (CommonUtility.isNotNull(data) && data.size() > j) {
+                    axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
+                }
             }
 
             Line line = new Line(values);
@@ -133,30 +149,16 @@ public class OrderReturnedFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor){
+           /* if (pointsHaveDifferentColor){
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
-
-        data = new LineChartData(lines);
-
-        if (hasAxes) {
-            Axis axisX = new Axis();
-            Axis axisY = new Axis().setHasLines(true);
-            if (hasAxesNames) {
-                axisX.setName("Axis X");
-                axisY.setName("Axis Y");
-            }
-            data.setAxisXBottom(axisX);
-            data.setAxisYLeft(axisY);
-        } else {
-            data.setAxisXBottom(null);
-            data.setAxisYLeft(null);
-        }
-
-        data.setBaseValue(Float.NEGATIVE_INFINITY);
-        mBinding.lineChart.setLineChartData(data);
+        this.data = new LineChartData(lines);
+        this.data.setAxisXBottom(new Axis(axisValues).setHasLines(true).setMaxLabelChars(3));
+        this.data.setAxisYLeft(new Axis().setHasLines(true).setMaxLabelChars(3));
+        this.data.setBaseValue(Float.NEGATIVE_INFINITY);
+        mBinding.lineChart.setLineChartData(this.data);
 
     }
 
@@ -178,22 +180,44 @@ public class OrderReturnedFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == AppConstants.CHART_DATA) {
+                setChartResponse(response);
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                setOrderResponse(response);
+            }
+        }
+    }
 
+    private void setOrderResponse(BaseResponse response) {
+        OrderReturnedData data = (OrderReturnedData) response;
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            orderReturnedList.addAll(data.getData());
+            mAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void setChartResponse(BaseResponse response) {
+        OrderReturnedChartData data = (OrderReturnedChartData) response;
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            initializeChartData(data.getData());
+        }
     }
 
     @Override
     public void onClick(View view) {
 
     }
+
     @Override
     public void newDeliveryBoy() {
-        Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override
     public void submit(int id, float rating, String feedback) {
-       getDashboardActivity().showToast("Rating Submitted");
+        getDashboardActivity().showToast("Rating Submitted");
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {
