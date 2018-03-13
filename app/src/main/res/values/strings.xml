@@ -255,6 +255,10 @@
     <string name="please_enter_valid_mobilenumber">Please Enter 10 digits valid mobile number</string>
     <string name="add_new_customer">Add New Customer</string>
     <string name="order">Order</string>
+    <string name="add_inventory">Add Inventory</string>
+    <string name="customer_phone_number">Customer Phone Number</string>
+    <string name="customer_mobile">Customer Mobile</string>
+    <string name="enter_address">Enter Address</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

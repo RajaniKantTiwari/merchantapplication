@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <FrameLayout
         style="@style/match_match"
@@ -42,14 +43,7 @@
                     style="@style/textview_description_large_weight"
                     android:layout_height="@dimen/margin_30"
                     android:gravity="center"
-                    android:text="@string/my_inventory"
-                    android:textAllCaps="true" />
-                <com.app.merchant.widget.CustomTextView
-                    android:id="@+id/tvAddNewCustomer"
-                    style="@style/textview_description_large_weight"
-                    android:layout_height="@dimen/margin_30"
-                    android:gravity="center"
-                    android:text="@string/add_new_customer"
+                    android:text="@string/add_inventory"
                     android:textAllCaps="true" />
             </LinearLayout>
 
@@ -72,13 +66,26 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvCustomer"
-                        style="@style/textview_description_large_match"
-                        android:layout_height="@dimen/margin_30"
+                    <LinearLayout
+                        style="@style/match_wrap">
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edEmail"
+                        style="@style/edit_text_style_medium_weight"
+                        android:layout_width="wrap_content"
+                        android:hint="@string/customer_mobile"
+                        android:maxLines="1"
                         android:gravity="center"
-                        android:text="Rajesh 9555764329"
-                        android:textAllCaps="true" />
+                        android:inputType="number"
+                        android:background="@drawable/grey_edit_bg_no_round"
+                        android:imeOptions="actionNext"/>
+                        <com.app.merchant.widget.CustomTextView
+                            android:id="@+id/tvCustomer"
+                            style="@style/textview_description_large_weight"
+                            android:layout_height="@dimen/margin_30"
+                            android:gravity="center"
+                            android:text="@string/add_new_customer"/>
+                    </LinearLayout>
                     <LinearLayout
                         style="@style/match_wrap"
                         android:gravity="center_horizontal">
