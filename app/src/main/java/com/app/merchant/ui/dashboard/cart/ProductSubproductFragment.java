@@ -3,6 +3,7 @@ package com.app.merchant.ui.dashboard.cart;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,6 +31,7 @@ import com.app.merchant.ui.dashboard.cart.adapter.CartAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
 import com.app.merchant.ui.dashboard.home.FullInformationFragment;
+import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
@@ -70,7 +72,14 @@ public class ProductSubproductFragment extends DashboardFragment implements
         } else {
             addCartList = new ArrayList<>();
         }
+
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.order));
     }
 
     private void setViews() {
@@ -105,7 +114,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
             case R.id.tvMyInventory:
                 CommonUtility.clicked(mBinding.tvMyInventory);
                 Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new OrderReceivedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+                getDashboardActivity().addFragmentInContainer(new WelcomeHomeFragment(), bundle, true, false, BaseActivity.AnimationType.NONE);
                 break;
             case R.id.tvCustomer:
                 CommonUtility.clicked(mBinding.tvMyInventory);
@@ -363,8 +372,8 @@ public class ProductSubproductFragment extends DashboardFragment implements
     }
 
     private void callApi() {
-        CategoryRequest categoryRequest = new CategoryRequest();
+        /*CategoryRequest categoryRequest = new CategoryRequest();
         categoryRequest.setMerchant_id(merchantId);
-        getPresenter().getCategory(getDashboardActivity(), categoryRequest);
+        getPresenter().getCategory(getDashboardActivity(), categoryRequest);*/
     }
 }

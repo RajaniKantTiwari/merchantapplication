@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -116,9 +117,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         CommonUtility.register(this);
+        getSupportFragmentManager().addOnBackStackChangedListener(getListener());
         clearAllBackStack();
         openFragment(new ProductSubproductFragment(), null, false, false, NONE);
-        setHeaderTitle(getResources().getString(R.string.order));
         //pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
@@ -371,6 +372,26 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         }
     }
 
-
+    private FragmentManager.OnBackStackChangedListener getListener() {
+        FragmentManager.OnBackStackChangedListener result = new FragmentManager.OnBackStackChangedListener() {
+            public void onBackStackChanged() {
+                try {
+                    FragmentManager manager = getSupportFragmentManager();
+                    if (manager != null) {
+                        int backStackEntryCount = manager.getBackStackEntryCount();
+                        if (backStackEntryCount == 0) {
+                            finish();
+                        }
+                        Fragment fragment = manager.getFragments()
+                                .get(backStackEntryCount - 1);
+                        fragment.onResume();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        return result;
+    }
 
 }

@@ -298,9 +298,11 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     public void onBackPressed() {
         FragmentManager fm = getSupportFragmentManager();
         Log.e("Count",""+fm.getBackStackEntryCount());
-        if(fm.getBackStackEntryCount()==1){
+        if(fm.getBackStackEntryCount()==0){
             finish();
         }
         super.onBackPressed();
     }
+
+
 }

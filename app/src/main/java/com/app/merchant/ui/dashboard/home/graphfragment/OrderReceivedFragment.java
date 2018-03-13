@@ -3,6 +3,7 @@ package com.app.merchant.ui.dashboard.home.graphfragment;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,9 +72,9 @@ public class OrderReceivedFragment extends DashboardFragment implements
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
         orderReceivedList = new ArrayList<>();
         deliveryBoyList=new ArrayList<>();
+
         return mBinding.getRoot();
     }
 
@@ -93,6 +94,32 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            getDashboardActivity().showToast("Hidden");
+        } else {
+            getDashboardActivity().showToast("Hidden");
+
+        }
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            getDashboardActivity().showToast("Visible to user");
+        } else {
+            getDashboardActivity().showToast("Hide to user");
+
+        }
+    }
     private void initializeChartData(ArrayList<OrderReceivedChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.

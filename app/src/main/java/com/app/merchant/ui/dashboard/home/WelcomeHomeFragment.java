@@ -3,6 +3,7 @@ package com.app.merchant.ui.dashboard.home;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class WelcomeHomeFragment extends DashboardFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome_home, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         addFragment();
+
+
         return mBinding.getRoot();
     }
 
@@ -59,7 +62,32 @@ public class WelcomeHomeFragment extends DashboardFragment {
     public void initializeData() {
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.welcome));
+    }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            getDashboardActivity().showToast("Hidden");
+        } else {
+            getDashboardActivity().showToast("Hidden");
+
+        }
+    }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            getDashboardActivity().showToast("Visible to user");
+        } else {
+            getDashboardActivity().showToast("Hide to user");
+
+        }
+    }
     @Override
     public void setListener() {
         mBinding.layoutOrder.setOnClickListener(this);
