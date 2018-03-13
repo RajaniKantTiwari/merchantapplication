@@ -259,6 +259,8 @@
     <string name="customer_phone_number">Customer Phone Number</string>
     <string name="customer_mobile">Customer Mobile</string>
     <string name="enter_address">Enter Address</string>
+    <string name="tap_once_more_to_exit">Tap once more to exit</string>
+
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

@@ -310,4 +310,9 @@ public class AllPerformanceFragment extends DashboardFragment {
 
         return colors;
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

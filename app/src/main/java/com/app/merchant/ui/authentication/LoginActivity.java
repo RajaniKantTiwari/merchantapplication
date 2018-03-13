@@ -9,6 +9,7 @@ import com.app.merchant.databinding.ActivityLoginBinding;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
+import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
@@ -52,12 +53,14 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (isNotNull(response)) {
-            if (response instanceof LoginResponse) {
-                LoginResponse loginResponse = (LoginResponse) response;
+            if (response instanceof LoginResponseData) {
+                LoginResponseData loginResponse = (LoginResponseData) response;
                 if (isNotNull(loginResponse)) {
                     if (loginResponse.getStatus().equals(AppConstants.SUCCESS)) {
-                         PreferenceUtils.setAuthToken(loginResponse.getAuthkey());
-
+                        if(CommonUtility.isNotNull(loginResponse.getAuthkey())){
+                            PreferenceUtils.setUserId(loginResponse.getAuthkey().getId());
+                            PreferenceUtils.setAuthToken(loginResponse.getAuthkey().getAuth_key());
+                        }
                     }
                 }
             }
@@ -94,6 +97,10 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
             return false;
         } else if (isNull(password) || password.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_password));
+            return false;
+        }else if (isNull(password) || password.trim().length() <8) {
+            showToast(getResources().getString(R.string.password_length_should_be_atleast_eight_character));
+            mBinding.edPassword.requestFocus();
             return false;
         }
         return true;

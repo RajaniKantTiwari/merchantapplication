@@ -150,4 +150,9 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
         super.onDestroy();
         CommonUtility.unregister(this);
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

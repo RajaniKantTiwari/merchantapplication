@@ -50,20 +50,20 @@ public class NetworkModule {
         logging.setLevel(HttpLoggingInterceptor.Level.BODY);
 
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-        httpClient.connectTimeout(1200,TimeUnit.SECONDS);
-        httpClient.readTimeout(1200,TimeUnit.SECONDS);
-        httpClient.writeTimeout(1200,TimeUnit.SECONDS);
+        httpClient.connectTimeout(1200, TimeUnit.SECONDS);
+        httpClient.readTimeout(1200, TimeUnit.SECONDS);
+        httpClient.writeTimeout(1200, TimeUnit.SECONDS);
 
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            //String accessToken = PreferenceUtils.getAuthToken();
-           // String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
+            String accessToken = PreferenceUtils.getAuthToken();
+            // String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
             //hamara dost Auth Bearer
-            String accessToken ="ly5hT6byu0mONyphtwbtX-fATyNo9h79";
+            //String accessToken ="ly5hT6byu0mONyphtwbtX-fATyNo9h79";
 
-            if(accessToken!=null){
+            if (accessToken != null) {
                 Request.Builder requestBuilder = original.newBuilder()
-                        .header(AppConstants.AUTHORIZATION, "Bearer "+accessToken)
+                        .header(AppConstants.AUTHORIZATION, "Bearer " + accessToken)
                         .method(original.method(), original.body());
                 Request request = requestBuilder.build();
                 return chain.proceed(request);

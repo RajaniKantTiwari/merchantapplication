@@ -134,7 +134,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             PreferenceUtils.setUserId(verifyMobileResponse.getId());
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setLogin(true);
-                            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, StoreDetailsActivity.class);
+                            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
                             finish();
                         } else {
                             hideKeyboard();

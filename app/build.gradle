@@ -40,7 +40,7 @@ android {
             signingConfig signingConfigs.config
             applicationId 'com.app.merchant'
             dimension "environment"
-            buildConfigField "String", "BASE_URL", "\"http://thephantomgrid.com/rest/web/index.php/v1/\""
+            buildConfigField "String", "BASE_URL", "\"http://thephantomgrid.com/rest/web/index.php/v2/\""
         }
         qa {
             signingConfig signingConfigs.config

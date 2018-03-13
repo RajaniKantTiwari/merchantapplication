@@ -9,6 +9,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
+import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -44,7 +45,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<LoginResponse> loginMerchant(LoginRequest request) {
+    public Observable<LoginResponseData> loginMerchant(LoginRequest request) {
         return apiService.loginMerchant(request);
     }
 

@@ -154,4 +154,9 @@ public class OfferFragment extends DashboardFragment implements
             //ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), OfferDetailsActivity.class, bundle);
         }
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

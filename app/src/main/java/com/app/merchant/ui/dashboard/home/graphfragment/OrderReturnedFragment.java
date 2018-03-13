@@ -220,6 +220,11 @@ public class OrderReturnedFragment extends DashboardFragment implements
         getDashboardActivity().showToast("Rating Submitted");
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
+
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 
         @Override

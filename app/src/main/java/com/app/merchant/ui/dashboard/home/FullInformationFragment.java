@@ -154,4 +154,8 @@ public class FullInformationFragment extends DashboardFragment {
         }
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

@@ -160,7 +160,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             showToast(getResources().getString(R.string.please_enter_mobile_number));
             mBinding.edMobileNumber.requestFocus();
             return false;
-        }else if (isNull(mobileNumber) || mobileNumber.trim().length() ==10) {
+        }else if (isNull(mobileNumber) || mobileNumber.trim().length() <10) {
             showToast(getResources().getString(R.string.please_enter_valid_mobilenumber));
             mBinding.edMobileNumber.requestFocus();
             return false;

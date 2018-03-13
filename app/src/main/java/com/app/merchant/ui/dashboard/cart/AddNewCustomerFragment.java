@@ -97,4 +97,8 @@ public class AddNewCustomerFragment extends DashboardFragment {
 
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

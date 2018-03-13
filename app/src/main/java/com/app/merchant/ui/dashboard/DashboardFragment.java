@@ -9,7 +9,7 @@ import com.app.merchant.ui.base.BaseFragment;
 public abstract class DashboardFragment extends BaseFragment {
     private DashBoardActivity mActivity;
 
-
+   public abstract void headerChangedCalled();
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

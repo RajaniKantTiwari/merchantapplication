@@ -240,6 +240,11 @@ public class OrderConfirmedFragment extends DashboardFragment implements
         getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
+
     private class ValueTouchListener implements LineChartOnValueSelectListener {
 
         @Override

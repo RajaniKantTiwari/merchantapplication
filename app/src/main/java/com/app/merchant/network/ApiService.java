@@ -10,6 +10,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
+import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -38,7 +39,7 @@ public interface ApiService {
     @POST("register/user")
     Observable<BaseResponse> registerMerchant(@Body RegisterRequest register);
     @POST("register/login")
-    Observable<LoginResponse> loginMerchant(@Body LoginRequest request);
+    Observable<LoginResponseData> loginMerchant(@Body LoginRequest request);
 
     @POST("register/verifyotp")
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);

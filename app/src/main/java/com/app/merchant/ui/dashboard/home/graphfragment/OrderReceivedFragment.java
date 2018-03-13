@@ -74,7 +74,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
         orderReceivedList = new ArrayList<>();
         deliveryBoyList=new ArrayList<>();
-
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
         return mBinding.getRoot();
     }
 
@@ -94,32 +94,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
-    }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (hidden) {
-            getDashboardActivity().showToast("Hidden");
-        } else {
-            getDashboardActivity().showToast("Hidden");
 
-        }
-    }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            getDashboardActivity().showToast("Visible to user");
-        } else {
-            getDashboardActivity().showToast("Hide to user");
-
-        }
-    }
     private void initializeChartData(ArrayList<OrderReceivedChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
@@ -269,6 +245,11 @@ public class OrderReceivedFragment extends DashboardFragment implements
     @Override
     public void notConfirmed() {
 
+    }
+
+    @Override
+    public void headerChangedCalled() {
+        getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

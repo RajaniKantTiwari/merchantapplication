@@ -247,4 +247,9 @@ public class AssignNewDeliveryFragment extends DashboardFragment implements MvpV
     private void clearImage() {
         profilePicFilePath = "";
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

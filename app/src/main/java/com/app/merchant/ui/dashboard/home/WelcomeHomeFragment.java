@@ -42,8 +42,7 @@ public class WelcomeHomeFragment extends DashboardFragment {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_welcome_home, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         addFragment();
-
-
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.welcome));
         return mBinding.getRoot();
     }
 
@@ -62,32 +61,8 @@ public class WelcomeHomeFragment extends DashboardFragment {
     public void initializeData() {
 
     }
-    @Override
-    public void onResume() {
-        super.onResume();
-        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.welcome));
-    }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (hidden) {
-            getDashboardActivity().showToast("Hidden");
-        } else {
-            getDashboardActivity().showToast("Hidden");
 
-        }
-    }
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            getDashboardActivity().showToast("Visible to user");
-        } else {
-            getDashboardActivity().showToast("Hide to user");
-
-        }
-    }
     @Override
     public void setListener() {
         mBinding.layoutOrder.setOnClickListener(this);
@@ -136,5 +111,10 @@ public class WelcomeHomeFragment extends DashboardFragment {
         mBinding.tvInventory.setTextColor(CommonUtility.getColor(getDashboardActivity(),R.color.black));
         event.setOrderInventory(AppConstants.MY_ORDER);
         EventBus.getDefault().post(event);
+    }
+
+    @Override
+    public void headerChangedCalled() {
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.welcome));
     }
 }

@@ -28,6 +28,7 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.ui.base.BaseFragment;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
@@ -70,6 +71,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     private ActionBarDrawerToggle mDrawerToggleLeft;
     private DrawerAdapterLeft mDrawerAdapterLeft;
+    private int previousCount;
 
     @Override
     public void onLeftDrawerItemClicked(int position) {
@@ -119,7 +121,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         CommonUtility.register(this);
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
         clearAllBackStack();
-        openFragment(new ProductSubproductFragment(), null, false, false, NONE);
+        openFragment(new ProductSubproductFragment(), null, true, false, NONE);
         //pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
@@ -149,7 +151,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 //openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
-               // openFragment(new OfferFragment(), null, false, false, NONE);
+                // openFragment(new OfferFragment(), null, false, false, NONE);
                 openFragment(new AllPerformanceFragment(), null, false, false, NONE);
                 break;
             case NOTIFICATION_FRAGMENT:
@@ -272,7 +274,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (mBinding.layoutDrawerLeft.ivUpdate == view) {
             closeDrawerLeft();
             ExplicitIntent.getsInstance().navigateTo(this, EditProfileActivity.class);
-        }else if (view == mBinding.bottomLayout.linearLayoutBar1) {
+        } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
             pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
@@ -294,6 +296,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
         }
     }
+
     void setupDrawerToggleLeft() {
 
         mDrawerToggleLeft = new ActionBarDrawerToggle(this, mBinding.drawer, null, R.string.app_name, R.string.app_name) {
@@ -334,7 +337,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             mBinding.drawer.closeDrawers();
         }
     }
-
 
 
     public void setHeaderTitle(String title) {
@@ -378,13 +380,18 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 try {
                     FragmentManager manager = getSupportFragmentManager();
                     if (manager != null) {
+
                         int backStackEntryCount = manager.getBackStackEntryCount();
                         if (backStackEntryCount == 0) {
                             finish();
                         }
                         Fragment fragment = manager.getFragments()
                                 .get(backStackEntryCount - 1);
-                        fragment.onResume();
+                        if (previousCount > backStackEntryCount) {
+                            showToast("Calling");
+                            ((DashboardFragment)fragment).headerChangedCalled();
+                        }
+                        previousCount = backStackEntryCount;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

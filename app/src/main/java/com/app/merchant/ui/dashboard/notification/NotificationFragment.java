@@ -70,4 +70,9 @@ public class NotificationFragment extends DashboardFragment {
     public void onClick(View view) {
 
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

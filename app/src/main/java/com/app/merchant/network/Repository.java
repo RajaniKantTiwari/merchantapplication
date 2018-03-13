@@ -9,6 +9,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
+import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -34,7 +35,7 @@ import io.reactivex.Observable;
 public interface Repository {
     Observable<BaseResponse> registerMerchant(RegisterRequest register);
 
-    Observable<LoginResponse> loginMerchant(LoginRequest request);
+    Observable<LoginResponseData> loginMerchant(LoginRequest request);
 
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
     Observable<BaseResponse> addForCartList(CartListRequest request);

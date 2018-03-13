@@ -71,4 +71,9 @@ public class UserProfileFragment extends DashboardFragment {
          ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditProfileActivity.class);
      }
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

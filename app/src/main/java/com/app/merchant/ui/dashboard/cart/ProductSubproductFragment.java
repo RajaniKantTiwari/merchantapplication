@@ -72,14 +72,8 @@ public class ProductSubproductFragment extends DashboardFragment implements
         } else {
             addCartList = new ArrayList<>();
         }
-
-        return mBinding.getRoot();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
         getDashboardActivity().setHeaderTitle(getResources().getString(R.string.order));
+        return mBinding.getRoot();
     }
 
     private void setViews() {
@@ -114,7 +108,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
             case R.id.tvMyInventory:
                 CommonUtility.clicked(mBinding.tvMyInventory);
                 Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new WelcomeHomeFragment(), bundle, true, false, BaseActivity.AnimationType.NONE);
+                getDashboardActivity().addFragmentInContainer(new WelcomeHomeFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
                 break;
             case R.id.tvCustomer:
                 CommonUtility.clicked(mBinding.tvMyInventory);
@@ -372,8 +366,13 @@ public class ProductSubproductFragment extends DashboardFragment implements
     }
 
     private void callApi() {
-        /*CategoryRequest categoryRequest = new CategoryRequest();
+        CategoryRequest categoryRequest = new CategoryRequest();
         categoryRequest.setMerchant_id(merchantId);
-        getPresenter().getCategory(getDashboardActivity(), categoryRequest);*/
+        getPresenter().getCategory(getDashboardActivity(), categoryRequest);
+    }
+
+    @Override
+    public void headerChangedCalled() {
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.order));
     }
 }

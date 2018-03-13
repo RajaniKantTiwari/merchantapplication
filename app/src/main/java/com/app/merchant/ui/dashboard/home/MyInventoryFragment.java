@@ -98,4 +98,9 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         super.onDestroy();
         CommonUtility.unregister(this);
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

@@ -85,4 +85,9 @@ public class HelpsAndSupportFragment extends DashboardFragment implements HelpSu
     public void submit(int id, float rating, String submit) {
 
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

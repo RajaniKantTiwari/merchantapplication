@@ -84,4 +84,9 @@ public class BuyProductFragment extends DashboardFragment implements MyInventory
     public void onItemClick(int position) {
 
     }
+
+    @Override
+    public void headerChangedCalled() {
+
+    }
 }

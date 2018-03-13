@@ -206,6 +206,11 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
         mBinding.tvAddress.setText(event.getAddress());
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
+
   /*  @Override
     public void onCouponClick(int position) {
         if (CommonUtility.isNotNull(couponList) && couponList.size() > position) {

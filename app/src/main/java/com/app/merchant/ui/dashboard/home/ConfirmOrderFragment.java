@@ -81,6 +81,11 @@ public class ConfirmOrderFragment extends DashboardFragment {
 
     }
 
+    @Override
+    public void headerChangedCalled() {
+
+    }
+
     /**
      * Countdown timer for meditation show time left to finish meditation
      */
