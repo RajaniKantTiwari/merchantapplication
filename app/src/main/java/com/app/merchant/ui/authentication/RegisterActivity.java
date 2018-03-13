@@ -10,15 +10,12 @@ import android.view.View;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityResisterBinding;
-import com.app.merchant.event.EncodedBitmap;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.adapter.StoreImageAdapter;
 import com.app.merchant.ui.base.MvpView;
-import com.app.merchant.ui.uploadfile.UploadImage;
-import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
@@ -27,8 +24,6 @@ import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 import net.alhazmy13.mediapicker.Image.ImagePicker;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -125,6 +120,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         RegisterRequest register = new RegisterRequest();
         register.setEmail(email);
         register.setPassword(password);
+        register.setMobile(mobileNumber);
         register.setLocation(location);
         register.setAddress(address);
         register.setMerchantname(storeName);
@@ -162,11 +158,11 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             return false;
         }else if (isNull(mobileNumber) || mobileNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_mobile_number));
-            mBinding.edPassword.requestFocus();
+            mBinding.edMobileNumber.requestFocus();
             return false;
         }else if (isNull(mobileNumber) || mobileNumber.trim().length() ==10) {
             showToast(getResources().getString(R.string.please_enter_valid_mobilenumber));
-            mBinding.edPassword.requestFocus();
+            mBinding.edMobileNumber.requestFocus();
             return false;
         } else if (isNull(location) || location.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_location));

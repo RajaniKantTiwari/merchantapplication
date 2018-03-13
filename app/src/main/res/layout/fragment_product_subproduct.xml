@@ -5,106 +5,116 @@
         style="@style/match_match"
         android:background="@color/white">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/layoutMain"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
+            style="@style/match_match"
+            android:orientation="vertical">
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvCat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/match_wrap"
                 android:orientation="horizontal" />
 
-            <View
-                android:id="@+id/viewCat"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/rvCat"
-                android:background="@android:color/darker_gray" />
+            <ImageView style="@style/view_layout_dark_grey" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rvSubCat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/viewCat"
-                android:orientation="horizontal" />
+                style="@style/match_wrap" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@+id/rvSubCat"
-                android:background="@android:color/darker_gray" />
+            <ImageView style="@style/view_layout_dark_grey" />
 
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvTitle"
-                style="@style/textview_description_large_wrap"
-                android:layout_height="@dimen/margin_40"
-                android:layout_below="@+id/rvSubCat"
-                android:layout_centerHorizontal="true"
+                style="@style/textview_description_large_match"
+                android:layout_height="@dimen/margin_30"
                 android:gravity="center"
-                android:textAllCaps="true"
-                android:textColor="@android:color/black" />
+                android:textAllCaps="true" />
 
-            <View
-                android:id="@+id/viewTitle"
+            <ImageView
                 style="@style/view_layout_dark_white"
-                android:layout_below="@+id/tvTitle"
                 android:layout_marginBottom="@dimen/margin_5" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/layoutCheckOut"
-                android:layout_below="@+id/viewTitle"
-                android:orientation="vertical" />
-
-            <LinearLayout
-                android:id="@+id/layoutCheckOut"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/margin_10"
-                android:orientation="vertical"
-                android:paddingBottom="@dimen/margin_10">
-
-                <LinearLayout style="@style/match_wrap"
-                    android:gravity="center_horizontal">
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/textview_description_large_wrap"
-                        android:layout_gravity="center"
-                        android:text="@string/sub_total" />
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvTotal"
-                        style="@style/textview_description_large_wrap"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/margin_7"
-                        android:drawablePadding="@dimen/margin_7"
-                        android:drawableStart="@drawable/rupee_black" />
-                </LinearLayout>
+            <LinearLayout style="@style/match_wrap">
 
                 <com.app.merchant.widget.CustomTextView
-                    android:id="@+id/tvCheckout"
-                    style="@style/textview_description_small_wrap"
-                    android:layout_height="@dimen/margin_25"
-                    android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/margin_20"
-                    android:layout_marginTop="@dimen/margin_12"
-                    android:background="@drawable/shape_button_round"
-                    android:elevation="@dimen/margin_5"
+                    android:id="@+id/tvMyInventory"
+                    style="@style/textview_description_large_weight"
+                    android:layout_height="@dimen/margin_30"
                     android:gravity="center"
-                    android:paddingEnd="@dimen/margin_35"
-                    android:paddingStart="@dimen/margin_35"
-                    android:text="@string/text_checkout"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white" />
+                    android:text="@string/my_inventory"
+                    android:textAllCaps="true" />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvAddNewCustomer"
+                    style="@style/textview_description_large_weight"
+                    android:layout_height="@dimen/margin_30"
+                    android:gravity="center"
+                    android:text="@string/add_new_customer"
+                    android:textAllCaps="true" />
             </LinearLayout>
-        </RelativeLayout>
+
+            <View
+                style="@style/view_layout_dark_white"
+                android:layout_marginBottom="@dimen/margin_5" />
+
+            <RelativeLayout style="@style/match_match">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvDetail"
+                    style="@style/match_match"
+                    android:layout_above="@+id/layoutCheckOut" />
+
+                <LinearLayout
+                    android:id="@+id/layoutCheckOut"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/margin_10"
+                    android:orientation="vertical">
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvCustomer"
+                        style="@style/textview_description_large_match"
+                        android:layout_height="@dimen/margin_30"
+                        android:gravity="center"
+                        android:text="Rajesh 9555764329"
+                        android:textAllCaps="true" />
+                    <LinearLayout
+                        style="@style/match_wrap"
+                        android:gravity="center_horizontal">
+
+                        <com.app.merchant.widget.CustomTextView
+                            style="@style/textview_description_large_wrap"
+                            android:layout_gravity="center"
+                            android:text="@string/sub_total" />
+
+                        <com.app.merchant.widget.CustomTextView
+                            android:id="@+id/tvTotal"
+                            style="@style/textview_description_large_wrap"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="@dimen/margin_7"
+                            android:drawablePadding="@dimen/margin_7"
+                            android:drawableStart="@drawable/rupee_black" />
+                    </LinearLayout>
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvCheckout"
+                        style="@style/textview_description_small_wrap"
+                        android:layout_height="@dimen/margin_25"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/margin_15"
+                        android:layout_marginTop="@dimen/margin_7"
+                        android:background="@drawable/shape_button_round"
+                        android:elevation="@dimen/margin_5"
+                        android:gravity="center"
+                        android:paddingEnd="@dimen/margin_35"
+                        android:paddingStart="@dimen/margin_35"
+                        android:text="@string/text_checkout"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </RelativeLayout>
+        </LinearLayout>
 
         <include
             android:id="@+id/layoutNoData"

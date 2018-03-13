@@ -75,10 +75,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
-
-                //openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
-                openFragment(new ProductSubproductFragment(), null, false, false, NONE);
-
+                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case AppConstants.MYWARANTY:
                 ExplicitIntent.getsInstance().navigateTo(this, WarantyActivity.class);
@@ -120,7 +117,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         CommonUtility.register(this);
         clearAllBackStack();
-        pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
+        openFragment(new ProductSubproductFragment(), null, false, false, NONE);
+        setHeaderTitle(getResources().getString(R.string.order));
+        //pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
         attachView();
@@ -145,7 +144,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         changeIcon(position);
         switch (position) {
             case WELCOME_HOME_FRAGMENT:
-                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
+                openFragment(new ProductSubproductFragment(), null, false, false, NONE);
+                //openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
                // openFragment(new OfferFragment(), null, false, false, NONE);

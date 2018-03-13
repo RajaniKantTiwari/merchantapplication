@@ -42,7 +42,9 @@ import java.util.ArrayList;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 
 
-public class ProductSubproductFragment extends DashboardFragment implements CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick, SubCatAdapter.OnSubCatItemClick {
+public class ProductSubproductFragment extends DashboardFragment implements
+        CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick,
+        SubCatAdapter.OnSubCatItemClick {
     private FragmentProductSubproductBinding mBinding;
     private CategoryAdapter mCategoryAdapter;
     private SubCatAdapter mSubCategoryAdapter;
@@ -50,7 +52,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
     private CartAdapter mCartAdapter;
     private int oldCatPos, oldSubCatPos;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
-    private int merchantId;
+    private int merchantId=18;
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
@@ -77,6 +79,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
         mBinding.rvSubCat.setLayoutManager(mLayoutMangerSubcat);
         mBinding.rvDetail.setLayoutManager(mLayoutManagerCart);
         mBinding.tvCheckout.setOnClickListener(this);
+        mBinding.tvMyInventory.setOnClickListener(this);
         mCategoryAdapter = new CategoryAdapter(mCatList, this);
         mSubCategoryAdapter = new SubCatAdapter(mSubCatList, this);
         mCartAdapter = new CartAdapter(mCartList, this);
@@ -96,6 +99,12 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
                 }
 
+                break;
+            case R.id.tvMyInventory:
+                CommonUtility.clicked(mBinding.tvCheckout);
+                if(CommonUtility.isNotNull(PreferenceUtils.getCartData())&&PreferenceUtils.getCartData().size()>0){
+                    addToCartList();
+                }
                 break;
         }
 
@@ -308,7 +317,7 @@ public class ProductSubproductFragment extends DashboardFragment implements Cart
                 mSubCatList.get(0).setSelected(true);
                 mCartList.clear();
                 mCartList.addAll(mSubCatList.get(0).getSubproduct());
-                mBinding.tvTitle.setText(mSubCatList.get(pos).getName());
+                mBinding.tvTitle.setText(mSubCatList.get(0).getName());
                 mSubCategoryAdapter.notifyDataSetChanged();
                 mCategoryAdapter.notifyDataSetChanged();
                 mCartAdapter.notifyDataSetChanged();

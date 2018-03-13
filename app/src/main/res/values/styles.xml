@@ -374,6 +374,11 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
+    <style name="textview_description_large_weight" parent="layout_hori_match_1">
+        <item name="android:textSize">@dimen/textSize_description_large</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="textview_description_match" parent="match_wrap">
         <item name="android:textSize">@dimen/textSize_description</item>
         <item name="android:textColor">@color/black</item>

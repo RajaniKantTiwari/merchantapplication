@@ -253,6 +253,8 @@
     <string name="registered_email_id">Registered Email Id</string>
     <string name="password_length_should_be_atleast_eight_character">Password should be atleast eight character long</string>
     <string name="please_enter_valid_mobilenumber">Please Enter 10 digits valid mobile number</string>
+    <string name="add_new_customer">Add New Customer</string>
+    <string name="order">Order</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>
