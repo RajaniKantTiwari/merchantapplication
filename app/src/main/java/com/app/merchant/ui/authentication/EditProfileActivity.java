@@ -59,9 +59,7 @@ public class EditProfileActivity extends CommonActivity implements MvpView, View
 
     public void initializeData() {
         mBinding.edName.setText(PreferenceUtils.getUserName());
-        mBinding.tvMobile.setText(PreferenceUtils.getUserMono());
-        mBinding.edEmail.setText(PreferenceUtils.getUserMono());
-        mBinding.edCreditDetails.setText(PreferenceUtils.getUserMono());
+        mBinding.edEmail.setText(PreferenceUtils.getEmail());
         CommonUtility.showCursorEnd(mBinding.edName);
         CommonUtility.showCursorEnd(mBinding.edEmail);
         CommonUtility.showCursorEnd(mBinding.edCreditDetails);

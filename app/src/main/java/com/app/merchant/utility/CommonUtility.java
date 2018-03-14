@@ -38,6 +38,7 @@ import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
+import com.app.merchant.ui.dialogfrag.OkDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
@@ -98,6 +99,13 @@ public class CommonUtility {
         alertdFragment.dialogListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert ConfirmOrderDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
+    public static void showOkDialog(AppCompatActivity activity, OkDialogFragment.OkDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        OkDialogFragment alertdFragment = new OkDialogFragment();
+        alertdFragment.dialogListener(listener);
         alertdFragment.show(fm, "");
     }
 

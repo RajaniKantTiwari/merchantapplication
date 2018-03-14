@@ -45,19 +45,16 @@
                     <com.app.merchant.widget.CustomTextView
                         android:id="@+id/tvName"
                         style="@style/textview_description_large_wrap"
-                        android:text="@{PreferenceUtils.userName}"
                         android:textColor="@color/white" />
 
                     <com.app.merchant.widget.CustomTextView
                         android:id="@+id/tvMobile"
-                        android:text="@{PreferenceUtils.userMono}"
                         style="@style/textview_description_large_wrap"
                         android:textColor="@color/white" />
 
                     <com.app.merchant.widget.CustomTextView
                         android:id="@+id/tvShopName"
                         style="@style/textview_description_large_wrap"
-                        android:text="@{PreferenceUtils.paymentOption}"
                         android:textColor="@color/white" />
                 </LinearLayout>
             </LinearLayout>
@@ -69,11 +66,11 @@
             <com.app.merchant.widget.CustomTextView
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_large_wrap"
-                android:text="@{PreferenceUtils.paymentOption}"/>
+                />
             <com.app.merchant.widget.CustomTextView
                 android:layout_marginTop="@dimen/margin_15"
                 style="@style/textview_description_large_wrap"
-                android:text="@{PreferenceUtils.cardNumber}"/>
+                />
 
         </LinearLayout>
 

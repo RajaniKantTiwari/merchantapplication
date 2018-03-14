@@ -59,8 +59,10 @@ public class DeliveryBoyDialogFragment extends DialogFragment implements View.On
             deliveryBoyList=bundle.getParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST);
         }
         ArrayList<String> deliveryBoyNameList=new ArrayList<>();
-        for(int i=0;i<deliveryBoyList.size();i++){
-            deliveryBoyNameList.add(deliveryBoyList.get(i).getName());
+        if(CommonUtility.isNotNull(deliveryBoyList)){
+            for(int i=0;i<deliveryBoyList.size();i++){
+                deliveryBoyNameList.add(deliveryBoyList.get(i).getName());
+            }
         }
         AsignAdapter adapter =new AsignAdapter(getContext(), deliveryBoyNameList);
         adapter.setDropDownViewResource(R.layout.spinner_row);

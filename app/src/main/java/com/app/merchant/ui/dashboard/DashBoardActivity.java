@@ -28,8 +28,8 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
-import com.app.merchant.ui.base.BaseFragment;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
+import com.app.merchant.ui.dashboard.cart.CartFragment;
 import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
@@ -91,7 +91,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 break;
             case AppConstants.HELP:
                 ExplicitIntent.getsInstance().navigateTo(this, HelpActivity.class);
-
                 changeIcon(NOTIFICATION_FRAGMENT);
                 openFragment(new NotificationFragment(), null, false, false, NONE);
                 break;
@@ -236,7 +235,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
 
     public void initializeData() {
         mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
-        mBinding.layoutDrawerLeft.tvMobile.setText(PreferenceUtils.getUserMono());
         DeviceTokenRequest request = new DeviceTokenRequest();
         request.setUserid(PreferenceUtils.getUserId());
         DeviceToken token = new DeviceToken();
@@ -250,7 +248,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void setListener() {
         mBinding.toolBar.ivSearch.setOnClickListener(this);
         mBinding.toolBar.ivDrawer.setOnClickListener(this);
-        mBinding.layoutDrawerLeft.layoutLogout.setOnClickListener(this);
+        mBinding.toolBar.layoutCart.setOnClickListener(this);
+        mBinding.layoutDrawerLeft.tvLogout.setOnClickListener(this);
         mBinding.layoutDrawerLeft.ivProfile.setOnClickListener(this);
         mBinding.layoutDrawerLeft.ivUpdate.setOnClickListener(this);
         mBinding.bottomLayout.linearLayoutBar1.setOnClickListener(this);
@@ -294,6 +293,15 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();
             pushFragment(new UserProfileFragment(), null, R.id.container, true, false, NONE);
+        } else if (mBinding.layoutDrawerLeft.tvLogout == view) {
+            CommonUtility.clicked(mBinding.layoutDrawerLeft.tvLogout);
+            mPresenter.logout(this);
+        }else if (view == mBinding.toolBar.layoutCart) {
+            if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                addFragmentInContainer(new CartFragment(), null, true, true, NONE);
+            } else {
+                showToast(getResources().getString(R.string.please_add_data_in_cart_first));
+            }
         }
     }
 
@@ -388,8 +396,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                         Fragment fragment = manager.getFragments()
                                 .get(backStackEntryCount - 1);
                         if (previousCount > backStackEntryCount) {
-                            showToast("Calling");
-                            ((DashboardFragment)fragment).headerChangedCalled();
+                            ((DashboardFragment) fragment).headerChangedCalled();
                         }
                         previousCount = backStackEntryCount;
                     }

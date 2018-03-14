@@ -6,8 +6,10 @@ import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
+import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
+import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
@@ -40,6 +42,9 @@ public interface ApiService {
     Observable<BaseResponse> registerMerchant(@Body RegisterRequest register);
     @POST("register/login")
     Observable<LoginResponseData> loginMerchant(@Body LoginRequest request);
+
+    @GET("register/logout")
+    Observable<BaseResponse> logout();
 
     @POST("register/verifyotp")
     Observable<VerifyMobileResponse> verifyMobileNumber(@Body VerifyMobileRequest request);
@@ -125,5 +130,9 @@ public interface ApiService {
     @POST("shopping/get_merchant_cancel_requested")
     Observable<ProductFullInformationData> getCancelRequest();
 
+    @POST("cart/deletecart")
+    Observable<BaseResponse> deleteCart(@Body DeleteCartRequest request);
 
+    @POST("cart/addcart")
+    Observable<BaseResponse> addToCart(@Body CartRequest request);
 }

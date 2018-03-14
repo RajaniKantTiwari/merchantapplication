@@ -69,7 +69,8 @@ public interface AppConstants {
     int CHART_DATA =1;
     int ORDER_DATA =2;
     int DELIVERY_BOY_DATA = 10091;
-
+    int SELECT_MANUALLY = 999;
+    int PERMISSIONS_REQUEST_LOCATION = 99;
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

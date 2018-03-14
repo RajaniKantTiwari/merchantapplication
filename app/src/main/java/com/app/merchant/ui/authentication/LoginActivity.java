@@ -33,6 +33,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        mBinding.edEmail.setText(PreferenceUtils.getEmail());
         setListener();
     }
 
@@ -60,6 +61,9 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                         if(CommonUtility.isNotNull(loginResponse.getAuthkey())){
                             PreferenceUtils.setUserId(loginResponse.getAuthkey().getId());
                             PreferenceUtils.setAuthToken(loginResponse.getAuthkey().getAuth_key());
+                            PreferenceUtils.setEmail(email);
+                            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
+                            finish();
                         }
                     }
                 }

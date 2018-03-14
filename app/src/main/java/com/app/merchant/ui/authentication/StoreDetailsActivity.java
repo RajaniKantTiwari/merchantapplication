@@ -5,16 +5,15 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.RadioButton;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityStoreDetailsBinding;
 import com.app.merchant.event.EncodedBitmap;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.base.MvpView;
+import com.app.merchant.ui.dialogfrag.OkDialogFragment;
 import com.app.merchant.ui.uploadfile.UploadImage;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -26,7 +25,6 @@ import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import javax.inject.Inject;
 
@@ -97,10 +95,14 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
                 if (response.getStatus().equals(AppConstants.SUCCESS)) {
                     Bundle bundle = new Bundle();
                     bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
+                    bundle.putString(BundleConstants.EMAIL,register.getEmail());
                     ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
         }
     }
+
+
+
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvDone) {
@@ -286,4 +288,5 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         super.onDestroy();
         CommonUtility.unregister(this);
     }
+
 }

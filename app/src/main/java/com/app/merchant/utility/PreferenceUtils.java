@@ -108,13 +108,7 @@ public class PreferenceUtils {
         return Hawk.get(PreferenceConstants.IS_LOGIN, false);
     }
 
-    public static void setUserMono(String userMono) {
-        Hawk.put(PreferenceConstants.USER_MONO, userMono);
-    }
 
-    public static String getUserMono() {
-        return Hawk.get(PreferenceConstants.USER_MONO, null);
-    }
 
 
     public static void setAddress(String address) {
@@ -151,9 +145,9 @@ public class PreferenceUtils {
         return null;
     }
     public static void setCartData(ArrayList<ProductData> addCartList) {
-        Hawk.put(getUserMono(), addCartList);
+        Hawk.put(getEmail(), addCartList);
     }
     public static ArrayList<ProductData> getCartData() {
-        return Hawk.get(getUserMono(),null);
+        return Hawk.get(getEmail(),null);
     }
 }

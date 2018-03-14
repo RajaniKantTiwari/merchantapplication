@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="com.app.merchant.utility.CommonUtility"/>
+        <variable
+            name="cartData"
+            type="com.app.merchant.network.response.dashboard.cart.ProductData"/>
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        style="@style/match_wrap"
+        android:padding="@dimen/margin_7">
+
+        <ImageView
+            android:id="@+id/ivProductImage"
+            android:layout_width="@dimen/margin_70"
+            android:layout_height="@dimen/margin_70"
+            android:background="@drawable/stroke_grey"
+            android:layout_marginEnd="@dimen/margin_8"/>
+
+        <LinearLayout
+            style="@style/layout_hori_match_2"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvProductName"
+                style="@style/wrap_wrap"
+                android:maxLines="1"
+                android:text="@={cartData.productname}"
+                android:textColor="@color/color_black_cart"
+                android:textSize="@dimen/textSize_description"
+                app:customFont="@string/font_bold" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvProQuantity"
+                style="@style/textview_description_smaller_wrap"
+                android:maxLines="1"
+                android:text="@={cartData.measure}"
+                android:textColor="@color/light_grey"
+                app:customFont="@string/font_bold" />
+            <LinearLayout
+                style="@style/wrap_wrap">
+                <ImageView
+                    style="@style/image_13"
+                    android:layout_marginEnd="@dimen/margin_4"
+                    android:src="@drawable/rupee_blue"/>
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvProductPrice"
+                    style="@style/textview_description_small_wrap"
+                    android:text="@{CommonUtility.twoDecimalPlace(cartData.product_mrp)}"
+                    android:textColor="@color/color_blue" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            style="@style/layout_hori_match_1"
+            android:gravity="center_vertical">
+            <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
+            <ImageView
+                android:id="@+id/ivAdd"
+                style="@style/add_sub_view"
+                android:src="@drawable/add_black"
+                />
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvQuantity"
+                style="@style/textview_description_wrap"
+                android:gravity="center_horizontal"
+                android:textColor="@color/color_black_cart"
+                android:textSize="@dimen/textSize_description"
+                android:layout_marginStart="@dimen/margin_5"
+                android:layout_marginEnd="@dimen/margin_5"
+                app:customFont="@string/font_bold" />
+
+            <ImageView
+                android:id="@+id/ivSub"
+                style="@style/add_sub_view"
+                android:src="@drawable/sub_black" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivDeleteCart"
+            style="@style/image_50"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/margin_10"
+            android:src="@drawable/cross" />
+    </LinearLayout>
+</layout>

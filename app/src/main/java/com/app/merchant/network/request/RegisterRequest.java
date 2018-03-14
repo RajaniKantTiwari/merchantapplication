@@ -28,8 +28,8 @@ public class RegisterRequest implements Parcelable {
     private String storeimage;
     private String facultyimage;
     private String ownerimage;
-    private double lat=28.544869;
-    private double lng=77.128134;
+    private double lat;
+    private double lng;
     private ArrayList<StoreImage> storeList;
     private ArrayList<String> otherServiceArea;
     private String password;

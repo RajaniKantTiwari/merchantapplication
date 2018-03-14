@@ -23,6 +23,7 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
+import com.app.merchant.ui.dialogfrag.OkDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
@@ -35,12 +36,14 @@ import javax.inject.Inject;
  * Created by on 23/12/17.
  */
 
-public class VerifyAccountActivity extends CommonActivity implements TextWatcher, View.OnKeyListener, CustomDialogFragment.CustomDialogListener {
+public class VerifyAccountActivity extends CommonActivity implements TextWatcher, View.OnKeyListener,
+        CustomDialogFragment.CustomDialogListener, OkDialogFragment.OkDialogListener {
     private ActivityVerifyAccountBinding mBinding;
     StringBuilder otpNumber = new StringBuilder();
     @Inject
     CommonPresenter presenter;
     private String mobileNumber;
+    private String email;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         if (isNotNull(intent)) {
             Bundle bundle = intent.getExtras();
             if (isNotNull(bundle)) {
+                email=bundle.getString(BundleConstants.EMAIL);
                 mobileNumber = bundle.getString(BundleConstants.MOBILE_NUMBER);
             }
         }
@@ -105,7 +109,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
             getOtp(response);
         }
         if (!MerchantApplication.isDebug) {
-            ExplicitIntent.getsInstance().navigateTo(this, StoreDetailsActivity.class);
+            ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
         }
     }
 
@@ -133,9 +137,9 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             hideKeyboard();
                             PreferenceUtils.setUserId(verifyMobileResponse.getId());
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
+                            PreferenceUtils.setEmail(email);
                             PreferenceUtils.setLogin(true);
-                            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
-                            finish();
+                           CommonUtility.showOkDialog(this,this);
                         } else {
                             hideKeyboard();
                             showToast(getResources().getString(R.string.server_error));
@@ -236,5 +240,11 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Override
     public void cancel() {
 
+    }
+
+    @Override
+    public void next(String str) {
+        ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
+        finish();
     }
 }

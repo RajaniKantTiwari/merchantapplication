@@ -35,7 +35,6 @@
                 android:hint="@string/abc"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
-                android:text="abc@gmail.com"
                 android:inputType="textEmailAddress"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
@@ -53,7 +52,6 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/password"
-                android:text="12345678"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:inputType="textPassword"
@@ -72,8 +70,7 @@
                 android:id="@+id/edMobileNumber"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/password"
-                android:text="1234567890"
+                android:hint="@string/mobileNumber"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:inputType="number"
@@ -98,7 +95,6 @@
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:inputType="text"
-                android:text="Delhi"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
@@ -110,12 +106,11 @@
                 style="@style/textview_description_ex_large_match"
                 android:text="@string/address" />
 
-            <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edAddress"
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddress"
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_your_full_address"
-                android:text="jsfdjhhsdjkhhsdfkjhkjhsdfkjhkjhsdfjh"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:inputType="text"
@@ -147,7 +142,6 @@
                 android:imeOptions="actionNext"
                 android:maxLines="1"
                 android:inputType="text"
-                android:text="kjhsjdfhhsdfkjsdfkjh"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 

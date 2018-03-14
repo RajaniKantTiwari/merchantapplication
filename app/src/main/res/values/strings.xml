@@ -9,7 +9,7 @@
     <string name="server_error">Server Error</string>
     <!-- setting Map Key Here-->
     <!--<string name="google_api_key">AIzaSyARxWYiJxPPGiVAzsO-v4aA_Shfjzckjwg</string>-->
-    <string name="google_application_key">AIzaSyDWNa4ZMLduib0GGSgYeIv_-FTp6v6bxrI</string>
+    <string name="google_application_key">AIzaSyDWylt_HUZBnJJIHX6URlmjTbdK2mCdWPs</string>
     <string name="no_internet"> Internet Connection is not Available </string>
 
 
@@ -260,7 +260,10 @@
     <string name="customer_mobile">Customer Mobile</string>
     <string name="enter_address">Enter Address</string>
     <string name="tap_once_more_to_exit">Tap once more to exit</string>
-
+    <string name="gps_permittion_denied">Permission Denied, You cannot access location data.</string>
+    <string name="cart"> Cart </string>
+    <string name="checkout_now">Checkout Now</string>
+    <string name="document_shall_be_reviewed">documents shall be reviewed and we shall revert in few days</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

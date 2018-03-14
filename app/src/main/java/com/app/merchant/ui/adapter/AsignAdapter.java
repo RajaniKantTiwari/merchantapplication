@@ -30,17 +30,20 @@ public class AsignAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        String days = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = mInflator.inflate(R.layout.spinner_row, parent, false);
         }
-        TextView tvDays = convertView.findViewById(R.id.tvDays);
-        if(position==getCount()){
-           tvDays.setBackgroundResource(0);
+        try {
+            TextView tvDays = convertView.findViewById(R.id.tvDays);
+            if(position==getCount()){
+               tvDays.setBackgroundResource(0);
+            }
+            String days = getItem(position);
+            tvDays.setText(days);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        tvDays.setText(days);
         return convertView;
     }
     @Override

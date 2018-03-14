@@ -5,8 +5,10 @@ import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
+import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
+import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
@@ -55,8 +57,8 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Completable logout() {
-        return null;
+    public Observable<BaseResponse> logout() {
+        return apiService.logout();
     }
 
 
@@ -150,6 +152,14 @@ public class RetrofitRepository implements Repository {
     public Observable<OrderReturnedData> getOrderReturned() {
         return apiService.getOrderReturned();
     }
+    @Override
+    public Observable<BaseResponse> deleteFromCart(DeleteCartRequest request) {
+        return apiService.deleteCart(request);
+    }
 
+    @Override
+    public Observable<BaseResponse> addToCart(CartRequest cartRequest) {
+        return apiService.addToCart(cartRequest);
+    }
 
 }

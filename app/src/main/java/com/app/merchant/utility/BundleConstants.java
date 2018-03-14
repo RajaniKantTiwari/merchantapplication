@@ -5,10 +5,10 @@ package com.app.merchant.utility;
  */
 
 public interface BundleConstants {
-    String USER_NAME = "user_name";
     String MOBILE_NUMBER = "mobile_number";
     String VISIBLE = "visible";
     String TITLE = "title";
     String REGISTER_USER = "register_user";
     String DELIVERY_BOY_LIST = "delivery_boy_list";
+    String EMAIL ="email" ;
 }
