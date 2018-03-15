@@ -5,6 +5,25 @@
     android:orientation="vertical"
     style="@style/match_match"
     android:background="@color/white">
+    <LinearLayout
+        style="@style/match_wrap">
+        <android.support.v4.widget.Space
+            style="@style/layout_ver_match_1" />
+        <ImageView
+            android:id="@+id/ivAddProduct"
+            style="@style/image_50"
+            android:src="@drawable/add"
+            android:padding="@dimen/margin_10"
+            android:paddingEnd="@dimen/margin_5"
+            />
+        <ImageView
+            android:id="@+id/ivScan"
+            style="@style/image_50"
+            android:src="@drawable/barcode"
+            android:padding="@dimen/margin_10"
+            android:paddingStart="@dimen/margin_5"
+            />
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvInventory"
         style="@style/match_match"/>

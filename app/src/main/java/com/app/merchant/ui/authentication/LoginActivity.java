@@ -34,6 +34,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         mBinding.edEmail.setText(PreferenceUtils.getEmail());
+        mBinding.edEmail.setSelection(mBinding.edEmail.getText().length());
         setListener();
     }
 

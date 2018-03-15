@@ -10,22 +10,16 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentInventoryBinding;
-import com.app.merchant.databinding.FragmentNotificationBinding;
 import com.app.merchant.event.InventoryEvent;
-import com.app.merchant.network.request.dashboard.home.MyInventory;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyInventoryAdapter;
-import com.app.merchant.ui.dashboard.notification.NotificationAdapter;
+import com.app.merchant.ui.scanner.ScannerActivity;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.utility.ExplicitIntent;
 
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.ArrayList;
-
-import javax.inject.Inject;
 
 
 /**
@@ -50,12 +44,14 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     public void initializeData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvInventory.setLayoutManager(layoutManager);
-        myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(),this);
+        myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this);
         mBinding.rvInventory.setAdapter(myInventoryAdapter);
     }
 
     @Override
     public void setListener() {
+        mBinding.ivAddProduct.setOnClickListener(this);
+        mBinding.ivScan.setOnClickListener(this);
 
     }
 
@@ -73,19 +69,25 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     public void onSuccess(BaseResponse response, int requestCode) {
 
     }
+
     @Subscribe
     public void onMessageEvent(InventoryEvent event) {
         if (event.getOrderInventory() == AppConstants.MY_INVENTORY) {
             mBinding.layoutInventory.setVisibility(View.VISIBLE);
             myInventoryAdapter.setList(event.getMyInventoryList());
-        } else{
+        } else {
             mBinding.layoutInventory.setVisibility(View.GONE);
 
         }
     }
+
     @Override
     public void onClick(View view) {
+        if (view == mBinding.ivAddProduct) {
 
+        } else if (view == mBinding.ivScan) {
+            ExplicitIntent.getsInstance().navigateForResult(getDashboardActivity(), ScannerActivity.class,AppConstants.SCANNER_RESULT);
+        }
     }
 
     @Override

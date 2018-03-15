@@ -112,6 +112,8 @@ dependencies {
     compile "com.google.android.gms:play-services-maps:${project.playServiceVersion}"
     compile "com.google.android.gms:play-services-gcm:${project.playServiceVersion}"
     compile "com.google.android.gms:play-services-places:${project.playServiceVersion}"
+    compile "com.google.android.gms:play-services-vision:${project.playServiceVersion}"
+
     //
     compile 'me.relex:circleindicator:1.2.2@aar'
     compile 'com.mikepenz:fontawesome-typeface:4.7.0.0@aar'

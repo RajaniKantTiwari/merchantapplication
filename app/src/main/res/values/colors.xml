@@ -16,6 +16,7 @@
     -->
     <color name="colorPrimary">#9F9F9F</color>
     <color name="colorPrimaryDark">#7F7F7F</color>
+    <color name="actionbar_opacity">#33000000</color>
 
     <color name="welcomeTitleColor">#939393</color>
     <color name="dashboardTitleColor">#1E2630</color>
@@ -176,6 +177,7 @@
     <color name="text_hint_color">#b2b2b2</color>
     <color name="old_noti">#96989A</color>
     <color name="color_apply">#1daeeb</color>
+    <color name="scanner_line">#00ceff</color>
 
 
 </resources>
