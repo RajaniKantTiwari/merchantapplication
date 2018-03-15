@@ -51,7 +51,7 @@ public class ForgotPasswordActivity extends CommonActivity implements MvpView, V
     public void onClick(View view) {
         if(view==mBinding.tvReset) {
             CommonUtility.clicked(mBinding.tvReset);
-            ExplicitIntent.getsInstance().navigateTo(this, DashBoardActivity.class);
+            ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, LoginActivity.class);
             if (isValid()) {
                 if (isNetworkConnected()) {
                     //presenter.resetPassword(this, new LoginRequest(email, password));

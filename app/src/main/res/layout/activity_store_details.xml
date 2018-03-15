@@ -53,9 +53,10 @@
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_pan_number"
                 android:maxLength="@integer/pan_length"
-                android:inputType="text"
+                android:inputType="textCapCharacters"
                 android:maxLines="1"
                 android:imeOptions="actionNext"
+
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
@@ -79,9 +80,10 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_gst_number"
-                android:inputType="text"
+                android:inputType="textCapCharacters"
                 android:maxLines="1"
                 android:imeOptions="actionNext"
+
                 android:maxLength="@integer/gstin_length"
                 android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
                 android:paddingBottom="@dimen/margin_3"

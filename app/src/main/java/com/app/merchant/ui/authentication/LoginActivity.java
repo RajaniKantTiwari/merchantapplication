@@ -2,7 +2,10 @@ package com.app.merchant.ui.authentication;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityLoginBinding;
@@ -42,6 +45,19 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
         mBinding.forgotPassword.setOnClickListener(this);
         mBinding.tvLogin.setOnClickListener(this);
         mBinding.tvSignupForAccount.setOnClickListener(this);
+        mBinding.edPassword.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (isValid()) {
+                        if (isNetworkConnected()) {
+                            presenter.loginMerchant(LoginActivity.this, new LoginRequest(email, password));
+                        }
+                    }
+                }
+                return false;
+            }
+        });
     }
 
 
