@@ -74,7 +74,6 @@ public class DeliveryBoyDialogFragment extends DialogFragment implements View.On
                 if (position != deliveryBoyNameList.size() - 1) {
                     if (CommonUtility.isNotNull(view)) {
                         view.setBackgroundResource(0);
-                        Toast.makeText(mActivity, "" + position, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

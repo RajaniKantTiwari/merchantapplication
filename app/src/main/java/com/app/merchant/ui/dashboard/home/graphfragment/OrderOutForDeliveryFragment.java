@@ -61,7 +61,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     private boolean hasLabels = false;
     private boolean isCubic = false;
     private boolean hasLabelForSelected = false;
-    private boolean pointsHaveDifferentColor;
+    /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
     private OrderOutForDeliveryAdapter mAdapter;
     //End Chart
@@ -78,7 +78,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     @Override
     public void initializeData() {
         getPresenter().getOrderOutForDeliveryChart(getDashboardActivity());
-        //getPresenter().getOrderOutForDelivery(getDashboardActivity());
+        getPresenter().getOrderOutForDelivery(getDashboardActivity());
         initializeOrderData();
     }
 
@@ -145,9 +145,9 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
             line.setHasLines(hasLines);
             line.setHasPoints(hasPoints);
             line.setHasGradientToTransparent(hasGradientToTransparent);
-            if (pointsHaveDifferentColor) {
+            /*if (pointsHaveDifferentColor) {
                 line.setPointColor(ChartUtils.COLORS[(i + 1) % ChartUtils.COLORS.length]);
-            }
+            }*/
             lines.add(line);
         }
         this.data = new LineChartData(lines);
