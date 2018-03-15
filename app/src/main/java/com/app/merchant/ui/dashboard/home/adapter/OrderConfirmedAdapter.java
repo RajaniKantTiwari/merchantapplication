@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderConfirmedRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmed;
+import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -21,14 +23,18 @@ import java.util.ArrayList;
 public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
+    private final ArrayList<OrderConfirmed> orderList;
     private OrderConfirmedListener listener;
+
     public interface OrderConfirmedListener {
         void onOrderConfirmClick(int position);
     }
+
     public OrderConfirmedAdapter(AppCompatActivity activity, ArrayList<OrderConfirmed> orderList, OrderConfirmedListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
-        this.listener=listener;
+        this.orderList = orderList;
+        this.listener = listener;
     }
 
     @Override
@@ -39,25 +45,27 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
+        if (CommonUtility.isNotNull(orderList) && orderList.size() > position) {
+           holder.tvOrderNumber.setText(String.valueOf(orderList.get(position).getId()));
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(orderList) ? orderList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final OrderConfirmedRowBinding mBinding;
-        private ImageView productImage;
+        private final CustomTextView tvOrderNumber;
 
         public ProductViewHolder(OrderConfirmedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
+            tvOrderNumber = mBinding.tvOrderNumber;
             itemView.layoutOrderStatus.setOnClickListener(this);
         }
-
 
 
         @Override

@@ -24,6 +24,7 @@ import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -231,6 +232,7 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     @Override
     public void onOrderConfirmClick(int position) {
         Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST,deliveryBoyList);
         CommonUtility.showNewDeliveryDialog(getDashboardActivity(), bundle, this);
     }
 

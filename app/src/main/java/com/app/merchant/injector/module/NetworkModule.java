@@ -56,8 +56,8 @@ public class NetworkModule {
 
         httpClient.addInterceptor(chain -> {
             Request original = chain.request();
-            String accessToken = PreferenceUtils.getAuthToken();
-            // String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
+            //String accessToken = PreferenceUtils.getAuthToken();
+            String accessToken ="CdKTrx99uXEu29q_WnKu-QV8sgHQAjGl";
             //hamara dost Auth Bearer
             //String accessToken ="ly5hT6byu0mONyphtwbtX-fATyNo9h79";
 
