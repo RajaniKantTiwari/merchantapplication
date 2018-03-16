@@ -8,7 +8,7 @@
 
         <include
             android:id="@+id/layoutDate"
-            layout="@layout/layout_date" />
+            layout="@layout/layout_order" />
 
         <ImageView
             android:id="@+id/layoutLine"

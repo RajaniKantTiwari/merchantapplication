@@ -544,4 +544,23 @@ public class CommonUtility {
         }
         return createdDate;
     }
+
+    public static String formatTimeHHMM(String date) {
+        String createdDate=null;
+        try {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            Date cDate=dateFormat.parse(date);
+            DateFormat newDateFormat = new SimpleDateFormat("dd-MM hh:mm");
+            newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
+            return newDateFormat.format(cDate);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return createdDate;
+    }
+
+    public static String setTotalDue(int rs, String totaldue) {
+        return rs+" "+totaldue;
+    }
 }

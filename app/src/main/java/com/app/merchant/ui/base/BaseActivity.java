@@ -21,7 +21,7 @@ import com.app.merchant.R;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
 import com.app.merchant.ui.dashboard.home.MyInventoryFragment;
 import com.app.merchant.ui.dashboard.home.MyOrderFragment;
-import com.app.merchant.ui.dashboard.home.ProductInventoryFragment;
+import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.NetworkUtility;
@@ -220,7 +220,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new MyOrderFragment();
                 break;
             case PRODUCT_INVENTORY_FRAGMENT:
-                fragment=new ProductInventoryFragment();
+                fragment=new OrderInventoryFragment();
                 break;
             case ALL_PERFORMANCE:
                 fragment= new AllPerformanceFragment();

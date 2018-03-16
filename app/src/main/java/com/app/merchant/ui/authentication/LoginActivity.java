@@ -79,6 +79,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                             PreferenceUtils.setUserId(loginResponse.getAuthkey().getId());
                             PreferenceUtils.setAuthToken(loginResponse.getAuthkey().getAuth_key());
                             PreferenceUtils.setEmail(email);
+                            PreferenceUtils.setLogin(true);
                             ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
                             finish();
                         }

@@ -11,27 +11,26 @@
         android:layout_height="@dimen/margin_30"
         android:background="@drawable/layer">
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvId"
             style="@style/order_text_view_large"
-            android:text="@={orderReceived.id}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvTime"
             style="@style/order_text_view_large"
-            android:text="@{CommonUtility.formatDate(orderReceived.createdAt)}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAmount"
             style="@style/order_text_view_large"
-            android:text="@={orderReceived.totaldue}"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/layoutOrderStatus"
+            android:id="@+id/tvPaymentStatus"
             style="@style/order_text_view_large"
-            android:text="PENDING"
             android:maxLength="15"/>
     </LinearLayout>
 

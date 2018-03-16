@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /*
+  ~  * Copyright (c) 2018 Virdrobe. All rights reserved. Developed by Appster.
+  ~  * Unauthorized copying of this file, via any medium is strictly prohibited Proprietary and confidential
+  ~  */
+  -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"></LinearLayout>
+   <!-- <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        tools:context="com.virdrobe.ui.brand.profile.BrandProfileActivity">
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            app:layout_behavior="com.virdrobe.widget.FlingAppBarLayoutBehavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/margin_15"
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                app:layout_scrollFlags="scroll">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_210"
+                    android:background="@android:color/white">
+
+                    <ImageView
+                        android:id="@+id/imageCoverPic"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_200"
+                        android:background="@color/colorPrimary"
+                        android:scaleType="centerCrop" />
+
+                    <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+                        android:id="@+id/exo_cover"
+                        style="@style/exoplayer_style"
+                        android:layout_height="@dimen/margin_200"
+                        app:resize_mode="fixed_width"
+                        app:use_controller="false" />
+                    <ProgressBar
+                        android:id="@+id/progressBarExo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="gone"
+                        android:layout_marginBottom="@dimen/margin_33"/>
+                    <View
+                        android:id="@+id/exo_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/margin_200"
+                        android:background="@android:color/transparent"
+                        android:visibility="gone"/>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/diagaonal_view_brand_dashboard">
+
+                        <FrameLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true">
+
+                            <de.hdodenhof.circleimageview.CircleImageView
+                                android:id="@+id/image_brand"
+                                style="@style/profile_img"
+                                android:src="@drawable/ic_placeholder_friends"
+                                android:background="@drawable/bg_profile_image"
+                                app:civ_border_color="@color/profile_border_color"
+                                app:civ_border_width="@dimen/outer_circle_width" />
+
+                            <com.virdrobe.widget.CustomTextView
+                                android:id="@+id/tvStarCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="end|bottom"
+                                android:layout_marginBottom="@dimen/margin_5"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/ic_star_black"
+                                android:gravity="center"
+                                android:textColor="@color/yellow_tan"
+                                android:textSize="@dimen/textSize10"
+                                android:visibility="gone"
+                                app:customFont="@string/font_light" />
+                        </FrameLayout>
+
+                    </RelativeLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|end"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <ImageView
+                            android:id="@+id/image_chat"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size14dp"
+                            android:contentDescription="@string/content_des"
+                            android:src="@drawable/ic_chat_white" />
+                        <ImageView
+                            android:id="@+id/imageThreeDots"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/size14dp"
+
+                            android:src="@drawable/ic_three_dot_white"
+                            android:visibility="visible"
+                            />
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/image_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top|start"
+                        android:padding="@dimen/size14dp"
+                        android:contentDescription="@string/content_des"
+
+                        android:src="@drawable/ic_back_shadow" />
+
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:orientation="vertical">
+
+                    <com.virdrobe.widget.CustomTextView
+                        android:id="@+id/textBrandName"
+                        style="@style/heavyXLBlac"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/margin_12"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:padding="@dimen/margin_5" />
+
+                    <include
+                        android:id="@+id/include_follow_button"
+                        layout="@layout/layout_follow_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/margin_12" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_review"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical"
+                            tools:ignore="RelativeOverlap">
+
+                            <com.virdrobe.widget.CustomTextView
+                                android:id="@+id/text_review_count"
+                                style="@style/TextStyleCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+                            <com.virdrobe.widget.CustomTextView
+                                style="@style/TextStyleFollowers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_reviewer" />
+
+                        </LinearLayout>
+                        <View
+                            android:id="@+id/view"
+                            android:layout_width="@dimen/margin_1"
+                            android:layout_height="@dimen/margin_25"
+                            android:layout_marginEnd="@dimen/margin_20"
+                            android:layout_marginStart="@dimen/margin_20"
+
+                            android:background="@color/lineColor" />
+
+
+                        <LinearLayout
+                            android:id="@+id/layout_followers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_horizontal"
+                            android:orientation="vertical">
+
+                            <com.virdrobe.widget.CustomTextView
+                                android:id="@+id/text_follow_count"
+                                style="@style/TextStyleCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+
+                            <com.virdrobe.widget.CustomTextView
+                                android:id="@+id/text_follower_place"
+                                style="@style/TextStyleFollowers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/text_followers_caps" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="pin"
+                android:layout_marginTop="@dimen/negative_margin_10"
+                app:tabPaddingBottom="@dimen/negative_margin_10"
+                app:layout_scrollFlags="scroll|enterAlways"
+                app:tabGravity="center">
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/tab_lookbook" />
+
+
+                <android.support.design.widget.TabItem
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout="@layout/tab_wardrobe" />
+
+
+            </android.support.design.widget.TabLayout>
+
+
+        </android.support.design.widget.AppBarLayout>
+        <ImageView
+            android:id="@+id/filterBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/margin_30"
+            android:layout_marginEnd="@dimen/margin_30"
+            android:contentDescription="@string/content_des"
+            android:background="@drawable/ic_float_filter"
+            android:visibility="gone" />
+    </android.support.design.widget.CoordinatorLayout>-->
+</layout>

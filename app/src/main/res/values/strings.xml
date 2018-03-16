@@ -279,6 +279,7 @@
     <string name="barcode_failure">No barcode captured</string>
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
     <string name="grant">GRANT</string>
+    <string name="rs">Rs.</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/layoutProductInventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_behavior="com.app.merchant.utility.FlingAppBarLayoutBehavior">
+            ​
+
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|snap">
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax">
+
+                    <include
+                        android:id="@+id/layoutDate"
+                        layout="@layout/layout_order" />
+                </LinearLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:orientation="vertical"
+                app:layout_collapseMode="pin">
+                <include
+                    android:id="@+id/layoutDate"
+                    layout="@layout/layout_date"/>
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_height="@dimen/margin_33"
+                    android:background="@color/grey_white"
+                    >
+
+                    <RelativeLayout
+                        android:id="@+id/layoutOrder"
+                        style="@style/layout_hori_match_1">
+
+                        <com.app.merchant.widget.CustomTextView
+                            android:id="@+id/tvMyOrder"
+                            style="@style/textview_description_wrap"
+                            android:layout_centerInParent="true"
+                            android:text="@string/my_order"
+                            android:textAllCaps="true"
+                            android:textColor="@color/date_bg_color" />
+                    </RelativeLayout>
+
+                    <ImageView
+                        style="@style/view_layout_vertical_white"
+                        android:layout_marginBottom="@dimen/margin_7"
+                        android:layout_marginTop="@dimen/margin_7" />
+
+                    <RelativeLayout
+                        android:id="@+id/layoutInventory"
+                        style="@style/layout_hori_match_1">
+
+                        <com.app.merchant.widget.CustomTextView
+                            android:id="@+id/tvInventory"
+                            style="@style/textview_description_wrap"
+                            android:layout_centerInParent="true"
+                            android:text="@string/my_inventory"
+                            android:textAllCaps="true" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <FrameLayout
+            android:id="@+id/container"
+            style="@style/match_match"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+    </android.support.design.widget.CoordinatorLayout>
+</layout>

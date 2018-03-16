@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        style="@style/match_wrap"
+        android:orientation="vertical">
+        <com.app.merchant.widget.CustomTextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/margin_150"
+            android:background="@drawable/imge"
+            android:gravity="center_vertical"
+            android:padding="@dimen/margin_21"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSize_header_large" />
+    </LinearLayout>
+</layout>

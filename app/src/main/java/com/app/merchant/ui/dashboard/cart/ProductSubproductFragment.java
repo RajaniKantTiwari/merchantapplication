@@ -30,7 +30,7 @@ import com.app.merchant.ui.dashboard.cart.adapter.CartAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
 import com.app.merchant.ui.dashboard.home.FullInformationFragment;
-import com.app.merchant.ui.dashboard.home.ProductInventoryFragment;
+import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.PreferenceUtils;
@@ -106,7 +106,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
             case R.id.tvMyInventory:
                 CommonUtility.clicked(mBinding.tvMyInventory);
                 Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new ProductInventoryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+                getDashboardActivity().addFragmentInContainer(new OrderInventoryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
                 break;
             case R.id.tvCustomer:
                 CommonUtility.clicked(mBinding.tvMyInventory);

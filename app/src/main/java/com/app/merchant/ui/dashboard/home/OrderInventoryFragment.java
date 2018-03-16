@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentProductInventoryBinding;
+import com.app.merchant.databinding.FragmentOrderInventoryBinding;
 import com.app.merchant.event.InventoryEvent;
 import com.app.merchant.event.PerformanceInventoryEvent;
 import com.app.merchant.network.response.BaseResponse;
@@ -28,18 +28,18 @@ import javax.inject.Inject;
  * Created by ashok on 13/11/17.
  */
 
-public class ProductInventoryFragment extends DashboardFragment {
+public class OrderInventoryFragment extends DashboardFragment {
 
     @Inject
     CommonPresenter presenter;
-    private FragmentProductInventoryBinding mBinding;
+    private FragmentOrderInventoryBinding mBinding;
     private InventoryEvent event;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_product_inventory, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_inventory, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.welcome));
         CommonUtility.register(this);
         addFragment();
@@ -70,7 +70,7 @@ public class ProductInventoryFragment extends DashboardFragment {
 
     @Override
     public String getFragmentName() {
-        return ProductInventoryFragment.class.getSimpleName();
+        return OrderInventoryFragment.class.getSimpleName();
     }
 
     @Override

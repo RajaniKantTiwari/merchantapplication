@@ -12,6 +12,7 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.OrderReceivedRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceived;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -45,7 +46,13 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
     @Override
     public void onBindViewHolder(OrderReceivedViewHolder holder, int position) {
         if (CommonUtility.isNotNull(orderReceivedList) && orderReceivedList.size() > position) {
-            holder.setOrderReceivedData(position);
+            OrderReceived received = orderReceivedList.get(position);
+            if (CommonUtility.isNotNull(received)) {
+                holder.tvId.setText(String.valueOf(received.getId()));
+                holder.tvTime.setText(CommonUtility.formatTimeHHMM(received.getCreatedAt()));
+                holder.tvAmount.setText(CommonUtility.setTotalDue(R.string.rs,received.getTotaldue()));
+                holder.tvPaymentStatus.setText(received.getPaymentStatus());
+            }
         }
 
     }
@@ -56,13 +63,18 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
     }
 
     class OrderReceivedViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final OrderReceivedRowBinding mBinding;
-        private ImageView productImage;
+        private final CustomTextView tvId;
+        private final CustomTextView tvTime;
+        private final CustomTextView tvAmount;
+        private final CustomTextView tvPaymentStatus;
 
         public OrderReceivedViewHolder(OrderReceivedRowBinding itemView) {
             super(itemView.getRoot());
-            mBinding = itemView;
-            itemView.layoutOrderStatus.setOnClickListener(this);
+            tvId = itemView.tvId;
+            tvTime = itemView.tvTime;
+            tvAmount = itemView.tvAmount;
+            tvPaymentStatus = itemView.tvPaymentStatus;
+            itemView.tvPaymentStatus.setOnClickListener(this);
         }
 
         @Override
@@ -70,8 +82,5 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
             listener.onOrderStatusClick(getAdapterPosition());
         }
 
-        public void setOrderReceivedData(int position) {
-            mBinding.setOrderReceived(orderReceivedList.get(position));
-        }
     }
 }

@@ -70,7 +70,7 @@ public class ConfirmOrderFragment extends DashboardFragment {
             CommonUtility.clicked(mBinding.tvHome);
             getBaseActivity().clearAllBackStack();
             getDashboardActivity().changeIcon(WELCOME_HOME_FRAGMENT);
-            getDashboardActivity().addFragmentInContainer(new ProductInventoryFragment(), null, false, false, NONE);
+            getDashboardActivity().addFragmentInContainer(new OrderInventoryFragment(), null, false, false, NONE);
            // mFragmentNavigation.popFragment();
         }
     }
