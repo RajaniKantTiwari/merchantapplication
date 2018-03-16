@@ -10,6 +10,7 @@ import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
@@ -115,7 +116,7 @@ public interface ApiService {
     Observable<ProductFullInformationData> assignDeliveryBoyToOrder();
 
     @POST("shopping/get_all_orders")
-    Observable<BaseResponse> getAllOrders();
+    Observable<MyOrderData> getAllOrder();
 
     @POST("shopping/get_merchant_orders_return_requested_chart")
     Observable<BaseResponse> getOrderReturnedRequestChart();

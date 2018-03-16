@@ -45,7 +45,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 
 public class OrderDeliveredFragment extends DashboardFragment implements
-        DeliveryBoyDialogFragment.DeliveryBoyDialogListener,RatingDialogFragment.RatingDialogListener {
+        DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
 
     private FragmentOrderDeliveredBinding mBinding;
     private OrderDeliveredAdapter mAdapter;
@@ -54,7 +54,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfOrderDelivered ;
+    private int numberOfOrderDelivered;
     float[][] orderDeliveredTab;
     private boolean hasLines = true;
     private boolean hasPoints = true;
@@ -72,7 +72,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_delivered, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_delivered));
-        deliveredList=new ArrayList<>();
+        deliveredList = new ArrayList<>();
         return mBinding.getRoot();
     }
 
@@ -81,13 +81,13 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     public void initializeData() {
         getPresenter().getOrderDeliveredChart(getDashboardActivity());
         getPresenter().getOrderDelivered(getDashboardActivity());
-      initializeOrderData();
+        initializeOrderData();
     }
 
     private void initializeOrderData() {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(getContext());
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mAdapter=new OrderDeliveredAdapter(getDashboardActivity(),deliveredList);
+        mAdapter = new OrderDeliveredAdapter(getDashboardActivity(), deliveredList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -95,15 +95,13 @@ public class OrderDeliveredFragment extends DashboardFragment implements
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
         generateValues(data);
-
         generateData(data);
-
         // Disable viewport recalculations, see toggleCubic() method for more info.
         mBinding.lineChart.setViewportCalculationEnabled(false);
-
         resetViewport();
 
     }
+
     private void resetViewport() {
         // Reset viewport height range to (0,100)
         final Viewport v = new Viewport(mBinding.lineChart.getMaximumViewport());
@@ -114,6 +112,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
+
     private void generateValues(ArrayList<OrderDeliveredChart> data) {
         if (CommonUtility.isNotNull(data)) {
             numberOfOrderDelivered = data.size();
@@ -176,34 +175,34 @@ public class OrderDeliveredFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-           if(CommonUtility.isNotNull(response)){
-               if (requestCode == AppConstants.CHART_DATA) {
-                   setChartResponse(response);
-               } else if (requestCode == AppConstants.ORDER_DATA) {
-                   setOrderResponse(response);
-               }
-           }
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == AppConstants.CHART_DATA) {
+                setChartResponse(response);
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                setOrderResponse(response);
+            }
+        }
     }
 
     private void setOrderResponse(BaseResponse response) {
         OrderDeliveredData data = (OrderDeliveredData) response;
-            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
-                deliveredList.clear();
-                deliveredList.addAll(data.getData());
-                mAdapter.notifyDataSetChanged();
-            }
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            deliveredList.clear();
+            deliveredList.addAll(data.getData());
+            mAdapter.notifyDataSetChanged();
+        }
     }
 
     private void setChartResponse(BaseResponse response) {
-            OrderDeliveredChartData data = (OrderDeliveredChartData) response;
-            if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
-                initializeChartData(data.getData());
-            }
+        OrderDeliveredChartData data = (OrderDeliveredChartData) response;
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            initializeChartData(data.getData());
+        }
 
     }
 
@@ -211,15 +210,16 @@ public class OrderDeliveredFragment extends DashboardFragment implements
     public void onClick(View view) {
 
     }
+
     @Override
     public void newDeliveryBoy() {
-        Bundle bundle=new Bundle();
-        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(),bundle,true,true, BaseActivity.AnimationType.NONE);
+        Bundle bundle = new Bundle();
+        getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override
     public void submit(int id, float rating, String feedback) {
-       getDashboardActivity().showToast("Rating Submitted");
+        getDashboardActivity().showToast("Rating Submitted");
     }
 
     @Override

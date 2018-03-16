@@ -76,7 +76,6 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
                 if (position != deliveryBoyNameList.size() - 1) {
                     if (CommonUtility.isNotNull(view)) {
                         view.setBackgroundResource(0);
-                        Toast.makeText(mActivity, "" + position, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

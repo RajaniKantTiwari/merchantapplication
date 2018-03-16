@@ -124,7 +124,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
 
     private void generateData(ArrayList<OrderOutForDeliveryChart> data) {
 
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         List<AxisValue> axisValues = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
             List<PointValue> values = new ArrayList<>();

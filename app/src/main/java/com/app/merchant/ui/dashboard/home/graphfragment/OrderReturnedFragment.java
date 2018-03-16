@@ -175,7 +175,7 @@ public class OrderReturnedFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
-
+      getPresenter().attachView(this);
     }
 
     @Override

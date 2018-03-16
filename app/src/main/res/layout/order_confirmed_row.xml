@@ -12,17 +12,19 @@
         <ImageView
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAddress"
             style="@style/order_text_view_large"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAmmount"
             style="@style/order_text_view_large"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/layoutOrderStatus"
+            android:id="@+id/tvStatus"
             style="@style/order_text_view_large"
             android:maxLength="15"/>
     </LinearLayout>

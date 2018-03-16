@@ -11,6 +11,15 @@ public class OrderConfirmed {
     private String totaldue;
     private String paymentStatus;
     private String order_status;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public String getOrder_status() {
         return order_status;

@@ -48,10 +48,16 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
         if (CommonUtility.isNotNull(orderReceivedList) && orderReceivedList.size() > position) {
             OrderReceived received = orderReceivedList.get(position);
             if (CommonUtility.isNotNull(received)) {
-                holder.tvId.setText(String.valueOf(received.getId()));
+                holder.tvId.setText(received.getInvoiceNumber());
                 holder.tvTime.setText(CommonUtility.formatTimeHHMM(received.getCreatedAt()));
-                holder.tvAmount.setText(CommonUtility.setTotalDue(R.string.rs,received.getTotaldue()));
+                holder.tvAmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), received.getTotaldue()));
                 holder.tvPaymentStatus.setText(received.getPaymentStatus());
+                if (received.getPaymentStatus().equalsIgnoreCase(activity.getResources().getString(R.string.paid))) {
+                    holder.tvPaymentStatus.setTextColor(CommonUtility.getColor(activity, R.color.green_order));
+                } else {
+                    holder.tvPaymentStatus.setTextColor(CommonUtility.getColor(activity, R.color.black));
+                }
+
             }
         }
 

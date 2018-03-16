@@ -9,6 +9,42 @@ public class OrderReturned {
     private String invoiceNumber;
     private String createdAt;
     private String totaldue;
+    private String paymentStatus;
+    private String order_status;
+    private String ratings;
+    private String reason;
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
+    }
+
+    public String getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(String ratings) {
+        this.ratings = ratings;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
 
     public String getId() {
         return id;

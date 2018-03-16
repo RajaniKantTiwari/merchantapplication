@@ -53,8 +53,6 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     private int maxNumberOfLines = 4;
     private int numberOfReturnedCancel;
     float[][] orderReturnedCancelTab;
-    private boolean hasAxes = true;
-    private boolean hasAxesNames = false;
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -177,6 +175,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
 
     @Override
     public void attachView() {
+        getPresenter().attachView(this);
 
     }
 

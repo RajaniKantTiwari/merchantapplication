@@ -46,7 +46,15 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         if (CommonUtility.isNotNull(orderList) && orderList.size() > position) {
-           holder.tvOrderNumber.setText(String.valueOf(orderList.get(position).getId()));
+            OrderConfirmed confirmData = orderList.get(position);
+            if (CommonUtility.isNotNull(confirmData)) {
+                holder.tvOrderNumber.setText(confirmData.getInvoiceNumber());
+                holder.tvAddress.setText(confirmData.getAddress() == null ? activity.getResources().getString(R.string.not_known) : confirmData.getAddress());
+                holder.tvAmmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), confirmData.getTotaldue()));
+                holder.tvStatus.setText(confirmData.getPaymentStatus());
+                holder.tvStatus.setTextColor(confirmData.getPaymentStatus().equalsIgnoreCase(activity.getResources().getString(R.string.unpaid)) ?
+                        CommonUtility.getColor(activity, R.color.black) : CommonUtility.getColor(activity, R.color.green_order));
+            }
         }
 
     }
@@ -59,12 +67,18 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final OrderConfirmedRowBinding mBinding;
         private final CustomTextView tvOrderNumber;
+        private final CustomTextView tvStatus;
+        private final CustomTextView tvAmmount;
+        private final CustomTextView tvAddress;
 
         public ProductViewHolder(OrderConfirmedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
             tvOrderNumber = mBinding.tvOrderNumber;
-            itemView.layoutOrderStatus.setOnClickListener(this);
+            tvAddress = mBinding.tvAddress;
+            tvAmmount = mBinding.tvAmmount;
+            tvStatus = mBinding.tvStatus;
+            itemView.tvStatus.setOnClickListener(this);
         }
 
 

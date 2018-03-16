@@ -1,84 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/match_match"
-        android:orientation="vertical"
-        android:background="@color/white"
-        android:clickable="true">
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/layoutProductInventory"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <include
-            android:id="@+id/layoutDate"
-            layout="@layout/layout_order" />
-        <ImageView
-            android:id="@+id/layoutLine"
-            style="@style/view_layout_light_grey" />
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:layout_behavior="com.app.merchant.utility.FlingAppBarLayoutBehavior">
+            ​
 
-        <RelativeLayout
-            style="@style/layout_ver_match_1"
-            android:layout_marginTop="@dimen/margin_7">
-            <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvPerformance"
-                style="@style/textview_description_wrap"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingBottom="@dimen/margin_5"
-                android:textColor="@color/green_order"
-                android:layout_marginStart="@dimen/margin_10"
-                android:text="@string/performance_chart"/>
-            <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_smaller_wrap"
-                android:layout_alignParentEnd="true"
-                android:maxLines="1"
-                android:drawablePadding="@dimen/margin_5"
-                android:text="@string/order_confirmed"
-                android:layout_marginEnd="@dimen/margin_10"
-                android:drawableStart="@drawable/bg_circle_green_small"
-                />
-            <ImageView
-                android:id="@+id/layoutLi"
-                style="@style/view_layout_light_grey"
-                android:layout_marginStart="@dimen/margin_10"
-                android:layout_marginEnd="@dimen/margin_10"
-                android:layout_below="@+id/tvPerformance"/>
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandedTitleMarginEnd="64dp"
+                app:expandedTitleMarginStart="48dp"
+                app:layout_scrollFlags="scroll|snap">
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:orientation="vertical"
+                    app:layout_collapseMode="parallax">
+
+                    <include
+                        android:id="@+id/layoutDate"
+                        layout="@layout/layout_order" />
+                </LinearLayout>
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_height="@dimen/margin_40"
+                app:layout_collapseMode="pin">
+                <ImageView
+                    android:id="@+id/layoutLine"
+                    style="@style/view_layout_light_grey" />
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvPerformance"
+                    android:layout_height="match_parent"
+                    style="@style/textview_description_wrap"
+                    android:layout_below="@+id/layoutLine"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:text="@string/performance_chart"
+                    android:textColor="@color/green_order" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_smaller_wrap"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/layoutLine"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:drawablePadding="@dimen/margin_5"
+                    android:drawableStart="@drawable/bg_circle_green_small"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="@string/order_confirmed" />
+
+                <ImageView
+                    android:id="@+id/layoutLi"
+                    style="@style/view_layout_light_grey"
+                    android:layout_below="@+id/tvPerformance"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10" />
+            </RelativeLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <LinearLayout
+            style="@style/match_match"
+            android:background="@color/white"
+            android:clickable="true"
+            android:orientation="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
             <lecho.lib.hellocharts.view.LineChartView
                 android:id="@+id/lineChart"
-                style="@style/match_match"
+                style="@style/layout_ver_match_1"
                 android:layout_marginTop="@dimen/margin_7"
-                android:padding="@dimen/margin_10"
-                android:layout_below="@+id/layoutLi"/>
-        </RelativeLayout>
+                android:padding="@dimen/margin_10" />
 
-        <LinearLayout
-            style="@style/layout_ver_match_1"
-            android:orientation="vertical">
-        <LinearLayout
-            style="@style/match_wrap"
-            android:layout_height="@dimen/margin_30"
-            android:background="@drawable/order_bg">
-            <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
-                android:text="@string/order_no" />
-            <ImageView
-                style="@style/view_layout_vertical_light_grey" />
-            <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
-                android:text="@string/address"/>
-            <ImageView
-                style="@style/view_layout_vertical_light_grey" />
-            <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
-                android:text="@string/amount"/>
-            <ImageView
-                style="@style/view_layout_vertical_light_grey" />
-            <com.app.merchant.widget.CustomTextView
-                style="@style/order_text_view_large"
-                android:text="@string/assign_to" />
-        </LinearLayout>
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/rvOrder"
-                style="@style/match_match"/>
-        </LinearLayout>
+            <LinearLayout
+                style="@style/layout_ver_match_1"
+                android:orientation="vertical">
 
-    </LinearLayout>
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_height="@dimen/margin_30"
+                    android:background="@drawable/order_bg">
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/order_text_view_large"
+                        android:text="@string/order_no" />
+
+                    <ImageView style="@style/view_layout_vertical_light_grey" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/order_text_view_large"
+                        android:text="@string/address" />
+
+                    <ImageView style="@style/view_layout_vertical_light_grey" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/order_text_view_large"
+                        android:text="@string/amount" />
+
+                    <ImageView style="@style/view_layout_vertical_light_grey" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/order_text_view_large"
+                        android:text="@string/status" />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvOrder"
+                    style="@style/match_match" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

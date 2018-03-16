@@ -5,13 +5,23 @@ package com.app.merchant.network.request.dashboard.home;
  */
 
 public class MyOrder {
-    private String orderStatus;
+    private int order_count;
 
-    public String getOrderStatus() {
-        return orderStatus;
+    public int getOrder_count() {
+        return order_count;
     }
 
-    public void setOrderStatus(String orderStatus) {
-        this.orderStatus = orderStatus;
+    public void setOrder_count(int order_count) {
+        this.order_count = order_count;
+    }
+
+    private String order_status;
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 }

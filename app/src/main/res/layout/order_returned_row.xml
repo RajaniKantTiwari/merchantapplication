@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-<data>
-    <variable
-        name="orderReturned"
-        type="com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned"/>
-</data>
+
     <LinearLayout
         style="@style/match_wrap"
         android:layout_height="@dimen/margin_30"
         android:background="@drawable/layer">
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvOrderNumber"
             style="@style/order_text_view"
-            android:text="125"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvReceivedTime"
             style="@style/order_text_view"
-            android:text="12:30"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAmount"
             style="@style/order_text_view"
-            android:text="Rs. 1250"
             android:maxLength="15"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/layoutOrderStatus"
+            android:id="@+id/tvStatus"
             style="@style/order_text_view_1_8"
-            android:text="reason mention here "
             android:maxLength="15"/>
     </LinearLayout>
 

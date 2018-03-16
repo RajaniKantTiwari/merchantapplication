@@ -12,6 +12,7 @@ import com.app.merchant.databinding.OrderReturnedCancelRowBinding;
 import com.app.merchant.databinding.OrderReturnedRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -38,8 +39,19 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        if (CommonUtility.isNotNull(orderReturnedList)) {
-            holder.setData(position);
+        if (CommonUtility.isNotNull(orderReturnedList)&&orderReturnedList.size()>position) {
+            OrderReturned orderReturned = orderReturnedList.get(position);
+            if(CommonUtility.isNotNull(orderReturned)){
+                holder.tvOrderNumber.setText(orderReturned.getInvoiceNumber());
+                holder.tvReceivedTime.setText(CommonUtility.formatTimeHHMM(orderReturned.getCreatedAt()));
+                holder.tvAmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), orderReturned.getTotaldue()));
+                holder.tvStatus.setText(orderReturned.getPaymentStatus());
+                if (orderReturned.getPaymentStatus().equalsIgnoreCase(activity.getResources().getString(R.string.paid))) {
+                    holder.tvStatus.setTextColor(CommonUtility.getColor(activity, R.color.green_order));
+                } else {
+                    holder.tvStatus.setTextColor(CommonUtility.getColor(activity, R.color.black));
+                }
+            }
         }
     }
 
@@ -50,14 +62,19 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         private final OrderReturnedRowBinding mBinding;
+        private final CustomTextView tvOrderNumber;
+        private final CustomTextView tvReceivedTime;
+        private final CustomTextView tvAmount;
+        private final CustomTextView tvStatus;
 
         public ProductViewHolder(OrderReturnedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
+            tvOrderNumber=itemView.tvOrderNumber;
+            tvReceivedTime=itemView.tvReceivedTime;
+            tvAmount=itemView.tvAmount;
+            tvStatus=itemView.tvStatus;
         }
 
-        public void setData(int position) {
-            mBinding.setOrderReturned(orderReturnedList.get(position));
-        }
     }
 }

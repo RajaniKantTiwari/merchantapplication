@@ -11,6 +11,7 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.OrderReturnedCancelRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancel;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,14 @@ public class OrderReturnedCancelAdapter extends RecyclerView.Adapter<OrderReturn
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         if (CommonUtility.isNotNull(returnList) && returnList.size() > position) {
-            holder.setData(position);
+            OrderReturnedCancel returnData = returnList.get(position);
+            if(CommonUtility.isNotNull(returnData)){
+                holder.tvOrderNumber.setText(returnData.getInvoiceNumber());
+                holder.tvReceivedTime.setText(CommonUtility.formatTimeHHMM(returnData.getCreatedAt()));
+                holder.tvAmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), returnData.getTotaldue()));
+                //holder.tvReason.setText(returnData.getInvoiceNumber());
+
+            }
         }
     }
 
@@ -49,14 +57,20 @@ public class OrderReturnedCancelAdapter extends RecyclerView.Adapter<OrderReturn
 
     class ProductViewHolder extends RecyclerView.ViewHolder {
         private final OrderReturnedCancelRowBinding mBinding;
+        private final CustomTextView tvOrderNumber;
+        private final CustomTextView tvReceivedTime;
+        private final CustomTextView tvAmount;
+        private final CustomTextView tvReason;
 
         public ProductViewHolder(OrderReturnedCancelRowBinding itemView) {
             super(itemView.getRoot());
+            tvOrderNumber=itemView.tvOrderNumber;
+            tvReceivedTime=itemView.tvReceivedTime;
+            tvAmount=itemView.tvAmount;
+            tvReason=itemView.tvReason;
             mBinding = itemView;
         }
 
-        public void setData(int position) {
-            mBinding.setOrderReturned(returnList.get(position));
-        }
+
     }
 }

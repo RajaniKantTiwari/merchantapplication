@@ -9,6 +9,7 @@ import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
@@ -160,6 +161,11 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> addToCart(CartRequest cartRequest) {
         return apiService.addToCart(cartRequest);
+    }
+
+    @Override
+    public Observable<MyOrderData> getAllOrder() {
+        return apiService.getAllOrder();
     }
 
 }

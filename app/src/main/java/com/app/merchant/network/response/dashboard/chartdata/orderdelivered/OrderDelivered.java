@@ -9,6 +9,9 @@ public class OrderDelivered {
     private String invoiceNumber;
     private String createdAt;
     private String totaldue;
+    private String paymentStatus;
+    private String order_status;
+
 
     public String getId() {
         return id;
@@ -40,5 +43,21 @@ public class OrderDelivered {
 
     public void setTotaldue(String totaldue) {
         this.totaldue = totaldue;
+    }
+
+    public String getPaymentStatus() {
+        return paymentStatus;
+    }
+
+    public void setPaymentStatus(String paymentStatus) {
+        this.paymentStatus = paymentStatus;
+    }
+
+    public String getOrder_status() {
+        return order_status;
+    }
+
+    public void setOrder_status(String order_status) {
+        this.order_status = order_status;
     }
 }

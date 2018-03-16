@@ -1,43 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-<data>
-    <import type="com.app.merchant.utility.CommonUtility"/>
-    <variable
-        name="deliveredData"
-        type="com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDelivered"/>
-</data>
+
     <LinearLayout
         style="@style/match_wrap"
         android:layout_height="@dimen/margin_30"
         android:background="@drawable/layer">
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvOrderNumber"
             style="@style/order_text_view"
-            android:text="@={deliveredData.id}"
             android:maxLength="12"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey" />
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvReceivedTime"
             style="@style/order_text_view"
-            android:text="@{CommonUtility.formatDate(deliveredData.createdAt)}"
+            android:text="does not provide"
             android:maxLength="12"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvPromiseTime"
             style="@style/order_text_view"
-            android:text="12:45"
+            android:text="does not provide"
             android:maxLength="12"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAssignTo"
             style="@style/order_text_view"
-            android:text="Rajesh"
+            android:text="does not provide"
             android:maxLength="12"/>
         <ImageView
             style="@style/view_layout_vertical_light_grey"/>
 
         <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvPaymentStatus"
             style="@style/order_text_view"
-            android:text="Delivered"
             android:maxLength="12"/>
 
     </LinearLayout>

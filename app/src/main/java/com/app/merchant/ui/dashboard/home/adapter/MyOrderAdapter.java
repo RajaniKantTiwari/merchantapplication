@@ -21,25 +21,20 @@ import java.util.ArrayList;
 
 public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
+    private final ArrayList<MyOrder> orderList;
     private final AppCompatActivity activity;
     private OrderListener listener;
-    private ArrayList<MyOrder> myOrderList;
-
-
     public interface OrderListener {
         void onViewClick(int position);
     }
 
-    public MyOrderAdapter(AppCompatActivity activity, OrderListener listener) {
+    public MyOrderAdapter(AppCompatActivity activity, ArrayList<MyOrder> orderList, OrderListener listener) {
         mInflater = LayoutInflater.from(activity);
-        this.activity = activity;
+        this.activity=activity;
+        this.orderList=orderList;
         this.listener = listener;
     }
 
-    public void setOrderList(ArrayList<MyOrder> myOrderList) {
-        this.myOrderList = myOrderList;
-        notifyDataSetChanged();
-    }
 
     @Override
     public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -55,7 +50,7 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
 
     @Override
     public int getItemCount() {
-        return CommonUtility.isNotNull(myOrderList) ? myOrderList.size() : 0;
+        return CommonUtility.isNotNull(orderList) ? orderList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -69,8 +64,40 @@ public class MyOrderAdapter extends RecyclerView.Adapter<MyOrderAdapter.ProductV
         }
 
         public void setOrderData(int position) {
-            if (CommonUtility.isNotNull(myOrderList) && myOrderList.size() > position) {
-                mBinding.setMyorder(myOrderList.get(position));
+            if (CommonUtility.isNotNull(orderList) && orderList.size() > position) {
+                MyOrder myOrder=orderList.get(position);
+                mBinding.setMyorder(myOrder);
+                mBinding.tvOrderCount.setText(String.valueOf(myOrder.getOrder_count()));
+                setColor(myOrder.getOrder_status());
+            }
+        }
+
+        private void setColor(String order_status) {
+            switch (order_status){
+                case "Order Received":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.yellow_order));
+                    break;
+                case "Order Confirmed":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.green_order));
+                    break;
+                case "Order Out for delivery":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.tex_color));
+                    break;
+                case "Order Delivered":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.blue_order));
+                    break;
+                case "Order Canceled":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.not_con_color));
+                    break;
+                case "Order Returned":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.voilet_order));
+                    break;
+                case "Assign Delivery Boy":
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.deal_color_product));
+                    break;
+                default:
+                    mBinding.tvOrderCount.setBackgroundColor(CommonUtility.getColor(activity,R.color.deal_color_product));
+                    break;
             }
         }
 

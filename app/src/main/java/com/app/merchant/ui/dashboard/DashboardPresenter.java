@@ -11,6 +11,7 @@ import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -444,6 +445,23 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void getAllOrder(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getAllOrder().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<MyOrderData>(activity) {
+            @Override
+            public void onResponse(MyOrderData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ALL_ORDER);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ALL_ORDER);
             }
         });
     }

@@ -560,7 +560,7 @@ public class CommonUtility {
         return createdDate;
     }
 
-    public static String setTotalDue(int rs, String totaldue) {
+    public static String setTotalDue(String rs, String totaldue) {
         return rs+" "+totaldue;
     }
 }

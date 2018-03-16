@@ -146,10 +146,12 @@
     <string name="performance_chart">Performance Chart</string>
     <string name="order_received">Order Received</string>
     <string name="order_confirmed">Order Confirmed</string>
-    <string name="order_out_for_delivery">Order out For Delivery</string>
+    <string name="order_out_for_delivery">Order Out for delivery</string>
     <string name="order_delivered">Order Delivered</string>
     <string name="order_canceled">Order Canceled</string>
     <string name="order_returned">Order Returned</string>
+    <string name="order_assign_delivery_boy">Assign Delivery Boy</string>
+
     <string name="order_no">Order No.</string>
     <string name="received_time">Received Time</string>
     <string name="amount">Amount</string>
@@ -280,6 +282,9 @@
     <string name="barcode_error">"Error reading barcode: %1$s"</string>
     <string name="grant">GRANT</string>
     <string name="rs">Rs.</string>
+    <string name="paid">Paid</string>
+    <string name="not_known">Not Known</string>
+    <string name="unpaid">Unpaid</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

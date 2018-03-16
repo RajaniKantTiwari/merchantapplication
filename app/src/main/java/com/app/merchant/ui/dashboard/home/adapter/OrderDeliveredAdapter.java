@@ -12,6 +12,7 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.OrderDeliveredRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDelivered;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -44,7 +45,16 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
         if (CommonUtility.isNotNull(deliveredList) && deliveredList.size() > position) {
-            holder.setData(position);
+            OrderDelivered delivered = deliveredList.get(position);
+            if (CommonUtility.isNotNull(delivered)) {
+                holder.tvOrderNumber.setText(delivered.getInvoiceNumber());
+                //holder.tvReceivedTime.setText();
+                //holder.tvPromiseTime.setText();
+                //holder.tvAssignTo.setText();
+                holder.tvPaymentStatus.setText(delivered.getPaymentStatus());
+                holder.tvPaymentStatus.setTextColor(delivered.getPaymentStatus().equalsIgnoreCase(activity.getResources().getString(R.string.paid)) ?
+                        CommonUtility.getColor(activity, R.color.green_order) : CommonUtility.getColor(activity, R.color.black));
+            }
         }
     }
 
@@ -54,11 +64,20 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final OrderDeliveredRowBinding mBinding;
+
+        private final CustomTextView tvOrderNumber;
+        private final CustomTextView tvReceivedTime;
+        private final CustomTextView tvPromiseTime;
+        private final CustomTextView tvAssignTo;
+        private final CustomTextView tvPaymentStatus;
 
         public ProductViewHolder(OrderDeliveredRowBinding itemView) {
             super(itemView.getRoot());
-            mBinding = itemView;
+            tvOrderNumber = itemView.tvOrderNumber;
+            tvReceivedTime = itemView.tvReceivedTime;
+            tvPromiseTime = itemView.tvPromiseTime;
+            tvAssignTo = itemView.tvAssignTo;
+            tvPaymentStatus = itemView.tvPaymentStatus;
             //itemView.layoutRating.setOnClickListener(this);
         }
 
@@ -67,8 +86,5 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
         public void onClick(View view) {
         }
 
-        public void setData(int position) {
-            mBinding.setDeliveredData(deliveredList.get(position));
-        }
     }
 }

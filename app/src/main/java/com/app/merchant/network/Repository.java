@@ -9,6 +9,7 @@ import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
@@ -78,7 +79,6 @@ public interface Repository {
 
     Observable<BaseResponse> addToCart(CartRequest cartRequest);
 
-
-
+    Observable<MyOrderData> getAllOrder();
 
 }
