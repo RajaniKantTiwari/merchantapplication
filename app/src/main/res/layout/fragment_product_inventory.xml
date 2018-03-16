@@ -2,6 +2,7 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutProductInventory"
         style="@style/match_match"
         android:orientation="vertical">
         <include
@@ -21,7 +22,7 @@
                     android:id="@+id/tvMyOrder"
                     style="@style/textview_description_wrap"
                     android:layout_centerInParent="true"
-                    android:text="@string/my_product"
+                    android:text="@string/my_order"
                     android:textColor="@color/date_bg_color"
                     android:textAllCaps="true" />
             </RelativeLayout>
@@ -47,14 +48,6 @@
         <FrameLayout
             android:id="@+id/container"
             style="@style/match_match">
-            <com.app.merchant.widget.MovableFloatingActionButton
-                android:id="@+id/orderButton"
-                style="@style/wrap_wrap"
-                android:layout_gravity="bottom|end"
-                android:layout_marginBottom="@dimen/margin_25"
-                android:layout_marginEnd="@dimen/margin_15"
-                android:src="@drawable/bar_graph"
-                app:backgroundTint="@color/white"/>
         </FrameLayout>
     </LinearLayout>
 </layout>

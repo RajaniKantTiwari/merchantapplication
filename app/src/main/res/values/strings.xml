@@ -125,7 +125,6 @@
     <string name="offer">Offer</string>
     <string name="date">22\nmay</string>
     <string name="welcome">Welcome</string>
-    <string name="my_order">My Order</string>
     <string name="my_inventory">My Inventory</string>
     <string name="view">View</string>
     <string name="quantity">Quantity</string>
@@ -162,7 +161,7 @@
     <string name="reason">Reason</string>
     <string name="delhi">Delhi</string>
     <string name="enter_your_full_address">Enter your full address</string>
-    <string name="my_product">My Product</string>
+    <string name="my_order">My Product</string>
     <string name="subscribe">Subscribe</string>
     <string name="sub_total">Sub Total :</string>
     <string name="please_add_data_in_cart_first">Cart is empty</string>

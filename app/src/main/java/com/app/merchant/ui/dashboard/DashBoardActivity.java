@@ -32,9 +32,9 @@ import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.cart.CartFragment;
 import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
-import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
+import com.app.merchant.ui.dashboard.home.WelcomeFragment;
+import com.app.merchant.ui.dashboard.home.ProductInventoryFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
-import com.app.merchant.ui.dashboard.home.WelcomeHomeFragment;
 import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
 import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
 import com.app.merchant.ui.dashboard.drawer.TermConditionActivity;
@@ -78,7 +78,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case AppConstants.HOME:
-                openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
+                openFragment(new ProductInventoryFragment(), null, false, false, NONE);
                 break;
             case AppConstants.MYWARANTY:
                 ExplicitIntent.getsInstance().navigateTo(this, WarantyActivity.class);
@@ -121,7 +121,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
         clearAllBackStack();
         openFragment(new ProductSubproductFragment(), null, true, false, NONE);
-        //pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
+        //pushFragment(new ProductInventoryFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
         attachView();
@@ -147,11 +147,11 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         switch (position) {
             case WELCOME_HOME_FRAGMENT:
                 openFragment(new ProductSubproductFragment(), null, false, false, NONE);
-                //openFragment(new WelcomeHomeFragment(), null, false, false, NONE);
+                //openFragment(new ProductInventoryFragment(), null, false, false, NONE);
                 break;
             case OFFER_FRAGMENT:
                 // openFragment(new OfferFragment(), null, false, false, NONE);
-                openFragment(new AllPerformanceFragment(), null, false, false, NONE);
+                openFragment(new WelcomeFragment(), null, false, false, NONE);
                 break;
             case NOTIFICATION_FRAGMENT:
                 openFragment(new NotificationFragment(), null, false, false, NONE);
@@ -276,12 +276,12 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new WelcomeHomeFragment(), null, R.id.container, true, false, NONE);
+            pushFragment(new ProductInventoryFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
             clearAllBackStack();
 
-            pushFragment(new AllPerformanceFragment(), null, R.id.container, true, false, NONE);
+            pushFragment(new WelcomeFragment(), null, R.id.container, true, false, NONE);
 
             //pushFragment(new OfferFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar3) {

@@ -3,6 +3,7 @@
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         style="@style/match_match"
+        android:id="@+id/layoutAllPerformance"
         android:orientation="vertical">
 
         <include

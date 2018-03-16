@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAllPerformanceBinding;
+import com.app.merchant.event.PerformanceInventoryEvent;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.chart.MyAxisValueFormatter;
 import com.app.merchant.ui.dashboard.chart.MyValueFormatter;
+import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.CommonUtility;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -27,6 +30,8 @@ import com.github.mikephil.charting.highlight.Highlight;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
 import com.github.mikephil.charting.utils.ColorTemplate;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +51,7 @@ public class AllPerformanceFragment extends DashboardFragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_all_performance, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.all_performance));
+        CommonUtility.register(this);
         return mBinding.getRoot();
     }
 
@@ -310,9 +316,22 @@ public class AllPerformanceFragment extends DashboardFragment {
 
         return colors;
     }
-
+    @Subscribe
+    public void onEvent(PerformanceInventoryEvent event) {
+        if (event.getProductInventory() == AppConstants.ALL_PERFORMANCE) {
+            mBinding.layoutAllPerformance.setVisibility(View.VISIBLE);
+        } else {
+            mBinding.layoutAllPerformance.setVisibility(View.GONE);
+        }
+    }
     @Override
     public void headerChangedCalled() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CommonUtility.unregister(this);
     }
 }

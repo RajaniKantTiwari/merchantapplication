@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentConfirmOrderBinding;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
@@ -71,7 +70,7 @@ public class ConfirmOrderFragment extends DashboardFragment {
             CommonUtility.clicked(mBinding.tvHome);
             getBaseActivity().clearAllBackStack();
             getDashboardActivity().changeIcon(WELCOME_HOME_FRAGMENT);
-            getDashboardActivity().addFragmentInContainer(new WelcomeHomeFragment(), null, false, false, NONE);
+            getDashboardActivity().addFragmentInContainer(new ProductInventoryFragment(), null, false, false, NONE);
            // mFragmentNavigation.popFragment();
         }
     }

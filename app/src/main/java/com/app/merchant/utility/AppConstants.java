@@ -72,6 +72,9 @@ public interface AppConstants {
     int SELECT_MANUALLY = 999;
     int PERMISSIONS_REQUEST_LOCATION = 99;
     int SCANNER_RESULT = 222;
+    int PRODUCT_INVENTORY = 1;
+    int ALL_PERFORMANCE = 2;
+
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
@@ -82,6 +85,8 @@ public interface AppConstants {
         int OFFER_FRAGMENT=1;
         int NOTIFICATION_FRAGMENT=2;
         int USER_FRAGMENT=3;
+        int PRODUCT_INVENTORY_FRAGMENT=5;
+        int ALL_PERFORMANCE=6;
 
     }
 }

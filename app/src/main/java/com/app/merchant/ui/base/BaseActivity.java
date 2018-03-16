@@ -18,8 +18,10 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import com.app.merchant.R;
+import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
 import com.app.merchant.ui.dashboard.home.MyInventoryFragment;
 import com.app.merchant.ui.dashboard.home.MyOrderFragment;
+import com.app.merchant.ui.dashboard.home.ProductInventoryFragment;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.NetworkUtility;
@@ -32,8 +34,10 @@ import static com.app.merchant.ui.base.BaseActivity.AnimationType.FADE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.SLIDE;
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.ZOOM;
+import static com.app.merchant.utility.AppConstants.FRAGMENTS.ALL_PERFORMANCE;
 import static com.app.merchant.utility.AppConstants.FRAGMENTS.MY_INVENYORY_FRAGMENT;
 import static com.app.merchant.utility.AppConstants.FRAGMENTS.MY_ORDER_FRAGMENT;
+import static com.app.merchant.utility.AppConstants.FRAGMENTS.PRODUCT_INVENTORY_FRAGMENT;
 
 /**
  * Created by ashok on 01/11/17.
@@ -41,13 +45,14 @@ import static com.app.merchant.utility.AppConstants.FRAGMENTS.MY_ORDER_FRAGMENT;
 /*
 Parent Activity to give functionality to all Activity
 */
-public abstract class BaseActivity extends AppCompatActivity implements MvpView,View.OnClickListener {
+public abstract class BaseActivity extends AppCompatActivity implements MvpView, View.OnClickListener {
     //private ActivityComponent mActivityComponent;
     private static String TAG = BaseActivity.class.getSimpleName();
     private Snackbar mSnackbar;
     private boolean mAlive;
     private Dialog mLoadingDialog;
     private int count;
+
     //to attach View
     public abstract void attachView();
 
@@ -214,6 +219,12 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
             case MY_ORDER_FRAGMENT:
                 fragment = new MyOrderFragment();
                 break;
+            case PRODUCT_INVENTORY_FRAGMENT:
+                fragment=new ProductInventoryFragment();
+                break;
+            case ALL_PERFORMANCE:
+                fragment= new AllPerformanceFragment();
+                break;
 
         }
         return fragment;
@@ -300,19 +311,19 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
         FragmentManager fm = getSupportFragmentManager();
         Log.e("Count", "" + fm.getBackStackEntryCount());
         if (fm.getBackStackEntryCount() == 1) {
-            if(count==1){
+            if (count == 1) {
                 finish();
-            }else{
-                count=1;
+            } else {
+                count = 1;
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        count=0;
+                        count = 0;
                     }
-                },1500);
+                }, 1500);
                 showToast(getResources().getString(R.string.tap_once_more_to_exit));
             }
-        }else{
+        } else {
             super.onBackPressed();
         }
     }

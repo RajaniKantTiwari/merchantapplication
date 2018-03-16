@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/container"
+        style="@style/match_match">
+        <com.app.merchant.widget.MovableFloatingActionButton
+            android:id="@+id/graphButton"
+            style="@style/wrap_wrap"
+            android:layout_gravity="bottom|end"
+            android:layout_marginBottom="@dimen/margin_25"
+            android:layout_marginEnd="@dimen/margin_15"
+            android:src="@drawable/histo_graph"
+            app:backgroundTint="@color/white"/>
+    </FrameLayout>
+</layout>
