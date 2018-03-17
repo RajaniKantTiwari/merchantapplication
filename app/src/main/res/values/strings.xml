@@ -292,6 +292,7 @@
     <string name="cancel_request">Cancel Request</string>
     <string name="order_cancel_request">Order Cancel Request</string>
     <string name="no_result_found">No Result Found</string>
+    <string name="search_customer">Search Customer</string>
 
     <string-array name="left_drawer">
         <item>@string/home</item>

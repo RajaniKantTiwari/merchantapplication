@@ -3,13 +3,18 @@ package com.app.merchant.ui.dashboard.cart;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAddNewCustomerBinding;
+import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.utility.CommonUtility;
 
@@ -41,6 +46,17 @@ public class AddNewCustomerFragment extends DashboardFragment {
     @Override
     public void setListener() {
         mBinding.tvDone.setOnClickListener(this);
+        mBinding.edAddress.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    if (isValid()) {
+                            getDashboardActivity().onBackPressed();
+                    }
+                }
+                return false;
+            }
+        });
     }
 
     @Override

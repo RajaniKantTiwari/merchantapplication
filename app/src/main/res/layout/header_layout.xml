@@ -23,7 +23,7 @@
             android:background="@null"
             android:drawablePadding="@dimen/margin_5"
             android:drawableStart="@drawable/ic_search"
-            android:hint="@string/search_city_product_service"
+            android:hint="@string/search_customer"
             android:padding="@dimen/margin_7"
             android:paddingStart="@dimen/margin_0"
             android:visibility="gone"/>
