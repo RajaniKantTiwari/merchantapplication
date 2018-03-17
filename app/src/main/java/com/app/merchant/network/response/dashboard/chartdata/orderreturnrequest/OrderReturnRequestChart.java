@@ -1,4 +1,4 @@
-package com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy;
+package com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest;
 
 import com.app.merchant.network.response.BaseResponse;
 
@@ -6,7 +6,7 @@ import com.app.merchant.network.response.BaseResponse;
  * Created by rajnikant on 11/03/18.
  */
 
-public class AssignDeliveryBoyChart extends BaseResponse {
+public class OrderReturnRequestChart extends BaseResponse {
     private int orders_count;
     private String invoiceDate;
 

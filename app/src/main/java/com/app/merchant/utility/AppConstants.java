@@ -75,7 +75,7 @@ public interface AppConstants {
     int PRODUCT_INVENTORY = 1;
     int ALL_PERFORMANCE = 2;
     int ALL_ORDER = 3;
-
+    long API_SERVICE = 500;
 
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)

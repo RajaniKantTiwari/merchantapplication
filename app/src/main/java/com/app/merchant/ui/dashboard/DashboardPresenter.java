@@ -16,9 +16,8 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChart;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChartData;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -31,6 +30,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturned.Order
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
@@ -493,6 +494,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<AssignDeliveryBoyData>(activity) {
             @Override
             public void onResponse(AssignDeliveryBoyData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void getOrderReturnedRequestChart(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getOrderReturnedRequestChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReturnRequestChartData>(activity) {
+            @Override
+            public void onResponse(OrderReturnRequestChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.CHART_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
+            }
+        });
+    }
+
+    public void getOrderReturnedRequest(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getOrderReturnedRequest().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReturnRequestData>(activity) {
+            @Override
+            public void onResponse(OrderReturnRequestData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, AppConstants.ORDER_DATA);
             }

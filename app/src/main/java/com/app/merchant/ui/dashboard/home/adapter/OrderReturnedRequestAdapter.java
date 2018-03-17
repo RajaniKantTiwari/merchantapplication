@@ -10,7 +10,9 @@ import android.widget.RatingBar;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderAssignDeliveryBoyRowBinding;
+import com.app.merchant.databinding.OrderReturnedRequestRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoy;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequest;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.widget.CustomTextView;
 
@@ -20,17 +22,17 @@ import java.util.ArrayList;
  * Created by ashok on 25/12/17.
  */
 
-public class AssignDeliveryBoyAdapter extends RecyclerView.Adapter<AssignDeliveryBoyAdapter.AssignDeliveryBoyViewHolder> {
+public class OrderReturnedRequestAdapter extends RecyclerView.Adapter<OrderReturnedRequestAdapter.AssignDeliveryBoyViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private final ArrayList<AssignDeliveryBoy> deliveryList;
-    private AssignDeliveryListener listener;
+    private final ArrayList<OrderReturnRequest> deliveryList;
+    private OrderreturnRequestListener listener;
 
-    public interface AssignDeliveryListener {
+    public interface OrderreturnRequestListener {
         void onRatingClick(int position);
     }
 
-    public AssignDeliveryBoyAdapter(AppCompatActivity activity, ArrayList<AssignDeliveryBoy> deliveryList, AssignDeliveryListener listener) {
+    public OrderReturnedRequestAdapter(AppCompatActivity activity, ArrayList<OrderReturnRequest> deliveryList, OrderreturnRequestListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.deliveryList = deliveryList;
@@ -39,14 +41,14 @@ public class AssignDeliveryBoyAdapter extends RecyclerView.Adapter<AssignDeliver
 
     @Override
     public AssignDeliveryBoyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        OrderAssignDeliveryBoyRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_assign_delivery_boy_row, parent, false);
+        OrderReturnedRequestRowBinding mBinding = DataBindingUtil.inflate(mInflater, R.layout.order_returned_request_row, parent, false);
         return new AssignDeliveryBoyViewHolder(mBinding);
     }
 
     @Override
     public void onBindViewHolder(AssignDeliveryBoyViewHolder holder, int position) {
         if (CommonUtility.isNotNull(deliveryList) && deliveryList.size() > position) {
-            AssignDeliveryBoy delivery = deliveryList.get(position);
+            OrderReturnRequest delivery = deliveryList.get(position);
             if (CommonUtility.isNotNull(delivery)) {
                 holder.tvInvoice.setText(delivery.getInvoiceNumber());
                 holder.tvAmmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), delivery.getTotaldue()));
@@ -71,16 +73,14 @@ public class AssignDeliveryBoyAdapter extends RecyclerView.Adapter<AssignDeliver
     }
 
     class AssignDeliveryBoyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private final OrderAssignDeliveryBoyRowBinding mBinding;
         private final CustomTextView tvInvoice;
         private final CustomTextView tvAmmount;
         private final CustomTextView tvDeliveryBoy;
         private final RatingBar ratingBar;
         private final CustomTextView tvStatus;
 
-        public AssignDeliveryBoyViewHolder(OrderAssignDeliveryBoyRowBinding itemView) {
+        public AssignDeliveryBoyViewHolder(OrderReturnedRequestRowBinding itemView) {
             super(itemView.getRoot());
-            mBinding = itemView;
             tvInvoice = itemView.tvInvoice;
             tvAmmount = itemView.tvAmmount;
             tvStatus=itemView.tvStatus;

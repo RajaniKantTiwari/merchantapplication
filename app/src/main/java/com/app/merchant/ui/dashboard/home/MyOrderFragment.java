@@ -18,12 +18,14 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyOrderAdapter;
 import com.app.merchant.ui.dashboard.home.graphfragment.AssignDeliveryBoyFragment;
+import com.app.merchant.ui.dashboard.home.graphfragment.OrderCancelRequestFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderConfirmedFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderDeliveredFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderOutForDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReturnedCancelFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderReturnedFragment;
+import com.app.merchant.ui.dashboard.home.graphfragment.OrderReturnedRequestFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 
@@ -55,7 +57,7 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
         LinearLayoutManager notificationManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvOrder.setLayoutManager(notificationManager);
         orderList = new ArrayList<>();
-        myOrderAdapter = new MyOrderAdapter(getDashboardActivity(),orderList, this);
+        myOrderAdapter = new MyOrderAdapter(getDashboardActivity(), orderList, this);
         mBinding.rvOrder.setAdapter(myOrderAdapter);
         getPresenter().getAllOrder(getDashboardActivity());
     }
@@ -106,7 +108,7 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
 
     @Override
     public void onViewClick(int position) {
-        if(CommonUtility.isNotNull(orderList)&&orderList.size()>position){
+        if (CommonUtility.isNotNull(orderList) && orderList.size() > position) {
             if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_received))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReceivedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
@@ -122,13 +124,26 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_canceled))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedCancelFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-            } else if(orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned))) {
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-            } else if(orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new AssignDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_cancel_request))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new OrderCancelRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
             }
+
         }
     }
 

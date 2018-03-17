@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="searchData"
+            type="com.app.merchant.network.response.UserResponse" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layoutSearch"
+        style="@style/match_wrap">
+
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvSearchItem"
+            style="@style/textview_description_large_match"
+            android:padding="@dimen/margin_8"
+            android:text="@={searchData.mobileNumber}"
+            app:customFont="@string/font_regular" />
+    </LinearLayout>
+</layout>

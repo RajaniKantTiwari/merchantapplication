@@ -20,6 +20,7 @@ import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
+import com.app.merchant.utility.PreferenceUtils;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -96,6 +97,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
                     Bundle bundle = new Bundle();
                     bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
                     bundle.putString(BundleConstants.EMAIL,register.getEmail());
+                    PreferenceUtils.setUserName(register.getMerchantname());
                     ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
         }

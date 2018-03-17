@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layoutOrder"
+        style="@style/match_match"
+        android:background="@color/white_light"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/header_layout" />
+
+        <RelativeLayout
+            android:id="@+id/layoutMain"
+            style="@style/match_match"
+            android:paddingTop="@dimen/margin_16">
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rvSearch"
+                    style="@style/match_match"
+                    android:visibility="gone" />
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                style="@android:style/Widget.ProgressBar.Small"
+                android:theme="@style/AppTheme.WhiteAccent"
+                android:visibility="gone"
+               />
+        </RelativeLayout>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvNoResult"
+            style="@style/textview_title_match"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingEnd="@dimen/margin_10"
+            android:paddingStart="@dimen/margin_10"
+            android:text="@string/no_result_found"
+            android:textAllCaps="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+</layout>

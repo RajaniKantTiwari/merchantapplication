@@ -16,6 +16,7 @@ import com.app.merchant.databinding.FragmentProductSubproductBinding;
 import com.app.merchant.databinding.ItemCartBinding;
 import com.app.merchant.event.ProductUpdateEvent;
 import com.app.merchant.event.UpdateCartEvent;
+import com.app.merchant.event.UserEvent;
 import com.app.merchant.network.request.dashboard.cart.Cart;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
@@ -26,6 +27,7 @@ import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.SubCategory;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+import com.app.merchant.ui.dashboard.SearchActivity;
 import com.app.merchant.ui.dashboard.cart.adapter.CartAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
@@ -33,6 +35,7 @@ import com.app.merchant.ui.dashboard.home.FullInformationFragment;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.PreferenceUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -97,7 +100,10 @@ public class ProductSubproductFragment extends DashboardFragment implements
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtility.clicked(mBinding.tvCheckout);
-                if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                if (mBinding.tvMobile.getText().toString()==null||mBinding.tvMobile.getText().toString().trim().length()==0) {
+                    getDashboardActivity().showToast(getResources().getString(R.string.please_enter_customer_mobile_number));
+                    return;
+                }if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
                     addToCartList();
                 } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
@@ -112,9 +118,23 @@ public class ProductSubproductFragment extends DashboardFragment implements
                 CommonUtility.clicked(mBinding.tvMyInventory);
                 getDashboardActivity().addFragmentInContainer(new AddNewCustomerFragment(), null, true, true, BaseActivity.AnimationType.NONE);
                 break;
+            case R.id.tvMobile:
+                ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),SearchActivity.class);
+                break;
         }
 
     }
+
+   /* private boolean isValid() {
+        if (mBinding.edMobile.getText().toString() == null || mBinding.edMobile.getText().toString().trim().length() == 0) {
+            getDashboardActivity().showToast(getResources().getString(R.string.please_enter_mobile_number));
+            return false;
+        } else if (mBinding.edMobile.getText().toString().trim().length() < 10) {
+            getDashboardActivity().showToast(getResources().getString(R.string.please_enter_valid_mobilenumber));
+            return false;
+        }
+        return true;
+    }*/
 
     private void addToCartList() {
         if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) &&
@@ -252,6 +272,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
 
     @Override
     public void setListener() {
+        mBinding.tvMobile.setOnClickListener(this);
         mBinding.tvCheckout.setOnClickListener(this);
     }
 
@@ -356,7 +377,10 @@ public class ProductSubproductFragment extends DashboardFragment implements
         mCartList.set(event.getPosition(), event.getProductData());
         mCartAdapter.notifyDataSetChanged();
     }
-
+    @Subscribe
+    public void onUserMobileNumber(UserEvent event) {
+        mBinding.tvMobile.setText(event.getMobileNumber());
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

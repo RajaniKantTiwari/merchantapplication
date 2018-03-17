@@ -23,6 +23,7 @@
     <string name="google_service_not_present">Google Service not Present</string>
     <string name="please_enter_password">Please enter password</string>
     <string name="please_enter_mobile_number">Please enter mobile number</string>
+    <string name="please_enter_customer_mobile_number">Please enter Customer mobile number</string>
 
     <string name="home">Home</string>
     <string name="login"> Login </string>
@@ -286,6 +287,12 @@
     <string name="paid">Paid</string>
     <string name="not_known">Not Known</string>
     <string name="unpaid">Unpaid</string>
+    <string name="return_request">Return Request</string>
+    <string name="order_returned_request">Order Returned Request</string>
+    <string name="cancel_request">Cancel Request</string>
+    <string name="order_cancel_request">Order Cancel Request</string>
+    <string name="no_result_found">No Result Found</string>
+
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>

@@ -67,24 +67,24 @@
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
                     <LinearLayout
-                        style="@style/match_wrap">
+                        style="@style/match_wrap"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:layout_marginEnd="@dimen/margin_5">
 
-                    <com.app.merchant.widget.CustomEditText
-                        android:id="@+id/edEmail"
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvMobile"
                         style="@style/edit_text_style_medium_weight"
-                        android:layout_width="wrap_content"
                         android:hint="@string/customer_mobile"
-                        android:maxLines="1"
                         android:gravity="center"
-                        android:inputType="number"
                         android:background="@drawable/grey_edit_bg_no_round"
-                        android:imeOptions="actionNext"/>
+                        />
                         <com.app.merchant.widget.CustomTextView
                             android:id="@+id/tvCustomer"
                             style="@style/textview_description_large_weight"
                             android:layout_height="@dimen/margin_30"
                             android:gravity="center"
-                            android:text="@string/add_new_customer"/>
+                            android:text="@string/add_new_customer"
+                            />
                     </LinearLayout>
                     <LinearLayout
                         style="@style/match_wrap"

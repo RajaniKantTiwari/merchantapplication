@@ -11,15 +11,18 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAssignDeliveryBoyBinding;
+import com.app.merchant.databinding.FragmentReturnedRequestBinding;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoy;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChart;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
-import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequest;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChart;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
-import com.app.merchant.ui.dashboard.home.adapter.AssignDeliveryBoyAdapter;
+import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedRequestAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.utility.AppConstants;
@@ -43,17 +46,17 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class AssignDeliveryBoyFragment extends DashboardFragment implements
-        AssignDeliveryBoyAdapter.AssignDeliveryListener,
+public class OrderReturnedRequestFragment extends DashboardFragment implements
+        OrderReturnedRequestAdapter.OrderreturnRequestListener,
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
-    private FragmentAssignDeliveryBoyBinding mBinding;
-    private ArrayList<AssignDeliveryBoy> deliveryBoyList = new ArrayList<>();
+    private FragmentReturnedRequestBinding mBinding;
+    private ArrayList<OrderReturnRequest> orderReturnedList = new ArrayList<>();
     //for chart
     private LineChartData data;
     private int numberOfLines = 1;
     private int maxNumberOfLines = 4;
-    private int numberOfOrderForDelivery;
-    float[][] orderOutForDeliveryTab = new float[maxNumberOfLines][numberOfOrderForDelivery];
+    private int numberOfOrderReturnedRequest;
+    float[][] orderReturnedRequestTab = new float[maxNumberOfLines][numberOfOrderReturnedRequest];
     private boolean hasLines = true;
     private boolean hasPoints = true;
     private ValueShape shape = ValueShape.CIRCLE;
@@ -63,13 +66,13 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
     private boolean hasLabelForSelected = false;
     /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
-    private AssignDeliveryBoyAdapter mAdapter;
+    private OrderReturnedRequestAdapter mAdapter;
     //End Chart
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_assign_delivery_boy, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_returned_request, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.assign_delivery_boy));
         return mBinding.getRoot();
     }
@@ -77,19 +80,19 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-        getPresenter().assignDeliveryBoyChart(getDashboardActivity());
-        getPresenter().assignDeliveryBoy(getDashboardActivity());
+        getPresenter().getOrderReturnedRequestChart(getDashboardActivity());
+        getPresenter().getOrderReturnedRequest(getDashboardActivity());
         initializeOrderData();
     }
 
     private void initializeOrderData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mAdapter = new AssignDeliveryBoyAdapter(getDashboardActivity(), deliveryBoyList, this);
+        mAdapter = new OrderReturnedRequestAdapter(getDashboardActivity(), orderReturnedList, this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
-    private void initializeChartData(ArrayList<AssignDeliveryBoyChart> data) {
+    private void initializeChartData(ArrayList<OrderReturnRequestChart> data) {
         mBinding.lineChart.setOnValueTouchListener(new ValueTouchListener());
         // Generate some random values.
         generateValues(data);
@@ -105,31 +108,31 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
         v.bottom = 0;
         v.top = 100;
         v.left = 0;
-        v.right = numberOfOrderForDelivery - 1;
+        v.right = numberOfOrderReturnedRequest - 1;
         mBinding.lineChart.setMaximumViewport(v);
         mBinding.lineChart.setCurrentViewport(v);
     }
 
-    private void generateValues(ArrayList<AssignDeliveryBoyChart> data) {
+    private void generateValues(ArrayList<OrderReturnRequestChart> data) {
         if (CommonUtility.isNotNull(data)) {
-            numberOfOrderForDelivery = data.size();
-            orderOutForDeliveryTab = new float[maxNumberOfLines][numberOfOrderForDelivery];
+            numberOfOrderReturnedRequest = data.size();
+            orderReturnedRequestTab = new float[maxNumberOfLines][numberOfOrderReturnedRequest];
             for (int i = 0; i < maxNumberOfLines; ++i) {
-                for (int j = 0; j < numberOfOrderForDelivery; ++j) {
-                    orderOutForDeliveryTab[i][j] = data.get(j).getOrders_count();
+                for (int j = 0; j < numberOfOrderReturnedRequest; ++j) {
+                    orderReturnedRequestTab[i][j] = data.get(j).getOrders_count();
                 }
             }
         }
     }
 
-    private void generateData(ArrayList<AssignDeliveryBoyChart> data) {
+    private void generateData(ArrayList<OrderReturnRequestChart> data) {
 
         List<Line> lines = new ArrayList<>();
         List<AxisValue> axisValues = new ArrayList<>();
         for (int i = 0; i < numberOfLines; ++i) {
             List<PointValue> values = new ArrayList<>();
-            for (int j = 0; j < numberOfOrderForDelivery; ++j) {
-                values.add(new PointValue(j, orderOutForDeliveryTab[i][j]));
+            for (int j = 0; j < numberOfOrderReturnedRequest; ++j) {
+                values.add(new PointValue(j, orderReturnedRequestTab[i][j]));
                 if (CommonUtility.isNotNull(data) && data.size() > j) {
                     axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
                 }
@@ -166,27 +169,27 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
 
     @Override
     public String getFragmentName() {
-        return AssignDeliveryBoyFragment.class.getSimpleName();
+        return OrderReturnedRequestFragment.class.getSimpleName();
     }
 
     @Override
     public void attachView() {
-       getPresenter().attachView(this);
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtility.isNotNull(response)) {
             if (requestCode == AppConstants.CHART_DATA) {
-                AssignDeliveryBoyChartData chartData=(AssignDeliveryBoyChartData)response;
-                if(CommonUtility.isNotNull(chartData)){
+                OrderReturnRequestChartData chartData = (OrderReturnRequestChartData) response;
+                if (CommonUtility.isNotNull(chartData)) {
                     initializeChartData(chartData.getData());
                 }
             } else if (requestCode == AppConstants.ORDER_DATA) {
-                AssignDeliveryBoyData deliveryData=(AssignDeliveryBoyData)response;
-                if(CommonUtility.isNotNull(deliveryData)){
-                    if(CommonUtility.isNotNull(deliveryData.getData())){
-                        deliveryBoyList.addAll(deliveryData.getData());
+                OrderReturnRequestData requestData = (OrderReturnRequestData) response;
+                if (CommonUtility.isNotNull(requestData)) {
+                    if (CommonUtility.isNotNull(requestData.getData())) {
+                        orderReturnedList.addAll(requestData.getData());
                         mAdapter.notifyDataSetChanged();
                     }
                 }

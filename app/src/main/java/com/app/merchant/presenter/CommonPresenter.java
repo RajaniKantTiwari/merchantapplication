@@ -8,12 +8,14 @@ import com.app.merchant.network.Repository;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.UserSearchRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
+import com.app.merchant.ui.dashboard.SearchActivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -95,5 +97,9 @@ public class CommonPresenter implements Presenter<MvpView> {
                 mView.onError(baseResponse.getMsg(), 2);
             }
         });
+    }
+
+    public void getUserListBySearch(SearchActivity searchActivity, UserSearchRequest userSearchRequest) {
+
     }
 }

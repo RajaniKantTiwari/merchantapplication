@@ -276,7 +276,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         } else if (view == mBinding.bottomLayout.linearLayoutBar1) {
             changeIcon(WELCOME_HOME_FRAGMENT);
             clearAllBackStack();
-            pushFragment(new OrderInventoryFragment(), null, R.id.container, true, false, NONE);
+            pushFragment(new ProductSubproductFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar2) {
             changeIcon(OFFER_FRAGMENT);
             clearAllBackStack();

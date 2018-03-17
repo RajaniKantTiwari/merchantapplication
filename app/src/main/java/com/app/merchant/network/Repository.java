@@ -11,15 +11,13 @@ import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChart;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChartData;
-import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -32,6 +30,8 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturned.Order
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel.OrderReturnedCancelData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
 import io.reactivex.Completable;
@@ -87,4 +87,8 @@ public interface Repository {
     Observable<AssignDeliveryBoyChartData> assignDeliveryBoyChart();
 
     Observable<AssignDeliveryBoyData> assignDeliveryBoy();
+
+    Observable<OrderReturnRequestChartData> getOrderReturnedRequestChart();
+
+    Observable<OrderReturnRequestData> getOrderReturnedRequest();
 }

@@ -36,6 +36,9 @@
         <activity android:name=".ui.otheractivity.EditAddressActivity" />
         <activity android:name="com.app.merchant.ui.authentication.ForgotPasswordActivity" />
         <activity android:name=".ui.scanner.ScannerActivity" />
+        <activity android:name=".ui.dashboard.SearchActivity" />
+
+
 
 
 

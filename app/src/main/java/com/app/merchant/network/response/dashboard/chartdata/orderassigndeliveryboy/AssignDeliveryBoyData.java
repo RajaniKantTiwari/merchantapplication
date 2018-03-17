@@ -1,4 +1,4 @@
-package com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy;
+package com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy;
 
 import com.app.merchant.network.response.BaseResponse;
 

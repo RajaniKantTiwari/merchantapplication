@@ -10,6 +10,7 @@ import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.authentication.RegisterActivity;
 import com.app.merchant.ui.authentication.StoreDetailsActivity;
 import com.app.merchant.ui.authentication.VerifyAccountActivity;
+import com.app.merchant.ui.dashboard.SearchActivity;
 
 import dagger.Component;
 
@@ -23,5 +24,6 @@ public interface CommonComponent {
     void inject(VerifyAccountActivity activity);
     void inject(RegisterActivity activity);
     void inject(StoreDetailsActivity activity);
+    void inject(SearchActivity activity);
 
 }
