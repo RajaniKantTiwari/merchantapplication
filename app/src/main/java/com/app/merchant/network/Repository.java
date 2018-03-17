@@ -17,6 +17,9 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChart;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChartData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -81,4 +84,7 @@ public interface Repository {
 
     Observable<MyOrderData> getAllOrder();
 
+    Observable<AssignDeliveryBoyChartData> assignDeliveryBoyChart();
+
+    Observable<AssignDeliveryBoyData> assignDeliveryBoy();
 }

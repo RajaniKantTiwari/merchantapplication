@@ -17,6 +17,7 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyOrderAdapter;
+import com.app.merchant.ui.dashboard.home.graphfragment.AssignDeliveryBoyFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderConfirmedFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderDeliveredFragment;
 import com.app.merchant.ui.dashboard.home.graphfragment.OrderOutForDeliveryFragment;
@@ -124,6 +125,9 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
             } else if(orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if(orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new AssignDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
             }
         }
     }

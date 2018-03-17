@@ -147,6 +147,7 @@
     <string name="order_received">Order Received</string>
     <string name="order_confirmed">Order Confirmed</string>
     <string name="order_out_for_delivery">Order Out for delivery</string>
+    <string name="assign_delivery_boy">Assign Delivery Boy</string>
     <string name="order_delivered">Order Delivered</string>
     <string name="order_canceled">Order Canceled</string>
     <string name="order_returned">Order Returned</string>

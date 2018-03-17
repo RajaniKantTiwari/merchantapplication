@@ -18,6 +18,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChartData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -101,10 +103,10 @@ public interface ApiService {
     Observable<OrderReturnedData> getOrderReturned();
 
     @POST("shopping/get_merchant_orders_assigned_delivery_boy")
-    Observable<ProductFullInformationData> assignDeliveryBoy();
+    Observable<AssignDeliveryBoyData> assignDeliveryBoy();
 
     @POST("shopping/get_merchant_orders_assigned_delivery_boy_chart")
-    Observable<BaseResponse> assignDeliveryBoyChart();
+    Observable<AssignDeliveryBoyChartData> assignDeliveryBoyChart();
 
     @POST("shopping/get_delivery_boys")
     Observable<DeliveryBoyData> getDeliveryBoyList();

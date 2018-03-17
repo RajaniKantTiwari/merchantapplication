@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        style="@style/match_wrap"
+        android:layout_height="@dimen/margin_30"
+        android:background="@drawable/layer">
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvInvoice"
+            style="@style/order_text_view"
+            android:maxLength="15"/>
+        <ImageView
+            style="@style/view_layout_vertical_light_grey" />
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvAmmount"
+            style="@style/order_text_view"
+            android:maxLength="15"/>
+        <ImageView
+            style="@style/view_layout_vertical_light_grey"/>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvStatus"
+            style="@style/order_text_view_1_4"
+            android:text="does not provide"
+            android:maxLength="15"/>
+        <ImageView
+            style="@style/view_layout_vertical_light_grey"/>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvDeliveryBoy"
+            style="@style/order_text_view"
+            android:maxLength="15"/>
+        <ImageView
+            style="@style/view_layout_vertical_light_grey"/>
+
+        <LinearLayout
+            android:id="@+id/layoutRating"
+            style="@style/layout_hori_match_1_4"
+            android:gravity="center">
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="@style/Widget.AppCompat.RatingBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="5"
+                android:rating="5"
+                android:progressTint="@color/rating_text_color" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

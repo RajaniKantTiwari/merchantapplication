@@ -17,6 +17,8 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyChartData;
+import com.app.merchant.network.response.dashboard.chartdata.order_assign_delivery_boy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -166,6 +168,16 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<MyOrderData> getAllOrder() {
         return apiService.getAllOrder();
+    }
+
+    @Override
+    public Observable<AssignDeliveryBoyChartData> assignDeliveryBoyChart() {
+        return apiService.assignDeliveryBoyChart();
+    }
+
+    @Override
+    public Observable<AssignDeliveryBoyData> assignDeliveryBoy() {
+        return apiService.assignDeliveryBoy();
     }
 
 }

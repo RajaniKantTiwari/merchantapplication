@@ -14,8 +14,11 @@ public abstract class ChartUtils {
     public static final int COLOR_VOILET = Color.parseColor("#010864");
     public static final int COLOR_RED = Color.parseColor("#FC0D1B");
     public static final int COLOR_LIGHT_VOILET = Color.parseColor("#651BC9");
+    public static final int COLOR_DARK_GREY = Color.parseColor("#b8b8b8");
 
-    public static final int[] COLORS = new int[]{COLOR_YELLOW, COLOR_GREEN, COLOR_BLUE, COLOR_VOILET, COLOR_RED,COLOR_LIGHT_VOILET};
+
+
+    public static final int[] COLORS = new int[]{COLOR_YELLOW, COLOR_GREEN, COLOR_BLUE, COLOR_VOILET, COLOR_RED,COLOR_LIGHT_VOILET,COLOR_DARK_GREY};
     private static final float DARKEN_SATURATION = 1.1f;
     private static final float DARKEN_INTENSITY = 0.9f;
     private static int COLOR_INDEX = 0;
