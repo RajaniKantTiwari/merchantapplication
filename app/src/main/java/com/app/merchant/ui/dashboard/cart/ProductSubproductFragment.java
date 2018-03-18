@@ -33,7 +33,9 @@ import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
 import com.app.merchant.ui.dashboard.home.FullInformationFragment;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
+import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.PreferenceUtils;
@@ -49,7 +51,7 @@ import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 
 public class ProductSubproductFragment extends DashboardFragment implements
         CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick,
-        SubCatAdapter.OnSubCatItemClick {
+        SubCatAdapter.OnSubCatItemClick,AddInventoryDialogFragment.InventoryDialogListener {
     private FragmentProductSubproductBinding mBinding;
     private CategoryAdapter mCategoryAdapter;
     private SubCatAdapter mSubCategoryAdapter;
@@ -100,10 +102,11 @@ public class ProductSubproductFragment extends DashboardFragment implements
         switch (view.getId()) {
             case R.id.tvCheckout:
                 CommonUtility.clicked(mBinding.tvCheckout);
-                if (mBinding.tvMobile.getText().toString()==null||mBinding.tvMobile.getText().toString().trim().length()==0) {
+                if (mBinding.tvMobile.getText().toString() == null || mBinding.tvMobile.getText().toString().trim().length() == 0) {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_enter_customer_mobile_number));
                     return;
-                }if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
+                }
+                if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
                     addToCartList();
                 } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
@@ -119,7 +122,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
                 getDashboardActivity().addFragmentInContainer(new AddNewCustomerFragment(), null, true, true, BaseActivity.AnimationType.NONE);
                 break;
             case R.id.tvMobile:
-                ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(),SearchActivity.class);
+                ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), SearchActivity.class);
                 break;
         }
 
@@ -315,6 +318,11 @@ public class ProductSubproductFragment extends DashboardFragment implements
                     getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
                 break;
+            case R.id.tvAddInventory:
+                Bundle bundle = new Bundle();
+                bundle.putString(BundleConstants.PRODUCT_NAME,mCartList.get(pos).getProductname());
+                CommonUtility.showInventoryOrderDialog(getDashboardActivity(), bundle, this);
+                break;
         }
     }
 
@@ -377,10 +385,12 @@ public class ProductSubproductFragment extends DashboardFragment implements
         mCartList.set(event.getPosition(), event.getProductData());
         mCartAdapter.notifyDataSetChanged();
     }
+
     @Subscribe
     public void onUserMobileNumber(UserEvent event) {
         mBinding.tvMobile.setText(event.getMobileNumber());
     }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -396,5 +406,10 @@ public class ProductSubproductFragment extends DashboardFragment implements
     @Override
     public void headerChangedCalled() {
         getDashboardActivity().setHeaderTitle(getResources().getString(R.string.order));
+    }
+
+    @Override
+    public void addInventoryClick(String noOfProduct) {
+
     }
 }

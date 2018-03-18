@@ -35,6 +35,7 @@ import com.app.merchant.event.UpdateCartEvent;
 import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
+import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
@@ -113,6 +114,16 @@ public class CommonUtility {
     public static void showConfirmOrderDialog(AppCompatActivity activity, Bundle bundle, ConfirmOrderDialogFragment.OrderDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         ConfirmOrderDialogFragment alertdFragment = new ConfirmOrderDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert ConfirmOrderDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
+
+    public static void showInventoryOrderDialog(AppCompatActivity activity, Bundle bundle, AddInventoryDialogFragment.InventoryDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        AddInventoryDialogFragment alertdFragment = new AddInventoryDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert ConfirmOrderDialogFragment

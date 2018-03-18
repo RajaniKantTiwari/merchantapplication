@@ -59,6 +59,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             mBinding.ivPlus.setOnClickListener(this);
             mBinding.ivMinus.setOnClickListener(this);
             mBinding.tvSubscribe.setOnClickListener(this);
+            mBinding.tvAddInventory.setOnClickListener(this);
         }
 
         public void bind(int position) {
@@ -67,6 +68,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             mBinding.layoutProduct.setTag(position);
             mBinding.layoutInfo.setTag(position);
             mBinding.tvSubscribe.setTag(position);
+            mBinding.tvAddInventory.setText(position);
             mBinding.tvProductName.setText(mDataList.get(position).getProductname());
             mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getProduct_mrp()));
             mBinding.tvQty.setText(String.valueOf(mDataList.get(position).getQty()));
@@ -93,7 +95,10 @@ public class CartAdapter extends RecyclerView.Adapter {
                     break;
                 case R.id.layoutProduct:
                 case R.id.layoutInfo:
-                        mListener.addToCartClick(pos,root);
+                    mListener.addToCartClick(pos, root);
+                    break;
+                case R.id.tvAddInventory:
+                    mListener.addToCartClick(pos, root);
                     break;
             }
         }

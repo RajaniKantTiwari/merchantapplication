@@ -19,7 +19,7 @@
                 android:layout_centerVertical="true"
                 android:padding="@dimen/margin_10"
                 android:background="@android:color/transparent"
-                android:src="@drawable/hamberg" />
+                android:src="@drawable/hamberg_icon" />
 
                 <com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvHeading"

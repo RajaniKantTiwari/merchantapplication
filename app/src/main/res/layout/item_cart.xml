@@ -54,13 +54,14 @@
                 android:id="@+id/tvProductName"
                 style="@style/textview_description_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:maxLines="2"/>
+                android:maxLines="1"/>
 
 
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvProductQty"
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
+                android:maxLines="1"
                 android:gravity="center_vertical"/>
             <LinearLayout
                 style="@style/wrap_wrap">
@@ -71,9 +72,15 @@
                 <com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvProductPrice"
                     style="@style/textview_description_small_wrap"
+                    android:maxLines="1"
                     android:textColor="@color/color_blue" />
             </LinearLayout>
-
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddInventory"
+                style="@style/textview_description_smaller_wrap"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:text="@string/add_inventory"
+                android:gravity="center_vertical"/>
         </LinearLayout>
 
         <LinearLayout
