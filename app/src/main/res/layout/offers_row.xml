@@ -26,7 +26,7 @@
                 <ImageView
                     android:id="@+id/ivOffer"
                     style="@style/image_35"
-                    android:src="@drawable/hamberg"
+                    android:src="@drawable/hamberg_icon"
                     android:padding="@dimen/margin_4"
                     android:layout_margin="@dimen/margin_3"
                     />
