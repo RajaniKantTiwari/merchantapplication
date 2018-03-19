@@ -1,16 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/layoutNoData"
         style="@style/match_match"
         android:background="@color/white"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:orientation="horizontal">
 
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvSubProductName"
+            android:id="@+id/tvNoData"
             style="@style/textview_title_wrap"
             android:text="@string/no_data_found"
+            android:layout_centerInParent="true"
+            android:layout_toStartOf="@+id/tvStartShopping"
+            android:layout_margin="@dimen/margin_20"
             android:textColor="@color/dashboardTitleColor"/>
-    </LinearLayout>
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvStartShopping"
+            style="@style/textview_title_wrap"
+            android:padding="@dimen/margin_10"
+            android:layout_marginEnd="@dimen/margin_20"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"
+            android:textColor="@color/dashboardTitleColor"/>
+    </RelativeLayout>
 </layout>

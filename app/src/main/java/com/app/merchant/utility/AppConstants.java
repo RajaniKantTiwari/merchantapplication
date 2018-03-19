@@ -77,6 +77,14 @@ public interface AppConstants {
     int ALL_ORDER = 3;
     long API_SERVICE = 500;
 
+    String FIREBASE_BASE_URL = "https://hamaradost-196011.firebaseio.com/";
+    String FIREBASE_USER = "/users.json";
+    String FIREBASE_MESSAGE = "/messages/";
+    int VIEW_TYPE_USER_MESSAGE = 0;
+    int VIEW_TYPE_OTHERS_MESSAGE = 1;
+    String CHAT_WITH = "chat_with";
+    String CHAT_USER_NAME = "chat_user_name";
+
     @IntDef({WELCOME_HOME_FRAGMENT,OFFER_FRAGMENT,NOTIFICATION_FRAGMENT,USER_FRAGMENT})
     @Retention(RetentionPolicy.SOURCE)
     @interface FRAGMENTS {

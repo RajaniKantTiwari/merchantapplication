@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="chatMessage"
+            type="com.app.merchant.network.request.ChatMessage"/>
+    </data>
+    <RelativeLayout
+       style="@style/match_wrap">
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvOthers"
+            style="@style/wrap_wrap"
+            android:layout_marginEnd="@dimen/margin_40"
+            android:layout_marginStart="@dimen/margin_5"
+            android:background="@drawable/bubble_out"
+            android:text="@={chatMessage.message}" />
+    </RelativeLayout>
+</layout>

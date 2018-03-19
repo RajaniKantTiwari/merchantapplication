@@ -105,6 +105,9 @@ dependencies {
     implementation "com.google.firebase:firebase-crash:${project.playServiceVersion}"
     implementation "com.google.firebase:firebase-messaging:${project.playServiceVersion}"
     implementation "com.google.firebase:firebase-auth:${project.playServiceVersion}"
+    //chat library
+    compile 'com.firebase:firebase-client-android:2.5.2+'
+
 //end
 
     //google play service
@@ -121,6 +124,7 @@ dependencies {
     //reactive support
     compile "io.reactivex.rxjava2:rxandroid:$reactVersion"
     compile "io.reactivex.rxjava2:rxjava:$reactVersion"
+    compile 'com.android.volley:volley:1.0.0'
 
     //end
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
@@ -138,7 +142,6 @@ dependencies {
 // Line Chart Library
     implementation project(':hellocharts-library')
     implementation project(':MPChartLib')
-
     //end
 
 

@@ -128,6 +128,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
 
     private void gotoNext(BaseResponse response) {
         try {
+            PreferenceUtils.setUserMono(mobileNumber);
             if (isNotNull(response)) {
                 if (response instanceof VerifyMobileResponse) {
                     VerifyMobileResponse verifyMobileResponse = (VerifyMobileResponse) response;

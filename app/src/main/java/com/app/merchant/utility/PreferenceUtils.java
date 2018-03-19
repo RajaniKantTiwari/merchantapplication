@@ -109,8 +109,6 @@ public class PreferenceUtils {
     }
 
 
-
-
     public static void setAddress(String address) {
         Hawk.put(PreferenceConstants.ADDRESS, address);
     }
@@ -144,10 +142,21 @@ public class PreferenceUtils {
         }
         return null;
     }
+
     public static void setCartData(ArrayList<ProductData> addCartList) {
         Hawk.put(getEmail(), addCartList);
     }
+
     public static ArrayList<ProductData> getCartData() {
-        return Hawk.get(getEmail(),null);
+        return Hawk.get(getEmail(), null);
+    }
+
+    public static void setUserMono(String userMono) {
+        Hawk.put(PreferenceConstants.USER_MONO, userMono);
+
+    }
+
+    public static String getUserMono() {
+        return Hawk.get(PreferenceConstants.USER_MONO, null);
     }
 }

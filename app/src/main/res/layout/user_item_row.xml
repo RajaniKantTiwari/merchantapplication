@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<data>
+    <variable
+        name="user"
+        type="com.app.merchant.network.request.UsersData"/>
+</data>
+    <android.support.v7.widget.CardView
+        style="@style/match_wrap"
+        app:cardCornerRadius="@dimen/margin_2"
+        android:layout_marginEnd="@dimen/welcome_margin_end"
+        android:layout_marginStart="@dimen/welcome_margin_start"
+        android:layout_marginTop="@dimen/margin_8"
+        android:elevation="@dimen/margin_5"
+        android:paddingBottom="@dimen/margin_5"
+        android:background="@drawable/stroke_dark_grey_bg">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_4"
+            >
+
+           <!-- <ImageView
+                android:id="@+id/icon_avata"
+                style="@style/image_40" />-->
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    style="@style/layout_ver_match_1"
+                    android:orientation="horizontal"
+                    android:paddingTop="5dp">
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvName"
+                        style="@style/layout_hori_match_4"
+                        android:text="@={user.mobileNumber}"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/textSize_description"/>
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvTime"
+                        style="@style/layout_hori_match_1"
+                        android:gravity="center_vertical|right"
+                        android:paddingRight="10dp"/>
+                </LinearLayout>
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/txtMessage"
+                    style="@style/match_match"
+                    android:ellipsize="end"
+                    android:text="@={user.userName}"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/textSize_description"
+                    android:lines="1"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</layout>

@@ -76,7 +76,6 @@ public class OrderConfirmedFragment extends DashboardFragment implements
         getDashboardActivity().setHeaderTitle(getString(R.string.order_confirmed));
         deliveryBoyList=new ArrayList<>();
         orderList=new ArrayList<>();
-
         return mBinding.getRoot();
     }
 

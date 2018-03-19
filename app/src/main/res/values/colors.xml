@@ -178,6 +178,7 @@
     <color name="old_noti">#96989A</color>
     <color name="color_apply">#1daeeb</color>
     <color name="scanner_line">#00ceff</color>
+    <color name="hint_color_text">#aeafaf</color>
 
 
 </resources>
