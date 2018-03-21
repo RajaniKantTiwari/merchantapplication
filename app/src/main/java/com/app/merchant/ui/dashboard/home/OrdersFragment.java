@@ -38,7 +38,7 @@ import java.util.ArrayList;
  * Created by ashok on 13/11/17.
  */
 
-public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter.OrderListener {
+public class OrdersFragment extends DashboardFragment implements MyOrderAdapter.OrderListener {
 
     private FragmentOrderBinding mBinding;
     private MyOrderAdapter myOrderAdapter;
@@ -69,7 +69,7 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
 
     @Override
     public String getFragmentName() {
-        return MyOrderFragment.class.getSimpleName();
+        return OrdersFragment.class.getSimpleName();
     }
 
     @Override
@@ -130,12 +130,6 @@ public class MyOrderFragment extends DashboardFragment implements MyOrderAdapter
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new AssignDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
-                Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
-                Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);

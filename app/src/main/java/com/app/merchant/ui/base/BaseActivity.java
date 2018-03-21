@@ -20,7 +20,7 @@ import android.widget.TextView;
 import com.app.merchant.R;
 import com.app.merchant.ui.dashboard.home.AllPerformanceFragment;
 import com.app.merchant.ui.dashboard.home.MyInventoryFragment;
-import com.app.merchant.ui.dashboard.home.MyOrderFragment;
+import com.app.merchant.ui.dashboard.home.OrdersFragment;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.LogUtils;
@@ -217,7 +217,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 fragment = new MyInventoryFragment();
                 break;
             case MY_ORDER_FRAGMENT:
-                fragment = new MyOrderFragment();
+                fragment = new OrdersFragment();
                 break;
             case PRODUCT_INVENTORY_FRAGMENT:
                 fragment=new OrderInventoryFragment();

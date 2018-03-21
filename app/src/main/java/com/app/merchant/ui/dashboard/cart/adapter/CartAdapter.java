@@ -68,7 +68,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             mBinding.layoutProduct.setTag(position);
             mBinding.layoutInfo.setTag(position);
             mBinding.tvSubscribe.setTag(position);
-            mBinding.tvAddInventory.setText(position);
+            mBinding.tvAddInventory.setTag(position);
             mBinding.tvProductName.setText(mDataList.get(position).getProductname());
             mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getProduct_mrp()));
             mBinding.tvQty.setText(String.valueOf(mDataList.get(position).getQty()));
