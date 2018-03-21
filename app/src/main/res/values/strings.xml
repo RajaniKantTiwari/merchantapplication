@@ -288,9 +288,9 @@
     <string name="not_known">Not Known</string>
     <string name="unpaid">Unpaid</string>
     <string name="return_request">Return Request</string>
-    <string name="order_returned_request">Order Returned Request</string>
+    <string name="order_returned_request">Return Requested</string>
     <string name="cancel_request">Cancel Request</string>
-    <string name="order_cancel_request">Order Cancel Request</string>
+    <string name="order_cancel_request">Cancel Requested</string>
     <string name="no_result_found">No Result Found</string>
     <string name="search_customer">Search Customer</string>
     <string name="orders">Orders</string>
@@ -298,7 +298,6 @@
     <string name="no_user_found">No Users Found</string>
     <string name="delivery_boy_list">Delivery Boy List</string>
     <string name="delivery_boys">Delivery Boys</string>
-
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/my_waranty</item>
