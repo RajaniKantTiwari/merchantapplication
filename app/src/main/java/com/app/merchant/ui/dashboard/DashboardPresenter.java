@@ -18,6 +18,9 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -530,6 +533,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderReturnRequestData>(activity) {
             @Override
             public void onResponse(OrderReturnRequestData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void getCancelRequestChart(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getCancelRequestChart().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderCancelRequestChartData>(activity) {
+            @Override
+            public void onResponse(OrderCancelRequestChartData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.CHART_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.CHART_DATA);
+            }
+        });
+    }
+
+    public void getCancelRequest(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getCancelRequest().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderCancelRequestData>(activity) {
+            @Override
+            public void onResponse(OrderCancelRequestData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, AppConstants.ORDER_DATA);
             }

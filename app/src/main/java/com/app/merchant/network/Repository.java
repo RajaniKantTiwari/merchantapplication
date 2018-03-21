@@ -18,6 +18,9 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -91,4 +94,8 @@ public interface Repository {
     Observable<OrderReturnRequestChartData> getOrderReturnedRequestChart();
 
     Observable<OrderReturnRequestData> getOrderReturnedRequest();
+
+    Observable<OrderCancelRequestChartData> getCancelRequestChart();
+
+    Observable<OrderCancelRequestData> getCancelRequest();
 }

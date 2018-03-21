@@ -18,6 +18,9 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -188,6 +191,16 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderReturnRequestData> getOrderReturnedRequest() {
         return apiService.getOrderReturnedRequest();
+    }
+
+    @Override
+    public Observable<OrderCancelRequestChartData> getCancelRequestChart() {
+        return apiService.getCancelRequestChart();
+    }
+
+    @Override
+    public Observable<OrderCancelRequestData> getCancelRequest() {
+        return apiService.getCancelRequest();
     }
 
 }

@@ -80,8 +80,8 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
 
     @Override
     public void initializeData() {
-        getPresenter().getOrderReturnedRequestChart(getDashboardActivity());
-        getPresenter().getOrderReturnedRequest(getDashboardActivity());
+        getPresenter().getCancelRequestChart(getDashboardActivity());
+        getPresenter().getCancelRequest(getDashboardActivity());
         initializeOrderData();
     }
 

@@ -19,6 +19,8 @@ import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
+import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderdelivered.OrderDeliveredChartData;
@@ -127,12 +129,11 @@ public interface ApiService {
     @POST("shopping/get_merchant_orders_return_requested")
     Observable<OrderReturnRequestData> getOrderReturnedRequest();
 
-
     @POST("shopping/get_merchant_orders_cancel_requested_chart")
-    Observable<BaseResponse> getCancelRequestChart();
+    Observable<OrderCancelRequestChartData> getCancelRequestChart();
 
     @POST("shopping/get_merchant_cancel_requested")
-    Observable<ProductFullInformationData> getCancelRequest();
+    Observable<OrderCancelRequestData> getCancelRequest();
 
     @POST("cart/deletecart")
     Observable<BaseResponse> deleteCart(@Body DeleteCartRequest request);
