@@ -161,7 +161,16 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
 
         } else if (view == mBinding.tvProceedToPay) {
-            getPresenter().checkout(getDashboardActivity(), new CheckoutRequest(1));
+            CheckoutRequest request = new CheckoutRequest();
+            if (CommonUtility.isNotNull(deliveryList)) {
+                if (deliveryList.get(0).isChecked()) {
+                    request.setDeliverytype("pickonway");
+                } else {
+                    request.setDeliverytype("homedelivery");
+                }
+            }
+            request.setResponse(1);
+            getPresenter().checkout(getDashboardActivity(), request);
         } else if (view == mBinding.tvPromoCode) {
             openOfferFragment();
         }

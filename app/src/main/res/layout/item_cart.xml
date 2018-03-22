@@ -78,7 +78,7 @@
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvAddInventory"
                 style="@style/textview_description_smaller_wrap"
-                android:layout_marginEnd="@dimen/margin_20"
+                android:padding="@dimen/margin_7"
                 android:text="@string/add_inventory"
                 android:gravity="center_vertical"/>
         </LinearLayout>

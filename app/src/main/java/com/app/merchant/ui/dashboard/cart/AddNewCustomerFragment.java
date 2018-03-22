@@ -1,5 +1,6 @@
 package com.app.merchant.ui.dashboard.cart;
 
+import android.app.Activity;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
@@ -34,7 +36,9 @@ public class AddNewCustomerFragment extends DashboardFragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        getDashboardActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_new_customer, container, false);
+        getDashboardActivity().setHeaderTitle(getResources().getString(R.string.add_new_customer));
         return mBinding.getRoot();
     }
 
@@ -106,6 +110,13 @@ public class AddNewCustomerFragment extends DashboardFragment {
         }
           return true;
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getDashboardActivity().getWindow().
+                setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN|WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
     }
 
     @Override

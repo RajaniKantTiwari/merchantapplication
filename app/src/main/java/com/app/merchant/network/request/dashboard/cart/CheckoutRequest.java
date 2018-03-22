@@ -5,10 +5,19 @@ package com.app.merchant.network.request.dashboard.cart;
  */
 
 public class CheckoutRequest {
-private int response;
+    private int response;
+    private String deliverytype;
 
-    public CheckoutRequest(int response) {
-      this.response=response;
+    public void setResponse(int response) {
+        this.response = response;
+    }
+
+    public String getDeliverytype() {
+        return deliverytype;
+    }
+
+    public void setDeliverytype(String deliverytype) {
+        this.deliverytype = deliverytype;
     }
 
     public int getResponse() {

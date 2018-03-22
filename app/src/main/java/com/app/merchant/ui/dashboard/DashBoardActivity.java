@@ -35,11 +35,7 @@ import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
 import com.app.merchant.ui.dashboard.home.ShowDeliveryBoyFragment;
 import com.app.merchant.ui.dashboard.home.WelcomeFragment;
-import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
-import com.app.merchant.ui.dashboard.drawer.InsuranceActivity;
-import com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity;
 import com.app.merchant.ui.dashboard.drawer.TermConditionActivity;
-import com.app.merchant.ui.dashboard.drawer.WarantyActivity;
 import com.app.merchant.ui.dashboard.notification.NotificationFragment;
 import com.app.merchant.ui.dashboard.user.UserProfileFragment;
 import com.app.merchant.utility.AppConstants;
@@ -81,12 +77,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             case AppConstants.HOME:
                 openFragment(new OrderInventoryFragment(), null, false, false, NONE);
                 break;
-            case AppConstants.MYWARANTY:
-                ExplicitIntent.getsInstance().navigateTo(this, WarantyActivity.class);
-                break;
-            case AppConstants.INSURANCE:
-                ExplicitIntent.getsInstance().navigateTo(this, InsuranceActivity.class);
-                break;
+
             case AppConstants.EDIT_PROFILE:
                 ExplicitIntent.getsInstance().navigateTo(this, EditProfileActivity.class);
                 break;
@@ -94,10 +85,6 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 ExplicitIntent.getsInstance().navigateTo(this, HelpActivity.class);
                 changeIcon(NOTIFICATION_FRAGMENT);
                 openFragment(new NotificationFragment(), null, false, false, NONE);
-                break;
-            case AppConstants.SENIOR_CITIZEN:
-                ExplicitIntent.getsInstance().navigateTo(this, SeniorCitizenActivity.class);
-
                 break;
             case AppConstants.TERM_CONDITION:
                 ExplicitIntent.getsInstance().navigateTo(this, TermConditionActivity.class);
@@ -232,6 +219,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     @Override
     public void attachView() {
         getActivityComponent().inject(this);
+        mPresenter.attachView(this);
     }
 
     public void initializeData() {
@@ -266,7 +254,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         if (mBinding.toolBar.ivDrawer == view) {
             openDrawerLeft();
         } else if (mBinding.layoutDrawerLeft.layoutLogout == view) {
-            //mPresenter.logout(this);
+            mPresenter.logout(this);
         } else if (mBinding.layoutDrawerLeft.ivProfile == view) {
             closeDrawerLeft();
             changeIcon(USER_FRAGMENT);

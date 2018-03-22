@@ -410,13 +410,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();
-                mView.onSuccess(response, AppConstants.ORDER_DATA);
+                activity.onSuccess(response, AppConstants.LOGOUT);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+                mView.onError(baseResponse.getMsg(), AppConstants.LOGOUT);
             }
         });
     }

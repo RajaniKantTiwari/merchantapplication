@@ -27,20 +27,13 @@
         <activity android:name="com.app.merchant.ui.authentication.VerifyAccountActivity" />
         <activity android:name="com.app.merchant.ui.authentication.EditProfileActivity" />
         <activity android:name="com.app.merchant.ui.dashboard.drawer.HelpActivity" />
-        <activity android:name="com.app.merchant.ui.dashboard.drawer.InsuranceActivity" />
-        <activity android:name="com.app.merchant.ui.dashboard.drawer.SeniorCitizenActivity" />
         <activity android:name="com.app.merchant.ui.dashboard.drawer.TermConditionActivity" />
-        <activity android:name="com.app.merchant.ui.dashboard.drawer.WarantyActivity" />
         <activity android:name=".ui.authentication.RegisterActivity" />
         <activity android:name=".ui.authentication.StoreDetailsActivity" />
         <activity android:name=".ui.otheractivity.EditAddressActivity" />
         <activity android:name="com.app.merchant.ui.authentication.ForgotPasswordActivity" />
         <activity android:name=".ui.scanner.ScannerActivity" />
         <activity android:name=".ui.dashboard.SearchActivity" />
-
-
-
-
 
         <activity
             android:name="com.app.merchant.ui.dashboard.DashBoardActivity"
