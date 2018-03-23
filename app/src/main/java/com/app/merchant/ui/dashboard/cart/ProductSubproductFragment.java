@@ -388,6 +388,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
 
     @Subscribe
     public void onUserMobileNumber(UserEvent event) {
+        getDashboardActivity().showToast("Mobile Number "+event.getMobileNumber());
         mBinding.tvMobile.setText(event.getMobileNumber());
     }
 

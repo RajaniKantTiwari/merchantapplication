@@ -12,10 +12,10 @@ import android.view.View;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivitySearchBinding;
 import com.app.merchant.event.UserEvent;
-import com.app.merchant.network.request.dashboard.UserSearchRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.UserResponse;
-import com.app.merchant.network.response.UserResponseData;
+import com.app.merchant.network.request.CustomerPhoneRequest;
+import com.app.merchant.network.response.UserSearchResponse;
+import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.SimpleDividerItemDecoration;
 import com.app.merchant.ui.authentication.CommonActivity;
@@ -40,8 +40,8 @@ public class SearchActivity extends CommonActivity implements
     private String search;
     private ActivitySearchBinding mBinding;
     private SearchAdapter mSearchAdapter;
-    private ArrayList<UserResponse> merchantList;
-    private UserResponse userResponse;
+    private ArrayList<UserSearchResponse> userResponseList;
+    private UserSearchResponse userResponse;
 
 
     @Override
@@ -55,8 +55,8 @@ public class SearchActivity extends CommonActivity implements
 
     private void initializeAdapter() {
         // set search list
-        merchantList = new ArrayList<>();
-        mSearchAdapter = new SearchAdapter(this, merchantList, this);
+        userResponseList = new ArrayList<>();
+        mSearchAdapter = new SearchAdapter(this, userResponseList, this);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mBinding.rvSearch.setLayoutManager(layoutManager);
         mBinding.rvSearch.addItemDecoration(new SimpleDividerItemDecoration(getResources()));
@@ -89,7 +89,7 @@ public class SearchActivity extends CommonActivity implements
                         @Override
                         public void run() {
                             mBinding.progressBar.setVisibility(View.VISIBLE);
-                            presenter.getUserListBySearch(SearchActivity.this, new UserSearchRequest(search));
+                            presenter.searchCustomerByPhone(SearchActivity.this, new CustomerPhoneRequest(search));
                         }
                     }, AppConstants.API_SERVICE);
                 }
@@ -127,12 +127,12 @@ public class SearchActivity extends CommonActivity implements
         mBinding.tvNoResult.setVisibility(View.GONE);
         mBinding.layoutMain.setVisibility(View.VISIBLE);
 
-        if (CommonUtility.isNotNull(response) && response instanceof UserResponseData) {
-            UserResponseData responseData = (UserResponseData) response;
+        if (CommonUtility.isNotNull(response) && response instanceof UserSearchResponseData) {
+            UserSearchResponseData responseData = (UserSearchResponseData) response;
             if (CommonUtility.isNotNull(responseData)) {
                 if (CommonUtility.isNotNull(responseData.getData()) && responseData.getData().size() > 0) {
-                    merchantList.clear();
-                    merchantList.addAll(responseData.getData());
+                    userResponseList.clear();
+                    userResponseList.addAll(responseData.getData());
                     mSearchAdapter.notifyDataSetChanged();
                 } else {
                     mBinding.layoutMain.setVisibility(View.GONE);
@@ -145,8 +145,8 @@ public class SearchActivity extends CommonActivity implements
 
     @Override
     public void onSearchItemClicked(int position) {
-        if (CommonUtility.isNotNull(merchantList) && merchantList.size() > position) {
-            userResponse = merchantList.get(position);
+        if (CommonUtility.isNotNull(userResponseList) && userResponseList.size() > position) {
+            userResponse = userResponseList.get(position);
             if (CommonUtility.isNotNull(userResponse)) {
                     gotoProductDetails();
             }
@@ -154,7 +154,7 @@ public class SearchActivity extends CommonActivity implements
     }
 
     private void gotoProductDetails() {
-        UserEvent userDetailEvent = new UserEvent(userResponse.getMobileNumber());
+        UserEvent userDetailEvent = new UserEvent(userResponse.getMobile());
         EventBus.getDefault().post(userDetailEvent);
         finish();
     }

@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.SearchRowItemBinding;
 import com.app.merchant.network.response.UserResponse;
+import com.app.merchant.network.response.UserSearchResponse;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 
 public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchViewHolder> {
     private final LayoutInflater mInflater;
-    private final ArrayList<UserResponse> userList;
+    private final ArrayList<UserSearchResponse> userList;
     private SearchRowItemBinding mBinding;
     private SearchListener searchListener;
 
@@ -30,7 +31,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         void onSearchItemClicked(int adapterPosition);
     }
 
-    public SearchAdapter(AppCompatActivity activity, ArrayList<UserResponse> merchantList, SearchListener searchListener) {
+    public SearchAdapter(AppCompatActivity activity, ArrayList<UserSearchResponse> merchantList, SearchListener searchListener) {
         mInflater = LayoutInflater.from(activity);
         this.searchListener = searchListener;
         this.userList = merchantList;
@@ -69,7 +70,7 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
                 searchListener.onSearchItemClicked(getAdapterPosition());
             }
         }
-        public void setData(UserResponse merchantResponse) {
+        public void setData(UserSearchResponse merchantResponse) {
             itemView.setSearchData(merchantResponse);
         }
     }

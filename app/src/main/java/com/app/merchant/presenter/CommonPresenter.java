@@ -8,11 +8,11 @@ import com.app.merchant.network.Repository;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
-import com.app.merchant.network.request.dashboard.UserSearchRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
+import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.ui.dashboard.SearchActivity;
@@ -99,7 +99,22 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void getUserListBySearch(SearchActivity searchActivity, UserSearchRequest userSearchRequest) {
+    public void searchCustomerByPhone(SearchActivity activity, CustomerPhoneRequest request) {
+        mView.showProgress();
+        mRepository.searchCustomerByPhone(request).
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<UserSearchResponseData>(activity) {
+            @Override
+            public void onResponse(UserSearchResponseData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
 
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
     }
 }

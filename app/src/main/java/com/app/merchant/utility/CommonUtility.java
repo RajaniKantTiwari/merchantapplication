@@ -33,6 +33,7 @@ import com.app.merchant.BuildConfig;
 import com.app.merchant.R;
 import com.app.merchant.event.UpdateCartEvent;
 import com.app.merchant.ui.authentication.LoginActivity;
+import com.app.merchant.ui.authentication.StoreDetailsActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
@@ -44,6 +45,7 @@ import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -573,5 +575,54 @@ public class CommonUtility {
 
     public static String setTotalDue(String rs, String totaldue) {
         return rs+" "+totaldue;
+    }
+    public static void openDatePicker(StoreDetailsActivity activity) {
+        DatePickerDialog dpd=null;
+
+        Calendar now = Calendar.getInstance();
+        if (dpd == null) {
+            dpd = DatePickerDialog.newInstance(
+                    activity,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+        }
+        dpd.vibrate(false);
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+        dpd.setAccentColor(Color.parseColor("#9C27B0"));
+
+        dpd.show(activity.getFragmentManager(), "Datepickerdialog");
+    }
+    public static String getMonth(int monthOfYear) {
+        switch (monthOfYear){
+            case 0:
+                return "01";
+            case 1:
+                return "02";
+
+            case 2:
+                return "03";
+            case 3:
+                return "04";
+            case 4:
+                return "05";
+
+            case 5:
+                return "06";
+
+            case 6:
+                return "07";
+            case 7:
+                return "08";
+
+            case 8:
+                return "09";
+            case 9:
+                return "10";
+            default:
+                return ""+monthOfYear;
+
+        }
     }
 }

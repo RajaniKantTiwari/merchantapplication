@@ -13,7 +13,9 @@ import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
+import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -140,4 +142,8 @@ public interface ApiService {
 
     @POST("cart/addcart")
     Observable<BaseResponse> addToCart(@Body CartRequest request);
+
+    @POST("shopping/search_customers_number")
+    Observable<UserSearchResponseData> searchCustomerByPhone(@Body CustomerPhoneRequest request);
+
 }

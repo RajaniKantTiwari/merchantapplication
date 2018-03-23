@@ -21,6 +21,7 @@ import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.PreferenceUtils;
+import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -29,7 +30,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener {
+public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener,DatePickerDialog.OnDateSetListener {
     private static final String TAG = StoreDetailsActivity.class.getSimpleName();
     ActivityStoreDetailsBinding mBinding;
     @Inject
@@ -46,6 +47,13 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private RegisterRequest register;
     private int numberOfStoreAreas;
     private List<View> viewList = new ArrayList<>();
+    private String adharNumber;
+    private String nationality;
+    private String dob;
+    private String opentime;
+    private String closetime;
+    private String minorder;
+    private String avgtime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +133,8 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             selectOther();
         } else if (view == mBinding.tvAddMoreAreas) {
             addChildView(numberOfStoreAreas);
+        }else if (mBinding.tvDateOfBirth == view) {
+            CommonUtility.openDatePicker(this);
         }
     }
 
@@ -215,8 +225,15 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
     private boolean isValid() {
         legalName = mBinding.edLegalName.getText().toString();
+        adharNumber=mBinding.edAdharCard.getText().toString();
         panNumber = mBinding.edPanNumber.getText().toString();
         gstNumber = mBinding.edGstNumber.getText().toString();
+        dob=mBinding.tvDateOfBirth.getText().toString();
+        nationality=mBinding.edNationality.getText().toString();
+        opentime=mBinding.edNationality.getText().toString();
+        closetime=mBinding.edCloseTime.getText().toString();
+        minorder=mBinding.edMinOrder.getText().toString();
+        avgtime=mBinding.edAverageTime.getText().toString();
         bankName = mBinding.edBankName.getText().toString();
         branchName = mBinding.edBranch.getText().toString();
         accountNumber = mBinding.edAccountNumber.getText().toString();
@@ -235,13 +252,38 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         } else if (panNumber.trim().length() != 10) {
             showToast(getResources().getString(R.string.please_enter_valid_pan_number));
             return false;
+        } else if (isNull(adharNumber) || adharNumber.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_adhar_number));
+            return false;
+        } else if (adharNumber.trim().length() != 12) {
+            showToast(getResources().getString(R.string.please_enter_valid_adhar_number));
+            return false;
         } else if (isNull(gstNumber) || gstNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_gst_number));
             return false;
         } else if (gstNumber.trim().length() != 15) {
             showToast(getResources().getString(R.string.please_enter_valid_gst_number));
             return false;
-        } else if (isNull(bankName) || bankName.trim().length() == 0) {
+        } else if (isNull(dob) || dob.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_date_of_birth));
+            return false;
+        } else if (isNull(nationality) || nationality.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_nationality));
+            return false;
+        }else if (isNull(opentime) || opentime.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_open_time));
+            return false;
+        }else if (isNull(closetime) || closetime.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_close_time));
+            return false;
+        }else if (isNull(minorder) || minorder.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_min_order));
+            return false;
+        }else if (isNull(avgtime) || avgtime.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_average_time));
+            return false;
+        }
+        else if (isNull(bankName) || bankName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_bank_name));
             return false;
         } else if (isNull(branchName) || branchName.trim().length() == 0) {
@@ -291,4 +333,9 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         CommonUtility.unregister(this);
     }
 
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
+        String date = CommonUtility.getMonth(monthOfYear) + "/" + CommonUtility.getMonth(dayOfMonth) + " " + year;
+        mBinding.tvDateOfBirth.setText(date);
+    }
 }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class RegisterRequest implements Parcelable {
     private String email;
+    private String password;
     private String mobile;
     private String legalname;
     private String merchantname;
@@ -30,9 +31,16 @@ public class RegisterRequest implements Parcelable {
     private String ownerimage;
     private double lat;
     private double lng;
+    private String nationality;
+    private String adhar;
+    private String dob;
+    private String opentime;
+    private String closetime;
+    private String minorder;
+    private String avgtime;
     private ArrayList<StoreImage> storeList;
     private ArrayList<String> otherServiceArea;
-    private String password;
+
 
     public RegisterRequest() {
 
@@ -61,6 +69,13 @@ public class RegisterRequest implements Parcelable {
         lat = in.readDouble();
         lng = in.readDouble();
         pancard=in.readString();
+        nationality=in.readString();
+        adhar=in.readString();
+        dob=in.readString();
+        opentime=in.readString();
+        closetime=in.readString();
+        minorder=in.readString();
+        avgtime=in.readString();
         storeList = in.createTypedArrayList(StoreImage.CREATOR);
         otherServiceArea=in.createStringArrayList();
     }
@@ -297,6 +312,13 @@ public class RegisterRequest implements Parcelable {
         parcel.writeDouble(lat);
         parcel.writeDouble(lng);
         parcel.writeString(pancard);
+        parcel.writeString(nationality);
+        parcel.writeString(adhar);
+        parcel.writeString(dob);
+        parcel.writeString(opentime);
+        parcel.writeString(closetime);
+        parcel.writeString(minorder);
+        parcel.writeString(avgtime);
         parcel.writeTypedList(storeList);
         parcel.writeStringList(otherServiceArea);
     }

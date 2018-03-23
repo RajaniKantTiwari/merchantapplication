@@ -1,5 +1,6 @@
 package com.app.merchant.network;
 
+import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
@@ -12,6 +13,7 @@ import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -201,6 +203,11 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderCancelRequestData> getCancelRequest() {
         return apiService.getCancelRequest();
+    }
+
+    @Override
+    public Observable<UserSearchResponseData> searchCustomerByPhone(CustomerPhoneRequest request) {
+        return apiService.searchCustomerByPhone(request);
     }
 
 }

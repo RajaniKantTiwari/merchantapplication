@@ -6,7 +6,7 @@
 
         <variable
             name="searchData"
-            type="com.app.merchant.network.response.UserResponse" />
+            type="com.app.merchant.network.response.UserSearchResponse" />
     </data>
 
     <LinearLayout
@@ -15,9 +15,17 @@
 
         <com.app.merchant.widget.CustomTextView
             android:id="@+id/tvSearchItem"
+            style="@style/textview_description_large_wrap"
+            android:padding="@dimen/margin_8"
+            android:text="@={searchData.mobile}"
+            android:layout_width="@dimen/margin_150"
+            app:customFont="@string/font_regular" />
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvUserName"
             style="@style/textview_description_large_match"
             android:padding="@dimen/margin_8"
-            android:text="@={searchData.mobileNumber}"
+            android:ellipsize="end"
+            android:text="@={searchData.username}"
             app:customFont="@string/font_regular" />
     </LinearLayout>
 </layout>
