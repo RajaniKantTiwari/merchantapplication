@@ -12,6 +12,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
+import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
@@ -150,5 +151,10 @@ public interface ApiService {
 
     @POST("shopping/get_customer_details")
     Observable<CustomerDetailData> getCustomerDetails(@Body CustomerRequest request);
+
+    @POST("shopping/add_new_customer")
+    Observable<BaseResponse> addNewCustomer(@Body NewCustomerRequest request);
+
+
 
 }

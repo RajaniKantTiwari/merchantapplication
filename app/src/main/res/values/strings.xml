@@ -325,6 +325,7 @@
     <string name="facebook_id">Facebook Id</string>
     <string name="linkedin">Linked In</string>
     <string name="customer_details">Customer Details</string>
+    <string name="raj">Ashok Kumar</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

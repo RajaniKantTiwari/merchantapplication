@@ -11,104 +11,136 @@
             style="@style/match_wrap"
             android:clickable="true"
             android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/margin_180"
                 android:background="@color/tex_color">
+
                 <ImageView
                     style="@style/wrap_wrap"
-                    android:src="@drawable/ic_key"
-                    android:layout_centerInParent="true"/>
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_key" />
             </RelativeLayout>
+
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
-                android:text="@string/email"
-                android:layout_marginStart="@dimen/margin_12"
                 android:layout_marginEnd="@dimen/margin_12"
-                android:layout_marginTop="@dimen/margin_20"/>
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_20"
+                android:text="@string/name" />
+
             <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edEmail"
+                android:id="@+id/edName"
                 style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/abc"
-                android:layout_marginStart="@dimen/margin_12"
                 android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/raj"
                 android:imeOptions="actionNext"
-                android:maxLines="1"
                 android:inputType="textEmailAddress"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
             <ImageView
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_12"
                 style="@style/view_layout_dark_grey"
-                android:layout_marginBottom="@dimen/margin_20" />
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12" />
 
             <com.app.merchant.widget.CustomTextView
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_12"
                 style="@style/textview_description_ex_large_match"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:text="@string/email" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edEmail"
+                style="@style/edit_text_style_medium"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/abc"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
                 android:text="@string/mobileNumber" />
 
             <com.app.merchant.widget.CustomEditText
                 android:id="@+id/edMobileNumber"
                 style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:layout_marginStart="@dimen/margin_12"
                 android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/password"
                 android:imeOptions="actionNext"
-                android:maxLines="1"
                 android:inputType="number"
                 android:maxLength="@integer/mono_length"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
             <ImageView
                 style="@style/view_layout_dark_grey"
-                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginBottom="@dimen/margin_20"
                 android:layout_marginEnd="@dimen/margin_12"
-                android:layout_marginBottom="@dimen/margin_20" />
+                android:layout_marginStart="@dimen/margin_12" />
+
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
-                android:text="@string/address"
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_12"/>
-
-            <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edAddress"
-                style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/enter_address"
-                android:layout_marginStart="@dimen/margin_12"
                 android:layout_marginEnd="@dimen/margin_12"
-                android:imeOptions="actionDone"
-                android:maxLines="1"
+                android:layout_marginStart="@dimen/margin_12"
+                android:text="@string/address" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddress"
+                style="@style/edit_text_style_medium"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_your_full_address"
+                android:imeOptions="actionNext"
                 android:inputType="text"
+                android:maxLines="1"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
-            <ImageView style="@style/view_layout_dark_grey"
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_12"/>
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12" />
+
             <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvDone"
+                android:id="@+id/tvSubmit"
                 style="@style/match_wrap"
                 android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
                 android:layout_marginTop="@dimen/margin_40"
                 android:background="@drawable/light_black_bg"
-                android:layout_marginStart="@dimen/margin_12"
-                android:layout_marginEnd="@dimen/margin_12"
                 android:elevation="@dimen/margin_5"
                 android:gravity="center_horizontal"
                 android:padding="@dimen/margin_12"
-                android:text="@string/done"
+                android:text="@string/submit"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/button_large"
-                app:customFont="@string/font_bold"
-                android:layout_marginBottom="@dimen/margin_10"/>
+                app:customFont="@string/font_bold" />
         </LinearLayout>
     </ScrollView>
 </layout>

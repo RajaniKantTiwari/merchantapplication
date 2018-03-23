@@ -11,6 +11,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
+import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
@@ -50,10 +51,15 @@ public interface Repository {
     Observable<LoginResponseData> loginMerchant(LoginRequest request);
 
     Observable<VerifyMobileResponse> verifyMobileNumber(VerifyMobileRequest verifyMobileRequest);
+
     Observable<BaseResponse> addForCartList(CartListRequest request);
+
     Observable<CategoryResponse> getCategory(CategoryRequest productRequest);
+
     Observable<ProductDetailsData> viewCart();
+
     Observable<BaseResponse> checkout(CheckoutRequest checkoutRequest);
+
     Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest);
 
     Observable<BaseResponse> logout();
@@ -105,4 +111,6 @@ public interface Repository {
     Observable<UserSearchResponseData> searchCustomerByPhone(CustomerPhoneRequest request);
 
     Observable<CustomerDetailData> getCustomerDetails(CustomerRequest request);
+
+    Observable<BaseResponse> addNewCustomer(NewCustomerRequest request);
 }

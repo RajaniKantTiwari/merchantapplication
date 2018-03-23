@@ -12,6 +12,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
+import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -66,41 +67,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
         this.mRepository = repository;
     }
 
-   public void addForCartList(DashBoardActivity activity, CartListRequest request, MvpView mView) {
-       if (mView == null) {
-           activity.showProgress();
-       } else {
-           mView.showProgress();
-       }
+    public void addForCartList(DashBoardActivity activity, CartListRequest request, MvpView mView) {
+        if (mView == null) {
+            activity.showProgress();
+        } else {
+            mView.showProgress();
+        }
 
-       mRepository.addForCartList(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
-           @Override
-           public void onResponse(BaseResponse response) {
+        mRepository.addForCartList(request).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
 
-               if (mView == null) {
-                   activity.hideProgress();
-                   activity.onSuccess(response, AppConstants.CARTADDED);
-               } else {
-                   mView.hideProgress();
-                   mView.onSuccess(response, AppConstants.CARTADDED);
-               }
+                if (mView == null) {
+                    activity.hideProgress();
+                    activity.onSuccess(response, AppConstants.CARTADDED);
+                } else {
+                    mView.hideProgress();
+                    mView.onSuccess(response, AppConstants.CARTADDED);
+                }
 
-           }
+            }
 
-           @Override
-           public void onError(Throwable call, BaseResponse baseResponse) {
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
 
-               if (mView == null) {
-                   activity.hideProgress();
-                   activity.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
-               } else {
-                   mView.hideProgress();
-                   mView.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
-               }
+                if (mView == null) {
+                    activity.hideProgress();
+                    activity.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
+                } else {
+                    mView.hideProgress();
+                    mView.onError(baseResponse.getMsg(), AppConstants.CARTADDED);
+                }
 
-           }
-       });
-   }
+            }
+        });
+    }
+
     public void getCategory(Activity activity, CategoryRequest categoryRequest) {
         mView.showProgress();
         LogUtils.LOGD("", "Repos==" + mRepository);
@@ -118,6 +120,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
     public void viewCart(Activity activity) {
         mView.showProgress();
         mRepository.viewCart().subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductDetailsData>(activity) {
@@ -126,6 +129,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 mView.hideProgress();
                 mView.onSuccess(response, VIEW_CART);
             }
+
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
@@ -133,6 +137,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
     public void checkout(Activity activity, CheckoutRequest checkoutRequest) {
         mView.showProgress();
         mRepository.checkout(checkoutRequest).subscribeOn(Schedulers.io())
@@ -150,6 +155,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
     public void getProductDetails(Activity activity, ProductRequest request) {
         mView.showProgress();
         mRepository.getProductDetail(request).subscribeOn(Schedulers.io()).
@@ -420,6 +426,7 @@ public class DashboardPresenter implements Presenter<MvpView> {
             }
         });
     }
+
     public void deleteFromCart(Activity activity, DeleteCartRequest request, int pos) {
         //mView.showProgress();
         mRepository.deleteFromCart(request).subscribeOn(Schedulers.io())
@@ -569,6 +576,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderCancelRequestData>(activity) {
             @Override
             public void onResponse(OrderCancelRequestData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, AppConstants.ORDER_DATA);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void addNewCustomer(NewCustomerRequest request, Activity activity) {
+        mView.showProgress();
+        mRepository.addNewCustomer(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
                 mView.hideProgress();
                 mView.onSuccess(response, AppConstants.ORDER_DATA);
             }
