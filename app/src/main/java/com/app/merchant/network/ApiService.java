@@ -6,11 +6,16 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
+import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
+import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
+import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
@@ -41,6 +46,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -151,10 +157,37 @@ public interface ApiService {
 
     @POST("shopping/get_customer_details")
     Observable<CustomerDetailData> getCustomerDetails(@Body CustomerRequest request);
-
-    @POST("shopping/add_new_customer")
+    @POST("shopping/get_all_merchant_products")
     Observable<BaseResponse> addNewCustomer(@Body NewCustomerRequest request);
 
+    @POST("shopping/cancel_order")
+    Observable<BaseResponse> cancelOrder(@Body CancelOrderRequest request);
 
+    @POST("shopping/get_count_orders_per_delivery_boy")
+    Observable<DeliveryBoyOrderData> getCountOrderPerDeliveryBoy();
+
+    @POST("shopping/get_deliveryboy_orders_details")
+    Observable<DeliveryBoyOrderData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
+
+
+    @POST("shopping/add_order_feedback")
+    Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);
+
+    @POST("shopping/get_all_merchant_products")
+    Observable<BaseResponse> getAllMerchantProduct();
+
+    @POST("shopping/get_all_merchant_running_out_products")
+    Observable<BaseResponse> getAllMerchantRunningProduct();
+
+    @POST("shopping/update_my_inventory")
+    Observable<BaseResponse> updateMyInventory(@Body UpdateMyInventoryRequest request);
+
+
+    @POST("shopping/update_my_inventory_status")
+    Observable<BaseResponse> updateMyInventoryStatus(@Body InventoryStatusRequest request);
+
+
+    @POST("shopping/my_inventory_history")
+    Observable<BaseResponse> myInventoryHistory();
 
 }
