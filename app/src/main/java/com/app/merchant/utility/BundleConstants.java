@@ -15,4 +15,6 @@ public interface BundleConstants {
     String EMAIL ="email" ;
     String PRODUCT_NAME = "product_name";
     String CUSTOMER_ID = "customerId";
+    String ID = "id";
+    String POSITION = "position";
 }

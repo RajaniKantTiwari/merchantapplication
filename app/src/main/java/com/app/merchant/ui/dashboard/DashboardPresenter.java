@@ -6,6 +6,7 @@ import android.app.Activity;
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
 import com.app.merchant.network.request.dashboard.ProductRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
@@ -37,6 +38,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.utility.AppConstants;
@@ -602,6 +604,42 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), AppConstants.ORDER_DATA);
+            }
+        });
+    }
+
+    public void cancelOrder(DashBoardActivity activity, CancelOrderRequest request) {
+        mView.showProgress();
+        mRepository.cancelOrder(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 3);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 3);
+            }
+        });
+    }
+
+    public void getCountOrderPerDeliveryBoy(DashBoardActivity activity) {
+        mView.showProgress();
+        mRepository.getCountOrderPerDeliveryBoy().subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<DeliveryBoyOrderData>(activity) {
+            @Override
+            public void onResponse(DeliveryBoyOrderData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 3);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 3);
             }
         });
     }

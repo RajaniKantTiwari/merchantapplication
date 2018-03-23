@@ -11,21 +11,20 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentCancelRequestBinding;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequest;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
-import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChart;
-import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
-import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderCancelRequestAdapter;
+import com.app.merchant.ui.dialogfrag.CancelDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
-import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -48,7 +47,9 @@ import lecho.lib.hellocharts.util.ChartUtils;
 
 public class OrderCancelRequestFragment extends DashboardFragment implements
         OrderCancelRequestAdapter.OrderreturnRequestListener,
-        DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
+        DeliveryBoyDialogFragment.DeliveryBoyDialogListener,
+        CancelDialogFragment.CancelDialogListener {
+
     private FragmentCancelRequestBinding mBinding;
     private ArrayList<OrderCancelRequest> orderCancelList = new ArrayList<>();
     //for chart
@@ -137,7 +138,6 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
                     axisValues.add(new AxisValue(j).setLabel(CommonUtility.formatDate(data.get(j).getInvoiceDate())));
                 }
             }
-
             Line line = new Line(values);
             line.setColor(ChartUtils.COLORS[6]);
             line.setShape(shape);
@@ -193,6 +193,8 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
                         mAdapter.notifyDataSetChanged();
                     }
                 }
+            } else if (requestCode == 3) {
+                getDashboardActivity().showToast(response.getMsg());
             }
         }
     }
@@ -212,17 +214,21 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
     @Override
     public void onRatingClick(int position) {
         Bundle bundle = new Bundle();
-        CommonUtility.showRatingDialog(getDashboardActivity(), bundle, this);
-    }
-
-    @Override
-    public void submit(int id, float rating, String feedback) {
-        getDashboardActivity().showToast("Rating Submitted");
+        bundle.putInt(BundleConstants.POSITION, position);
+        CommonUtility.showCancelOrderDialog(getDashboardActivity(), bundle, this);
     }
 
     @Override
     public void headerChangedCalled() {
 
+    }
+
+    @Override
+    public void submit(int position, String reason) {
+        CancelOrderRequest request = new CancelOrderRequest();
+        request.setOrder_id(orderCancelList.get(position).getId());
+        request.setReason(reason);
+        getPresenter().cancelOrder(getDashboardActivity(), request);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

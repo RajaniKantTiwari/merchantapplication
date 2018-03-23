@@ -5,6 +5,7 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
@@ -40,6 +41,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
 
 import io.reactivex.Completable;
 import io.reactivex.Observable;
@@ -113,4 +115,8 @@ public interface Repository {
     Observable<CustomerDetailData> getCustomerDetails(CustomerRequest request);
 
     Observable<BaseResponse> addNewCustomer(NewCustomerRequest request);
+
+    Observable<BaseResponse> cancelOrder(CancelOrderRequest request);
+
+    Observable<DeliveryBoyOrderData> getCountOrderPerDeliveryBoy();
 }

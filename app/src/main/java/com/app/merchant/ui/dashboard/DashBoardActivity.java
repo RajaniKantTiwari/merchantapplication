@@ -33,7 +33,7 @@ import com.app.merchant.ui.dashboard.cart.CartFragment;
 import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.ui.dashboard.drawer.HelpActivity;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
-import com.app.merchant.ui.dashboard.home.ShowDeliveryBoyFragment;
+import com.app.merchant.ui.dashboard.home.DeliveryBoyWithListOrderFragment;
 import com.app.merchant.ui.dashboard.home.WelcomeFragment;
 import com.app.merchant.ui.dashboard.drawer.TermConditionActivity;
 import com.app.merchant.ui.dashboard.notification.NotificationFragment;
@@ -277,7 +277,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
             changeIcon(NOTIFICATION_FRAGMENT);
             clearAllBackStack();
             /*pushFragment(new NotificationFragment(), null, R.id.container, true, false, NONE);*/
-            pushFragment(new ShowDeliveryBoyFragment(), null, R.id.container, true, false, NONE);
+            pushFragment(new DeliveryBoyWithListOrderFragment(), null, R.id.container, true, false, NONE);
         } else if (view == mBinding.bottomLayout.linearLayoutBar4) {
             changeIcon(USER_FRAGMENT);
             clearAllBackStack();

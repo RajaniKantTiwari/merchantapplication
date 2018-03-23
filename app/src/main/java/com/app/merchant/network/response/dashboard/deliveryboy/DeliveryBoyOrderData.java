@@ -11,4 +11,11 @@ import java.util.ArrayList;
 public class DeliveryBoyOrderData extends BaseResponse{
     private ArrayList<DeliveryBoyOrder> data;
 
+    public ArrayList<DeliveryBoyOrder> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<DeliveryBoyOrder> data) {
+        this.data = data;
+    }
 }

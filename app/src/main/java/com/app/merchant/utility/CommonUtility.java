@@ -37,6 +37,7 @@ import com.app.merchant.ui.authentication.StoreDetailsActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
+import com.app.merchant.ui.dialogfrag.CancelDialogFragment;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.CustomDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
@@ -505,6 +506,15 @@ public class CommonUtility {
     public static void showRatingDialog(AppCompatActivity activity, Bundle bundle, RatingDialogFragment.RatingDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         RatingDialogFragment alertdFragment = new RatingDialogFragment();
+        alertdFragment.addListener(listener);
+        alertdFragment.setArguments(bundle);
+        // Show Alert CustomDialogFragment
+        alertdFragment.show(fm, "");
+    }
+
+    public static void showCancelOrderDialog(AppCompatActivity activity, Bundle bundle, CancelDialogFragment.CancelDialogListener listener) {
+        FragmentManager fm = activity.getSupportFragmentManager();
+        CancelDialogFragment alertdFragment = new CancelDialogFragment();
         alertdFragment.addListener(listener);
         alertdFragment.setArguments(bundle);
         // Show Alert CustomDialogFragment

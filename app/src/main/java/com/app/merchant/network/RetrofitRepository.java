@@ -6,6 +6,7 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
@@ -41,6 +42,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -221,6 +223,16 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> addNewCustomer(NewCustomerRequest request) {
         return apiService.addNewCustomer(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> cancelOrder(CancelOrderRequest request) {
+        return apiService.cancelOrder(request);
+    }
+
+    @Override
+    public Observable<DeliveryBoyOrderData> getCountOrderPerDeliveryBoy() {
+        return apiService.getCountOrderPerDeliveryBoy();
     }
 
 

@@ -23,7 +23,7 @@ import java.util.ArrayList;
  * To inject activity reference.
  */
 
-public class ShowDeliveryBoyFragment extends DashboardFragment implements DeliveryBoyListAdapter.DeliveryBoyListener {
+public class DeliveryBoyWithListOrderFragment extends DashboardFragment implements DeliveryBoyListAdapter.DeliveryBoyListener {
     private DeliveryBoyListAdapter mAdapter;
     private FragmentShowDeliveryBoyBinding mBinding;
     private ArrayList<DeliveryBoy> deliveryBoyList;
@@ -44,11 +44,12 @@ public class ShowDeliveryBoyFragment extends DashboardFragment implements Delive
         mBinding.rvDeliveryBoy.setLayoutManager(layoutManager);
         mAdapter = new DeliveryBoyListAdapter(getDashboardActivity(), deliveryBoyList, this);
         mBinding.rvDeliveryBoy.setAdapter(mAdapter);
+        getPresenter().getCountOrderPerDeliveryBoy(getDashboardActivity());
     }
 
     @Override
     public void attachView() {
-
+        getPresenter().attachView(this);
     }
 
     @Override
@@ -59,7 +60,7 @@ public class ShowDeliveryBoyFragment extends DashboardFragment implements Delive
 
     @Override
     public String getFragmentName() {
-        return ShowDeliveryBoyFragment.class.getSimpleName();
+        return DeliveryBoyWithListOrderFragment.class.getSimpleName();
     }
 
     @Override
