@@ -1,6 +1,7 @@
 package com.app.merchant.network;
 
 
+import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
@@ -12,6 +13,7 @@ import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
@@ -145,5 +147,8 @@ public interface ApiService {
 
     @POST("shopping/search_customers_number")
     Observable<UserSearchResponseData> searchCustomerByPhone(@Body CustomerPhoneRequest request);
+
+    @POST("shopping/get_customer_details")
+    Observable<CustomerDetailData> getCustomerDetails(@Body CustomerRequest request);
 
 }

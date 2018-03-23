@@ -53,7 +53,7 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_adhar_number"
-                android:maxLength="@integer/pan_length"
+                android:maxLength="@integer/adhar_length"
                 android:inputType="number"
                 android:maxLines="1"
                 android:imeOptions="actionNext"

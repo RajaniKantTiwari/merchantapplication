@@ -318,6 +318,13 @@
     <string name="please_enter_close_time">Please Enter Close Time</string>
     <string name="please_enter_min_order">Please Enter Minimum Order</string>
     <string name="please_enter_average_time">Please Enter Average Time</string>
+    <string name="go_to_detail">Go to Details</string>
+    <string name="city">City</string>
+    <string name="pincode">PinCode</string>
+    <string name="gender">Gender</string>
+    <string name="facebook_id">Facebook Id</string>
+    <string name="linkedin">Linked In</string>
+    <string name="customer_details">Customer Details</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

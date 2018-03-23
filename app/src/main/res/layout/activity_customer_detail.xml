@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout style="@style/match_match"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:clickable="true">
+        <include
+            android:id="@+id/layoutHeader"
+            layout="@layout/header_layout" />
+        <ScrollView
+            style="@style/match_match">
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginEnd="@dimen/margin_12"
+                android:layout_marginStart="@dimen/margin_12"
+                android:orientation="vertical">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_20"
+                    android:text="@string/user_name" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvUserName"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/email" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvEmailId"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/mobileNumber" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvMobileNumber"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/address" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvAddress"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+
+                <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="@string/city" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCity"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/pincode" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvPinCode"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/gender" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvGender"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/facebook_id" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvFacebookId"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:text="@string/linkedin" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvLinkedInId"
+                    style="@style/textview_description_large_match"
+                    android:layout_marginTop="@dimen/margin_5" />
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvDone"
+                    style="@style/match_wrap"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/margin_10"
+                    android:layout_marginEnd="@dimen/margin_12"
+                    android:layout_marginStart="@dimen/margin_12"
+                    android:layout_marginTop="@dimen/margin_40"
+                    android:background="@drawable/light_black_bg"
+                    android:elevation="@dimen/margin_5"
+                    android:gravity="center_horizontal"
+                    android:padding="@dimen/margin_12"
+                    android:text="@string/done"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/button_large"
+                    app:customFont="@string/font_bold" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+</layout>

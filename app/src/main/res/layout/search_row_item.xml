@@ -9,23 +9,24 @@
             type="com.app.merchant.network.response.UserSearchResponse" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutSearch"
         style="@style/match_wrap">
 
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvSearchItem"
-            style="@style/textview_description_large_wrap"
+            android:id="@+id/tvMobileNumber"
+            style="@style/textview_description_large_match"
+            android:layout_toStartOf="@+id/tvUserDetail"
             android:padding="@dimen/margin_8"
             android:text="@={searchData.mobile}"
-            android:layout_width="@dimen/margin_150"
+            android:layout_centerHorizontal="true"
             app:customFont="@string/font_regular" />
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvUserName"
-            style="@style/textview_description_large_match"
+            android:id="@+id/tvUserDetail"
+            style="@style/textview_description_large_wrap"
+            android:layout_alignParentEnd="true"
             android:padding="@dimen/margin_8"
-            android:ellipsize="end"
-            android:text="@={searchData.username}"
+            android:text="@string/go_to_detail"
             app:customFont="@string/font_regular" />
-    </LinearLayout>
+    </RelativeLayout>
 </layout>

@@ -1,5 +1,6 @@
 package com.app.merchant.network;
 
+import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
@@ -11,6 +12,7 @@ import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
@@ -38,6 +40,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 
@@ -100,4 +103,6 @@ public interface Repository {
     Observable<OrderCancelRequestData> getCancelRequest();
 
     Observable<UserSearchResponseData> searchCustomerByPhone(CustomerPhoneRequest request);
+
+    Observable<CustomerDetailData> getCustomerDetails(CustomerRequest request);
 }

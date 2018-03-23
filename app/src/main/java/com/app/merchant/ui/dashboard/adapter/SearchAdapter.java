@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.SearchRowItemBinding;
-import com.app.merchant.network.response.UserResponse;
 import com.app.merchant.network.response.UserSearchResponse;
 import com.app.merchant.utility.CommonUtility;
 
@@ -27,8 +26,8 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
     private SearchListener searchListener;
 
     public interface SearchListener {
-
-        void onSearchItemClicked(int adapterPosition);
+        void onMobileClicked(int position);
+        void goToDetails(int position);
     }
 
     public SearchAdapter(AppCompatActivity activity, ArrayList<UserSearchResponse> merchantList, SearchListener searchListener) {
@@ -61,15 +60,22 @@ public class SearchAdapter extends RecyclerView.Adapter<SearchAdapter.SearchView
         public SearchViewHolder(SearchRowItemBinding itemView) {
             super(itemView.getRoot());
             this.itemView = itemView;
-            itemView.tvSearchItem.setOnClickListener(this);
+            itemView.tvMobileNumber.setOnClickListener(this);
+            itemView.tvUserDetail.setOnClickListener(this);
+
         }
 
         @Override
         public void onClick(View view) {
             if (CommonUtility.isNotNull(searchListener)) {
-                searchListener.onSearchItemClicked(getAdapterPosition());
+                if (view == itemView.tvMobileNumber) {
+                    searchListener.onMobileClicked(getAdapterPosition());
+                } else if (view == itemView.tvUserDetail) {
+                    searchListener.goToDetails(getAdapterPosition());
+                }
             }
         }
+
         public void setData(UserSearchResponse merchantResponse) {
             itemView.setSearchData(merchantResponse);
         }

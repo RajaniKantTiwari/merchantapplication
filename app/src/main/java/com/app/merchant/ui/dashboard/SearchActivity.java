@@ -21,7 +21,9 @@ import com.app.merchant.ui.SimpleDividerItemDecoration;
 import com.app.merchant.ui.authentication.CommonActivity;
 import com.app.merchant.ui.dashboard.adapter.SearchAdapter;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.utility.ExplicitIntent;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,7 +43,6 @@ public class SearchActivity extends CommonActivity implements
     private ActivitySearchBinding mBinding;
     private SearchAdapter mSearchAdapter;
     private ArrayList<UserSearchResponse> userResponseList;
-    private UserSearchResponse userResponse;
 
 
     @Override
@@ -144,18 +145,27 @@ public class SearchActivity extends CommonActivity implements
 
 
     @Override
-    public void onSearchItemClicked(int position) {
+    public void onMobileClicked(int position) {
         if (CommonUtility.isNotNull(userResponseList) && userResponseList.size() > position) {
-            userResponse = userResponseList.get(position);
+            UserSearchResponse userResponse = userResponseList.get(position);
             if (CommonUtility.isNotNull(userResponse)) {
-                    gotoProductDetails();
+                UserEvent userDetailEvent = new UserEvent(userResponse.getMobile());
+                EventBus.getDefault().post(userDetailEvent);
+                finish();
             }
         }
     }
 
-    private void gotoProductDetails() {
-        UserEvent userDetailEvent = new UserEvent(userResponse.getMobile());
-        EventBus.getDefault().post(userDetailEvent);
-        finish();
+    @Override
+    public void goToDetails(int position) {
+        if (CommonUtility.isNotNull(userResponseList) && userResponseList.size() > position) {
+            UserSearchResponse userResponse = userResponseList.get(position);
+            if (CommonUtility.isNotNull(userResponse)) {
+                Bundle bundle = new Bundle();
+                bundle.putString(BundleConstants.CUSTOMER_ID, String.valueOf(userResponse.getId()));
+                ExplicitIntent.getsInstance().navigateTo(this, CustomerDetailActivity.class, bundle);
+            }
+        }
     }
+
 }

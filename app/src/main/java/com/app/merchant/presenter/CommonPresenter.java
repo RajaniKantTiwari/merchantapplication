@@ -5,16 +5,19 @@ import android.app.Activity;
 
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
+import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
+import com.app.merchant.ui.dashboard.CustomerDetailActivity;
 import com.app.merchant.ui.dashboard.SearchActivity;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -106,6 +109,25 @@ public class CommonPresenter implements Presenter<MvpView> {
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<UserSearchResponseData>(activity) {
             @Override
             public void onResponse(UserSearchResponseData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void getCustomerDetails(CustomerDetailActivity activity, CustomerRequest request) {
+        mView.showProgress();
+        mRepository.getCustomerDetails(request).
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<CustomerDetailData>(activity) {
+            @Override
+            public void onResponse(CustomerDetailData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
