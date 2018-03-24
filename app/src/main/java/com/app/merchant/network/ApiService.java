@@ -47,6 +47,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.
 import com.app.merchant.network.response.dashboard.chartdata.orderreturnrequest.OrderReturnRequestData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrdersData;
 
 import io.reactivex.Observable;
 import retrofit2.http.Body;
@@ -167,7 +168,7 @@ public interface ApiService {
     Observable<DeliveryBoyOrderData> getCountOrderPerDeliveryBoy();
 
     @POST("shopping/get_deliveryboy_orders_details")
-    Observable<DeliveryBoyOrderData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
+    Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
 
 
     @POST("shopping/add_order_feedback")
@@ -182,10 +183,8 @@ public interface ApiService {
     @POST("shopping/update_my_inventory")
     Observable<BaseResponse> updateMyInventory(@Body UpdateMyInventoryRequest request);
 
-
     @POST("shopping/update_my_inventory_status")
     Observable<BaseResponse> updateMyInventoryStatus(@Body InventoryStatusRequest request);
-
 
     @POST("shopping/my_inventory_history")
     Observable<BaseResponse> myInventoryHistory();

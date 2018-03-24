@@ -17,4 +17,6 @@ public interface BundleConstants {
     String CUSTOMER_ID = "customerId";
     String ID = "id";
     String POSITION = "position";
+    String DELIVERY_BOY_ID = "delivery_boy_id";
+    String DELIVERY_BOY_NAME = "delivery_boy_name";
 }

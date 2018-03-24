@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.DeliveryBoyListRowBinding;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrder;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.widget.CustomTextView;
 
@@ -22,14 +23,14 @@ import java.util.ArrayList;
 public class DeliveryBoyListAdapter extends RecyclerView.Adapter<DeliveryBoyListAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private final ArrayList<DeliveryBoy> orderList;
+    private final ArrayList<DeliveryBoyOrder> orderList;
     private DeliveryBoyListener listener;
 
     public interface DeliveryBoyListener {
-        void onOrderConfirmClick(int position);
+        void onDeliveryBoyOrderClicked(int position);
     }
 
-    public DeliveryBoyListAdapter(AppCompatActivity activity, ArrayList<DeliveryBoy> orderList, DeliveryBoyListener listener) {
+    public DeliveryBoyListAdapter(AppCompatActivity activity, ArrayList<DeliveryBoyOrder> orderList, DeliveryBoyListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.orderList = orderList;
@@ -44,36 +45,40 @@ public class DeliveryBoyListAdapter extends RecyclerView.Adapter<DeliveryBoyList
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
-
+        if (CommonUtility.isNotNull(orderList) && orderList.size() > position) {
+            DeliveryBoyOrder order = orderList.get(position);
+            holder.tvAssignedOrder.setText(order.getCount_orders_assigned());
+            holder.tvQuantity.setText(order.getTotal_amt());
+            holder.tvDeliveryBoy.setText(order.getDeliveryboy());
+        }
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtility.isNotNull(orderList) ? orderList.size()+5 : 0;
+        return CommonUtility.isNotNull(orderList) ? orderList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final DeliveryBoyListRowBinding mBinding;
-        private final CustomTextView tvOrderNumber;
-        private final CustomTextView tvStatus;
-        private final CustomTextView tvAmmount;
-        private final CustomTextView tvAddress;
+        private final CustomTextView tvAssignedOrder;
+        private final CustomTextView tvQuantity;
+        private final CustomTextView tvDeliveryBoy;
 
         public ProductViewHolder(DeliveryBoyListRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-            tvOrderNumber = mBinding.tvOrderNumber;
-            tvAddress = mBinding.tvAddress;
-            tvAmmount = mBinding.tvAmmount;
-            tvStatus = mBinding.tvStatus;
-            itemView.tvStatus.setOnClickListener(this);
+            tvAssignedOrder = mBinding.tvAssignedOrder;
+            tvQuantity = mBinding.tvQuantity;
+            tvDeliveryBoy = mBinding.tvDeliveryBoy;
+            itemView.layoutDeliveryBoy.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onOrderConfirmClick(getAdapterPosition());
+            if (CommonUtility.isNotNull(listener)) {
+                listener.onDeliveryBoyOrderClicked(getAdapterPosition());
+            }
         }
     }
 }

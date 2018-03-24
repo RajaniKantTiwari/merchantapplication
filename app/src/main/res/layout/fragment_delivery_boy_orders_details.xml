@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        style="@style/match_match"
+        android:background="@color/white"
+        android:clickable="true"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_10"
+            android:layout_marginTop="@dimen/margin_10">
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvName"
+                style="@style/textview_header_match"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@+id/tvClose"
+                android:gravity="center"/>
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvClose"
+                style="@style/textview_title_wrap"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/margin_12"
+                android:text="@string/close" />
+        </RelativeLayout>
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_height="@dimen/margin_30"
+            android:background="@drawable/order_bg">
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view_large"
+                android:text="@string/quantity" />
+
+            <ImageView style="@style/view_layout_vertical_light_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view_1_4"
+                android:text="@string/current_status" />
+
+            <ImageView style="@style/view_layout_vertical_light_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view_large"
+                android:text="@string/payment_details" />
+
+            <ImageView style="@style/view_layout_vertical_light_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view_large"
+                android:text="@string/order_no" />
+
+            <ImageView style="@style/view_layout_vertical_light_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/order_text_view_large"
+                android:text="@string/order_date" />
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvDeliveryBoy"
+            style="@style/match_match" />
+    </LinearLayout>
+</layout>

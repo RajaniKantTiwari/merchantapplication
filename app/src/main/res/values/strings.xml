@@ -328,6 +328,12 @@
     <string name="raj">Ashok Kumar</string>
     <string name="enter_reason_of_cancel">Please Enter Reason Of Cancel</string>
     <string name="write_reason_here">Write Reason Here</string>
+    <string name="current_status">Current Status</string>
+    <string name="order_date">Order Date</string>
+    <string name="assign_order">Assign Order</string>
+    <string name="total_quantity">Total Quantity</string>
+    <string name="delivery_boy">Delivery Boy</string>
+    <string name="close">Close</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

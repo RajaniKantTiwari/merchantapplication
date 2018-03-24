@@ -47,4 +47,36 @@ public class DeliveryBoyOrder implements Parcelable{
         parcel.writeString(deliveryboy);
         parcel.writeString(deliveryboy_id);
     }
+
+    public String getCount_orders_assigned() {
+        return count_orders_assigned;
+    }
+
+    public void setCount_orders_assigned(String count_orders_assigned) {
+        this.count_orders_assigned = count_orders_assigned;
+    }
+
+    public String getTotal_amt() {
+        return total_amt;
+    }
+
+    public void setTotal_amt(String total_amt) {
+        this.total_amt = total_amt;
+    }
+
+    public String getDeliveryboy() {
+        return deliveryboy;
+    }
+
+    public void setDeliveryboy(String deliveryboy) {
+        this.deliveryboy = deliveryboy;
+    }
+
+    public String getDeliveryboy_id() {
+        return deliveryboy_id;
+    }
+
+    public void setDeliveryboy_id(String deliveryboy_id) {
+        this.deliveryboy_id = deliveryboy_id;
+    }
 }

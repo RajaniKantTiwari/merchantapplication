@@ -2,31 +2,26 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        android:id="@+id/layoutDeliveryBoy"
         style="@style/match_wrap"
         android:layout_height="@dimen/margin_30"
         android:background="@drawable/layer">
+
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvOrderNumber"
-            style="@style/order_text_view_large"
-            android:maxLength="15"/>
-        <ImageView
-            style="@style/view_layout_vertical_light_grey" />
+            android:id="@+id/tvAssignedOrder"
+            style="@style/order_text_view_large" />
+
+        <ImageView style="@style/view_layout_vertical_light_grey" />
+
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvAddress"
-            style="@style/order_text_view_large"
-            android:maxLength="15"/>
-        <ImageView
-            style="@style/view_layout_vertical_light_grey"/>
+            android:id="@+id/tvQuantity"
+            style="@style/order_text_view_large" />
+
+        <ImageView style="@style/view_layout_vertical_light_grey" />
+
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvAmmount"
-            style="@style/order_text_view_large"
-            android:maxLength="15"/>
-        <ImageView
-            style="@style/view_layout_vertical_light_grey"/>
-        <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvStatus"
-            style="@style/order_text_view_large"
-            android:maxLength="15"/>
+            android:id="@+id/tvDeliveryBoy"
+            style="@style/order_text_view_large" />
     </LinearLayout>
 
 </layout>

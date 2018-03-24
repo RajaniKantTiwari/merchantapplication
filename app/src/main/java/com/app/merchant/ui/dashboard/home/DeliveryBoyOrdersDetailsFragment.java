@@ -9,15 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentShowDeliveryBoyBinding;
+import com.app.merchant.databinding.FragmentDeliveryBoyOrdersDetailsBinding;
+import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
-import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrder;
-import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
-import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrders;
+import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrdersData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.DeliveryBoyListAdapter;
-import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
+import com.app.merchant.ui.dashboard.home.adapter.DeliveryBoyOrdersListAdapter;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
@@ -29,28 +28,35 @@ import java.util.ArrayList;
  * To inject activity reference.
  */
 
-public class DeliveryBoyWithListOrderFragment extends DashboardFragment implements DeliveryBoyListAdapter.DeliveryBoyListener {
-    private DeliveryBoyListAdapter mAdapter;
-    private FragmentShowDeliveryBoyBinding mBinding;
-    private ArrayList<DeliveryBoyOrder> deliveryBoyList;
+public class DeliveryBoyOrdersDetailsFragment extends DashboardFragment {
+    private DeliveryBoyOrdersListAdapter mAdapter;
+    private FragmentDeliveryBoyOrdersDetailsBinding mBinding;
+    private ArrayList<DeliveryBoyOrders> deliveryBoyList;
+    private String deliveryBoyId;
+    private String deliveryBoyName;
 
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_show_delivery_boy, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_delivery_boy_orders_details, container, false);
         getDashboardActivity().setHeaderTitle(getResources().getString(R.string.delivery_boys));
         initializeOrderData();
         return mBinding.getRoot();
     }
 
     private void initializeOrderData() {
+        Bundle bundle = getArguments();
+        if (CommonUtility.isNotNull(bundle)) {
+            deliveryBoyId = bundle.getString(BundleConstants.DELIVERY_BOY_ID);
+            deliveryBoyName = bundle.getString(BundleConstants.DELIVERY_BOY_NAME);
+        }
         deliveryBoyList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvDeliveryBoy.setLayoutManager(layoutManager);
-        mAdapter = new DeliveryBoyListAdapter(getDashboardActivity(), deliveryBoyList, this);
+        mAdapter = new DeliveryBoyOrdersListAdapter(getDashboardActivity(), deliveryBoyList);
         mBinding.rvDeliveryBoy.setAdapter(mAdapter);
-        getPresenter().getCountOrderPerDeliveryBoy(getDashboardActivity());
+        getPresenter().getDeliveryBoyOrderDetail(getDashboardActivity(), new DeliveryBoyOrderDetailRequest(deliveryBoyId));
     }
 
     @Override
@@ -60,13 +66,13 @@ public class DeliveryBoyWithListOrderFragment extends DashboardFragment implemen
 
     @Override
     public void setListener() {
-
+        mBinding.tvName.setText(deliveryBoyName);
 
     }
 
     @Override
     public String getFragmentName() {
-        return DeliveryBoyWithListOrderFragment.class.getSimpleName();
+        return DeliveryBoyOrdersDetailsFragment.class.getSimpleName();
     }
 
     @Override
@@ -81,18 +87,16 @@ public class DeliveryBoyWithListOrderFragment extends DashboardFragment implemen
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtility.isNotNull(response)) {
-            if (requestCode == 3) {
-                DeliveryBoyOrderData data = (DeliveryBoyOrderData) response;
-                setData(data);
-            }
+            DeliveryBoyOrdersData data = (DeliveryBoyOrdersData) response;
+            setData(data);
         }
-
     }
 
-    private void setData(DeliveryBoyOrderData data) {
+    private void setData(DeliveryBoyOrdersData data) {
         deliveryBoyList.clear();
-        deliveryBoyList.addAll(data.getData());
-        mAdapter.notifyDataSetChanged();
+        if (CommonUtility.isNotNull(data.getData())) {
+            deliveryBoyList.addAll(data.getData());
+        }
     }
 
     @Override
@@ -100,12 +104,4 @@ public class DeliveryBoyWithListOrderFragment extends DashboardFragment implemen
 
     }
 
-    @Override
-    public void onDeliveryBoyOrderClicked(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putString(BundleConstants.DELIVERY_BOY_ID, deliveryBoyList.get(position).getDeliveryboy_id());
-        bundle.putString(BundleConstants.DELIVERY_BOY_NAME, deliveryBoyList.get(position).getDeliveryboy());
-
-        getDashboardActivity().addFragmentInContainer(new DeliveryBoyOrdersDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-    }
 }

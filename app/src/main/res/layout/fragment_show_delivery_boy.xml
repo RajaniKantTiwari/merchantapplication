@@ -96,25 +96,18 @@
 
                     <com.app.merchant.widget.CustomTextView
                         style="@style/order_text_view_large"
-                        android:text="@string/order_no" />
+                        android:text="@string/assign_order" />
+                    <ImageView style="@style/view_layout_vertical_light_grey" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/order_text_view_large"
+                        android:text="@string/total_quantity" />
 
                     <ImageView style="@style/view_layout_vertical_light_grey" />
 
                     <com.app.merchant.widget.CustomTextView
                         style="@style/order_text_view_large"
-                        android:text="@string/address" />
-
-                    <ImageView style="@style/view_layout_vertical_light_grey" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/order_text_view_large"
-                        android:text="@string/amount" />
-
-                    <ImageView style="@style/view_layout_vertical_light_grey" />
-
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/order_text_view_large"
-                        android:text="@string/status" />
+                        android:text="@string/delivery_boy" />
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
