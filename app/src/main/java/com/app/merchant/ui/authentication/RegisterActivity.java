@@ -67,6 +67,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     private String mobileNumber;
     private double latitude;
     private double longitude;
+    private String merchantName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -195,12 +196,13 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     private void setIntentData(Intent intent) {
         RegisterRequest register = new RegisterRequest();
+        register.setMerchantname(merchantName);
         register.setEmail(email);
         register.setPassword(password);
         register.setMobile(mobileNumber);
         register.setLocation(location);
         register.setAddress(address);
-        register.setMerchantname(storeName);
+        register.setLegalname(storeName);
         register.setLat(latitude);
         register.setLng(longitude);
 
@@ -214,13 +216,18 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     }
 
     private boolean isValid() {
+        merchantName=mBinding.edMerchantName.getText().toString();
         email = mBinding.edEmail.getText().toString();
         password = mBinding.edPassword.getText().toString();
         mobileNumber = mBinding.edMobileNumber.getText().toString();
         location = mBinding.edLocation.getText().toString();
         address = mBinding.tvAddress.getText().toString();
         storeName = mBinding.edStore.getText().toString();
-        if (isNull(email) || email.trim().length() == 0) {
+        if (isNull(merchantName) || merchantName.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_merchat_name));
+            mBinding.edEmail.requestFocus();
+            return false;
+        }else if (isNull(email) || email.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_email_address));
             mBinding.edEmail.requestFocus();
             return false;

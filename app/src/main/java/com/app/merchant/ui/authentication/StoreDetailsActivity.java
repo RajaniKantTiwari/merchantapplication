@@ -55,6 +55,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private String closetime;
     private String minorder;
     private String avgtime;
+    private String coi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,7 +167,8 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
     private void setRegisterData() {
         if (CommonUtility.isNotNull(register)) {
-            register.setLegalname(legalName);
+            register.setCompany_legal_name(legalName);
+            register.setCoi(coi);
             register.setPancard(panNumber);
             register.setGst(gstNumber);
             register.setBankname(bankName);
@@ -182,7 +184,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             register.setAvgtime(avgtime);
             setPaymentOption();
             register.setDelivery(deliveryCharge);
-            register.setServicingarea(legalName);
+            register.setServicingarea(serviceArea);
             if (CommonUtility.isNotNull(viewList) && viewList.size() > 0) {
                 ArrayList<String> otherServiceArea = new ArrayList<>();
                 for (int i = 0; i < viewList.size(); i++) {
@@ -235,6 +237,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     }
 
     private boolean isValid() {
+        coi=mBinding.edCoi.getText().toString();
         legalName = mBinding.edLegalName.getText().toString();
         adharNumber=mBinding.edAdharCard.getText().toString();
         panNumber = mBinding.edPanNumber.getText().toString();
@@ -251,8 +254,11 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         ifscCode = mBinding.edIFSCCode.getText().toString();
         deliveryCharge = mBinding.edDelivery.getText().toString();
         serviceArea = mBinding.edServiceArea.getText().toString();
-        if (isNull(legalName) || legalName.trim().length() == 0) {
+         if (isNull(legalName) || legalName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_legalname_of_company));
+            return false;
+        }else if (isNull(coi) || coi.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_coi));
             return false;
         } else if (isNull(panNumber) || panNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_pan_number));

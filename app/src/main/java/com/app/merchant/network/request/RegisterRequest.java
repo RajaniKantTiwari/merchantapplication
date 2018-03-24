@@ -38,6 +38,8 @@ public class RegisterRequest implements Parcelable {
     private String closetime;
     private String minorder;
     private String avgtime;
+    private String company_legal_name;
+    private String coi;
     private ArrayList<StoreImage> storeList;
     private ArrayList<String> otherServiceArea;
 
@@ -76,6 +78,8 @@ public class RegisterRequest implements Parcelable {
         closetime=in.readString();
         minorder=in.readString();
         avgtime=in.readString();
+        company_legal_name=in.readString();
+        coi=in.readString();
         storeList = in.createTypedArrayList(StoreImage.CREATOR);
         otherServiceArea=in.createStringArrayList();
     }
@@ -339,6 +343,22 @@ public class RegisterRequest implements Parcelable {
         this.avgtime = avgtime;
     }
 
+    public String getCompany_legal_name() {
+        return company_legal_name;
+    }
+
+    public void setCompany_legal_name(String company_legal_name) {
+        this.company_legal_name = company_legal_name;
+    }
+
+    public String getCoi() {
+        return coi;
+    }
+
+    public void setCoi(String coi) {
+        this.coi = coi;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -375,6 +395,8 @@ public class RegisterRequest implements Parcelable {
         parcel.writeString(closetime);
         parcel.writeString(minorder);
         parcel.writeString(avgtime);
+        parcel.writeString(company_legal_name);
+        parcel.writeString(coi);
         parcel.writeTypedList(storeList);
         parcel.writeStringList(otherServiceArea);
     }

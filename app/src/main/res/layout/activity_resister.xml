@@ -23,9 +23,31 @@
                 android:text="@string/register"
                 android:textAllCaps="true"
                 android:textColor="@color/dark_black_color" />
+
+
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/merchant_name" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMerchantName"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_merchant_name"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:inputType="text"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
                 android:text="@string/email" />
 
             <com.app.merchant.widget.CustomEditText

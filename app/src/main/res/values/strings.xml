@@ -335,6 +335,12 @@
     <string name="delivery_boy">Delivery Boy</string>
     <string name="close">Close</string>
     <string name="profile">Profile</string>
+    <string name="enter_merchant_name">Enter Merchant Name</string>
+    <string name="merchant_name">Merchant Name</string>
+    <string name="please_enter_merchat_name">Please Enter Merchant Name</string>
+    <string name="coi">COI</string>
+    <string name="enter_coi">Enter Coi</string>
+    <string name="please_enter_coi">Please Enter Coi</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
