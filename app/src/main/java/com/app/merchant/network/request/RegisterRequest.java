@@ -283,6 +283,62 @@ public class RegisterRequest implements Parcelable {
         return password;
     }
 
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public String getAdhar() {
+        return adhar;
+    }
+
+    public void setAdhar(String adhar) {
+        this.adhar = adhar;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getOpentime() {
+        return opentime;
+    }
+
+    public void setOpentime(String opentime) {
+        this.opentime = opentime;
+    }
+
+    public String getClosetime() {
+        return closetime;
+    }
+
+    public void setClosetime(String closetime) {
+        this.closetime = closetime;
+    }
+
+    public String getMinorder() {
+        return minorder;
+    }
+
+    public void setMinorder(String minorder) {
+        this.minorder = minorder;
+    }
+
+    public String getAvgtime() {
+        return avgtime;
+    }
+
+    public void setAvgtime(String avgtime) {
+        this.avgtime = avgtime;
+    }
+
     @Override
     public int describeContents() {
         return 0;

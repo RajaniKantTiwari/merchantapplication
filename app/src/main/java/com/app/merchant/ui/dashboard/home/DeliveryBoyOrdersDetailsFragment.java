@@ -94,9 +94,17 @@ public class DeliveryBoyOrdersDetailsFragment extends DashboardFragment {
 
     private void setData(DeliveryBoyOrdersData data) {
         deliveryBoyList.clear();
-        if (CommonUtility.isNotNull(data.getData())) {
+        if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
+            mBinding.layoutNoData.layoutNoData.setVisibility(View.GONE);
+            mBinding.rvDeliveryBoy.setVisibility(View.VISIBLE);
             deliveryBoyList.addAll(data.getData());
+            mAdapter.notifyDataSetChanged();
+        } else {
+            mBinding.layoutNoData.layoutNoData.setVisibility(View.VISIBLE);
+            mBinding.rvDeliveryBoy.setVisibility(View.GONE);
+
         }
+
     }
 
     @Override

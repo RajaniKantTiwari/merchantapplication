@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityCustomerDetailBinding;
+import com.app.merchant.event.UserEvent;
 import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetail;
@@ -16,6 +17,8 @@ import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.authentication.CommonActivity;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class CustomerDetailActivity extends CommonActivity {
     private String customerId;
     @Inject
     CommonPresenter presenter;
+    private CustomerDetail commonDetail;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,7 +77,9 @@ public class CustomerDetailActivity extends CommonActivity {
     public void onClick(View view) {
         if (view == mBinding.tvDone) {
             CommonUtility.clicked(mBinding.tvDone);
-            onBackPressed();
+            UserEvent userDetailEvent = new UserEvent(commonDetail.getMobile());
+            EventBus.getDefault().post(userDetailEvent);
+            finish();
         } else if (view == mBinding.layoutHeader.ivBack) {
             onBackPressed();
         }
@@ -88,7 +94,7 @@ public class CustomerDetailActivity extends CommonActivity {
                 CustomerDetailData data = (CustomerDetailData) response;
                 ArrayList<CustomerDetail> detailsList = data.getData();
                 if (CommonUtility.isNotNull(detailsList) && detailsList.size() > 0) {
-                    CustomerDetail commonDetail = detailsList.get(0);
+                    commonDetail = detailsList.get(0);
                     setData(commonDetail);
                 }
             }

@@ -125,9 +125,11 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 mLoadingDialog.findViewById(R.id.progress_bar);
             }
             //progressBar.setIndeterminateTintList(ColorStateList.valueOf(ContextCompat.getColor(this, id)));
+            if(!mLoadingDialog.isShowing()){
+                mLoadingDialog.setCancelable(false);
+                mLoadingDialog.show();
+            }
 
-            mLoadingDialog.setCancelable(false);
-            mLoadingDialog.show();
         } catch (Exception e) {
             if (e.getMessage() != null)
                 LogUtils.LOGE(TAG, e.getMessage());

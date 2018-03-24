@@ -91,27 +91,10 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtility.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, AppConstants.PAYMENT_HEIGHT);
-        //setCoupon();
-        /*couponAdapter = new CouponAdapter(getBaseActivity(), couponList, this);
-        mBinding.rvCouponCode.setAdapter(couponAdapter);
-        CommonUtility.setRecyclerViewHeight(mBinding.rvCouponCode, couponList, GeneralConstant.COUPON_HEIGHT);*/
         mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 
-    private void setCoupon() {
-        Coupon coupon = new Coupon();
-        coupon.setCouponOffer("10 % off on all products");
-        couponList.add(coupon);
-        Coupon coupon1 = new Coupon();
-        coupon1.setCouponOffer("10 % off on all products has given");
-        couponList.add(coupon1);
-        Coupon coupon2 = new Coupon();
-        coupon2.setCouponOffer("20 % off on bevrage");
-        couponList.add(coupon2);
-        Coupon coupon3 = new Coupon();
-        coupon3.setCouponOffer("20 % off on all bevrage given");
-        couponList.add(coupon3);
-    }
+
 
 
     private void setDelivery() {
@@ -119,6 +102,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
         option1.setPaymentString(getResources().getString(R.string.pick_on_the_way));
         PaymentOption option2 = new PaymentOption();
         option2.setPaymentString(getResources().getString(R.string.home_delivery));
+        option2.setChecked(true);
         deliveryList.add(option1);
         deliveryList.add(option2);
 
@@ -127,6 +111,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
     private void setPaymentOption() {
         PaymentOption option1 = new PaymentOption();
         option1.setPaymentString(getResources().getString(R.string.cash_on_delivery));
+        option1.setChecked(true);
         PaymentOption option2 = new PaymentOption();
         option2.setPaymentString(getResources().getString(R.string.credit_debit_card));
         PaymentOption option3 = new PaymentOption();
@@ -220,19 +205,4 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
 
     }
 
-  /*  @Override
-    public void onCouponClick(int position) {
-        if (CommonUtility.isNotNull(couponList) && couponList.size() > position) {
-            for (int i = 0; i < couponList.size(); i++) {
-                Coupon coupon = couponList.get(i);
-                if (i == position) {
-                    coupon.setChecked(true);
-                } else {
-                    coupon.setChecked(false);
-                }
-                couponList.set(i, coupon);
-            }
-            couponAdapter.notifyDataSetChanged();
-        }
-    }*/
 }

@@ -7,7 +7,7 @@ package com.app.merchant.network.request.dashboard.home;
 public class DeliveryBoyOrderDetailRequest {
     private String delivery_boy_id;
 
-    public DeliveryBoyOrderDetailRequest(String deliveryBoyId) {
+    public DeliveryBoyOrderDetailRequest(String delivery_boy_id) {
         this.delivery_boy_id = delivery_boy_id;
     }
 

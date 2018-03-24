@@ -105,7 +105,6 @@ public class DeliveryBoyWithListOrderFragment extends DashboardFragment implemen
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.DELIVERY_BOY_ID, deliveryBoyList.get(position).getDeliveryboy_id());
         bundle.putString(BundleConstants.DELIVERY_BOY_NAME, deliveryBoyList.get(position).getDeliveryboy());
-
         getDashboardActivity().addFragmentInContainer(new DeliveryBoyOrdersDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 }

@@ -88,6 +88,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         mBinding.layoutPayment.layoutPaytm.setOnClickListener(this);
         mBinding.layoutPayment.layoutOther.setOnClickListener(this);
         mBinding.tvAddMoreAreas.setOnClickListener(this);
+        mBinding.tvDateOfBirth.setOnClickListener(this);
     }
 
 
@@ -169,6 +170,13 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             register.setBranch(branchName);
             register.setAccountno(accountNumber);
             register.setIfsc(ifscCode);
+            register.setAdhar(adharNumber);
+            register.setNationality(nationality);
+            register.setDob(dob);
+            register.setOpentime(opentime);
+            register.setClosetime(closetime);
+            register.setMinorder(minorder);
+            register.setAvgtime(avgtime);
             setPaymentOption();
             register.setDelivery(deliveryCharge);
             register.setServicingarea(legalName);
@@ -242,9 +250,6 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         serviceArea = mBinding.edServiceArea.getText().toString();
         if (isNull(legalName) || legalName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_legalname_of_company));
-            return false;
-        } else if (!CommonUtility.checkValidName(legalName.trim())) {
-            showToast(getResources().getString(R.string.please_enter_valid_name_of_company));
             return false;
         } else if (isNull(panNumber) || panNumber.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_pan_number));
@@ -335,7 +340,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
-        String date = CommonUtility.getMonth(monthOfYear) + "/" + CommonUtility.getMonth(dayOfMonth) + " " + year;
+        String date = CommonUtility.getMonth(monthOfYear) + "/" + CommonUtility.getMonth(dayOfMonth) + "/" + year;
         mBinding.tvDateOfBirth.setText(date);
     }
 }

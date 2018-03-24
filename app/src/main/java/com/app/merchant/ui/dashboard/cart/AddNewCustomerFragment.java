@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAddNewCustomerBinding;
+import com.app.merchant.event.UserEvent;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
@@ -28,6 +29,8 @@ import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlaceAutocomplete;
 import com.google.android.gms.maps.model.LatLng;
+
+import org.greenrobot.eventbus.EventBus;
 
 import static com.app.merchant.utility.CommonUtility.isNull;
 
@@ -80,11 +83,11 @@ public class AddNewCustomerFragment extends DashboardFragment {
         if (view == mBinding.tvSubmit) {
             CommonUtility.clicked(mBinding.tvSubmit);
             if (isValid()) {
-                NewCustomerRequest request=new NewCustomerRequest();
+                NewCustomerRequest request = new NewCustomerRequest();
                 setData(request);
-                getPresenter().addNewCustomer(request,getDashboardActivity());
+                getPresenter().addNewCustomer(request, getDashboardActivity());
             }
-        }else if(view==mBinding.tvAddress){
+        } else if (view == mBinding.tvAddress) {
             CommonUtility.clicked(mBinding.tvAddress);
             if (isNetworkConnected()) {
                 address();
@@ -113,8 +116,9 @@ public class AddNewCustomerFragment extends DashboardFragment {
         } catch (GooglePlayServicesNotAvailableException e) {
         }
     }
+
     private boolean isValid() {
-        name=mBinding.edName.getText().toString();
+        name = mBinding.edName.getText().toString();
         email = mBinding.edEmail.getText().toString();
         mobileNumber = mBinding.edMobileNumber.getText().toString();
         address = mBinding.tvAddress.getText().toString();
@@ -122,7 +126,7 @@ public class AddNewCustomerFragment extends DashboardFragment {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_name));
             mBinding.edName.requestFocus();
             return false;
-        }else if (isNull(email) || email.trim().length() == 0) {
+        } else if (isNull(email) || email.trim().length() == 0) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_email_address));
             mBinding.edEmail.requestFocus();
             return false;
@@ -155,7 +159,15 @@ public class AddNewCustomerFragment extends DashboardFragment {
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtility.isNotNull(response)) {
+            if(requestCode==1){
+                getDashboardActivity().showToast(response.getMsg());
+                UserEvent userDetailEvent = new UserEvent(mobileNumber);
+                EventBus.getDefault().post(userDetailEvent);
+                getDashboardActivity().onBackPressed();
+            }
 
+        }
     }
 
     @Override
@@ -176,9 +188,9 @@ public class AddNewCustomerFragment extends DashboardFragment {
                         PreferenceUtils.setAddress(place.getAddress().toString());
                         PreferenceUtils.setLatitude(latLng.latitude);
                         PreferenceUtils.setLongitude(latLng.longitude);
-                        latitude=latLng.latitude;
-                        longitude=latLng.longitude;
-                        address=PreferenceUtils.getAddress(getDashboardActivity(), PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+                        latitude = latLng.latitude;
+                        longitude = latLng.longitude;
+                        address = PreferenceUtils.getAddress(getDashboardActivity(), PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
                         PreferenceUtils.setAddress(address);
                         mBinding.tvAddress.setText(address);
 

@@ -64,6 +64,9 @@
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rvDeliveryBoy"
-            style="@style/match_match" />
+            style="@style/match_match"/>
+        <include
+            android:id="@+id/layoutNoData"
+            layout="@layout/layout_no_data_found"/>
     </LinearLayout>
 </layout>

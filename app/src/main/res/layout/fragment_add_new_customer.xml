@@ -5,11 +5,12 @@
 
     <ScrollView
         style="@style/match_match"
-        android:background="@android:color/white">
+        android:background="@android:color/white"
+        android:clickable="true">
 
         <LinearLayout
             style="@style/match_wrap"
-            android:clickable="true"
+
             android:orientation="vertical">
 
             <RelativeLayout

@@ -11,6 +11,7 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentConfirmOrderBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.CustomCountDownTimer;
@@ -70,7 +71,7 @@ public class ConfirmOrderFragment extends DashboardFragment {
             CommonUtility.clicked(mBinding.tvHome);
             getBaseActivity().clearAllBackStack();
             getDashboardActivity().changeIcon(WELCOME_HOME_FRAGMENT);
-            getDashboardActivity().addFragmentInContainer(new OrderInventoryFragment(), null, false, false, NONE);
+            getDashboardActivity().addFragmentInContainer(new ProductSubproductFragment(), null, true, false, NONE);
            // mFragmentNavigation.popFragment();
         }
     }

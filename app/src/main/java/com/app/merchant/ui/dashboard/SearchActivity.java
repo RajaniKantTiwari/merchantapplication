@@ -26,6 +26,7 @@ import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -43,12 +44,11 @@ public class SearchActivity extends CommonActivity implements
     private ActivitySearchBinding mBinding;
     private SearchAdapter mSearchAdapter;
     private ArrayList<UserSearchResponse> userResponseList;
-
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_search);
+        CommonUtility.register(this);
         initializeAdapter();
         initializeData();
         setListener();
@@ -168,4 +168,13 @@ public class SearchActivity extends CommonActivity implements
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CommonUtility.unregister(this);
+    }
+    @Subscribe
+    public void onUserMobileNumber(UserEvent event) {
+        finish();
+    }
 }
