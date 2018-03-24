@@ -256,7 +256,7 @@
     <string name="registered_email_id">Registered Email Id</string>
     <string name="password_length_should_be_atleast_eight_character">Password should be atleast eight character long</string>
     <string name="please_enter_valid_mobilenumber">Please Enter 10 digits valid mobile number</string>
-    <string name="add_new_customer">+ Add New Customer</string>
+    <string name="add_new_customer">Add New Customer</string>
     <string name="order">Order</string>
     <string name="add_inventory">Add Inventory</string>
     <string name="customer_phone_number">Customer Phone Number</string>
@@ -341,6 +341,10 @@
     <string name="coi">COI</string>
     <string name="enter_coi">Enter Coi</string>
     <string name="please_enter_coi">Please Enter Coi</string>
+    <string name="reject">Reject</string>
+    <string name="view_order_details">View Order Details</string>
+    <string name="order_details">Order Details</string>
+    <string name="cancel_order">Cancel Order</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

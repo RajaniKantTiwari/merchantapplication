@@ -12,6 +12,7 @@ import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
@@ -46,9 +47,9 @@ public class CommonPresenter implements Presenter<MvpView> {
         mView.showProgress();
         mRepository.registerMerchant(register).
                 subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<RegisterResponseData>(activity) {
             @Override
-            public void onResponse(BaseResponse response) {
+            public void onResponse(RegisterResponseData response) {
                mView.hideProgress();
                 mView.onSuccess(response, 2);
             }

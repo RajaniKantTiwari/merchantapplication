@@ -104,13 +104,14 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
         if (isNotNull(response)) {
-                if (response.getStatus().equals(AppConstants.SUCCESS)) {
+            showToast(response.getMsg());
+             if (response.getStatus().equals(AppConstants.SUCCESS)) {
                     RegisterResponseData data=(RegisterResponseData)response;
                     Bundle bundle = new Bundle();
                     bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
                     bundle.putString(BundleConstants.EMAIL,register.getEmail());
                     PreferenceUtils.setUserName(register.getMerchantname());
-                    PreferenceUtils.setMerchantId(data.getId());
+                    PreferenceUtils.setMerchantId(data.getMerchantid());
                     ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
         }

@@ -21,6 +21,7 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
@@ -59,7 +60,7 @@ import retrofit2.http.POST;
 
 public interface ApiService {
     @POST("register/user")
-    Observable<BaseResponse> registerMerchant(@Body RegisterRequest register);
+    Observable<RegisterResponseData> registerMerchant(@Body RegisterRequest register);
     @POST("register/login")
     Observable<LoginResponseData> loginMerchant(@Body LoginRequest request);
 
@@ -128,8 +129,6 @@ public interface ApiService {
     @POST("shopping/get_delivery_boys")
     Observable<DeliveryBoyData> getDeliveryBoyList();
 
-    @POST("shopping/get_partial_order_details")
-    Observable<BaseResponse> getPartialOrderDetail();
 
     @POST("shopping/assign_delivery_boy_to_order")
     Observable<ProductFullInformationData> assignDeliveryBoyToOrder();
@@ -160,6 +159,7 @@ public interface ApiService {
 
     @POST("shopping/get_customer_details")
     Observable<CustomerDetailData> getCustomerDetails(@Body CustomerRequest request);
+
     @POST("shopping/get_all_merchant_products")
     Observable<BaseResponse> addNewCustomer(@Body NewCustomerRequest request);
 
@@ -173,8 +173,8 @@ public interface ApiService {
     Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
 
 
-    @POST("shopping/add_order_feedback")
-    Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);
+  /*  @POST("shopping/add_order_feedback")
+    Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);*/
 
     @POST("shopping/get_all_merchant_products")
     Observable<AllMerchantData> getAllMerchantProduct();

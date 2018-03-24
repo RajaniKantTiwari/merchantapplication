@@ -115,6 +115,9 @@ public class OrdersFragment extends DashboardFragment implements MyOrderAdapter.
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_confirmed))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderConfirmedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
+                Bundle bundle = new Bundle();
+                getDashboardActivity().addFragmentInContainer(new AssignDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_out_for_delivery))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderOutForDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
@@ -127,9 +130,6 @@ public class OrdersFragment extends DashboardFragment implements MyOrderAdapter.
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-            } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.assign_delivery_boy))) {
-                Bundle bundle = new Bundle();
-                getDashboardActivity().addFragmentInContainer(new AssignDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
             } else if (orderList.get(position).getOrder_status().equalsIgnoreCase(getResources().getString(R.string.order_returned_request))) {
                 Bundle bundle = new Bundle();
                 getDashboardActivity().addFragmentInContainer(new OrderReturnedRequestFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);

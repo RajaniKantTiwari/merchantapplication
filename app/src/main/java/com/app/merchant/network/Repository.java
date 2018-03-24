@@ -17,6 +17,7 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
@@ -51,7 +52,7 @@ import io.reactivex.Observable;
 
 
 public interface Repository {
-    Observable<BaseResponse> registerMerchant(RegisterRequest register);
+    Observable<RegisterResponseData> registerMerchant(RegisterRequest register);
 
     Observable<LoginResponseData> loginMerchant(LoginRequest request);
 

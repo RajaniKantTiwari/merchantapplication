@@ -22,75 +22,36 @@
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_4"
+                    android:text="Order no. 256"
                     android:textAllCaps="true"
-                    android:text="Order no. 256" />
-
-                <LinearLayout style="@style/match_match"
-                    >
-                    <ImageView
-                        style="@style/image_50"
-                        android:src="@drawable/icon_placeholder"/>
-                    <com.app.merchant.widget.CustomTextView
-                        android:gravity="center_vertical"
-                        style="@style/layout_hori_match_2"
-                        android:layout_marginStart="@dimen/margin_8"
-                        android:layout_marginEnd="@dimen/margin_8"
-                        android:text="Green Caynine"
-                        android:textSize="@dimen/textSize_description"
-                        android:textColor="@color/black"
-                        />
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/layout_hori_match_1"
-                        android:textSize="@dimen/textSize_description_smaller"
-                        android:layout_marginEnd="@dimen/margin_8"
-                        android:text="100 gram"
-                        android:gravity="center_vertical"
-                        />
-                    <com.app.merchant.widget.CustomTextView
-                        style="@style/layout_hori_match_1"
-                        android:drawablePadding="@dimen/margin_5"
-                        android:text="10"
-                        android:textColor="@color/blue"
-                        android:drawableStart="@drawable/rupee_blue"
-                        android:gravity="center_vertical" />
-                </LinearLayout>
+                    android:layout_marginBottom="@dimen/margin_15"/>
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:text="Customer Name" />
+
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:text="Customer Address" />
-                <LinearLayout
-                    style="@style/match_wrap"
-                    android:layout_marginBottom="@dimen/margin_5"
-                    android:layout_marginTop="@dimen/margin_5">
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Number Of Item" />
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_wrap"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:text="Order Value"
+                    android:textColor="@color/blue"/>
 
 
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvConfirmOrder"
-                        style="@style/textview_window_btn"
-                        android:layout_marginStart="@dimen/margin_10"
-                        android:background="@drawable/confirm_bg"
-                        android:text="@string/confirm_order"
-                        android:textAllCaps="true"
-                        android:textColor="@color/confirm_color"/>
 
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvNotConfirmed"
-                        style="@style/textview_window_btn"
-                        android:layout_marginStart="@dimen/margin_5"
-                        android:layout_marginEnd="@dimen/margin_10"
-                        android:background="@drawable/not_confirm_bg"
-                        android:text="@string/not_confirm"
-                        android:textAllCaps="true"
-                        android:textColor="@color/not_con_color"
-                        />
-
-                </LinearLayout>
                 <RelativeLayout
                     style="@style/match_wrap"
                     android:layout_margin="@dimen/margin_8"
@@ -102,6 +63,50 @@
                         android:dropDownWidth="@dimen/margin_230"
                         android:overlapAnchor="false" />
                 </RelativeLayout>
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvNewDelivery"
+                    style="@style/textview_description_match"
+                    android:padding="@dimen/margin_4"
+                    android:paddingStart="@dimen/margin_10"
+                    android:text="@string/assign_new_delivery_boy"
+                    android:textAllCaps="true"
+                    android:textColor="@color/view_color" />
+
+                <LinearLayout
+                    style="@style/match_wrap"
+                    android:layout_marginBottom="@dimen/margin_5"
+                    android:layout_marginTop="@dimen/margin_5">
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvReject"
+                        style="@style/textview_window_btn"
+                        android:layout_marginStart="@dimen/margin_10"
+                        android:background="@drawable/not_confirm_bg"
+                        android:text="@string/cancel_order"
+                        android:textAllCaps="true"
+                        android:textColor="@color/not_con_color" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvConfirmOrder"
+                        style="@style/textview_window_btn"
+                        android:layout_marginStart="@dimen/margin_10"
+                        android:background="@drawable/confirm_bg"
+                        android:text="@string/order_details"
+                        android:textAllCaps="true"
+                        android:textColor="@color/confirm_color" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        android:id="@+id/tvNotConfirmed"
+                        style="@style/textview_window_btn"
+                        android:layout_marginEnd="@dimen/margin_10"
+                        android:layout_marginStart="@dimen/margin_5"
+                        android:background="@drawable/confirm_bg"
+                        android:text="@string/confirm_order"
+                        android:textAllCaps="true"
+                        android:textColor="@color/confirm_color" />
+
+                </LinearLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
     </LinearLayout>

@@ -18,6 +18,7 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
@@ -54,7 +55,7 @@ import retrofit2.Retrofit;
 public class RetrofitRepository implements Repository {
     private ApiService apiService;
     @Override
-    public Observable<BaseResponse> registerMerchant(RegisterRequest register) {
+    public Observable<RegisterResponseData> registerMerchant(RegisterRequest register) {
         return apiService.registerMerchant(register);
     }
 

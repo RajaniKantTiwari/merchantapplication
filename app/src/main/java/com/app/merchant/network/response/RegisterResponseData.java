@@ -5,13 +5,13 @@ package com.app.merchant.network.response;
  */
 
 public class RegisterResponseData extends BaseResponse {
-    private int id;
+    private int merchantid;
 
-    public int getId() {
-        return id;
+    public int getMerchantid() {
+        return merchantid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMerchantid(int merchantid) {
+        this.merchantid = merchantid;
     }
 }

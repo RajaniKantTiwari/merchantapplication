@@ -10,19 +10,7 @@
 
         <LinearLayout
             style="@style/match_wrap"
-
             android:orientation="vertical">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/margin_180"
-                android:background="@color/tex_color">
-
-                <ImageView
-                    style="@style/wrap_wrap"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_key" />
-            </RelativeLayout>
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
