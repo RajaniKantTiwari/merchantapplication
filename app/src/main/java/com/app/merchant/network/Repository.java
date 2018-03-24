@@ -20,6 +20,7 @@ import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
+import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -123,4 +124,6 @@ public interface Repository {
     Observable<DeliveryBoyOrderData> getCountOrderPerDeliveryBoy();
 
     Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(DeliveryBoyOrderDetailRequest request);
+
+    Observable<MyInventoryData> myInventoryHistory();
 }

@@ -24,6 +24,8 @@ import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
+import com.app.merchant.network.response.dashboard.AllMerchantData;
+import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -175,10 +177,10 @@ public interface ApiService {
     Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);
 
     @POST("shopping/get_all_merchant_products")
-    Observable<BaseResponse> getAllMerchantProduct();
+    Observable<AllMerchantData> getAllMerchantProduct();
 
     @POST("shopping/get_all_merchant_running_out_products")
-    Observable<BaseResponse> getAllMerchantRunningProduct();
+    Observable<AllMerchantData> getAllMerchantRunningProduct();
 
     @POST("shopping/update_my_inventory")
     Observable<BaseResponse> updateMyInventory(@Body UpdateMyInventoryRequest request);
@@ -187,6 +189,6 @@ public interface ApiService {
     Observable<BaseResponse> updateMyInventoryStatus(@Body InventoryStatusRequest request);
 
     @POST("shopping/my_inventory_history")
-    Observable<BaseResponse> myInventoryHistory();
+    Observable<MyInventoryData> myInventoryHistory();
 
 }

@@ -46,6 +46,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         mBinding.rvInventory.setLayoutManager(layoutManager);
         myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this);
         mBinding.rvInventory.setAdapter(myInventoryAdapter);
+        getPresenter().myInventoryHistory(getDashboardActivity());
     }
 
     @Override
@@ -62,7 +63,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public void attachView() {
-
+       getPresenter().attachView(this);
     }
 
     @Override
