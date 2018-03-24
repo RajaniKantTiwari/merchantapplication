@@ -21,6 +21,8 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.NewCustomerRespose;
+import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
@@ -160,8 +162,8 @@ public interface ApiService {
     @POST("shopping/get_customer_details")
     Observable<CustomerDetailData> getCustomerDetails(@Body CustomerRequest request);
 
-    @POST("shopping/get_all_merchant_products")
-    Observable<BaseResponse> addNewCustomer(@Body NewCustomerRequest request);
+    @POST("shopping/add_new_customer")
+    Observable<NewCustomerResposeData> addNewCustomer(@Body NewCustomerRequest request);
 
     @POST("shopping/cancel_order")
     Observable<BaseResponse> cancelOrder(@Body CancelOrderRequest request);

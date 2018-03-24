@@ -17,6 +17,7 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
+import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
@@ -118,7 +119,7 @@ public interface Repository {
 
     Observable<CustomerDetailData> getCustomerDetails(CustomerRequest request);
 
-    Observable<BaseResponse> addNewCustomer(NewCustomerRequest request);
+    Observable<NewCustomerResposeData> addNewCustomer(NewCustomerRequest request);
 
     Observable<BaseResponse> cancelOrder(CancelOrderRequest request);
 

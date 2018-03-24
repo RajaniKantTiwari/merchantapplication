@@ -151,7 +151,7 @@ public class SearchActivity extends CommonActivity implements
         if (CommonUtility.isNotNull(userResponseList) && userResponseList.size() > position) {
             UserSearchResponse userResponse = userResponseList.get(position);
             if (CommonUtility.isNotNull(userResponse)) {
-                UserEvent userDetailEvent = new UserEvent(userResponse.getUsername(),userResponse.getMobile());
+                UserEvent userDetailEvent = new UserEvent(String.valueOf(userResponse.getId()), userResponse.getUsername(),userResponse.getMobile());
                 EventBus.getDefault().post(userDetailEvent);
                 finish();
             }

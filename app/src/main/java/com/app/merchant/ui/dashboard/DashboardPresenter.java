@@ -16,6 +16,7 @@ import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailReq
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
@@ -596,9 +597,9 @@ public class DashboardPresenter implements Presenter<MvpView> {
     public void addNewCustomer(NewCustomerRequest request, Activity activity) {
         mView.showProgress();
         mRepository.addNewCustomer(request).subscribeOn(Schedulers.io()).
-                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<NewCustomerResposeData>(activity) {
             @Override
-            public void onResponse(BaseResponse response) {
+            public void onResponse(NewCustomerResposeData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }

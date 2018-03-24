@@ -19,6 +19,8 @@ import com.app.merchant.event.UserEvent;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.NewCustomerRespose;
+import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.utility.AppConstants;
@@ -161,8 +163,10 @@ public class AddNewCustomerFragment extends DashboardFragment {
     public void onSuccess(BaseResponse response, int requestCode) {
         if (CommonUtility.isNotNull(response)) {
             if(requestCode==1){
-                getDashboardActivity().showToast(response.getMsg());
-                UserEvent userDetailEvent = new UserEvent(name,mobileNumber);
+                NewCustomerResposeData data=(NewCustomerResposeData)response;
+                NewCustomerRespose newCustomerRespose=data.getData();
+                getDashboardActivity().showToast(newCustomerRespose.getMessage());
+                UserEvent userDetailEvent = new UserEvent(newCustomerRespose.getCustomerid(),name,mobileNumber);
                 EventBus.getDefault().post(userDetailEvent);
                 getDashboardActivity().onBackPressed();
             }
