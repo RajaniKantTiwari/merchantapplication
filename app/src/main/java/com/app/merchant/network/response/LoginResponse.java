@@ -8,15 +8,15 @@ import android.os.Parcelable;
  */
 
 public class LoginResponse extends BaseResponse {
-    private int id;
+    private int merchantid;
    private String auth_key;
 
-    public int getId() {
-        return id;
+    public int getMerchantid() {
+        return merchantid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setMerchantid(int merchantid) {
+        this.merchantid = merchantid;
     }
 
     public String getAuth_key() {

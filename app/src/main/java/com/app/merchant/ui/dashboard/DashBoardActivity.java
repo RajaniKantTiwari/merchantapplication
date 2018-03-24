@@ -225,7 +225,7 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void initializeData() {
         mBinding.layoutDrawerLeft.tvName.setText(PreferenceUtils.getUserName());
         DeviceTokenRequest request = new DeviceTokenRequest();
-        request.setUserid(PreferenceUtils.getUserId());
+        //request.setUserid(PreferenceUtils.getUserId());
         DeviceToken token = new DeviceToken();
         token.setDeveiceUniqId(CommonUtility.getDeviceUniqueId(this));
         token.setDeviceTokenId(PreferenceUtils.getDeviceToken());

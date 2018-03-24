@@ -76,14 +76,6 @@ public class PreferenceUtils {
         return Hawk.get(PreferenceConstants.USER_LONGITUDE, 0.0);
     }
 
-    public static void setUserId(int userId) {
-        Hawk.put(PreferenceConstants.USER_ID, userId);
-    }
-
-    public static int getUserId() {
-        return Hawk.get(PreferenceConstants.USER_ID, 0);
-    }
-
     public static void setDeviceToken(String token) {
         Hawk.put(PreferenceConstants.DEVICE_TOKEN, token);
     }
@@ -158,5 +150,12 @@ public class PreferenceUtils {
 
     public static String getUserMono() {
         return Hawk.get(PreferenceConstants.USER_MONO, null);
+    }
+
+    public static void setMerchantId(int merchantId) {
+        Hawk.put(PreferenceConstants.MERCHANT_ID, merchantId);
+    }
+    public static int getMerchantId() {
+        return Hawk.get(PreferenceConstants.MERCHANT_ID, null);
     }
 }

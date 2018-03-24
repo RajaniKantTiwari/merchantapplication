@@ -14,4 +14,6 @@ public class LoginResponseData extends BaseResponse {
     public void setAuthkey(LoginResponse authkey) {
         this.authkey = authkey;
     }
+
+
 }

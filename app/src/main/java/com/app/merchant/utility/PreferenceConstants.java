@@ -19,4 +19,5 @@ public interface PreferenceConstants {
     String IMAGE_URL = "image_url";
     String ADDRESS="address";
     String CART_DETAILS = "cart_details";
+    String MERCHANT_ID = "merchant_id";
 }

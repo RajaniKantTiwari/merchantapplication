@@ -136,7 +136,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(AppConstants.SUCCESS)) {
                             hideKeyboard();
-                            PreferenceUtils.setUserId(verifyMobileResponse.getId());
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setEmail(email);
                             PreferenceUtils.setLogin(true);

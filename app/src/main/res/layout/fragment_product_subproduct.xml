@@ -68,18 +68,18 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <RelativeLayout
                         style="@style/match_wrap"
                         android:layout_marginStart="@dimen/margin_5"
                         android:layout_marginEnd="@dimen/margin_5">
 
-                    <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvMobile"
-                        style="@style/edit_text_style_medium_weight"
-                        android:hint="@string/customer_mobile"
-                        android:gravity="center"
-                        android:background="@drawable/grey_edit_bg_no_round"
-                        />
+                        <com.app.merchant.widget.CustomTextView
+                            android:id="@+id/tvMobile"
+                            style="@style/match_wrap"
+                            android:hint="@string/customer_mobile"
+                            android:gravity="center"
+                            android:background="@drawable/grey_edit_bg_no_round"
+                            />
                         <com.app.merchant.widget.CustomTextView
                             android:id="@+id/tvCustomer"
                             style="@style/textview_description_large_weight"
@@ -87,7 +87,7 @@
                             android:gravity="center"
                             android:text="@string/add_new_customer"
                             />
-                    </LinearLayout>
+                    </RelativeLayout>
                     <LinearLayout
                         style="@style/match_wrap"
                         android:gravity="center_horizontal">

@@ -11,6 +11,7 @@ import com.app.merchant.databinding.ActivityStoreDetailsBinding;
 import com.app.merchant.event.EncodedBitmap;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.dialogfrag.OkDialogFragment;
@@ -103,10 +104,12 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     public void onSuccess(BaseResponse response, int requestCode) {
         if (isNotNull(response)) {
                 if (response.getStatus().equals(AppConstants.SUCCESS)) {
+                    RegisterResponseData data=(RegisterResponseData)response;
                     Bundle bundle = new Bundle();
                     bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
                     bundle.putString(BundleConstants.EMAIL,register.getEmail());
                     PreferenceUtils.setUserName(register.getMerchantname());
+                    PreferenceUtils.setMerchantId(data.getId());
                     ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
                 }
         }

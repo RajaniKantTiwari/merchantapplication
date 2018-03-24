@@ -59,7 +59,6 @@ public class ProductSubproductFragment extends DashboardFragment implements
     private CartAdapter mCartAdapter;
     private int oldCatPos, oldSubCatPos;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
-    private int merchantId = 18;
     private ArrayList<CategoryData> mCatList = new ArrayList<>();
     private ArrayList<SubCategory> mSubCatList = new ArrayList<>();
     private ArrayList<ProductData> mCartList = new ArrayList<>();
@@ -215,7 +214,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
         if (addCartList.size() > 0) {
             for (int i = 0; i < addCartList.size(); i++) {
                 ProductData product = addCartList.get(i);
-                product.setMerchantId(merchantId);
+                product.setMerchantId(PreferenceUtils.getMerchantId());
                 addCartList.set(i, product);
             }
         }
@@ -288,8 +287,6 @@ public class ProductSubproductFragment extends DashboardFragment implements
     public void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-            String productResponse = bundle.getString(AppConstants.MERCHANT_ID);
-            merchantId = Integer.parseInt(productResponse);
             getDashboardActivity().setHeader(bundle.getString(AppConstants.MERCHANT_ADDRESS),
                     bundle.getString(AppConstants.MERCHANT_IMAGE), bundle.getString(AppConstants.MERCHANT_BACKGROUND_COLOR));
         }
@@ -313,7 +310,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
                 if (CommonUtility.isNotNull(mCartList) && mCartList.size() > pos) {
                     Bundle bundle = new Bundle();
                     bundle.putParcelable(AppConstants.PRODUCT_DATA, mCartList.get(pos));
-                    bundle.putInt(AppConstants.MERCHANT_ID, merchantId);
+                    bundle.putInt(AppConstants.MERCHANT_ID, PreferenceUtils.getMerchantId());
                     bundle.putInt(AppConstants.POSITION, pos);
                     getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
@@ -399,7 +396,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
 
     private void callApi() {
         CategoryRequest categoryRequest = new CategoryRequest();
-        categoryRequest.setMerchant_id(merchantId);
+        categoryRequest.setMerchant_id(PreferenceUtils.getMerchantId());
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
     }
 
@@ -407,7 +404,6 @@ public class ProductSubproductFragment extends DashboardFragment implements
     public void headerChangedCalled() {
         getDashboardActivity().setHeaderTitle(getResources().getString(R.string.order));
     }
-
     @Override
     public void addInventoryClick(String noOfProduct) {
 

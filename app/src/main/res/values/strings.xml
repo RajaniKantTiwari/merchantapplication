@@ -334,6 +334,7 @@
     <string name="total_quantity">Total Quantity</string>
     <string name="delivery_boy">Delivery Boy</string>
     <string name="close">Close</string>
+    <string name="profile">Profile</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

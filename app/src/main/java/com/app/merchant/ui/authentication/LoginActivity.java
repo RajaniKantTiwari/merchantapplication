@@ -76,7 +76,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
                 if (isNotNull(loginResponse)) {
                     if (loginResponse.getStatus().equals(AppConstants.SUCCESS)) {
                         if(CommonUtility.isNotNull(loginResponse.getAuthkey())){
-                            PreferenceUtils.setUserId(loginResponse.getAuthkey().getId());
+                            PreferenceUtils.setMerchantId(loginResponse.getAuthkey().getMerchantid());
                             PreferenceUtils.setAuthToken(loginResponse.getAuthkey().getAuth_key());
                             PreferenceUtils.setEmail(email);
                             PreferenceUtils.setLogin(true);

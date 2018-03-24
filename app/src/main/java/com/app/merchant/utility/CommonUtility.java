@@ -423,7 +423,7 @@ public class CommonUtility {
 
     public static void logout(Activity activity) {
         PreferenceUtils.setDeviceToken(null);
-        PreferenceUtils.setUserId(-1);
+        PreferenceUtils.setMerchantId(-1);
         PreferenceUtils.setAuthToken(null);
         PreferenceUtils.setLogin(false);
         ExplicitIntent.getsInstance().navigateTo(activity, LoginActivity.class);
