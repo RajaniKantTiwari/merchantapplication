@@ -5,12 +5,19 @@ package com.app.merchant.event;
  */
 
 public class UserEvent {
+    private final String name;
     private final String mobileNumber;
-    public UserEvent(String mobileNumber) {
-        this.mobileNumber=mobileNumber;
+
+    public UserEvent(String name, String mobileNumber) {
+        this.name = name;
+        this.mobileNumber = mobileNumber;
     }
 
     public String getMobileNumber() {
         return mobileNumber;
+    }
+
+    public String getName() {
+        return name;
     }
 }

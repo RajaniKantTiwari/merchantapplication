@@ -120,7 +120,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
                 CommonUtility.clicked(mBinding.tvMyInventory);
                 getDashboardActivity().addFragmentInContainer(new AddNewCustomerFragment(), null, true, true, BaseActivity.AnimationType.NONE);
                 break;
-            case R.id.tvMobile:
+            case R.id.layoutCustomer:
                 ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), SearchActivity.class);
                 break;
         }
@@ -274,7 +274,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
 
     @Override
     public void setListener() {
-        mBinding.tvMobile.setOnClickListener(this);
+        mBinding.layoutCustomer.setOnClickListener(this);
         mBinding.tvCheckout.setOnClickListener(this);
     }
 
@@ -385,6 +385,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
 
     @Subscribe
     public void onUserMobileNumber(UserEvent event) {
+        mBinding.tvUserName.setText(event.getName());
         mBinding.tvMobile.setText(event.getMobileNumber());
     }
 

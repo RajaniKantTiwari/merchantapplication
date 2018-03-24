@@ -256,7 +256,7 @@
     <string name="registered_email_id">Registered Email Id</string>
     <string name="password_length_should_be_atleast_eight_character">Password should be atleast eight character long</string>
     <string name="please_enter_valid_mobilenumber">Please Enter 10 digits valid mobile number</string>
-    <string name="add_new_customer">Add New Customer</string>
+    <string name="add_new_customer">+ Add New Customer</string>
     <string name="order">Order</string>
     <string name="add_inventory">Add Inventory</string>
     <string name="customer_phone_number">Customer Phone Number</string>
@@ -292,7 +292,7 @@
     <string name="cancel_request">Cancel Request</string>
     <string name="order_cancel_request">Cancel Requested</string>
     <string name="no_result_found">No Result Found</string>
-    <string name="search_customer">Search Customer</string>
+    <string name="search_customer">Search User By Mobile Number</string>
     <string name="orders">Orders</string>
     <string name="no_of_product">No of Product</string>
     <string name="no_user_found">No Users Found</string>
@@ -318,7 +318,7 @@
     <string name="please_enter_close_time">Please Enter Close Time</string>
     <string name="please_enter_min_order">Please Enter Minimum Order</string>
     <string name="please_enter_average_time">Please Enter Average Time</string>
-    <string name="go_to_detail">Go to Details</string>
+    <string name="go_to_detail">Show Details</string>
     <string name="city">City</string>
     <string name="pincode">PinCode</string>
     <string name="gender">Gender</string>

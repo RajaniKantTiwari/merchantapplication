@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.View;
 
@@ -73,6 +74,7 @@ public class SearchActivity extends CommonActivity implements
     public void setListener() {
         mBinding.layoutHeader.ivBack.setOnClickListener(this);
         mBinding.layoutHeader.edSearch.setVisibility(View.VISIBLE);
+        mBinding.layoutHeader.edSearch.setInputType(InputType.TYPE_CLASS_NUMBER);
         mBinding.layoutHeader.edSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -149,7 +151,7 @@ public class SearchActivity extends CommonActivity implements
         if (CommonUtility.isNotNull(userResponseList) && userResponseList.size() > position) {
             UserSearchResponse userResponse = userResponseList.get(position);
             if (CommonUtility.isNotNull(userResponse)) {
-                UserEvent userDetailEvent = new UserEvent(userResponse.getMobile());
+                UserEvent userDetailEvent = new UserEvent(userResponse.getUsername(),userResponse.getMobile());
                 EventBus.getDefault().post(userDetailEvent);
                 finish();
             }

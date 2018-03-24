@@ -635,4 +635,8 @@ public class CommonUtility {
 
         }
     }
+
+    public static String setNameWithMrp(String productname, float product_mrp) {
+        return productname+"("+setRating(String.valueOf(product_mrp))+")";
+    }
 }

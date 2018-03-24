@@ -103,7 +103,7 @@ public class CommonPresenter implements Presenter<MvpView> {
     }
 
     public void searchCustomerByPhone(SearchActivity activity, CustomerPhoneRequest request) {
-        mView.showProgress();
+        //mView.showProgress();
         mRepository.searchCustomerByPhone(request).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<UserSearchResponseData>(activity) {

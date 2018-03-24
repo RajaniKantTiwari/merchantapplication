@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ItemCartBinding;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.GlideUtils;
 
 import java.util.ArrayList;
@@ -69,7 +70,7 @@ public class CartAdapter extends RecyclerView.Adapter {
             mBinding.layoutInfo.setTag(position);
             mBinding.tvSubscribe.setTag(position);
             mBinding.tvAddInventory.setTag(position);
-            mBinding.tvProductName.setText(mDataList.get(position).getProductname());
+            mBinding.tvProductName.setText(CommonUtility.setNameWithMrp(mDataList.get(position).getProductname(),mDataList.get(position).getProduct_mrp()));
             mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getProduct_mrp()));
             mBinding.tvQty.setText(String.valueOf(mDataList.get(position).getQty()));
             mBinding.tvProductQty.setText(mDataList.get(position).getMeasure());

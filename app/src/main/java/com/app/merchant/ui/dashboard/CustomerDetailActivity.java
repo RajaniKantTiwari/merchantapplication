@@ -77,7 +77,7 @@ public class CustomerDetailActivity extends CommonActivity {
     public void onClick(View view) {
         if (view == mBinding.tvDone) {
             CommonUtility.clicked(mBinding.tvDone);
-            UserEvent userDetailEvent = new UserEvent(commonDetail.getMobile());
+            UserEvent userDetailEvent = new UserEvent(commonDetail.getUsername(),commonDetail.getMobile());
             EventBus.getDefault().post(userDetailEvent);
             finish();
         } else if (view == mBinding.layoutHeader.ivBack) {

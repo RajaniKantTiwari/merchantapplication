@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="searchData"
             type="com.app.merchant.network.response.UserSearchResponse" />
@@ -12,10 +11,18 @@
     <RelativeLayout
         android:id="@+id/layoutSearch"
         style="@style/match_wrap">
-
+        <com.app.merchant.widget.CustomTextView
+            android:id="@+id/tvName"
+            style="@style/textview_description_large_match"
+            android:layout_toStartOf="@+id/tvMobileNumber"
+            android:padding="@dimen/margin_8"
+            android:text="@={searchData.username}"
+            android:layout_centerHorizontal="true"
+            app:customFont="@string/font_regular" />
         <com.app.merchant.widget.CustomTextView
             android:id="@+id/tvMobileNumber"
-            style="@style/textview_description_large_match"
+            style="@style/textview_description_large_wrap"
+            android:layout_width="@dimen/margin_100"
             android:layout_toStartOf="@+id/tvUserDetail"
             android:padding="@dimen/margin_8"
             android:text="@={searchData.mobile}"

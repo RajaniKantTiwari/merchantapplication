@@ -44,14 +44,14 @@
                     android:layout_height="@dimen/margin_30"
                     android:gravity="center"
                     android:text="@string/add_inventory"
-                    android:visibility="gone"
-                    android:textAllCaps="true" />
+                    android:textAllCaps="true"
+                    android:visibility="gone" />
             </LinearLayout>
 
             <View
                 style="@style/view_layout_dark_white"
                 android:layout_marginBottom="@dimen/margin_5"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <RelativeLayout style="@style/match_match">
 
@@ -68,26 +68,41 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
+
                     <RelativeLayout
                         style="@style/match_wrap"
-                        android:layout_marginStart="@dimen/margin_5"
-                        android:layout_marginEnd="@dimen/margin_5">
+                        android:layout_marginEnd="@dimen/margin_5"
+                        android:layout_marginStart="@dimen/margin_5">
 
-                        <com.app.merchant.widget.CustomTextView
-                            android:id="@+id/tvMobile"
+                        <LinearLayout
+                            android:id="@+id/layoutCustomer"
                             style="@style/match_wrap"
-                            android:hint="@string/customer_mobile"
-                            android:gravity="center"
+                            android:layout_toStartOf="@+id/tvCustomer"
                             android:background="@drawable/grey_edit_bg_no_round"
-                            />
-                        <com.app.merchant.widget.CustomTextView
+                            android:layout_height="@dimen/margin_30">
+
+                            <com.app.merchant.widget.CustomTextView
+                                android:id="@+id/tvUserName"
+                                style="@style/textview_description_large_weight"
+                                android:layout_height="@dimen/margin_30"
+                                android:gravity="center"
+                                android:hint="@string/name" />
+
+                            <com.app.merchant.widget.CustomTextView
+                                android:id="@+id/tvMobile"
+                                style="@style/textview_description_large_weight"
+                                android:gravity="center"
+                                android:hint="@string/mobileNumber" />
+                        </LinearLayout>
+
+                        <ImageView
                             android:id="@+id/tvCustomer"
-                            style="@style/textview_description_large_weight"
-                            android:layout_height="@dimen/margin_30"
+                            style="@style/image_30"
+                            android:layout_alignParentEnd="true"
                             android:gravity="center"
-                            android:text="@string/add_new_customer"
-                            />
+                            android:background="@drawable/new_user"/>
                     </RelativeLayout>
+
                     <LinearLayout
                         style="@style/match_wrap"
                         android:gravity="center_horizontal">

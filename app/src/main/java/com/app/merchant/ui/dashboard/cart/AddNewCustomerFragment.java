@@ -162,7 +162,7 @@ public class AddNewCustomerFragment extends DashboardFragment {
         if (CommonUtility.isNotNull(response)) {
             if(requestCode==1){
                 getDashboardActivity().showToast(response.getMsg());
-                UserEvent userDetailEvent = new UserEvent(mobileNumber);
+                UserEvent userDetailEvent = new UserEvent(name,mobileNumber);
                 EventBus.getDefault().post(userDetailEvent);
                 getDashboardActivity().onBackPressed();
             }
