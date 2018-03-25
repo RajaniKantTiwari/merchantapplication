@@ -354,7 +354,7 @@ public class CommonUtility {
     }
 
     public static String addStrings(String first, String second) {
-        String str = first + second;
+        String str = first +" "+second;
         return str;
     }
 

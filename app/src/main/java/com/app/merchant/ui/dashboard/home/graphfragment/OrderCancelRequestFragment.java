@@ -193,7 +193,7 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
                         mAdapter.notifyDataSetChanged();
                     }
                 }
-            } else if (requestCode == 3) {
+            } else if (requestCode == 8) {
                 getDashboardActivity().showToast(response.getMsg());
             }
         }

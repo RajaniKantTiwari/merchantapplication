@@ -79,7 +79,7 @@
                     android:layout_marginTop="@dimen/margin_5">
 
                     <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvReject"
+                        android:id="@+id/tvCancel"
                         style="@style/textview_window_btn"
                         android:layout_marginStart="@dimen/margin_10"
                         android:background="@drawable/not_confirm_bg"
@@ -88,7 +88,7 @@
                         android:textColor="@color/not_con_color" />
 
                     <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvConfirmOrder"
+                        android:id="@+id/tvOrderDetail"
                         style="@style/textview_window_btn"
                         android:layout_marginStart="@dimen/margin_10"
                         android:background="@drawable/confirm_bg"
@@ -97,7 +97,7 @@
                         android:textColor="@color/confirm_color" />
 
                     <com.app.merchant.widget.CustomTextView
-                        android:id="@+id/tvNotConfirmed"
+                        android:id="@+id/tvConfirmOrder"
                         style="@style/textview_window_btn"
                         android:layout_marginEnd="@dimen/margin_10"
                         android:layout_marginStart="@dimen/margin_5"

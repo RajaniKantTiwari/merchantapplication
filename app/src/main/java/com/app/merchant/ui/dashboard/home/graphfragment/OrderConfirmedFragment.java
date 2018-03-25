@@ -11,7 +11,11 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderConfirmedBinding;
+import com.app.merchant.network.request.dashboard.OrderRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.Order;
+import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmed;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChart;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
@@ -22,6 +26,7 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
+import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -46,7 +51,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  */
 
 public class OrderConfirmedFragment extends DashboardFragment implements
-        OrderConfirmedAdapter.OrderConfirmedListener, DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
+        OrderConfirmedAdapter.OrderConfirmedListener, ConfirmOrderDialogFragment.OrderDialogListener  {
     private FragmentOrderConfirmedBinding mBinding;
     private ArrayList<OrderConfirmed> orderList;
     private ArrayList<DeliveryBoy> deliveryBoyList;
@@ -67,6 +72,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
     /*private boolean pointsHaveDifferentColor;*/
     private boolean hasGradientToTransparent = false;
     private OrderConfirmedAdapter mAdapter;
+    private int orderPosition=-1;
+    private Order order;
     //End Chart
 
     @Nullable
@@ -206,9 +213,23 @@ public class OrderConfirmedFragment extends DashboardFragment implements
                 }
             }else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
                 setDeliveryBoyList(response);
+            }else if (requestCode == 3) {
+                OrderData data = (OrderData) response;
+                ArrayList<Order> orderList = data.getData();
+                if (CommonUtility.isNotNull(orderList) && orderList.size() > 0) {
+                    order = orderList.get(0);
+                }
+                showDialog();
             }
         }
     }
+    private void showDialog() {
+        Bundle bundle = new Bundle();
+        bundle.putParcelable(BundleConstants.ORDER, order);
+        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST, deliveryBoyList);
+        CommonUtility.showConfirmOrderDialog(getDashboardActivity(), bundle, this);
+    }
+
     private void setDeliveryBoyList(BaseResponse response) {
         if (CommonUtility.isNotNull(response) && response instanceof DeliveryBoyData) {
             DeliveryBoyData data = (DeliveryBoyData) response;
@@ -230,19 +251,41 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void onOrderConfirmClick(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST,deliveryBoyList);
-        CommonUtility.showNewDeliveryDialog(getDashboardActivity(), bundle, this);
-    }
 
+            if ((orderPosition != position)||orderPosition==-1) {
+                orderPosition = position;
+                getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest("13"));
+            } else {
+                showDialog();
+            }
+    }
     @Override
-    public void newDeliveryBoy() {
+    public void headerChangedCalled() {
+
+    }
+    @Override
+    public void assignNewDeliveryBoy() {
         Bundle bundle = new Bundle();
         getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override
-    public void headerChangedCalled() {
+    public void assignedDeliveryBoy(int position) {
+
+    }
+
+    @Override
+    public void orderConfirmed() {
+
+    }
+
+    @Override
+    public void orderDetails() {
+
+    }
+
+    @Override
+    public void orderCancel() {
 
     }
 

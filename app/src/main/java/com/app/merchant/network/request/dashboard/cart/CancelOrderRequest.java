@@ -6,7 +6,7 @@ package com.app.merchant.network.request.dashboard.cart;
 
 public class CancelOrderRequest {
     private String order_id;
-    private String reason;
+    private String reason="";
 
     public String getOrder_id() {
         return order_id;

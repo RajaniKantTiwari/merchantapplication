@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
+import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -621,13 +622,13 @@ public class DashboardPresenter implements Presenter<MvpView> {
             @Override
             public void onResponse(BaseResponse response) {
                 mView.hideProgress();
-                mView.onSuccess(response, 3);
+                mView.onSuccess(response, 8);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
-                mView.onError(baseResponse.getMsg(), 3);
+                mView.onError(baseResponse.getMsg(), 8);
             }
         });
     }
@@ -700,6 +701,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 3);
+            }
+        });
+    }
+
+    public void assignDeliveryBoyToOrder(DashBoardActivity activity, AssignedDeliveryBoyRequest request) {
+        mView.showProgress();
+        mRepository.assignDeliveryBoyToOrder(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 7);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 7);
             }
         });
     }

@@ -5,6 +5,7 @@ import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -135,7 +136,7 @@ public interface ApiService {
 
 
     @POST("shopping/assign_delivery_boy_to_order")
-    Observable<ProductFullInformationData> assignDeliveryBoyToOrder();
+    Observable<BaseResponse> assignDeliveryBoyToOrder(@Body AssignedDeliveryBoyRequest request);
 
     @POST("shopping/get_all_orders")
     Observable<MyOrderData> getAllOrder();

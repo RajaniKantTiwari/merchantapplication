@@ -4,6 +4,7 @@ import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -132,4 +133,6 @@ public interface Repository {
     Observable<MyInventoryData> myInventoryHistory();
 
     Observable<OrderData> getOrderSummary(OrderRequest request);
+
+    Observable<BaseResponse> assignDeliveryBoyToOrder(AssignedDeliveryBoyRequest request);
 }

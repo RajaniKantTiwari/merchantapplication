@@ -20,8 +20,6 @@ import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 
 public class ConfirmOrderDialogFragment extends DialogFragment implements View.OnClickListener {
@@ -33,8 +31,11 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     private Order order;
 
     public interface OrderDialogListener {
-        void confirmed();
-        void notConfirmed();
+        void orderConfirmed();
+        void orderDetails();
+        void orderCancel();
+        void assignNewDeliveryBoy();
+        void assignedDeliveryBoy(int position);
     }
 
     public void addListener(OrderDialogListener listener) {
@@ -77,6 +78,9 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
         mBinding.selectedSpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(CommonUtility.isNotNull(listener)){
+                    listener.assignedDeliveryBoy(position);
+                }
                 if (position != deliveryBoyNameList.size() - 1) {
                     if (CommonUtility.isNotNull(view)) {
                         view.setBackgroundResource(0);
@@ -89,29 +93,44 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
 
             }
         });
-        mBinding.tvOrderNumber.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_number),order.getOrder_id()));
-        mBinding.tvCustomerName.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_name),order.getOrder_id()));
-        mBinding.tvCustomerAddress.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_address),order.getOrder_id()));
-        mBinding.tvNumberOfItem.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.number_of_item),order.getOrder_id()));
-        mBinding.tvOrdervalue.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_value),order.getOrder_id()));
+        mBinding.tvOrderNumber.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_number), order.getOrder_id()));
+        mBinding.tvCustomerName.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_name), order.getCustomername()));
+        mBinding.tvCustomerAddress.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_address), order.getCustomer_delivery_address()));
+        mBinding.tvNumberOfItem.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.number_of_item), order.getTotalitems()));
+        mBinding.tvOrdervalue.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_value), order.getOrdervalue()));
 
     }
 
     public void setListener() {
+        mBinding.tvCancel.setOnClickListener(this);
         mBinding.tvConfirmOrder.setOnClickListener(this);
-        mBinding.tvNotConfirmed.setOnClickListener(this);
+        mBinding.tvOrderDetail.setOnClickListener(this);
 
     }
 
     @Override
     public void onClick(View view) {
         if (view == mBinding.tvConfirmOrder) {
-            dialog.cancel();
+            CommonUtility.clicked(mBinding.tvConfirmOrder);
             if (CommonUtility.isNotNull(listener)) {
-                listener.confirmed();
+                listener.orderConfirmed();
             }
-        } else if (view == mBinding.tvNotConfirmed) {
-            listener.notConfirmed();
+        } else if (view == mBinding.tvOrderDetail) {
+            CommonUtility.clicked(mBinding.tvOrderDetail);
+            if (CommonUtility.isNotNull(listener)) {
+                listener.orderDetails();
+            }
+        } else if (view == mBinding.tvCancel) {
+            CommonUtility.clicked(mBinding.tvCancel);
+            if (CommonUtility.isNotNull(listener)) {
+                listener.orderCancel();
+            }
+        }else if(view==mBinding.tvNewDelivery){
+            CommonUtility.clicked(mBinding.tvNewDelivery);
+            if (CommonUtility.isNotNull(listener)) {
+                listener.assignNewDeliveryBoy();
+            }
         }
+        dialog.cancel();
     }
 }
