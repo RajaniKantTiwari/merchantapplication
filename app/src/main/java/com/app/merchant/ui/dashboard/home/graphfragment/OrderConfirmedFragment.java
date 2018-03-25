@@ -26,6 +26,7 @@ import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
@@ -266,6 +267,14 @@ public class OrderConfirmedFragment extends DashboardFragment implements
                 showDialog();
             }
     }
+
+    @Override
+    public void orderDetailClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+    }
+
     @Override
     public void headerChangedCalled() {
 
@@ -291,12 +300,16 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void orderConfirmed() {
-
+        CancelOrderRequest request = new CancelOrderRequest();
+        request.setOrder_id(orderList.get(orderPosition).getId());
+        getPresenter().confirmOrder(getDashboardActivity(), request);
     }
 
     @Override
     public void orderDetails() {
-
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderList.get(orderPosition).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

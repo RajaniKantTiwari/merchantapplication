@@ -263,5 +263,10 @@ public class RetrofitRepository implements Repository {
         return apiService.assignDeliveryBoyToOrder(request);
     }
 
+    @Override
+    public Observable<BaseResponse> confirmOrder(CancelOrderRequest request) {
+        return apiService.confirmOrder(request);
+    }
+
 
 }

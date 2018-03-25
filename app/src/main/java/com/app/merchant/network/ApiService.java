@@ -200,5 +200,9 @@ public interface ApiService {
     @POST("shopping/get_order_summary")
     Observable<OrderData> getOrderSummary(@Body OrderRequest request);
 
+    @POST("shopping/confirm_order")
+    Observable<BaseResponse> confirmOrder(@Body CancelOrderRequest request);
+
+
 
 }

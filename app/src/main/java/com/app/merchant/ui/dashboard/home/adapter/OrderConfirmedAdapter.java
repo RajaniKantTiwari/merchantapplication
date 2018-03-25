@@ -28,6 +28,8 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
 
     public interface OrderConfirmedListener {
         void onOrderConfirmClick(int position);
+
+        void orderDetailClick(int position);
     }
 
     public OrderConfirmedAdapter(AppCompatActivity activity, ArrayList<OrderConfirmed> orderList, OrderConfirmedListener listener) {
@@ -79,12 +81,19 @@ public class OrderConfirmedAdapter extends RecyclerView.Adapter<OrderConfirmedAd
             tvAmmount = mBinding.tvAmmount;
             tvStatus = mBinding.tvStatus;
             itemView.tvStatus.setOnClickListener(this);
+            itemView.tvOrderNumber.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onOrderConfirmClick(getAdapterPosition());
+            if (CommonUtility.isNotNull(listener)) {
+                if (view == mBinding.tvStatus) {
+                    listener.onOrderConfirmClick(getAdapterPosition());
+                } else if (view == mBinding.tvOrderNumber) {
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
     }
 }

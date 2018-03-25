@@ -27,6 +27,7 @@ import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReceivedAdapter;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
 import com.app.merchant.utility.AppConstants;
@@ -271,6 +272,13 @@ public class OrderReceivedFragment extends DashboardFragment implements
     }
 
     @Override
+    public void orderDetailClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderReceivedList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+    }
+
+    @Override
     public void assignNewDeliveryBoy() {
         Bundle bundle = new Bundle();
         getDashboardActivity().addFragmentInContainer(new AssignNewDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
@@ -291,12 +299,16 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void orderConfirmed() {
-
+        CancelOrderRequest request = new CancelOrderRequest();
+        request.setOrder_id(orderReceivedList.get(orderPosition).getId());
+        getPresenter().confirmOrder(getDashboardActivity(), request);
     }
 
     @Override
     public void orderDetails() {
-
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderReceivedList.get(orderPosition).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

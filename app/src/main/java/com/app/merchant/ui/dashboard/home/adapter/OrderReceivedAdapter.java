@@ -28,6 +28,8 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
 
     public interface OrderReceivedListener {
         void onOrderStatusClick(int position);
+
+        void orderDetailClick(int position);
     }
 
     public OrderReceivedAdapter(AppCompatActivity activity, ArrayList<OrderReceived> orderReceivedList, OrderReceivedListener listener) {
@@ -73,19 +75,30 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
         private final CustomTextView tvTime;
         private final CustomTextView tvAmount;
         private final CustomTextView tvPaymentStatus;
+        private final OrderReceivedRowBinding mBinding;
 
         public OrderReceivedViewHolder(OrderReceivedRowBinding itemView) {
             super(itemView.getRoot());
+            mBinding = itemView;
             tvId = itemView.tvId;
             tvTime = itemView.tvTime;
             tvAmount = itemView.tvAmount;
             tvPaymentStatus = itemView.tvPaymentStatus;
             itemView.tvPaymentStatus.setOnClickListener(this);
+            itemView.tvId.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            listener.onOrderStatusClick(getAdapterPosition());
+            if (view == mBinding.tvPaymentStatus) {
+                if (CommonUtility.isNotNull(listener)) {
+                    listener.onOrderStatusClick(getAdapterPosition());
+                }
+            } else if (view == mBinding.tvId) {
+                if (CommonUtility.isNotNull(listener)) {
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
 
     }

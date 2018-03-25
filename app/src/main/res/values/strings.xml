@@ -352,6 +352,12 @@
     <string name="number_of_item">Number Of Item</string>
     <string name="order_value">Order Value</string>
     <string name="assign_latter">Assign Latter</string>
+    <string name="payment_status">Payment Status</string>
+    <string name="order_items">Order Items</string>
+    <string name="select_delivery_boy">Select Delivery Boy</string>
+    <string name="qty">Qty</string>
+    <string name="mrp">MRP</string>
+    <string name="selling_price">S.Price</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

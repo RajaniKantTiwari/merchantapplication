@@ -135,4 +135,6 @@ public interface Repository {
     Observable<OrderData> getOrderSummary(OrderRequest request);
 
     Observable<BaseResponse> assignDeliveryBoyToOrder(AssignedDeliveryBoyRequest request);
+
+    Observable<BaseResponse> confirmOrder(CancelOrderRequest request);
 }
