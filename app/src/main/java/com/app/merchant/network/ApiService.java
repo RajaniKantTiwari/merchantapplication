@@ -209,7 +209,7 @@ public interface ApiService {
 
 
     @POST("shopping/getproduct")
-    Observable<BaseResponse> getProductCategory(@Body CategoryRequest request);
+    Observable<CategoryResponse> getProductCategory(@Body CategoryRequest request);
 
     @POST("shopping/getsubcategories")
     Observable<BaseResponse> getProductSubCategory(@Body CategorySubCatRequest request);
