@@ -73,7 +73,7 @@ import okhttp3.RequestBody;
 public class CommonUtility {
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
     private DateFormat newDateFormat;
-    private static final String TAG=CommonUtility.class.getSimpleName();
+    private static final String TAG = CommonUtility.class.getSimpleName();
 
     public static int convertDpToPx(int dp, Context context) {
         return Math.round(dp * (context.getResources().getDisplayMetrics().xdpi / DisplayMetrics.DENSITY_DEFAULT));
@@ -132,7 +132,6 @@ public class CommonUtility {
         // Show Alert ConfirmOrderDialogFragment
         alertdFragment.show(fm, "");
     }
-
 
 
     public static boolean isNotNull(Object object) {
@@ -354,7 +353,21 @@ public class CommonUtility {
     }
 
     public static String addStrings(String first, String second) {
-        String str = first +" "+second;
+        String str = first + " " + second;
+        return str;
+    }
+
+    public static String addStrings(String first, String second, String third) {
+        String str = null;
+        if (isNotNull(first)) {
+            str = first;
+        }
+        if (isNotNull(second)) {
+            str = str + " " + second;
+        }
+        if (isNotNull(third)) {
+            str = str + " " + third;
+        }
         return str;
     }
 
@@ -481,11 +494,11 @@ public class CommonUtility {
     }
 
     public static String getCreatedDate(String date) {
-        String createdDate=null;
+        String createdDate = null;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-            Date cDate=dateFormat.parse(date);
+            Date cDate = dateFormat.parse(date);
             DateFormat newDateFormat = new SimpleDateFormat("hh:mm aa dd MMM yyyy");
             newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             return newDateFormat.format(cDate);
@@ -503,6 +516,7 @@ public class CommonUtility {
         // Show Alert DeliveryBoyDialogFragment
         alertdFragment.show(fm, "");
     }
+
     public static void showRatingDialog(AppCompatActivity activity, Bundle bundle, RatingDialogFragment.RatingDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         RatingDialogFragment alertdFragment = new RatingDialogFragment();
@@ -520,10 +534,12 @@ public class CommonUtility {
         // Show Alert CustomDialogFragment
         alertdFragment.show(fm, "");
     }
+
     public static void resetCart(DashBoardActivity dashBoardActivity) {
         PreferenceUtils.setCartData(null);
         dashBoardActivity.onUpdateCartEvent(new UpdateCartEvent());
     }
+
     public static String convertSecondsToHMmSs(long seconds) {
         long s = seconds % 60;
         long m = (seconds / 60) % 60;
@@ -531,34 +547,39 @@ public class CommonUtility {
         return String.format(Locale.getDefault(), "%02d:%02d:%02d", h, m, s);
         //return String.format("%d:%02d:%02d", h,m,s);
     }
+
     public static String price(String sellingPrice) {
 
         return sellingPrice + "/";
     }
-    public static boolean checkValidEmail(String email){
+
+    public static boolean checkValidEmail(String email) {
         return AppConstants.EMAIL_PATTERN.matcher(email).matches();
     }
-    public static boolean checkValidName(String name){
+
+    public static boolean checkValidName(String name) {
         return AppConstants.USERNAME_PATTERN.matcher(name).matches();
     }
-    public static boolean checkValidPassword(String password){
+
+    public static boolean checkValidPassword(String password) {
         return AppConstants.PASSWORD_PATTERN.matcher(password).matches();
     }
-    public static boolean checkValidAddress(String address){
+
+    public static boolean checkValidAddress(String address) {
         return AppConstants.ADDRESS_PATTERN.matcher(address).matches();
     }
 
     public static Bitmap getBitmap(String profilePicFilePath) {
-       return BitmapFactory.decodeFile(profilePicFilePath);
+        return BitmapFactory.decodeFile(profilePicFilePath);
 
     }
 
     public static String formatDate(String date) {
-        String createdDate=null;
+        String createdDate = null;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-            Date cDate=dateFormat.parse(date);
+            Date cDate = dateFormat.parse(date);
             DateFormat newDateFormat = new SimpleDateFormat("dd-MM");
             newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             return newDateFormat.format(cDate);
@@ -569,11 +590,11 @@ public class CommonUtility {
     }
 
     public static String formatTimeHHMM(String date) {
-        String createdDate=null;
+        String createdDate = null;
         try {
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
             dateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
-            Date cDate=dateFormat.parse(date);
+            Date cDate = dateFormat.parse(date);
             DateFormat newDateFormat = new SimpleDateFormat("dd-MM hh:mm");
             newDateFormat.setTimeZone(TimeZone.getTimeZone(AppConstants.TIME_ZONE));
             return newDateFormat.format(cDate);
@@ -584,10 +605,11 @@ public class CommonUtility {
     }
 
     public static String setTotalDue(String rs, String totaldue) {
-        return rs+" "+totaldue;
+        return rs + " " + totaldue;
     }
+
     public static void openDatePicker(StoreDetailsActivity activity) {
-        DatePickerDialog dpd=null;
+        DatePickerDialog dpd = null;
 
         Calendar now = Calendar.getInstance();
         if (dpd == null) {
@@ -604,8 +626,9 @@ public class CommonUtility {
 
         dpd.show(activity.getFragmentManager(), "Datepickerdialog");
     }
+
     public static String getMonth(int monthOfYear) {
-        switch (monthOfYear){
+        switch (monthOfYear) {
             case 0:
                 return "01";
             case 1:
@@ -631,12 +654,12 @@ public class CommonUtility {
             case 9:
                 return "10";
             default:
-                return ""+monthOfYear;
+                return "" + monthOfYear;
 
         }
     }
 
     public static String setNameWithMrp(String productname, float product_mrp) {
-        return productname+"( mrp "+setRating(String.valueOf(product_mrp))+")";
+        return productname + "( mrp " + setRating(String.valueOf(product_mrp)) + ")";
     }
 }

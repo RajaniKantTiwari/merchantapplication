@@ -14,7 +14,11 @@ import com.app.merchant.databinding.FragmentOrderDeliveredBinding;
 import com.app.merchant.databinding.FragmentOrderDetailsBinding;
 import com.app.merchant.databinding.FragmentUserProfileBinding;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
+import com.app.merchant.network.request.dashboard.OrderRequest;
+import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.OrderDetail;
+import com.app.merchant.network.response.dashboard.OrderDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
@@ -43,7 +47,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     private OrderListAdapter mAdapter;
     private ArrayList<ProductData> productList;
     private ArrayList<DeliveryBoy> deliveryBoyList;
-    private String orderId;
+    private String orderId = "13";
 
 
     @Nullable
@@ -56,9 +60,9 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     @Override
     public void initializeData() {
-        Bundle bundle=getArguments();
-        if(CommonUtility.isNotNull(bundle)){
-            orderId=bundle.getString(BundleConstants.ORDER_ID);
+        Bundle bundle = getArguments();
+        if (CommonUtility.isNotNull(bundle)) {
+            //orderId = bundle.getString(BundleConstants.ORDER_ID);
         }
         productList = new ArrayList<>();
         deliveryBoyList = new ArrayList<>();
@@ -67,10 +71,14 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         mAdapter = new OrderListAdapter(getDashboardActivity(), productList, this);
         mBinding.rvOrderItems.setAdapter(mAdapter);
         getPresenter().getDeliveryBoyList(getDashboardActivity());
+        getPresenter().getPartialOrderDetail(getDashboardActivity(), new OrderRequest(orderId));
+
     }
 
     @Override
     public void setListener() {
+        mBinding.tvCancel.setOnClickListener(this);
+        mBinding.tvConfirmOrder.setOnClickListener(this);
     }
 
     @Override
@@ -85,12 +93,42 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(CommonUtility.isNotNull(response)){
-            if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == 1) {
+                getDashboardActivity().showToast(response.getMsg());
+                OrderDetailsData data = (OrderDetailsData) response;
+                ArrayList<OrderDetail> orderDetailList = data.getData();
+                if (CommonUtility.isNotNull(orderDetailList) && orderDetailList.size() > 0) {
+                    setOrderDetails(orderDetailList.get(0));
+                }
+            } else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
                 setDeliveryBoyList(response);
-            } else if (requestCode == 7) {
+            } else if (requestCode == 7||requestCode==8) {
                 getDashboardActivity().showToast(response.getMsg());
             }
+        }
+    }
+
+    private void setOrderDetails(OrderDetail orderDetail) {
+        mBinding.tvCustomerName.setText(CommonUtility.addStrings(orderDetail.getFirstname(), orderDetail.getMiddlename(), orderDetail.getLastname()));
+        mBinding.tvCustomerAddress.setText(orderDetail.getDelivery_address());
+        mBinding.tvOrderValue.setText(orderDetail.getGrandtotal());
+        mBinding.tvOrderNumber.setText(orderDetail.getInvoiceNumber());
+        mBinding.tvOrderDate.setText(orderDetail.getInvoiceDate());
+        mBinding.tvOrderStatus.setText(orderDetail.getOrder_status());
+        mBinding.tvPaymentStatus.setText(orderDetail.getPaymentStatus());
+        try {
+            ProductData productData = new ProductData();
+            productData.setId(Integer.parseInt(orderId));
+            productData.setProductname(orderDetail.getProductname());
+            productData.setQty(Integer.parseInt(orderDetail.getQuantity()));
+            productData.setMrp(orderDetail.getMrp());
+            productData.setSelling_price(orderDetail.getMerchant_actual_selling_price());
+            productList.add(productData);
+            mAdapter.notifyDataSetChanged();
+
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
         }
     }
 
@@ -153,6 +191,15 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     @Override
     public void onClick(View view) {
+        if (view == mBinding.tvCancel) {
+            CancelOrderRequest request = new CancelOrderRequest();
+            request.setOrder_id(orderId);
+            getPresenter().confirmOrder(getDashboardActivity(), request);
+        } else if (view == mBinding.tvConfirmOrder) {
+            CancelOrderRequest request = new CancelOrderRequest();
+            request.setOrder_id(orderId);
+            getPresenter().cancelOrder(getDashboardActivity(), request);
+        }
     }
 
     @Override

@@ -265,7 +265,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     public void onOrderStatusClick(int position) {
         if ((orderPosition != position) || orderPosition == -1) {
             orderPosition = position;
-            getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest("13"));
+            getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest(orderReceivedList.get(position).getId()));
         } else {
             showDialog();
         }

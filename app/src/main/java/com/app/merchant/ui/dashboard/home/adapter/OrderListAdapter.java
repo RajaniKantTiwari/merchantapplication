@@ -12,6 +12,7 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.ItemOrderRowBinding;
 import com.app.merchant.databinding.ProductRowBinding;
 import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
 
@@ -51,7 +52,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Prod
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(productList)?productList.size():0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

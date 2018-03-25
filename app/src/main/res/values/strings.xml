@@ -358,6 +358,7 @@
     <string name="qty">Qty</string>
     <string name="mrp">MRP</string>
     <string name="selling_price">S.Price</string>
+    <string name="order_status">Order Status</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

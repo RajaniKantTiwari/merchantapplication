@@ -28,7 +28,6 @@ public class OrderReceivedAdapter extends RecyclerView.Adapter<OrderReceivedAdap
 
     public interface OrderReceivedListener {
         void onOrderStatusClick(int position);
-
         void orderDetailClick(int position);
     }
 

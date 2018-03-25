@@ -26,6 +26,7 @@ import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
+import com.app.merchant.network.response.dashboard.OrderDetailsData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -266,6 +267,11 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> confirmOrder(CancelOrderRequest request) {
         return apiService.confirmOrder(request);
+    }
+
+    @Override
+    public Observable<OrderDetailsData> getPartialOrderDetail(OrderRequest request) {
+        return apiService.getPartialOrderDetail(request);
     }
 
 

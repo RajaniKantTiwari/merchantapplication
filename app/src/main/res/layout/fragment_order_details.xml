@@ -63,6 +63,15 @@
                 style="@style/textview_description_match"
                 android:layout_marginBottom="@dimen/margin_5"
                 android:layout_marginTop="@dimen/margin_5" />
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_status" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOrderStatus"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"

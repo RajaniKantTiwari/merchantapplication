@@ -259,10 +259,9 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void onOrderConfirmClick(int position) {
-
             if ((orderPosition != position)||orderPosition==-1) {
                 orderPosition = position;
-                getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest("13"));
+                getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest(orderList.get(position).getId()));
             } else {
                 showDialog();
             }

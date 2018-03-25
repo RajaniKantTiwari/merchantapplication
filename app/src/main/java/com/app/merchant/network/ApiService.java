@@ -12,9 +12,12 @@ import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
+import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
+import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
+import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
@@ -32,6 +35,7 @@ import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
+import com.app.merchant.network.response.dashboard.OrderDetailsData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -202,6 +206,22 @@ public interface ApiService {
 
     @POST("shopping/confirm_order")
     Observable<BaseResponse> confirmOrder(@Body CancelOrderRequest request);
+
+
+    @POST("shopping/getproduct")
+    Observable<BaseResponse> getProductCategory(@Body CategoryRequest request);
+
+    @POST("shopping/getsubcategories")
+    Observable<BaseResponse> getProductSubCategory(@Body CategorySubCatRequest request);
+
+    @POST("shopping/getsubcategories_products")
+    Observable<BaseResponse> getSubCategoryProduct(@Body SubCatProductRequest request);
+
+    @POST("shopping/add_product_to_merchant_product_list")
+    Observable<BaseResponse> addProductToMerchantList(@Body MerchantProductListRequest request);
+
+    @POST("shopping/get_partial_order_details")
+    Observable<OrderDetailsData> getPartialOrderDetail(@Body OrderRequest request);
 
 
 

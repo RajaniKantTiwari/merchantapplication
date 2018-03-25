@@ -26,6 +26,7 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
+import com.app.merchant.network.response.dashboard.OrderDetailsData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -137,4 +138,6 @@ public interface Repository {
     Observable<BaseResponse> assignDeliveryBoyToOrder(AssignedDeliveryBoyRequest request);
 
     Observable<BaseResponse> confirmOrder(CancelOrderRequest request);
+
+    Observable<OrderDetailsData> getPartialOrderDetail(OrderRequest request);
 }
