@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderConfirmedBinding;
+import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
@@ -220,6 +221,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
                     order = orderList.get(0);
                 }
                 showDialog();
+            } else if (requestCode == 7) {
+                getDashboardActivity().showToast(response.getMsg());
             }
         }
     }
@@ -235,8 +238,12 @@ public class OrderConfirmedFragment extends DashboardFragment implements
             DeliveryBoyData data = (DeliveryBoyData) response;
             if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
                 deliveryBoyList.clear();
+                DeliveryBoy deliveryBoyLatter = new DeliveryBoy();
+                deliveryBoyLatter.setId(-1);
+                deliveryBoyLatter.setName(getResources().getString(R.string.assign_latter));
+                deliveryBoyList.add(deliveryBoyLatter);
                 deliveryBoyList.addAll(data.getData());
-                DeliveryBoy deliveryBoy=new DeliveryBoy();
+                DeliveryBoy deliveryBoy = new DeliveryBoy();
                 deliveryBoy.setId(-1);
                 deliveryBoy.setName(getResources().getString(R.string.assign_to));
                 deliveryBoyList.add(deliveryBoy);
@@ -271,7 +278,15 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void assignedDeliveryBoy(int position) {
-
+        if (CommonUtility.isNotNull(deliveryBoyList) && deliveryBoyList.size() > position) {
+            int deliveryBoyId = deliveryBoyList.get(position).getId();
+            if (deliveryBoyId != -1) {
+                AssignedDeliveryBoyRequest request = new AssignedDeliveryBoyRequest();
+                request.setOrderid(orderList.get(orderPosition).getId());
+                request.setDb_id(String.valueOf(deliveryBoyList.get(position + 1).getId()));
+                getPresenter().assignDeliveryBoyToOrder(getDashboardActivity(), request);
+            }
+        }
     }
 
     @Override
@@ -286,7 +301,9 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void orderCancel() {
-
+        CancelOrderRequest request = new CancelOrderRequest();
+        request.setOrder_id(orderList.get(orderPosition).getId());
+        getPresenter().cancelOrder(getDashboardActivity(), request);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

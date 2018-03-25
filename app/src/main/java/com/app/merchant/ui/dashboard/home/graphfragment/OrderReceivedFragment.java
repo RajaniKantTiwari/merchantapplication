@@ -204,7 +204,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
                     order = orderList.get(0);
                 }
                 showDialog();
-            } else if (requestCode == 7) {
+            } else if (requestCode == 7||requestCode==8) {
                 getDashboardActivity().showToast(response.getMsg());
             }
         }
