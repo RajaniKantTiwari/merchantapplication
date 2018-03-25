@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.DialogConfirmOrderBinding;
+import com.app.merchant.network.response.dashboard.Order;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 import com.app.merchant.ui.adapter.AsignAdapter;
 import com.app.merchant.utility.BundleConstants;
@@ -29,11 +30,13 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     private OrderDialogListener listener;
     private FragmentActivity mActivity;
     private ArrayList<DeliveryBoy> deliveryBoyList;
+    private Order order;
+
     public interface OrderDialogListener {
         void confirmed();
-
         void notConfirmed();
     }
+
     public void addListener(OrderDialogListener listener) {
         this.listener = listener;
     }
@@ -44,7 +47,7 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
         mBinding = DataBindingUtil.inflate(inflater, R.layout.dialog_confirm_order, container, false);
         dialog = getDialog();
         CommonUtility.setDialog(dialog);
-        mActivity=getActivity();
+        mActivity = getActivity();
         initializeData();
         setListener();
         return mBinding.getRoot();
@@ -53,16 +56,17 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     @Override
     public void onStart() {
         super.onStart();
-        CommonUtility.setPadding(dialog,mActivity);
+        CommonUtility.setPadding(dialog, mActivity);
     }
 
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-            deliveryBoyList=bundle.getParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST);
+            order = bundle.getParcelable(BundleConstants.ORDER);
+            deliveryBoyList = bundle.getParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST);
         }
-        ArrayList<String> deliveryBoyNameList=new ArrayList<>();
-        for(int i=0;i<deliveryBoyList.size();i++){
+        ArrayList<String> deliveryBoyNameList = new ArrayList<>();
+        for (int i = 0; i < deliveryBoyList.size(); i++) {
             deliveryBoyNameList.add(deliveryBoyList.get(i).getName());
         }
 
@@ -85,6 +89,12 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
 
             }
         });
+        mBinding.tvOrderNumber.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_number),order.getOrder_id()));
+        mBinding.tvCustomerName.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_name),order.getOrder_id()));
+        mBinding.tvCustomerAddress.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_address),order.getOrder_id()));
+        mBinding.tvNumberOfItem.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.number_of_item),order.getOrder_id()));
+        mBinding.tvOrdervalue.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_value),order.getOrder_id()));
+
     }
 
     public void setListener() {
@@ -97,10 +107,10 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
     public void onClick(View view) {
         if (view == mBinding.tvConfirmOrder) {
             dialog.cancel();
-            if(CommonUtility.isNotNull(listener)){
+            if (CommonUtility.isNotNull(listener)) {
                 listener.confirmed();
             }
-        }else if(view==mBinding.tvNotConfirmed){
+        } else if (view == mBinding.tvNotConfirmed) {
             listener.notConfirmed();
         }
     }

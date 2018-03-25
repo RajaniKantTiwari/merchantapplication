@@ -8,10 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentUserProfileBinding;
+import com.app.merchant.databinding.FragmentUpdateProfileBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
-import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 
 import javax.inject.Inject;
@@ -20,17 +19,17 @@ import javax.inject.Inject;
  * Created by ashok on 13/11/17.
  */
 
-public class UserProfileFragment extends DashboardFragment {
+public class UpdateProfileFragment extends DashboardFragment {
 
     @Inject
     CommonPresenter presenter;
-    private FragmentUserProfileBinding mBinding;
+    private FragmentUpdateProfileBinding mBinding;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_user_profile, container, false);
-        getDashboardActivity().setHeaderTitle(getString(R.string.profile));
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_update_profile, container, false);
+        getDashboardActivity().setHeaderTitle(getString(R.string.update_profile));
         return mBinding.getRoot();
     }
 
@@ -41,12 +40,11 @@ public class UserProfileFragment extends DashboardFragment {
 
     @Override
     public void setListener() {
-        mBinding.ivEdit.setOnClickListener(this);
     }
 
     @Override
     public String getFragmentName() {
-        return UserProfileFragment.class.getSimpleName();
+        return UpdateProfileFragment.class.getSimpleName();
     }
 
     @Override
@@ -61,10 +59,6 @@ public class UserProfileFragment extends DashboardFragment {
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.ivEdit) {
-            Bundle bundle = new Bundle();
-            getDashboardActivity().addFragmentInContainer(new UpdateProfileFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
-        }
 
     }
 

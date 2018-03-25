@@ -12,21 +12,75 @@
             android:orientation="vertical"
             android:padding="@dimen/margin_15">
 
-            <ImageView
-                style="@style/image_70"
-                android:layout_gravity="center_horizontal"
-                android:background="@drawable/app_icon" />
+            <RelativeLayout
+                style="@style/wrap_wrap"
+                android:layout_gravity="center">
+
+                <ImageView
+                    style="@style/image_70"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/app_icon" />
+
+                <ImageButton
+                    android:id="@+id/ivEdit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/margin_65"
+                    android:background="@android:color/transparent"
+                    android:padding="@dimen/margin_5"
+                    android:src="@drawable/ic_edit_profile_pic" />
+            </RelativeLayout>
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/merchant_name" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMerchantName"
+                style="@style/edit_text_name_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_merchant_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
                 android:text="@string/email" />
 
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvEmailId"
                 style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/password" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edPassword"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/password"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
@@ -35,7 +89,7 @@
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvMobileNumber"
                 style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_20"
                 android:layout_marginTop="@dimen/margin_5" />
 
 
@@ -43,11 +97,20 @@
                 style="@style/textview_description_ex_large_match"
                 android:text="@string/location" />
 
-            <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvLocation"
-                style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginTop="@dimen/margin_5" />
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edLocation"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/delhi"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
@@ -55,20 +118,46 @@
 
             <com.app.merchant.widget.CustomTextView
                 android:id="@+id/tvAddress"
-                style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginTop="@dimen/margin_5" />
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_your_full_address"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
 
+            <ImageView style="@style/view_layout_dark_grey" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvLocateMe"
+                style="@style/textview_description_smaller_wrap"
+                android:layout_gravity="right"
+                android:paddingBottom="@dimen/margin_12"
+                android:paddingStart="@dimen/margin_20"
+                android:paddingTop="@dimen/margin_7"
+                android:text="@string/locate_me"
+                android:textColor="@color/forgot_pass_color"
+                app:customFont="@string/font_regular" />
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:text="@string/store_name" />
 
-            <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvStoreName"
-                style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginTop="@dimen/margin_5" />
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edStore"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_your_store_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_15" />
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_wrap"
@@ -76,11 +165,52 @@
                 android:text="@string/type_of_store"
                 app:customFont="@string/font_regular" />
 
-            <com.app.merchant.widget.CustomTextView
-                android:id="@+id/tvTypeOfStore"
-                style="@style/textview_description_match"
-                android:layout_marginBottom="@dimen/margin_5"
-                android:layout_marginTop="@dimen/margin_5" />
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginStart="@dimen/margin_5_minus">
+
+                <LinearLayout
+                    android:id="@+id/layoutProduct"
+                    style="@style/wrap_wrap">
+
+                    <RadioButton
+                        android:id="@+id/radioProduct"
+                        style="@style/textview_description_wrap"
+                        android:buttonTint="@color/radio_button_color"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/textview_description_ex_large_wrap"
+                        android:paddingEnd="@dimen/margin_15"
+                        android:text="@string/products"
+                        android:textColor="@color/gr_color"
+                        app:customFont="@string/font_regular" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layoutService"
+                    style="@style/wrap_wrap"
+                    android:paddingEnd="@dimen/margin_15"
+                    android:paddingStart="@dimen/margin_15">
+
+                    <RadioButton
+                        android:id="@+id/radioService"
+                        style="@style/textview_description_wrap"
+                        android:buttonTint="@color/radio_button_color"
+                        android:clickable="false"
+                        android:scaleX="0.5"
+                        android:scaleY="0.5" />
+
+                    <com.app.merchant.widget.CustomTextView
+                        style="@style/textview_description_ex_large_wrap"
+                        android:text="@string/services"
+                        android:textColor="@color/gr_color"
+                        app:customFont="@string/font_regular" />
+                </LinearLayout>
+            </LinearLayout>
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
@@ -92,6 +222,446 @@
                 android:id="@+id/rvDocument"
                 style="@style/match_wrap"
                 android:paddingStart="@dimen/margin_4" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/legal_name_of_company"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edLegalName"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/legal_name"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/coi"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edCoi"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_coi"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/adhar_card_number"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edAdharCard"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/enter_adhar_number"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="@integer/adhar_length"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/pan_card_number"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edPanNumber"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"
+                android:hint="@string/enter_pan_number"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters"
+                android:maxLength="@integer/pan_length"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/gst_number"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edGstNumber"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:digits="ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 "
+                android:hint="@string/enter_gst_number"
+                android:imeOptions="actionNext"
+                android:inputType="textCapCharacters"
+
+                android:maxLength="@integer/gstin_length"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/date_of_birth"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvDateOfBirth"
+                style="@style/edit_text_style_medium"
+                android:drawableEnd="@drawable/calender"
+                android:hint="@string/may_2016"
+                android:padding="@dimen/margin_5"
+                app:customFont="@string/font_regular" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/nationality"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edNationality"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/indian"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="@integer/gstin_length"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/openTime"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edOpenTime"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/ten_am"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="@integer/gstin_length"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/close_time"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edCloseTime"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/five_pm"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="@integer/gstin_length"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/min_order"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMinOrder"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/five"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="@integer/gstin_length"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:text="@string/average_time"
+                android:textAllCaps="true"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edAverageTime"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/thirty_min"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLength="@integer/gstin_length"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/bank_setup"
+                app:customFont="@string/font_regular" />
+
+            <LinearLayout
+                style="@style/match_wrap"
+                android:layout_marginBottom="@dimen/margin_20">
+
+                <LinearLayout
+                    style="@style/layout_hori_wrap_1"
+                    android:layout_marginEnd="@dimen/margin_8"
+                    android:orientation="vertical">
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edBankName"
+                        style="@style/edit_text_style_small"
+                        android:layout_marginTop="@dimen/margin_3"
+                        android:hint="@string/bank_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingBottom="@dimen/margin_3"
+                        android:paddingTop="@dimen/margin_7"
+                        app:customFont="@string/font_regular" />
+
+                    <ImageView
+                        style="@style/view_layout_dark_grey"
+                        android:layout_marginBottom="@dimen/margin_8" />
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edBranch"
+                        style="@style/edit_text_style_medium"
+                        android:hint="@string/branch"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingBottom="@dimen/margin_3"
+                        android:paddingTop="@dimen/margin_7"
+                        app:customFont="@string/font_regular" />
+
+                    <ImageView style="@style/view_layout_dark_grey" />
+                </LinearLayout>
+
+                <LinearLayout
+                    style="@style/layout_hori_wrap_1"
+                    android:layout_marginStart="@dimen/margin_8"
+                    android:orientation="vertical">
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edAccountNumber"
+                        style="@style/edit_text_style_small"
+                        android:layout_marginTop="@dimen/margin_3"
+                        android:hint="@string/account_number"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:paddingBottom="@dimen/margin_3"
+                        android:paddingTop="@dimen/margin_7"
+                        app:customFont="@string/font_regular" />
+
+                    <ImageView
+                        style="@style/view_layout_dark_grey"
+                        android:layout_marginBottom="@dimen/margin_8" />
+
+                    <com.app.merchant.widget.CustomEditText
+                        android:id="@+id/edIFSCCode"
+                        style="@style/edit_text_style_medium"
+                        android:hint="@string/ifsc_code"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:paddingBottom="@dimen/margin_3"
+                        android:paddingTop="@dimen/margin_7"
+                        app:customFont="@string/font_regular" />
+
+                    <ImageView style="@style/view_layout_dark_grey" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_wrap"
+                android:layout_marginBottom="@dimen/margin_10"
+                android:text="@string/payment_option"
+                app:customFont="@string/font_regular" />
+
+            <include
+                android:id="@+id/layoutPayment"
+                layout="@layout/payment_method" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/shipping_delivery_charge"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edDelivery"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:drawablePadding="@dimen/margin_5"
+                android:drawableStart="@drawable/rupee_black"
+                android:hint="@string/rupees"
+                android:imeOptions="actionNext"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7"
+                app:customFont="@string/font_regular" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/servicing_areas"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edServiceArea"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/servicing_areas"
+                android:imeOptions="actionNext"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView style="@style/view_layout_dark_grey" />
+
+            <LinearLayout
+                android:id="@+id/layoutMoreService"
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_10"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/layoutAddMoreAreas"
+                style="@style/match_wrap"
+                android:orientation="vertical" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddMoreAreas"
+                style="@style/textview_description_small_match"
+                android:padding="@dimen/margin_7"
+                android:text="@string/add_more_areas"
+                android:textColor="@color/green_color" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_large_match"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/agreement_details_signup"
+                android:textColor="@color/tex_color"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_large_match"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/agreement_status"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_match"
+                android:layout_marginTop="@dimen/margin_10"
+                android:text="@string/not_started"
+                android:textColor="@color/red_col"
+                app:customFont="@string/font_regular" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvDone"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_40"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_12"
+                android:text="@string/done"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_bold" />
         </LinearLayout>
     </ScrollView>
 </layout>

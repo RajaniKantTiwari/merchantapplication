@@ -345,6 +345,12 @@
     <string name="view_order_details">View Order Details</string>
     <string name="order_details">Order Details</string>
     <string name="cancel_order">Cancel Order</string>
+    <string name="update_profile">UpdateProfile</string>
+    <string name="order_number">Order no.</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_address">Customer Address</string>
+    <string name="number_of_item">Number Of Item</string>
+    <string name="order_value">Order Value</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

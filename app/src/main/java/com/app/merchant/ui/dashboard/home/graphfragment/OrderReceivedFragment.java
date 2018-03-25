@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReceivedBinding;
+import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.Order;
+import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceived;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChart;
 import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedChartData;
@@ -73,7 +76,7 @@ public class OrderReceivedFragment extends DashboardFragment implements
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_received, container, false);
         orderReceivedList = new ArrayList<>();
-        deliveryBoyList=new ArrayList<>();
+        deliveryBoyList = new ArrayList<>();
         getDashboardActivity().setHeaderTitle(getString(R.string.order_received));
         return mBinding.getRoot();
     }
@@ -93,7 +96,6 @@ public class OrderReceivedFragment extends DashboardFragment implements
         mAdapter = new OrderReceivedAdapter(getDashboardActivity(), orderReceivedList, this);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
-
 
 
     private void initializeChartData(ArrayList<OrderReceivedChart> data) {
@@ -182,13 +184,29 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if (requestCode == AppConstants.CHART_DATA) {
-            setChartResponse(response);
-        } else if (requestCode == AppConstants.ORDER_DATA) {
-            setOrderResponse(response);
-        } else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
-            setDeliveryBoyList(response);
+        if(CommonUtility.isNotNull(response)){
+            if (requestCode == AppConstants.CHART_DATA) {
+                setChartResponse(response);
+            } else if (requestCode == AppConstants.ORDER_DATA) {
+                setOrderResponse(response);
+            } else if (requestCode == AppConstants.DELIVERY_BOY_DATA) {
+                setDeliveryBoyList(response);
+            } else if (requestCode == 3) {
+                showDialog(response);
+            }
         }
+    }
+
+    private void showDialog(BaseResponse response) {
+        Bundle bundle = new Bundle();
+        OrderData data=(OrderData)response;
+        ArrayList<Order> orderList=data.getData();
+        if(CommonUtility.isNotNull(orderList)&&orderList.size()>0){
+            bundle.putParcelable(BundleConstants.ORDER,orderList.get(0));
+        }
+
+        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST, deliveryBoyList);
+        CommonUtility.showConfirmOrderDialog(getDashboardActivity(), bundle, this);
     }
 
     private void setDeliveryBoyList(BaseResponse response) {
@@ -196,8 +214,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
             DeliveryBoyData data = (DeliveryBoyData) response;
             if (CommonUtility.isNotNull(data.getData()) && data.getData().size() > 0) {
                 deliveryBoyList.clear();
-               deliveryBoyList.addAll(data.getData());
-                DeliveryBoy deliveryBoy=new DeliveryBoy();
+                deliveryBoyList.addAll(data.getData());
+                DeliveryBoy deliveryBoy = new DeliveryBoy();
                 deliveryBoy.setId(-1);
                 deliveryBoy.setName(getResources().getString(R.string.assign_to));
                 deliveryBoyList.add(deliveryBoy);
@@ -232,9 +250,8 @@ public class OrderReceivedFragment extends DashboardFragment implements
 
     @Override
     public void onOrderStatusClick(int position) {
-        Bundle bundle = new Bundle();
-        bundle.putParcelableArrayList(BundleConstants.DELIVERY_BOY_LIST,deliveryBoyList);
-        CommonUtility.showConfirmOrderDialog(getDashboardActivity(), bundle, this);
+        getPresenter().getOrderSummary(getDashboardActivity(), new OrderRequest("13"));
+
     }
 
     @Override

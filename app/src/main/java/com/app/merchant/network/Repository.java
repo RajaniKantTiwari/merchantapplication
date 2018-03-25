@@ -4,6 +4,7 @@ import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
@@ -23,6 +24,7 @@ import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
+import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -128,4 +130,6 @@ public interface Repository {
     Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(DeliveryBoyOrderDetailRequest request);
 
     Observable<MyInventoryData> myInventoryHistory();
+
+    Observable<OrderData> getOrderSummary(OrderRequest request);
 }

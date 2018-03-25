@@ -5,6 +5,7 @@ import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
@@ -29,6 +30,7 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
+import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -192,5 +194,10 @@ public interface ApiService {
 
     @POST("shopping/my_inventory_history")
     Observable<MyInventoryData> myInventoryHistory();
+
+
+    @POST("shopping/get_order_summary")
+    Observable<OrderData> getOrderSummary(@Body OrderRequest request);
+
 
 }

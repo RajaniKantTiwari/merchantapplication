@@ -5,6 +5,7 @@ import android.app.Activity;
 
 import com.app.merchant.network.DefaultApiObserver;
 import com.app.merchant.network.Repository;
+import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
@@ -18,6 +19,7 @@ import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
+import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
@@ -680,6 +682,24 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void getOrderSummary(DashBoardActivity activity, OrderRequest request) {
+        mView.showProgress();
+        mRepository.getOrderSummary(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<OrderData>(activity) {
+            @Override
+            public void onResponse(OrderData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 3);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 3);
             }
         });
     }

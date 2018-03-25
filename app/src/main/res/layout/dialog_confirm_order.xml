@@ -18,36 +18,36 @@
                 android:padding="@dimen/margin_12">
 
                 <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvOrderNumber"
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
                     android:padding="@dimen/margin_4"
-                    android:text="Order no. 256"
                     android:textAllCaps="true"
                     android:layout_marginBottom="@dimen/margin_15"/>
                 <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCustomerName"
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="Customer Name" />
+                    android:gravity="center_horizontal"/>
 
                 <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCustomerAddress"
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="Customer Address" />
+                    android:gravity="center_horizontal"/>
 
                 <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvNumberOfItem"
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
-                    android:gravity="center_horizontal"
-                    android:text="Number Of Item" />
+                    android:gravity="center_horizontal"/>
 
                 <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvOrdervalue"
                     style="@style/textview_description_wrap"
                     android:layout_gravity="center"
                     android:gravity="center_horizontal"
-                    android:text="Order Value"
                     android:textColor="@color/blue"/>
 
 
