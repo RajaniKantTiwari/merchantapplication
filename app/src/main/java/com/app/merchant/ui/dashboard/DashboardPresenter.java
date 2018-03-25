@@ -12,8 +12,10 @@ import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
+import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
@@ -22,12 +24,13 @@ import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
-import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
+import com.app.merchant.network.response.dashboard.cart.CategoryData;
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.cart.SubCategoryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
-import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
@@ -116,9 +119,9 @@ public class DashboardPresenter implements Presenter<MvpView> {
     public void getCategory(Activity activity, CategoryRequest categoryRequest) {
         mView.showProgress();
         LogUtils.LOGD("", "Repos==" + mRepository);
-        mRepository.getCategory(categoryRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<CategoryResponse>(activity) {
+        mRepository.getCategory(categoryRequest).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<CategoryData>(activity) {
             @Override
-            public void onResponse(CategoryResponse response) {
+            public void onResponse(CategoryData response) {
                 mView.hideProgress();
                 mView.onSuccess(response, 1);
             }
@@ -756,6 +759,60 @@ public class DashboardPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void getProductCategory(DashBoardActivity activity, CategoryRequest request) {
+        mView.showProgress();
+        mRepository.getProductCategory(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<CategoryData>(activity) {
+            @Override
+            public void onResponse(CategoryData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 1);
+            }
+        });
+    }
+
+    public void getProductSubCategory(DashBoardActivity activity, CategorySubCatRequest request) {
+        mView.showProgress();
+        mRepository.getProductSubCategory(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<SubCategoryData>(activity) {
+            @Override
+            public void onResponse(SubCategoryData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 2);
+            }
+        });
+    }
+
+    public void getSubCategoryProduct(DashBoardActivity activity, SubCatProductRequest request) {
+        mView.showProgress();
+        mRepository.getSubCategoryProduct(request).subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<ProductData>(activity) {
+            @Override
+            public void onResponse(ProductData response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 3);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(baseResponse.getMsg(), 3);
             }
         });
     }

@@ -1,7 +1,7 @@
 package com.app.merchant.event;
 
 
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 
 /**
  * Created by rajnikant on 17/02/18.
@@ -9,9 +9,9 @@ import com.app.merchant.network.response.dashboard.cart.ProductData;
 
 public class ProductUpdateEvent {
     private final int position;
-    private final ProductData productData;
+    private final Product productData;
 
-    public ProductUpdateEvent(int position, ProductData productData) {
+    public ProductUpdateEvent(int position, Product productData) {
         this.position=position;
         this.productData=productData;
     }
@@ -20,7 +20,7 @@ public class ProductUpdateEvent {
         return position;
     }
 
-    public ProductData getProductData() {
+    public Product getProductData() {
         return productData;
     }
 }

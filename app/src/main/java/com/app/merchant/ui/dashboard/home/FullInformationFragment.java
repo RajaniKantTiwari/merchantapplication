@@ -15,7 +15,7 @@ import com.app.merchant.event.ProductUpdateEvent;
 import com.app.merchant.event.UpdateCartEvent;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.utility.AppConstants;
@@ -34,11 +34,11 @@ import java.util.ArrayList;
 public class FullInformationFragment extends DashboardFragment {
     private FragmentFullInformationBinding mBinding;
     private int quantity;
-    private ProductData productData;
+    private Product productData;
     private int merchantId;
     //check whether it is present in cart or not
     private boolean isAddedInCart = false;
-    private ArrayList<ProductData> productList = new ArrayList<>();
+    private ArrayList<Product> productList = new ArrayList<>();
     private int position;
 
     @Nullable
@@ -57,7 +57,7 @@ public class FullInformationFragment extends DashboardFragment {
             merchantId = bundle.getInt(AppConstants.MERCHANT_ID);
             if (CommonUtility.isNotNull(PreferenceUtils.getCartData())) {
                 productList = PreferenceUtils.getCartData();
-                for (ProductData data : PreferenceUtils.getCartData()) {
+                for (Product data : PreferenceUtils.getCartData()) {
                     if (data.getMasterproductid() == productData.getMasterproductid()) {
                         isAddedInCart = true;
                         quantity = data.getQty();
@@ -120,7 +120,7 @@ public class FullInformationFragment extends DashboardFragment {
         if(quantity>0){
             if (isAddedInCart) {
                 for (int i = 0; i < productList.size(); i++) {
-                    ProductData data = productList.get(i);
+                    Product data = productList.get(i);
                     if (data.getMasterproductid() == productData.getMasterproductid()) {
                         productList.set(i, productData);
                     }
@@ -146,7 +146,7 @@ public class FullInformationFragment extends DashboardFragment {
         if (CommonUtility.isNotNull(response) && response instanceof ProductFullInformationData) {
             ProductFullInformationData data = (ProductFullInformationData) response;
             if (CommonUtility.isNotNull(data.getInfo()) && data.getInfo().size() > 0) {
-                ProductData productData = data.getInfo().get(0);
+                Product productData = data.getInfo().get(0);
                 GlideUtils.loadImage(getDashboardActivity(), productData.getImagepath()
                         , mBinding.ivProductImage, null, R.drawable.background_placeholder);
                 mBinding.setProduct(productData);

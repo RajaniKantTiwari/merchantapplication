@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ItemCatBinding;
-import com.app.merchant.network.response.dashboard.cart.CategoryData;
+import com.app.merchant.network.response.dashboard.cart.Category;
 import com.app.merchant.utility.GlideUtils;
 
 import java.util.ArrayList;
@@ -24,10 +24,10 @@ import java.util.ArrayList;
 
 public class CategoryAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private ArrayList<CategoryData> mDataList = new ArrayList<>();
+    private ArrayList<Category> mDataList = new ArrayList<>();
     private OnCatItemClick mListener;
 
-    public CategoryAdapter(ArrayList<CategoryData> cartDataList, OnCatItemClick listener) {
+    public CategoryAdapter(ArrayList<Category> cartDataList, OnCatItemClick listener) {
         this.mDataList = cartDataList;
         mListener = listener;
     }
@@ -105,7 +105,7 @@ public class CategoryAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnCatItemClick {
-        public void onCatClick(int pos, View view);
+        void onCatClick(int pos, View view);
     }
 
 }

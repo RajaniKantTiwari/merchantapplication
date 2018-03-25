@@ -3,7 +3,6 @@ package com.app.merchant.ui.dashboard.cart;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.ui.SimpleDividerItemDecoration;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.cart.adapter.CartRowAdapter;
@@ -44,7 +43,7 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private FragmentCartBinding mBinding;
     private CartRowAdapter mAdapter;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
-    private ArrayList<ProductData> mCartList;
+    private ArrayList<Product> mCartList;
     private CartRequest cartRequest;
 
     @Nullable
@@ -107,10 +106,10 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
             CartListRequest request = new CartListRequest();
             //list of product added in cart
             ArrayList<Cart> cartList = new ArrayList<>();
-            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
+            ArrayList<Product> productList = PreferenceUtils.getCartData();
             request.setMerchant_id(productList.get(0).getMerchantId());
             //id of merchant
-            for (ProductData product : productList) {
+            for (Product product : productList) {
                 if (CommonUtility.isNotNull(product)) {
                     Cart cart = new Cart();
                     cart.setMerchantlist_id(product.getMerchantlistid());
@@ -197,7 +196,7 @@ public class CartFragment extends DashboardFragment implements CartRowAdapter.On
     private void setTotalAmount() {
         float total = 0.0f;
         EventBus.getDefault().post(new UpdateCartEvent());
-        for (ProductData data : mCartList) {
+        for (Product data : mCartList) {
             total += data.getQty() * data.getProduct_mrp();
         }
         mBinding.tvTotal.setText(String.valueOf(total));

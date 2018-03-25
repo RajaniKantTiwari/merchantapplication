@@ -10,32 +10,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentOrderDeliveredBinding;
 import com.app.merchant.databinding.FragmentOrderDetailsBinding;
-import com.app.merchant.databinding.FragmentUserProfileBinding;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.OrderDetail;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
-import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.adapter.AsignAdapter;
-import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
-import com.app.merchant.ui.dashboard.home.adapter.OrderConfirmedAdapter;
 import com.app.merchant.ui.dashboard.home.adapter.OrderListAdapter;
-import com.app.merchant.ui.dashboard.user.UpdateProfileFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
-
-import javax.inject.Inject;
 
 /**
  * Created by ashok on 13/11/17.
@@ -45,9 +37,9 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
 
     private FragmentOrderDetailsBinding mBinding;
     private OrderListAdapter mAdapter;
-    private ArrayList<ProductData> productList;
+    private ArrayList<Product> productList;
     private ArrayList<DeliveryBoy> deliveryBoyList;
-    private String orderId = "13";
+    private String orderId;
 
 
     @Nullable
@@ -62,7 +54,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     public void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-            //orderId = bundle.getString(BundleConstants.ORDER_ID);
+            orderId = bundle.getString(BundleConstants.ORDER_ID);
         }
         productList = new ArrayList<>();
         deliveryBoyList = new ArrayList<>();
@@ -118,7 +110,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         mBinding.tvOrderStatus.setText(orderDetail.getOrder_status());
         mBinding.tvPaymentStatus.setText(orderDetail.getPaymentStatus());
         try {
-            ProductData productData = new ProductData();
+            Product productData = new Product();
             productData.setId(Integer.parseInt(orderId));
             productData.setProductname(orderDetail.getProductname());
             productData.setQty(Integer.parseInt(orderDetail.getQuantity()));

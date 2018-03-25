@@ -11,8 +11,10 @@ import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
+import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
@@ -27,9 +29,11 @@ import com.app.merchant.network.request.CustomerPhoneRequest;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
-import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
+import com.app.merchant.network.response.dashboard.cart.CategoryData;
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.cart.SubCategoryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
@@ -65,7 +69,7 @@ public interface Repository {
 
     Observable<BaseResponse> addForCartList(CartListRequest request);
 
-    Observable<CategoryResponse> getCategory(CategoryRequest productRequest);
+    Observable<CategoryData> getCategory(CategoryRequest productRequest);
 
     Observable<ProductDetailsData> viewCart();
 
@@ -140,4 +144,10 @@ public interface Repository {
     Observable<BaseResponse> confirmOrder(CancelOrderRequest request);
 
     Observable<OrderDetailsData> getPartialOrderDetail(OrderRequest request);
+
+    Observable<CategoryData> getProductCategory(CategoryRequest request);
+
+    Observable<SubCategoryData> getProductSubCategory(CategorySubCatRequest request);
+
+    Observable<ProductData> getSubCategoryProduct(SubCatProductRequest request);
 }

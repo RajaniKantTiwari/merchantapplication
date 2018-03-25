@@ -10,13 +10,13 @@ import java.util.ArrayList;
  */
 
 public class ProductFullInformationData extends BaseResponse {
-   private ArrayList<ProductData>  info;
+   private ArrayList<Product>  info;
 
-   public ArrayList<ProductData> getInfo() {
+   public ArrayList<Product> getInfo() {
       return info;
    }
 
-   public void setInfo(ArrayList<ProductData> info) {
+   public void setInfo(ArrayList<Product> info) {
       this.info = info;
    }
 }

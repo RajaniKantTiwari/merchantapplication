@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.CartRowItemBinding;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.GlideUtils;
 
@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHolder> {
     private final LayoutInflater mInflater;
-    private final ArrayList<ProductData> mCartList;
+    private final ArrayList<Product> mCartList;
     private final AppCompatActivity activity;
     private OnAddToCart listener;
 
@@ -30,7 +30,7 @@ public class CartRowAdapter extends RecyclerView.Adapter<CartRowAdapter.CartHold
         void addToCartClick(int pos, View view);
     }
 
-    public CartRowAdapter(AppCompatActivity activity, ArrayList<ProductData> mCartList, OnAddToCart listener) {
+    public CartRowAdapter(AppCompatActivity activity, ArrayList<Product> mCartList, OnAddToCart listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.mCartList = mCartList;

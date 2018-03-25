@@ -12,8 +12,10 @@ import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
+import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
@@ -27,12 +29,13 @@ import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
-import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
+import com.app.merchant.network.response.dashboard.cart.CategoryData;
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.cart.SubCategoryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
-import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChart;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestData;
 import com.app.merchant.network.response.dashboard.chartdata.orderconfirmed.OrderConfirmedChartData;
@@ -91,7 +94,7 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<CategoryResponse> getCategory(CategoryRequest productRequest) {
+    public Observable<CategoryData> getCategory(CategoryRequest productRequest) {
         return apiService.getProducts(productRequest);
 
     }
@@ -272,6 +275,21 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<OrderDetailsData> getPartialOrderDetail(OrderRequest request) {
         return apiService.getPartialOrderDetail(request);
+    }
+
+    @Override
+    public Observable<CategoryData> getProductCategory(CategoryRequest request) {
+        return apiService.getProductCategory(request);
+    }
+
+    @Override
+    public Observable<SubCategoryData> getProductSubCategory(CategorySubCatRequest request) {
+        return apiService.getProductSubCategory(request);
+    }
+
+    @Override
+    public Observable<ProductData> getSubCategoryProduct(SubCatProductRequest request) {
+        return apiService.getSubCategoryProduct(request);
     }
 
 

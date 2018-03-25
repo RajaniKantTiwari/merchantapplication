@@ -4,7 +4,7 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.orhanobut.hawk.Hawk;
 
 import java.util.ArrayList;
@@ -135,11 +135,11 @@ public class PreferenceUtils {
         return null;
     }
 
-    public static void setCartData(ArrayList<ProductData> addCartList) {
+    public static void setCartData(ArrayList<Product> addCartList) {
         Hawk.put(getEmail(), addCartList);
     }
 
-    public static ArrayList<ProductData> getCartData() {
+    public static ArrayList<Product> getCartData() {
         return Hawk.get(getEmail(), null);
     }
 

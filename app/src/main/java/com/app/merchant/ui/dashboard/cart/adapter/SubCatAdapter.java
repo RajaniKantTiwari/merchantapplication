@@ -95,7 +95,7 @@ public class SubCatAdapter extends RecyclerView.Adapter {
     }
 
     public interface OnSubCatItemClick {
-        public void onSubCatClick(int pos, View view);
+        void onSubCatClick(int pos, View view);
     }
 
 

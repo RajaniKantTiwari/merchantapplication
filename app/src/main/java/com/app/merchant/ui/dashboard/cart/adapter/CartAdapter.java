@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ItemCartBinding;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.GlideUtils;
 
@@ -20,11 +20,11 @@ import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter {
     private Context mContext;
-    private ArrayList<ProductData> mDataList = new ArrayList<>();
+    private ArrayList<Product> mDataList = new ArrayList<>();
     private OnAddToCart mListener;
 
 
-    public CartAdapter(ArrayList<ProductData> cartDataList, OnAddToCart listener) {
+    public CartAdapter(ArrayList<Product> cartDataList, OnAddToCart listener) {
         this.mDataList = cartDataList;
         mListener = listener;
     }

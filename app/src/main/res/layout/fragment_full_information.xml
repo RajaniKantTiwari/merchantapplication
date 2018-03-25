@@ -8,7 +8,7 @@
 
         <variable
             name="product"
-            type="com.app.merchant.network.response.dashboard.cart.ProductData" />
+            type="com.app.merchant.network.response.dashboard.cart.Product" />
     </data>
 
     <RelativeLayout

@@ -25,7 +25,7 @@ import com.app.merchant.injector.module.DashboardModule;
 import com.app.merchant.network.request.DeviceToken;
 import com.app.merchant.network.request.DeviceTokenRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
@@ -356,8 +356,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onUpdateCartEvent(UpdateCartEvent event) {
         int cartItem = 0;
         if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) && PreferenceUtils.getCartData().size() > 0) {
-            ArrayList<ProductData> productList = PreferenceUtils.getCartData();
-            for (ProductData product : productList) {
+            ArrayList<Product> productList = PreferenceUtils.getCartData();
+            for (Product product : productList) {
                 if (CommonUtility.isNotNull(product)) {
                     cartItem = cartItem + product.getQty();
                 }

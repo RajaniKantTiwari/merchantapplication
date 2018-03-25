@@ -25,22 +25,12 @@
 
             <ImageView style="@style/view_layout_dark_grey" />
 
-            <RelativeLayout style="@style/match_wrap">
-
-                <com.app.merchant.widget.CustomTextView
-                    android:id="@+id/tvTitle"
-                    style="@style/textview_description_large_match"
-                    android:layout_height="@dimen/margin_30"
-                    android:gravity="center"
-                    android:layout_toStartOf="@+id/addInventory"
-                    android:textAllCaps="true" />
-                <ImageView
-                    android:id="@+id/addInventory"
-                    style="@style/image_30"
-                    android:layout_alignParentEnd="true"
-                    android:src="@drawable/add"
-                    android:layout_marginEnd="@dimen/margin_5"/>
-            </RelativeLayout>
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvTitle"
+                style="@style/textview_description_large_match"
+                android:layout_height="@dimen/margin_30"
+                android:gravity="center"
+                android:textAllCaps="true" />
 
             <ImageView
                 style="@style/view_layout_dark_white"
@@ -79,7 +69,7 @@
                     android:layout_marginTop="@dimen/margin_10"
                     android:orientation="vertical">
 
-                    <RelativeLayout
+                   <!-- <RelativeLayout
                         style="@style/match_wrap"
                         android:layout_marginEnd="@dimen/margin_5"
                         android:layout_marginStart="@dimen/margin_5">
@@ -87,9 +77,9 @@
                         <LinearLayout
                             android:id="@+id/layoutCustomer"
                             style="@style/match_wrap"
-                            android:layout_height="@dimen/margin_30"
                             android:layout_toStartOf="@+id/tvCustomer"
-                            android:background="@drawable/grey_edit_bg_no_round">
+                            android:background="@drawable/grey_edit_bg_no_round"
+                            android:layout_height="@dimen/margin_30">
 
                             <com.app.merchant.widget.CustomTextView
                                 android:id="@+id/tvUserName"
@@ -109,11 +99,11 @@
                             android:id="@+id/tvCustomer"
                             style="@style/image_30"
                             android:layout_alignParentEnd="true"
-                            android:background="@drawable/new_user"
-                            android:gravity="center" />
-                    </RelativeLayout>
+                            android:gravity="center"
+                            android:background="@drawable/new_user"/>
+                    </RelativeLayout>-->
 
-                    <LinearLayout
+                   <!-- <LinearLayout
                         style="@style/match_wrap"
                         android:gravity="center_horizontal">
 
@@ -129,7 +119,7 @@
                             android:layout_marginStart="@dimen/margin_7"
                             android:drawablePadding="@dimen/margin_7"
                             android:drawableStart="@drawable/rupee_black" />
-                    </LinearLayout>
+                    </LinearLayout>-->
 
                     <com.app.merchant.widget.CustomTextView
                         android:id="@+id/tvCheckout"

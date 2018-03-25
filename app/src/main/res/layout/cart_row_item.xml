@@ -4,7 +4,7 @@
         <import type="com.app.merchant.utility.CommonUtility"/>
         <variable
             name="cartData"
-            type="com.app.merchant.network.response.dashboard.cart.ProductData"/>
+            type="com.app.merchant.network.response.dashboard.cart.Product"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

@@ -10,8 +10,7 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.ItemOrderRowBinding;
-import com.app.merchant.databinding.ProductRowBinding;
-import com.app.merchant.network.response.dashboard.cart.ProductData;
+import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.ArrayList;
 public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.ProductViewHolder> {
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
-    private final ArrayList<ProductData> productList;
+    private final ArrayList<Product> productList;
     private OrderListener listener;
 
 
@@ -31,7 +30,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Prod
     public interface OrderListener {
         void onOrderClick(int position);
     }
-    public OrderListAdapter(AppCompatActivity activity, ArrayList<ProductData> productList, OrderListener listener) {
+    public OrderListAdapter(AppCompatActivity activity, ArrayList<Product> productList, OrderListener listener) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.productList=productList;

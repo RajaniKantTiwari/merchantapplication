@@ -8,14 +8,14 @@ import java.util.ArrayList;
  * Created by rajnikant on 25/03/18.
  */
 
-public class ProductData extends BaseResponse {
-    private ArrayList<Product> info;
+public class SubCategoryData extends BaseResponse {
+    private ArrayList<SubCategory> info;
 
-    public ArrayList<Product> getInfo() {
+    public ArrayList<SubCategory> getInfo() {
         return info;
     }
 
-    public void setInfo(ArrayList<Product> info) {
+    public void setInfo(ArrayList<SubCategory> info) {
         this.info = info;
     }
 }

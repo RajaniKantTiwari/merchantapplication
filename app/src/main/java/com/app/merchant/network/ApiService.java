@@ -20,13 +20,11 @@ import com.app.merchant.network.request.dashboard.cart.MerchantProductListReques
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
-import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
-import com.app.merchant.network.response.NewCustomerRespose;
 import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
@@ -36,9 +34,11 @@ import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
-import com.app.merchant.network.response.dashboard.cart.CategoryResponse;
+import com.app.merchant.network.response.dashboard.cart.CategoryData;
+import com.app.merchant.network.response.dashboard.cart.ProductData;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.network.response.dashboard.cart.ProductFullInformationData;
+import com.app.merchant.network.response.dashboard.cart.SubCategoryData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyChartData;
 import com.app.merchant.network.response.dashboard.chartdata.orderassigndeliveryboy.AssignDeliveryBoyData;
 import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.OrderCancelRequestChartData;
@@ -83,7 +83,7 @@ public interface ApiService {
     Observable<BaseResponse> addForCartList(@Body CartListRequest request);
 
     @POST("product/getallproducts")
-    Observable<CategoryResponse> getProducts(@Body CategoryRequest request);
+    Observable<CategoryData> getProducts(@Body CategoryRequest request);
     @POST("cart/checkoutcart")
     Observable<BaseResponse> checkout(@Body CheckoutRequest request);
 
@@ -209,20 +209,18 @@ public interface ApiService {
 
 
     @POST("shopping/getproduct")
-    Observable<CategoryResponse> getProductCategory(@Body CategoryRequest request);
+    Observable<CategoryData> getProductCategory(@Body CategoryRequest request);
 
     @POST("shopping/getsubcategories")
-    Observable<BaseResponse> getProductSubCategory(@Body CategorySubCatRequest request);
+    Observable<SubCategoryData> getProductSubCategory(@Body CategorySubCatRequest request);
 
     @POST("shopping/getsubcategories_products")
-    Observable<BaseResponse> getSubCategoryProduct(@Body SubCatProductRequest request);
+    Observable<ProductData> getSubCategoryProduct(@Body SubCatProductRequest request);
 
     @POST("shopping/add_product_to_merchant_product_list")
     Observable<BaseResponse> addProductToMerchantList(@Body MerchantProductListRequest request);
 
     @POST("shopping/get_partial_order_details")
     Observable<OrderDetailsData> getPartialOrderDetail(@Body OrderRequest request);
-
-
 
 }
