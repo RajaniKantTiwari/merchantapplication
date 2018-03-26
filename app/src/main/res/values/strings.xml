@@ -361,17 +361,33 @@
     <string name="order_status">Order Status</string>
     <string name="add_product_in_inventory">Add Product In Inventory</string>
     <string name="add_into_merchant_list">Add Into Merchant List</string>
+    <string name="add_product_in_list">Add Product In List</string>
+    <string name="category">Category</string>
+    <string name="sub_category">SubCategory</string>
+    <string name="Quantity">Quantity</string>
+    <string name="ten">10</string>
+    <string name="five_hundred">500</string>
+    <string name="selling_pric">Selling Price</string>
+    <string name="add_product">Add Product</string>
+    <string name="Expiry_date">Expiry Date</string>
+    <string name="manufacturing_date">Manufacturing Date</string>
+    <string name="manufacturor">Manufactorer(Optional)</string>
+    <string name="tax_in_percent_max_35">Tax in % max(35%)</string>
+    <string name="please_enter_quantity">Please Enter Quantity</string>
+    <string name="please_enter_mrp">Please Enter Mrp</string>
+    <string name="please_enter_selling_price">Please Enter Selling Price</string>
+    <string name="please_select_tax_type">Please Select Tax Type</string>
+    <string name="please_enter_tax_percent">Please Enter Tax Percent</string>
+    <string name="please_enter_manufactor_date">Please Enter Manufactor Date</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
         <item>@string/help</item>
         <item>@string/term_condition</item>
     </string-array>
-    <string-array name="selected_type">
-        <item>Ramesh</item>
-        <item>Dinesh</item>
-        <item>Suresh</item>
-        <item>Mahesh</item>
-        <item>ASSIGN TO</item>
+    <string-array name="tax_type">
+        <item>inclusive</item>
+        <item>exclusive</item>
+        <item>Tax</item>
     </string-array>
 </resources>

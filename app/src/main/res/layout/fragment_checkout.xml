@@ -115,7 +115,7 @@
                         android:textAllCaps="true"
                         android:textColor="@color/color_sky_blue"/>
 
-                    <com.app.merchant.widget.CustomTextView
+                    <!--<com.app.merchant.widget.CustomTextView
                         android:id="@+id/editAddress"
                         style="@style/textview_description_ex_large_wrap"
                         android:padding="@dimen/margin_5"
@@ -124,10 +124,10 @@
                         android:gravity="center"
                         android:text="@string/edit_address"
                         android:textAllCaps="true"
-                        android:textColor="@color/redish_color"/>
+                        android:textColor="@color/redish_color"/>-->
                 </RelativeLayout>
 
-                <com.app.merchant.widget.CustomTextView
+                <!--<com.app.merchant.widget.CustomTextView
                     android:id="@+id/tvAddress"
                     style="@style/textview_description_match"
                     android:layout_marginEnd="@dimen/margin_10"
@@ -136,7 +136,19 @@
                     android:padding="@dimen/margin_10"
                     android:textColor="@color/color_black"
                     android:textAllCaps="true"
-                    android:textSize="@dimen/textSize_description" />
+                    android:textSize="@dimen/textSize_description" />-->
+
+                <com.app.merchant.widget.CustomEditText
+                    android:id="@+id/edAddress"
+                    style="@style/edit_text_style_medium"
+                    android:hint="@string/enter_address"
+                    android:maxLines="2"
+                    android:layout_marginEnd="@dimen/margin_10"
+                    android:layout_marginStart="@dimen/margin_10"
+                    android:background="@drawable/grey_corner_bg"
+                    android:inputType="text"
+                    android:paddingBottom="@dimen/margin_5"
+                    android:paddingTop="@dimen/margin_5"/>
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_ex_large_wrap"
                     android:padding="@dimen/margin_5"

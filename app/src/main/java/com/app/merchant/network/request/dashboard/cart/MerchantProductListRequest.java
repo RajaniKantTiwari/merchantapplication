@@ -12,9 +12,9 @@ public class MerchantProductListRequest {
     private String selling_price;
     private String tax_type;
     private String tax_percent;
-    private String expirey_date;
+    private String expirey_date="";
     private String manufacturer_date;
-    private String manufacturer;
+    private String manufacturer="";
     private int category;
     private int subcategory;
 

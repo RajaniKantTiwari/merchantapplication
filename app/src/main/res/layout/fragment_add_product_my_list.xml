@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+            <RelativeLayout
+                style="@style/match_wrap">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCategory"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_centerVertical="true"
+                    android:text="@string/category"
+                    android:layout_width="@dimen/margin_90"/>
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvCatName"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_toEndOf="@+id/tvCategory"
+                    android:layout_toStartOf="@+id/ivCategory"
+                    android:layout_centerVertical="true"
+                    android:maxLines="2"/>
+                <ImageView
+                    android:id="@+id/ivCategory"
+                    style="@style/image_60"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tvType"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@drawable/stroke_grey"
+                    android:gravity="center"
+                    android:scaleType="centerInside"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                style="@style/match_wrap">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvSubCategory"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_centerVertical="true"
+                    android:text="@string/sub_category"
+                    android:layout_width="@dimen/margin_90"/>
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvSubCatName"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_toEndOf="@+id/tvSubCategory"
+                    android:layout_toStartOf="@+id/ivSubCategory"
+                    android:layout_centerVertical="true"
+                    android:maxLines="2"/>
+                <ImageView
+                    android:id="@+id/ivSubCategory"
+                    style="@style/image_60"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tvType"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@drawable/stroke_grey"
+                    android:gravity="center"
+                    android:scaleType="centerInside"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                style="@style/match_wrap">
+
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvProduct"
+                    style="@style/textview_description_ex_large_wrap"
+                    android:layout_centerVertical="true"
+                    android:text="@string/product"
+                    android:layout_width="@dimen/margin_90"/>
+                <com.app.merchant.widget.CustomTextView
+                    android:id="@+id/tvProductName"
+                    style="@style/textview_description_ex_large_match"
+                    android:layout_toEndOf="@+id/tvProduct"
+                    android:layout_toStartOf="@+id/ivProductImage"
+                    android:layout_centerVertical="true"
+                    android:maxLines="2"/>
+                <ImageView
+                    android:id="@+id/ivProductImage"
+                    style="@style/image_60"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@+id/tvType"
+                    android:layout_marginStart="@dimen/margin_6"
+                    android:layout_marginTop="@dimen/margin_6"
+                    android:background="@drawable/stroke_grey"
+                    android:gravity="center"
+                    android:scaleType="centerInside"/>
+            </RelativeLayout>
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_5"
+                android:text="@string/Quantity" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edQty"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/ten"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/mrp" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMrp"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/five_hundred"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/selling_pric" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edSelling"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:hint="@string/five_hundred"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:background="@drawable/grey_corner_bg">
+
+                <Spinner
+                    android:id="@+id/taxSpiner"
+                    style="@style/match_wrap"
+                    android:dropDownWidth="@dimen/margin_230"
+                    android:overlapAnchor="false" />
+            </RelativeLayout>
+            <com.app.merchant.widget.CustomTextView
+                android:layout_marginTop="@dimen/margin_15"
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/tax_in_percent_max_35" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edTaxPercent"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/manufacturing_date" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvManufactoringDate"
+                android:padding="@dimen/margin_5"
+                style="@style/edit_text_style_medium"
+                android:drawableEnd="@drawable/calender"
+                android:hint="@string/may_2016"
+                app:customFont="@string/font_regular" />
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/Expiry_date"/>
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvExpiryDate"
+                android:padding="@dimen/margin_5"
+                style="@style/edit_text_style_medium"
+                android:drawableEnd="@drawable/calender"
+                android:hint="@string/may_2016"/>
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/manufacturor" />
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edManufacturer"
+                style="@style/edit_text_style_medium"
+                android:layout_marginTop="@dimen/margin_10"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLines="1"
+                android:paddingBottom="@dimen/margin_3"
+                android:paddingTop="@dimen/margin_7" />
+
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddProduct"
+                android:layout_width="@dimen/margin_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_20"
+                android:background="@drawable/light_black_bg"
+                android:elevation="@dimen/margin_5"
+                android:gravity="center_horizontal"
+                android:padding="@dimen/margin_12"
+                android:text="@string/add_product"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/button_large"
+                app:customFont="@string/font_bold" />
+        </LinearLayout>
+    </ScrollView>
+</layout>

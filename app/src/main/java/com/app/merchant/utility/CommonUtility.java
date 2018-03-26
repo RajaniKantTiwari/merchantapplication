@@ -36,6 +36,7 @@ import com.app.merchant.ui.authentication.LoginActivity;
 import com.app.merchant.ui.authentication.StoreDetailsActivity;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
+import com.app.merchant.ui.dashboard.cart.AddProductMyListFragment;
 import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
 import com.app.merchant.ui.dialogfrag.CancelDialogFragment;
 import com.app.merchant.ui.dialogfrag.ConfirmOrderDialogFragment;
@@ -615,6 +616,25 @@ public class CommonUtility {
         if (dpd == null) {
             dpd = DatePickerDialog.newInstance(
                     activity,
+                    now.get(Calendar.YEAR),
+                    now.get(Calendar.MONTH),
+                    now.get(Calendar.DAY_OF_MONTH)
+            );
+        }
+        dpd.vibrate(false);
+        dpd.setVersion(DatePickerDialog.Version.VERSION_1);
+        dpd.setAccentColor(Color.parseColor("#9C27B0"));
+
+        dpd.show(activity.getFragmentManager(), "Datepickerdialog");
+    }
+
+    public static void openPicker(DashBoardActivity activity, AddProductMyListFragment fragment) {
+        DatePickerDialog dpd = null;
+
+        Calendar now = Calendar.getInstance();
+        if (dpd == null) {
+            dpd = DatePickerDialog.newInstance(
+                    fragment,
                     now.get(Calendar.YEAR),
                     now.get(Calendar.MONTH),
                     now.get(Calendar.DAY_OF_MONTH)

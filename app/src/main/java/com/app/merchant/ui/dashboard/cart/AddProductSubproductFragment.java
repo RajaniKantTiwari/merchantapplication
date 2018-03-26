@@ -38,6 +38,7 @@ import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
 import com.app.merchant.ui.dashboard.home.FullInformationFragment;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
+import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
 import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -211,7 +212,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
         setTotalAmount();
     }
 
-    private void removeFromCart(TextView textView, int pos) {
+  /*  private void removeFromCart(TextView textView, int pos) {
         int count = Integer.parseInt(textView.getText().toString());
         if (count > MIN_LIMIT) {
             count--;
@@ -221,7 +222,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
             Toast.makeText(getDashboardActivity(), "Your cart is already empty.", Toast.LENGTH_SHORT).show();
         }
         mProductList.get(pos).setQty(count);
-       /* for (int i = 0; i < addCartList.size(); i++) {
+       *//* for (int i = 0; i < addCartList.size(); i++) {
             if (mProductList.get(pos).getMerchantlistid() == addCartList.get(i).getMerchantlistid()) {
                 if (mProductList.get(pos).getQty() == 0) {
                     addCartList.remove(i);
@@ -229,11 +230,11 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                     addCartList.set(i, mProductList.get(pos));
                 }
             }
-        }*/
+        }*//*
         //setCartData();
         setTotalAmount();
 
-    }
+    }*/
 
    /* private void setCartData() {
         if (CommonUtility.isNotNull(addCartList)&&addCartList.size() > 0) {
@@ -344,10 +345,15 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                 }
                 break;
             case R.id.layoutInventory:
-                getDashboardActivity().showToast("Add Inventory");
+                /*getDashboardActivity().showToast("Add Inventory");
                 Bundle bundle = new Bundle();
                 bundle.putString(BundleConstants.PRODUCT_NAME, mProductList.get(pos).getProductname());
-                CommonUtility.showInventoryOrderDialog(getDashboardActivity(), bundle, this);
+                CommonUtility.showInventoryOrderDialog(getDashboardActivity(), bundle, this);*/
+                Bundle bundle = new Bundle();
+                bundle.putParcelable(BundleConstants.CATEGORY,mCatList.get(oldCatPos));
+                bundle.putParcelable(BundleConstants.SUBCATEGORY,mSubCatList.get(oldSubCatPos));
+                bundle.putParcelable(BundleConstants.PRODUCT,mProductList.get(pos));
+                getDashboardActivity().addFragmentInContainer(new AddProductMyListFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
                 break;
         }
     }

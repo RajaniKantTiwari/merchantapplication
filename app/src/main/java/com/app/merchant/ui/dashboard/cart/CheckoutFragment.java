@@ -8,13 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentCheckoutBinding;
 import com.app.merchant.event.UpdateAddress;
 import com.app.merchant.network.request.PaymentOption;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
-import com.app.merchant.network.request.dashboard.cart.Coupon;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.ProductDetailsData;
 import com.app.merchant.ui.SimpleDividerItemDecoration;
@@ -23,11 +21,8 @@ import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.cart.adapter.CheckoutCartAdapter;
 import com.app.merchant.ui.dashboard.home.ConfirmOrderFragment;
 import com.app.merchant.ui.dashboard.offer.OffersPromoFragment;
-import com.app.merchant.ui.otheractivity.EditAddressActivity;
 import com.app.merchant.utility.AppConstants;
-import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
-import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.PreferenceUtils;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -47,7 +42,6 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
     private CheckoutCartAdapter mCheckoutAdapter;
     private List<PaymentOption> paymentList = new ArrayList<>();
     private List<PaymentOption> deliveryList = new ArrayList<>();
-    private List<Coupon> couponList = new ArrayList<>();
 
 
     private PaymentAdapter paymentAdapter;
@@ -91,7 +85,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
         deliveryAdapter = new PaymentAdapter(getBaseActivity(), deliveryList);
         mBinding.rvDelivery.setAdapter(deliveryAdapter);
         CommonUtility.setRecyclerViewHeight(mBinding.rvDelivery, deliveryList, AppConstants.PAYMENT_HEIGHT);
-        mBinding.tvAddress.setText(PreferenceUtils.getAddress());
+        //mBinding.tvAddress.setText(PreferenceUtils.getAddress());
     }
 
 
@@ -125,7 +119,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
     @Override
     public void setListener() {
         mBinding.tvProceedToPay.setOnClickListener(this);
-        mBinding.editAddress.setOnClickListener(this);
+        //mBinding.editAddress.setOnClickListener(this);
         mBinding.tvPromoCode.setOnClickListener(this);
     }
 
@@ -141,11 +135,15 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
 
     @Override
     public void onClick(View view) {
-        if (view == mBinding.editAddress) {
+       /* if (view == mBinding.editAddress) {
             CommonUtility.clicked(mBinding.editAddress);
             ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), EditAddressActivity.class);
 
-        } else if (view == mBinding.tvProceedToPay) {
+        } else*/ if (view == mBinding.tvProceedToPay) {
+            if(CommonUtility.isNull(mBinding.edAddress.getText().toString())||mBinding.edAddress.getText().toString().trim().length()==0){
+                getDashboardActivity().showToast(getResources().getString(R.string.please_enter_address));
+                return;
+            }
             CheckoutRequest request = new CheckoutRequest();
             if (CommonUtility.isNotNull(deliveryList)) {
                 if (deliveryList.get(0).isChecked()) {
@@ -197,7 +195,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
 
     @Subscribe
     public void onAddressEvent(UpdateAddress event) {
-        mBinding.tvAddress.setText(event.getAddress());
+        //mBinding.tvAddress.setText(event.getAddress());
     }
 
     @Override

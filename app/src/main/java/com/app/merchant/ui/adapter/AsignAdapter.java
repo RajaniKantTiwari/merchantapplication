@@ -12,6 +12,7 @@ import com.app.merchant.R;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by rajnikant on 24/01/18.
@@ -19,11 +20,9 @@ import java.util.ArrayList;
 
 public class AsignAdapter extends ArrayAdapter<String> {
     private final LayoutInflater mInflator;
-    private final Context context;
 
-    public AsignAdapter(Context context, ArrayList<String> daysList) {
+    public AsignAdapter(Context context, List<String> daysList) {
         super(context, 0, daysList);
-        this.context=context;
         mInflator = LayoutInflater.from(context);
     }
 

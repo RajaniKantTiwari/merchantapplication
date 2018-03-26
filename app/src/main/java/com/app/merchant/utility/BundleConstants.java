@@ -21,4 +21,7 @@ public interface BundleConstants {
     String DELIVERY_BOY_NAME = "delivery_boy_name";
     String ORDER = "order";
     String ORDER_ID = "order_id";
+    String CATEGORY = "category";
+    String SUBCATEGORY = "subcategory";
+    String PRODUCT = "product";
 }
