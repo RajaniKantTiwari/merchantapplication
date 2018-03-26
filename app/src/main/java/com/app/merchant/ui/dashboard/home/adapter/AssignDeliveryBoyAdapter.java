@@ -27,7 +27,9 @@ public class AssignDeliveryBoyAdapter extends RecyclerView.Adapter<AssignDeliver
     private AssignDeliveryListener listener;
 
     public interface AssignDeliveryListener {
-        void onRatingClick(int position);
+        void orderDetailClick(int position);
+
+        void orderAssignDeliveryBoy(int position);
     }
 
     public AssignDeliveryBoyAdapter(AppCompatActivity activity, ArrayList<AssignDeliveryBoy> deliveryList, AssignDeliveryListener listener) {
@@ -87,12 +89,19 @@ public class AssignDeliveryBoyAdapter extends RecyclerView.Adapter<AssignDeliver
             tvDeliveryBoy = itemView.tvDeliveryBoy;
             ratingBar = itemView.ratingBar;
             itemView.layoutRating.setOnClickListener(this);
+            itemView.tvInvoice.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onRatingClick(getAdapterPosition());
+            if(CommonUtility.isNotNull(listener)){
+                if(mBinding.layoutRating==view){
+                    listener.orderAssignDeliveryBoy(getAdapterPosition());
+                }else if(mBinding.tvInvoice==view){
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ package com.app.merchant.network.request.dashboard.home;
 
 public class FeedBackRequest {
     private String order_id;
-    private String feedback;
+    private String feedback="";
     private String ratings;
 
     public String getOrder_id() {

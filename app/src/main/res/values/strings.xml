@@ -379,6 +379,10 @@
     <string name="please_select_tax_type">Please Select Tax Type</string>
     <string name="please_enter_tax_percent">Please Enter Tax Percent</string>
     <string name="please_enter_manufactor_date">Please Enter Manufactor Date</string>
+    <string name="feedback">Feedback</string>
+    <string name="comment">Comments</string>
+    <string name="write_comment_here">Write Comment here</string>
+    <string name="go_back">Go Back</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

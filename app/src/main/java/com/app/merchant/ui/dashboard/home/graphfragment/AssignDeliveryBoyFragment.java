@@ -19,10 +19,13 @@ import com.app.merchant.network.response.dashboard.chartdata.orderassigndelivery
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsDeliveryBoyFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.AssignDeliveryBoyAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -207,9 +210,20 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
     }
 
     @Override
-    public void onRatingClick(int position) {
+    public void orderDetailClick(int position) {
+        /*Bundle bundle = new Bundle();
+        CommonUtility.showRatingDialog(getDashboardActivity(), bundle, this);*/
         Bundle bundle = new Bundle();
-        CommonUtility.showRatingDialog(getDashboardActivity(), bundle, this);
+        bundle.putString(BundleConstants.ORDER_ID,deliveryBoyList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+
+    }
+
+    @Override
+    public void orderAssignDeliveryBoy(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,deliveryBoyList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsDeliveryBoyFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

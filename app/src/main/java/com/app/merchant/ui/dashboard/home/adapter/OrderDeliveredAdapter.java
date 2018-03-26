@@ -27,7 +27,7 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
 
     //private OrderOutForDeliveryListener listener;
     /*public interface OrderOutForDeliveryListener {
-        void onRatingClick(int position);
+        void orderDetailClick(int position);
     }*/
     public OrderDeliveredAdapter(AppCompatActivity activity,/*, OrderOutForDeliveryListener listener*/ArrayList<OrderDelivered> deliveredList) {
         mInflater = LayoutInflater.from(activity);

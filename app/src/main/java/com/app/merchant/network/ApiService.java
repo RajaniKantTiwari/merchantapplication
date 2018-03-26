@@ -20,6 +20,7 @@ import com.app.merchant.network.request.dashboard.cart.MerchantProductListReques
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
+import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
 import com.app.merchant.network.request.dashboard.home.NewCustomerRequest;
 import com.app.merchant.network.response.BaseResponse;
@@ -182,8 +183,8 @@ public interface ApiService {
     Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
 
 
-  /*  @POST("shopping/add_order_feedback")
-    Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);*/
+    @POST("shopping/add_order_feedback")
+    Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);
 
     @POST("shopping/get_all_merchant_products")
     Observable<AllMerchantData> getAllMerchantProduct();
