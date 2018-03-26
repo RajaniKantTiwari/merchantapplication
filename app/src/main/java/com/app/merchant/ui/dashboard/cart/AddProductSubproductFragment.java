@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentAddProductSubproductBinding;
+import com.app.merchant.databinding.ItemAddCartBinding;
 import com.app.merchant.databinding.ItemCartBinding;
 import com.app.merchant.event.ProductUpdateEvent;
 import com.app.merchant.event.UserEvent;
@@ -31,6 +32,7 @@ import com.app.merchant.network.response.dashboard.cart.SubCategoryData;
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.SearchActivity;
+import com.app.merchant.ui.dashboard.cart.adapter.AddCartAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.CartAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
@@ -51,13 +53,13 @@ import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 
 
 public class AddProductSubproductFragment extends DashboardFragment implements
-        CartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick,
+        AddCartAdapter.OnAddToCart, CategoryAdapter.OnCatItemClick,
         SubCatAdapter.OnSubCatItemClick, AddInventoryDialogFragment.InventoryDialogListener {
     private FragmentAddProductSubproductBinding mBinding;
     private CategoryAdapter mCategoryAdapter;
     private SubCatAdapter mSubCategoryAdapter;
     private LinearLayoutManager mLayoutManager, mLayoutMangerSubcat, mLayoutManagerCart;
-    private CartAdapter mCartAdapter;
+    private AddCartAdapter mCartAdapter;
     private int oldCatPos, oldSubCatPos;
     private int MAX_LIMIT = 10, MIN_LIMIT = 0;
     private ArrayList<Category> mCatList = new ArrayList<>();
@@ -100,7 +102,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
         mBinding.tvMyInventory.setOnClickListener(this);
         mCategoryAdapter = new CategoryAdapter(mCatList, this);
         mSubCategoryAdapter = new SubCatAdapter(mSubCatList, this);
-        mCartAdapter = new CartAdapter(mProductList, this);
+        mCartAdapter = new AddCartAdapter(mProductList, this);
         mBinding.rvCat.setAdapter(mCategoryAdapter);
         mBinding.rvSubCat.setAdapter(mSubCategoryAdapter);
         mBinding.rvDetail.setAdapter(mCartAdapter);
@@ -322,15 +324,15 @@ public class AddProductSubproductFragment extends DashboardFragment implements
 
     @Override
     public void addToCartClick(int pos, View view) {
-        ItemCartBinding viewBinding = DataBindingUtil.bind(view);
+        ItemAddCartBinding viewBinding = DataBindingUtil.bind(view);
         View itemView = (View) view.getTag();
         switch (itemView.getId()) {
-            case R.id.ivPlus:
+           /* case R.id.ivPlus:
                 addToCart(viewBinding.tvQty, pos);
                 break;
             case R.id.ivMinus:
                 removeFromCart(viewBinding.tvQty, pos);
-                break;
+                break;*/
             case R.id.layoutProduct:
             case R.id.layoutInfo:
                 if (CommonUtility.isNotNull(mProductList) && mProductList.size() > pos) {
@@ -341,7 +343,8 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                     getDashboardActivity().addFragmentInContainer(new FullInformationFragment(), bundle, true, true, NONE);
                 }
                 break;
-            case R.id.tvAddInventory:
+            case R.id.layoutInventory:
+                getDashboardActivity().showToast("Add Inventory");
                 Bundle bundle = new Bundle();
                 bundle.putString(BundleConstants.PRODUCT_NAME, mProductList.get(pos).getProductname());
                 CommonUtility.showInventoryOrderDialog(getDashboardActivity(), bundle, this);
