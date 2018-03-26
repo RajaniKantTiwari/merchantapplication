@@ -15,6 +15,7 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
@@ -290,6 +291,11 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<ProductData> getSubCategoryProduct(SubCatProductRequest request) {
         return apiService.getSubCategoryProduct(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> addProductToMerchantList(MerchantProductListRequest request) {
+        return apiService.addProductToMerchantList(request);
     }
 
 

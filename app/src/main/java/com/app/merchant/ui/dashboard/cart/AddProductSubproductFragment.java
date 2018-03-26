@@ -19,6 +19,7 @@ import com.app.merchant.network.request.dashboard.cart.Cart;
 import com.app.merchant.network.request.dashboard.cart.CartListRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
+import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.Category;
@@ -96,9 +97,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
         mBinding.rvCat.setLayoutManager(mLayoutManager);
         mBinding.rvSubCat.setLayoutManager(mLayoutMangerSubcat);
         mBinding.rvDetail.setLayoutManager(mLayoutManagerCart);
-        mBinding.tvCheckout.setOnClickListener(this);
         mBinding.tvMyInventory.setOnClickListener(this);
-        mBinding.tvCustomer.setOnClickListener(this);
         mCategoryAdapter = new CategoryAdapter(mCatList, this);
         mSubCategoryAdapter = new SubCatAdapter(mSubCatList, this);
         mCartAdapter = new CartAdapter(mProductList, this);
@@ -110,8 +109,12 @@ public class AddProductSubproductFragment extends DashboardFragment implements
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tvCheckout:
-                CommonUtility.clicked(mBinding.tvCheckout);
+            case R.id.tvAddMerchantList:
+                MerchantProductListRequest request = new MerchantProductListRequest();
+                setRequest(request);
+                getPresenter().addProductToMerchantList(getDashboardActivity(), request);
+            /*case R.id.tvCheckout:*/
+               /* CommonUtility.clicked(mBinding.tvCheckout);
                 if (mBinding.tvMobile.getText().toString() == null || mBinding.tvMobile.getText().toString().trim().length() == 0) {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_enter_customer_mobile_number));
                     return;
@@ -120,7 +123,8 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                     addToCartList();
                 } else {
                     getDashboardActivity().showToast(getResources().getString(R.string.please_add_data_in_cart_first));
-                }
+                }*/
+
                 break;
             case R.id.tvMyInventory:
                 CommonUtility.clicked(mBinding.tvMyInventory);
@@ -138,6 +142,14 @@ public class AddProductSubproductFragment extends DashboardFragment implements
 
     }
 
+    private void setRequest(MerchantProductListRequest request) {
+        request.setMerchant_id(PreferenceUtils.getMerchantId());
+        request.setCategory(mCatList.get(oldCatPos).getId());
+        request.setSubcategory(mSubCatList.get(oldSubCatPos).getId());
+
+
+    }
+
    /* private boolean isValid() {
         if (mBinding.edMobile.getText().toString() == null || mBinding.edMobile.getText().toString().trim().length() == 0) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_mobile_number));
@@ -149,7 +161,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
         return true;
     }*/
 
-    private void addToCartList() {
+   /* private void addToCartList() {
         if (CommonUtility.isNotNull(PreferenceUtils.getCartData()) &&
                 CommonUtility.isNotNull(PreferenceUtils.getCartData().size())
                 && PreferenceUtils.getCartData().size() > 0) {
@@ -172,7 +184,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
             request.setCart(cartList);
             getPresenter().addForCartList(getDashboardActivity(), request, this);
         }
-    }
+    }*/
 
     private void addToCart(TextView textView, int pos) {
         boolean isNotAdded = true;
@@ -234,15 +246,17 @@ public class AddProductSubproductFragment extends DashboardFragment implements
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-        if(CommonUtility.isNotNull(response)){
+        if (CommonUtility.isNotNull(response)) {
             if (requestCode == AppConstants.CARTADDED) {
                 getDashboardActivity().addFragmentInContainer(new CheckoutFragment(), null, true, true, NONE);
             } else if (requestCode == 1) {
                 categoryResponse(response);
-            }else if(requestCode==2){
+            } else if (requestCode == 2) {
                 subCategoryResponse(response);
-            }else if(requestCode==3){
+            } else if (requestCode == 3) {
                 productResponse(response);
+            } else if (requestCode == 4) {
+
             }
         }
     }
@@ -273,19 +287,19 @@ public class AddProductSubproductFragment extends DashboardFragment implements
     }
 
     private void categoryResponse(BaseResponse response) {
-            if (response instanceof CategoryData) {
-                CategoryData categoryResponse = (CategoryData) response;
-                CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
-                ArrayList<Category> categoryList = categoryResponse.getInfo();
-                if (CommonUtility.isNotNull(categoryList) && categoryList.size() > 0) {
-                    mCatList.clear();
-                    mCatList.addAll(categoryList);
-                    mCatList.get(0).setSelected(true);
-                    mCategoryAdapter.notifyDataSetChanged();
-                } else {
-                    CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
-                }
+        if (response instanceof CategoryData) {
+            CategoryData categoryResponse = (CategoryData) response;
+            CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, true);
+            ArrayList<Category> categoryList = categoryResponse.getInfo();
+            if (CommonUtility.isNotNull(categoryList) && categoryList.size() > 0) {
+                mCatList.clear();
+                mCatList.addAll(categoryList);
+                mCatList.get(0).setSelected(true);
+                mCategoryAdapter.notifyDataSetChanged();
+            } else {
+                CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
             }
+        }
     }
 
     @Override
@@ -295,8 +309,9 @@ public class AddProductSubproductFragment extends DashboardFragment implements
 
     @Override
     public void setListener() {
-        mBinding.layoutCustomer.setOnClickListener(this);
-        mBinding.tvCheckout.setOnClickListener(this);
+        /*mBinding.layoutCustomer.setOnClickListener(this);
+        mBinding.tvCheckout.setOnClickListener(this);*/
+        mBinding.tvAddMerchantList.setOnClickListener(this);
     }
 
     @Override
@@ -340,7 +355,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
        /* for (Product data : addCartList) {
             total += data.getQty() * data.getProduct_mrp();
         }*/
-        mBinding.tvTotal.setText(String.valueOf(total));
+        //mBinding.tvTotal.setText(String.valueOf(total));
     }
 
     @Override
@@ -356,10 +371,10 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                 mCategoryAdapter.notifyDataSetChanged();
                 oldCatPos = pos;
                 oldSubCatPos = 0;
-                CategorySubCatRequest request=new CategorySubCatRequest();
+                CategorySubCatRequest request = new CategorySubCatRequest();
                 request.setCategory_id(mCatList.get(pos).getId());
                 request.setMerchant_id(PreferenceUtils.getMerchantId());
-                getPresenter().getProductSubCategory(getDashboardActivity(),request);
+                getPresenter().getProductSubCategory(getDashboardActivity(), request);
                 break;
         }
     }
@@ -374,11 +389,11 @@ public class AddProductSubproductFragment extends DashboardFragment implements
                 mProductList.clear();
                 mSubCategoryAdapter.notifyDataSetChanged();
                 oldSubCatPos = pos;
-                SubCatProductRequest request=new SubCatProductRequest();
+                SubCatProductRequest request = new SubCatProductRequest();
                 request.setCategory_id(mCatList.get(oldCatPos).getId());
                 request.setMerchant_id(PreferenceUtils.getMerchantId());
                 request.setSub_category_id(mSubCatList.get(pos).getId());
-                getPresenter().getSubCategoryProduct(getDashboardActivity(),request);
+                getPresenter().getSubCategoryProduct(getDashboardActivity(), request);
                 break;
         }
     }
@@ -392,8 +407,8 @@ public class AddProductSubproductFragment extends DashboardFragment implements
 
     @Subscribe
     public void onUserMobileNumber(UserEvent event) {
-        mBinding.tvUserName.setText(event.getName());
-        mBinding.tvMobile.setText(event.getMobileNumber());
+        //mBinding.tvUserName.setText(event.getName());
+        //mBinding.tvMobile.setText(event.getMobileNumber());
     }
 
     @Override

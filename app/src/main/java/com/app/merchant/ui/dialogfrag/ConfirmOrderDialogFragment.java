@@ -93,12 +93,15 @@ public class ConfirmOrderDialogFragment extends DialogFragment implements View.O
 
             }
         });
-        mBinding.tvOrderNumber.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_number), order.getOrder_id()));
-        mBinding.tvCustomerName.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_name), order.getCustomername()));
-        mBinding.tvCustomerAddress.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_address), order.getCustomer_delivery_address()));
-        mBinding.tvNumberOfItem.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.number_of_item), order.getTotalitems()));
-        mBinding.tvOrdervalue.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_value), order.getOrdervalue()));
-
+        if(CommonUtility.isNotNull(order)){
+            mBinding.tvOrderNumber.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_number), order.getOrder_id()));
+            mBinding.tvCustomerName.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_name), order.getCustomername()));
+            mBinding.tvCustomerAddress.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.customer_address), order.getCustomer_delivery_address()));
+            mBinding.tvNumberOfItem.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.number_of_item), order.getTotalitems()));
+            mBinding.tvOrdervalue.setText(CommonUtility.addStrings(getContext().getResources().getString(R.string.order_value), order.getOrdervalue()));
+        }else{
+            Toast.makeText(getActivity(),"No Order Found",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void setListener() {
