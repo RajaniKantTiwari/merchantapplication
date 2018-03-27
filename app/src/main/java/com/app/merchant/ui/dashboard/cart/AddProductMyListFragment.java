@@ -164,7 +164,7 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
             getDashboardActivity().showToast(getResources().getString(R.string.please_select_tax_type));
             return false;
         } else if (CommonUtility.isNull(taxPercent) || taxPercent.trim().length() == 0) {
-            getDashboardActivity().showToast(getResources().getString(R.string.please_enter_tax_percent));
+            getDashboardActivity().showToast(getResources().getString(R.string.please_enter_tax_percent_less_than_35));
             return false;
         } else if (Integer.parseInt(taxPercent.trim()) > 35) {
             getDashboardActivity().showToast(getResources().getString(R.string.please_enter_tax_percent));

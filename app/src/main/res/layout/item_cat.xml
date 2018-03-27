@@ -14,13 +14,13 @@
             android:layout_height="@dimen/margin_12"
             android:layout_centerVertical="true"
             android:layout_marginEnd="@dimen/margin_2"
-            android:layout_marginStart="@dimen/margin_2"
-            android:layout_toStartOf="@+id/tvName"
+            android:layout_marginStart="@dimen/margin_10"
             android:visibility="visible" />
 
         <com.app.merchant.widget.CustomTextView
             android:id="@+id/tvName"
-           style="@style/textview_description_smaller_wrap"
+           style="@style/textview_description_smaller_match"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:gravity="center"
             android:maxLength="10"
@@ -32,11 +32,12 @@
             android:layout_width="@dimen/margin_8"
             android:layout_height="@dimen/margin_8"
             android:layout_centerVertical="true"
-            android:layout_marginEnd="@dimen/margin_2"
+            android:layout_marginEnd="@dimen/margin_7"
             android:layout_marginStart="@dimen/margin_2"
-            android:layout_toEndOf="@+id/tvName"
             android:src="@android:drawable/arrow_down_float"
-            android:visibility="gone" />
+            android:layout_alignParentEnd="true"
+            android:visibility="gone"
+             />
 
         <View
             android:layout_width="0.75dp"

@@ -89,7 +89,6 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
         }
 
-
         @Override
         public void onClick(View view) {
             View root = mBinding.getRoot();

@@ -383,6 +383,7 @@
     <string name="comment">Comments</string>
     <string name="write_comment_here">Write Comment here</string>
     <string name="go_back">Go Back</string>
+    <string name="please_enter_tax_percent_less_than_35">Please Enter Tax less than 35 percent</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
