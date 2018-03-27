@@ -14,8 +14,10 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
 import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
+import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
@@ -28,6 +30,7 @@ import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
+import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
@@ -156,4 +159,12 @@ public interface Repository {
     Observable<BaseResponse> addProductToMerchantList(MerchantProductListRequest request);
 
     Observable<BaseResponse> addOrderFeedback(FeedBackRequest request);
+
+    Observable<AllMerchantData> getAllMerchantProduct();
+
+    Observable<AllMerchantData> getAllMerchantRunningProduct();
+
+    Observable<BaseResponse> updateMyInventory(UpdateMyInventoryRequest request);
+
+    Observable<BaseResponse> updateMyInventoryStatus(InventoryStatusRequest request);
 }

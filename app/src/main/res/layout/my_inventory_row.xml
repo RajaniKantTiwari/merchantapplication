@@ -130,6 +130,7 @@
                             android:text="@string/auto_request"
                             />
                         <android.support.v7.widget.SwitchCompat
+                            android:id="@+id/tvOnOff"
                             style="@style/wrap_wrap"
                             android:background="@null"
                             android:button="@drawable/selector_check"

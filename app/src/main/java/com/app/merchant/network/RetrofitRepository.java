@@ -15,8 +15,10 @@ import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
+import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
 import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
 import com.app.merchant.network.request.dashboard.cart.SubCatProductRequest;
+import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.request.dashboard.home.DeliveryBoyOrderDetailRequest;
 import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.request.dashboard.home.MyOrderData;
@@ -28,6 +30,7 @@ import com.app.merchant.network.response.NewCustomerResposeData;
 import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
+import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.network.response.dashboard.MyInventoryData;
 import com.app.merchant.network.response.dashboard.OrderData;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
@@ -64,6 +67,7 @@ import retrofit2.Retrofit;
 
 public class RetrofitRepository implements Repository {
     private ApiService apiService;
+
     @Override
     public Observable<RegisterResponseData> registerMerchant(RegisterRequest register) {
         return apiService.registerMerchant(register);
@@ -89,7 +93,6 @@ public class RetrofitRepository implements Repository {
     }
 
 
-
     @Override
     public Observable<BaseResponse> addForCartList(CartListRequest request) {
         return apiService.addForCartList(request);
@@ -100,14 +103,17 @@ public class RetrofitRepository implements Repository {
         return apiService.getProducts(productRequest);
 
     }
+
     @Override
     public Observable<ProductDetailsData> viewCart() {
         return apiService.viewCart();
     }
+
     @Override
     public Observable<BaseResponse> checkout(CheckoutRequest checkoutRequest) {
         return apiService.checkout(checkoutRequest);
     }
+
     @Override
     public Observable<ProductFullInformationData> getProductDetail(ProductRequest productRequest) {
         return apiService.getProductDetail(productRequest);
@@ -179,6 +185,7 @@ public class RetrofitRepository implements Repository {
     public Observable<OrderReturnedData> getOrderReturned() {
         return apiService.getOrderReturned();
     }
+
     @Override
     public Observable<BaseResponse> deleteFromCart(DeleteCartRequest request) {
         return apiService.deleteCart(request);
@@ -302,6 +309,26 @@ public class RetrofitRepository implements Repository {
     @Override
     public Observable<BaseResponse> addOrderFeedback(FeedBackRequest request) {
         return apiService.addOrderFeedback(request);
+    }
+
+    @Override
+    public Observable<AllMerchantData> getAllMerchantProduct() {
+        return apiService.getAllMerchantProduct();
+    }
+
+    @Override
+    public Observable<AllMerchantData> getAllMerchantRunningProduct() {
+        return apiService.getAllMerchantRunningProduct();
+    }
+
+    @Override
+    public Observable<BaseResponse> updateMyInventory(UpdateMyInventoryRequest request) {
+        return apiService.updateMyInventory(request);
+    }
+
+    @Override
+    public Observable<BaseResponse> updateMyInventoryStatus(InventoryStatusRequest request) {
+        return apiService.updateMyInventoryStatus(request);
     }
 
 

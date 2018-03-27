@@ -182,7 +182,6 @@ public interface ApiService {
     @POST("shopping/get_deliveryboy_orders_details")
     Observable<DeliveryBoyOrdersData> getDeliveryBoyOrderDetail(@Body DeliveryBoyOrderDetailRequest request);
 
-
     @POST("shopping/add_order_feedback")
     Observable<BaseResponse> addOrderFeedback(@Body FeedBackRequest request);
 

@@ -29,7 +29,7 @@ import com.app.merchant.network.response.BaseResponse;
  */
 public interface MvpView {
     void onSuccess(BaseResponse response, int requestCode);
-    void onError(String message, int requestCode);
+    void onError(Throwable call, int requestCode);
     void showProgress();
     void hideProgress();
     boolean isNetworkConnected();

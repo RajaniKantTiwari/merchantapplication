@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentInventoryBinding;
 import com.app.merchant.event.InventoryEvent;
+import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
+import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyInventoryAdapter;
@@ -47,6 +49,13 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this);
         mBinding.rvInventory.setAdapter(myInventoryAdapter);
         getPresenter().myInventoryHistory(getDashboardActivity());
+       /* getPresenter().getAllMerchantProduct(getDashboardActivity());
+        getPresenter().getAllMerchantRunningProduct(getDashboardActivity());
+
+        UpdateMyInventoryRequest request=new UpdateMyInventoryRequest();
+        getPresenter().updateMyInventory(getDashboardActivity(),request);*/
+
+
     }
 
     @Override
@@ -94,6 +103,13 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     @Override
     public void onItemClick(int position) {
 
+    }
+
+    @Override
+    public void setInventoryStatus(int status, int position) {
+        InventoryStatusRequest statusRequest=new InventoryStatusRequest();
+        statusRequest.setStatus(String.valueOf(status));
+        getPresenter().updateMyInventoryStatus(getDashboardActivity(),statusRequest);
     }
 
     @Override
