@@ -4,11 +4,10 @@ import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.OrderReturnedCancelRowBinding;
 import com.app.merchant.databinding.OrderReturnedRowBinding;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned;
 import com.app.merchant.utility.CommonUtility;
@@ -24,11 +23,17 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
     private final ArrayList<OrderReturned> orderReturnedList;
+    private OrderReturnedListener listener;
 
-    public OrderReturnedAdapter(AppCompatActivity activity, ArrayList<OrderReturned> orderReturnedList) {
+    public interface OrderReturnedListener {
+        void orderDetailClick(int position);
+    }
+
+    public OrderReturnedAdapter(AppCompatActivity activity,OrderReturnedListener listener,ArrayList<OrderReturned> orderReturnedList) {
         mInflater = LayoutInflater.from(activity);
         this.orderReturnedList = orderReturnedList;
         this.activity = activity;
+        this.listener=listener;
     }
 
     @Override
@@ -39,9 +44,9 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-        if (CommonUtility.isNotNull(orderReturnedList)&&orderReturnedList.size()>position) {
+        if (CommonUtility.isNotNull(orderReturnedList) && orderReturnedList.size() > position) {
             OrderReturned orderReturned = orderReturnedList.get(position);
-            if(CommonUtility.isNotNull(orderReturned)){
+            if (CommonUtility.isNotNull(orderReturned)) {
                 holder.tvOrderNumber.setText(orderReturned.getInvoiceNumber());
                 holder.tvReceivedTime.setText(CommonUtility.formatTimeHHMM(orderReturned.getCreatedAt()));
                 holder.tvAmount.setText(CommonUtility.setTotalDue(activity.getResources().getString(R.string.rs), orderReturned.getTotaldue()));
@@ -60,7 +65,7 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
         return CommonUtility.isNotNull(orderReturnedList) ? orderReturnedList.size() : 0;
     }
 
-    class ProductViewHolder extends RecyclerView.ViewHolder {
+    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final OrderReturnedRowBinding mBinding;
         private final CustomTextView tvOrderNumber;
         private final CustomTextView tvReceivedTime;
@@ -70,11 +75,20 @@ public class OrderReturnedAdapter extends RecyclerView.Adapter<OrderReturnedAdap
         public ProductViewHolder(OrderReturnedRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-            tvOrderNumber=itemView.tvOrderNumber;
-            tvReceivedTime=itemView.tvReceivedTime;
-            tvAmount=itemView.tvAmount;
-            tvStatus=itemView.tvStatus;
+            tvOrderNumber = itemView.tvOrderNumber;
+            tvReceivedTime = itemView.tvReceivedTime;
+            tvAmount = itemView.tvAmount;
+            tvStatus = itemView.tvStatus;
+            mBinding.tvOrderNumber.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View view) {
+            if (CommonUtility.isNotNull(listener)) {
+                if (view == mBinding.tvOrderNumber) {
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
+        }
     }
 }

@@ -30,6 +30,8 @@ public class OrderReturnedRequestAdapter extends RecyclerView.Adapter<OrderRetur
 
     public interface OrderreturnRequestListener {
         void onRatingClick(int position);
+
+        void orderDetailClick(int position);
     }
 
     public OrderReturnedRequestAdapter(AppCompatActivity activity, ArrayList<OrderReturnRequest> deliveryList, OrderreturnRequestListener listener) {
@@ -78,21 +80,30 @@ public class OrderReturnedRequestAdapter extends RecyclerView.Adapter<OrderRetur
         private final CustomTextView tvDeliveryBoy;
         private final RatingBar ratingBar;
         private final CustomTextView tvStatus;
+        private final OrderReturnedRequestRowBinding mBinding;
 
         public AssignDeliveryBoyViewHolder(OrderReturnedRequestRowBinding itemView) {
             super(itemView.getRoot());
+            mBinding=itemView;
             tvInvoice = itemView.tvInvoice;
             tvAmmount = itemView.tvAmmount;
             tvStatus=itemView.tvStatus;
             tvDeliveryBoy = itemView.tvDeliveryBoy;
             ratingBar = itemView.ratingBar;
             itemView.layoutRating.setOnClickListener(this);
+            itemView.tvInvoice.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onRatingClick(getAdapterPosition());
+            if(CommonUtility.isNotNull(tvInvoice)){
+                if(view==mBinding.layoutRating){
+                    listener.onRatingClick(getAdapterPosition());
+                }else if(view==mBinding.tvInvoice){
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
     }
 }

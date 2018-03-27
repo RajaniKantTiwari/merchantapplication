@@ -30,6 +30,7 @@ public class OrderOutForDeliveryAdapter extends RecyclerView.Adapter<OrderOutFor
 
     public interface OrderOutForDeliveryListener {
         void onRatingClick(int position);
+        void orderDetailClick(int position);
     }
 
     public OrderOutForDeliveryAdapter(AppCompatActivity activity, ArrayList<OrderOutForDelivery> deliveryList, OrderOutForDeliveryListener listener) {
@@ -83,12 +84,21 @@ public class OrderOutForDeliveryAdapter extends RecyclerView.Adapter<OrderOutFor
             tvDeliveryBoy = itemView.tvDeliveryBoy;
             ratingBar = itemView.ratingBar;
             itemView.layoutRating.setOnClickListener(this);
+            itemView.tvInvoice.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onRatingClick(getAdapterPosition());
+            if (CommonUtility.isNotNull(listener)) {
+                if (view == mBinding.layoutRating) {
+                    listener.onRatingClick(getAdapterPosition());
+                } else if (view == mBinding.tvInvoice) {
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
+
+
         }
     }
 }

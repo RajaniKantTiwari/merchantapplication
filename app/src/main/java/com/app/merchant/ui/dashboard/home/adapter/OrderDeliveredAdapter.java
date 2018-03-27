@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.OrderDeliveredRowBinding;
@@ -25,15 +24,17 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
     private final AppCompatActivity activity;
     private final ArrayList<OrderDelivered> deliveredList;
 
-    //private OrderOutForDeliveryListener listener;
-    /*public interface OrderOutForDeliveryListener {
+    private OrderDeliveredListener listener;
+
+    public interface OrderDeliveredListener {
         void orderDetailClick(int position);
-    }*/
-    public OrderDeliveredAdapter(AppCompatActivity activity,/*, OrderOutForDeliveryListener listener*/ArrayList<OrderDelivered> deliveredList) {
+    }
+
+    public OrderDeliveredAdapter(AppCompatActivity activity, OrderDeliveredListener listener, ArrayList<OrderDelivered> deliveredList) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.deliveredList = deliveredList;
-        /*this.listener=listener;*/
+        this.listener = listener;
     }
 
     @Override
@@ -70,20 +71,27 @@ public class OrderDeliveredAdapter extends RecyclerView.Adapter<OrderDeliveredAd
         private final CustomTextView tvPromiseTime;
         private final CustomTextView tvAssignTo;
         private final CustomTextView tvPaymentStatus;
+        private final OrderDeliveredRowBinding mBinding;
 
         public ProductViewHolder(OrderDeliveredRowBinding itemView) {
             super(itemView.getRoot());
+            mBinding = itemView;
             tvOrderNumber = itemView.tvOrderNumber;
             tvReceivedTime = itemView.tvReceivedTime;
             tvPromiseTime = itemView.tvPromiseTime;
             tvAssignTo = itemView.tvAssignTo;
             tvPaymentStatus = itemView.tvPaymentStatus;
-            //itemView.layoutRating.setOnClickListener(this);
+            itemView.tvOrderNumber.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
+            if (CommonUtility.isNotNull(listener)) {
+                if (view == mBinding.tvOrderNumber) {
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
 
     }

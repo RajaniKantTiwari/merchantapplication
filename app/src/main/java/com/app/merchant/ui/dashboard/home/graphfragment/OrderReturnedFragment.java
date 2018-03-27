@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentOrderReturnedBinding;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.dashboard.chartdata.orderreceived.OrderReceivedData;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturned;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedChart;
 import com.app.merchant.network.response.dashboard.chartdata.orderreturned.OrderReturnedChartData;
@@ -20,10 +19,12 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturned.Order
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderReturnedFragment extends DashboardFragment implements
+public class OrderReturnedFragment extends DashboardFragment implements OrderReturnedAdapter.OrderReturnedListener,
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener, RatingDialogFragment.RatingDialogListener {
     private FragmentOrderReturnedBinding mBinding;
     private ArrayList<OrderReturned> orderReturnedList;
@@ -86,7 +87,7 @@ public class OrderReturnedFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mAdapter = new OrderReturnedAdapter(getDashboardActivity(),orderReturnedList);
+        mAdapter = new OrderReturnedAdapter(getDashboardActivity(),this,orderReturnedList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -223,6 +224,13 @@ public class OrderReturnedFragment extends DashboardFragment implements
     @Override
     public void headerChangedCalled() {
 
+    }
+
+    @Override
+    public void orderDetailClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderReturnedList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

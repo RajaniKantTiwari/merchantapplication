@@ -20,9 +20,11 @@ import com.app.merchant.network.response.dashboard.chartdata.orderreturnedcancel
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedCancelAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.utility.AppConstants;
+import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -43,7 +45,7 @@ import lecho.lib.hellocharts.util.ChartUtils;
  * Created by ashok on 13/11/17.
  */
 
-public class OrderReturnedCancelFragment extends DashboardFragment implements
+public class OrderReturnedCancelFragment extends DashboardFragment implements OrderReturnedCancelAdapter.OrderReturnedCancelListener,
         DeliveryBoyDialogFragment.DeliveryBoyDialogListener {
     private FragmentOrderReturnedCancelBinding mBinding;
     private ArrayList<OrderReturnedCancel> returnList;
@@ -85,7 +87,7 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     private void initializeOrderData() {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         mBinding.rvOrder.setLayoutManager(layoutManager);
-        mAdapter = new OrderReturnedCancelAdapter(getDashboardActivity(),returnList);
+        mAdapter = new OrderReturnedCancelAdapter(getDashboardActivity(),this,returnList);
         mBinding.rvOrder.setAdapter(mAdapter);
     }
 
@@ -220,6 +222,13 @@ public class OrderReturnedCancelFragment extends DashboardFragment implements
     @Override
     public void headerChangedCalled() {
 
+    }
+
+    @Override
+    public void orderDetailClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,returnList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

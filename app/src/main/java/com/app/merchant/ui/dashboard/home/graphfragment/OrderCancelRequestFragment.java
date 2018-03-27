@@ -20,6 +20,7 @@ import com.app.merchant.network.response.dashboard.chartdata.ordercancelrequest.
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderCancelRequestAdapter;
 import com.app.merchant.ui.dialogfrag.CancelDialogFragment;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
@@ -216,6 +217,13 @@ public class OrderCancelRequestFragment extends DashboardFragment implements
         Bundle bundle = new Bundle();
         bundle.putInt(BundleConstants.POSITION, position);
         CommonUtility.showCancelOrderDialog(getDashboardActivity(), bundle, this);
+    }
+
+    @Override
+    public void orderDetailClick(int position) {
+        Bundle bundle = new Bundle();
+        bundle.putString(BundleConstants.ORDER_ID,orderCancelList.get(position).getId());
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

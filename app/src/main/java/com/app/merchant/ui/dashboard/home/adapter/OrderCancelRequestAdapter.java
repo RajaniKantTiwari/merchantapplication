@@ -28,6 +28,7 @@ public class OrderCancelRequestAdapter extends RecyclerView.Adapter<OrderCancelR
 
     public interface OrderreturnRequestListener {
         void onRatingClick(int position);
+        void orderDetailClick(int position);
     }
 
     public OrderCancelRequestAdapter(AppCompatActivity activity, ArrayList<OrderCancelRequest> deliveryList, OrderreturnRequestListener listener) {
@@ -76,21 +77,30 @@ public class OrderCancelRequestAdapter extends RecyclerView.Adapter<OrderCancelR
         private final CustomTextView tvDeliveryBoy;
         private final RatingBar ratingBar;
         private final CustomTextView tvStatus;
+        private final OrderCancelRequestRowBinding mBinding;
 
         public OrderCancelRequestViewHolder(OrderCancelRequestRowBinding itemView) {
             super(itemView.getRoot());
+            mBinding=itemView;
             tvInvoice = itemView.tvInvoice;
             tvAmmount = itemView.tvAmmount;
             tvStatus=itemView.tvStatus;
             tvDeliveryBoy = itemView.tvDeliveryBoy;
             ratingBar = itemView.ratingBar;
             itemView.layoutRating.setOnClickListener(this);
+            itemView.tvInvoice.setOnClickListener(this);
         }
 
 
         @Override
         public void onClick(View view) {
-            listener.onRatingClick(getAdapterPosition());
+            if(CommonUtility.isNotNull(listener)){
+                if(view==mBinding.layoutRating){
+                    listener.onRatingClick(getAdapterPosition());
+                }else if(view==mBinding.tvInvoice){
+                    listener.orderDetailClick(getAdapterPosition());
+                }
+            }
         }
     }
 }
