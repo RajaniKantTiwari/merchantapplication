@@ -405,6 +405,8 @@ public class ProductSubproductFragment extends DashboardFragment implements
         CategoryRequest categoryRequest = new CategoryRequest();
         categoryRequest.setMerchant_id(PreferenceUtils.getMerchantId());
         getPresenter().getCategory(getDashboardActivity(), categoryRequest);
+        //getPresenter().getAllMerchantProduct(getDashboardActivity());
+
     }
 
     @Override

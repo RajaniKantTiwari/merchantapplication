@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import com.app.merchant.R;
 import com.app.merchant.databinding.MyInventoryRowBinding;
 import com.app.merchant.network.request.dashboard.home.MyInventory;
+import com.app.merchant.network.response.dashboard.AllMerchant;
 import com.app.merchant.utility.CommonUtility;
 
 import java.util.ArrayList;
@@ -24,11 +25,7 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
     private final LayoutInflater mInflater;
     private final AppCompatActivity activity;
     private InventoryListener listener;
-    private ArrayList<MyInventory> myInventoryList;
-
-    public void setList(ArrayList<MyInventory> myInventoryList) {
-        this.myInventoryList = myInventoryList;
-    }
+    private ArrayList<AllMerchant> myInventoryList;
 
     public interface InventoryListener {
         void onItemClick(int position);
@@ -36,10 +33,11 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
         void setInventoryStatus(int status, int position);
     }
 
-    public MyInventoryAdapter(AppCompatActivity activity, InventoryListener listener) {
+    public MyInventoryAdapter(AppCompatActivity activity, InventoryListener listener, ArrayList<AllMerchant> myInventoryList) {
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.listener = listener;
+        this.myInventoryList=myInventoryList;
     }
 
     @Override
@@ -56,7 +54,7 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
 
     @Override
     public int getItemCount() {
-        return 10;
+        return CommonUtility.isNotNull(myInventoryList)?myInventoryList.size():0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -66,6 +64,8 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
         public ProductViewHolder(MyInventoryRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
+
+
             mBinding.tvOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean flag) {

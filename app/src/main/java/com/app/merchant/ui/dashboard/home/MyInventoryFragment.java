@@ -12,8 +12,9 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentInventoryBinding;
 import com.app.merchant.event.InventoryEvent;
 import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
-import com.app.merchant.network.request.dashboard.cart.UpdateMyInventoryRequest;
 import com.app.merchant.network.response.BaseResponse;
+import com.app.merchant.network.response.dashboard.AllMerchant;
+import com.app.merchant.network.response.dashboard.AllMerchantData;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.MyInventoryAdapter;
 import com.app.merchant.ui.scanner.ScannerActivity;
@@ -22,6 +23,8 @@ import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.ArrayList;
 
 
 /**
@@ -32,7 +35,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     private FragmentInventoryBinding mBinding;
     private MyInventoryAdapter myInventoryAdapter;
-
+    private ArrayList<AllMerchant> inventoryList;
 
     @Nullable
     @Override
@@ -44,14 +47,14 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public void initializeData() {
+        inventoryList = new ArrayList<>();
         LinearLayoutManager layoutManager = new LinearLayoutManager(getDashboardActivity());
         mBinding.rvInventory.setLayoutManager(layoutManager);
-        myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this);
+        myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this, inventoryList);
         mBinding.rvInventory.setAdapter(myInventoryAdapter);
-        getPresenter().myInventoryHistory(getDashboardActivity());
-       /* getPresenter().getAllMerchantProduct(getDashboardActivity());
+        //getPresenter().myInventoryHistory(getDashboardActivity());
         getPresenter().getAllMerchantRunningProduct(getDashboardActivity());
-
+       /*
         UpdateMyInventoryRequest request=new UpdateMyInventoryRequest();
         getPresenter().updateMyInventory(getDashboardActivity(),request);*/
 
@@ -72,19 +75,34 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public void attachView() {
-       getPresenter().attachView(this);
+        getPresenter().attachView(this);
     }
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
+        if (CommonUtility.isNotNull(response)) {
+            if (requestCode == 16) {
+                AllMerchantData data = (AllMerchantData) response;
+                setMerchantData(data);
+            } else if (requestCode == 17) {
+                getDashboardActivity().showToast(response.getMsg());
+            }
+        }
 
+    }
+
+    private void setMerchantData(AllMerchantData data) {
+        inventoryList.clear();
+        if (CommonUtility.isNotNull(data.getData())) {
+            inventoryList.addAll(data.getData());
+            myInventoryAdapter.notifyDataSetChanged();
+        }
     }
 
     @Subscribe
     public void onMessageEvent(InventoryEvent event) {
         if (event.getOrderInventory() == AppConstants.MY_INVENTORY) {
             mBinding.layoutInventory.setVisibility(View.VISIBLE);
-            myInventoryAdapter.setList(event.getMyInventoryList());
         } else {
             mBinding.layoutInventory.setVisibility(View.GONE);
 
@@ -96,7 +114,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         if (view == mBinding.ivAddProduct) {
 
         } else if (view == mBinding.ivScan) {
-            ExplicitIntent.getsInstance().navigateForResult(getDashboardActivity(), ScannerActivity.class,AppConstants.SCANNER_RESULT);
+            ExplicitIntent.getsInstance().navigateForResult(getDashboardActivity(), ScannerActivity.class, AppConstants.SCANNER_RESULT);
         }
     }
 
@@ -107,9 +125,10 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public void setInventoryStatus(int status, int position) {
-        InventoryStatusRequest statusRequest=new InventoryStatusRequest();
+        InventoryStatusRequest statusRequest = new InventoryStatusRequest();
         statusRequest.setStatus(String.valueOf(status));
-        getPresenter().updateMyInventoryStatus(getDashboardActivity(),statusRequest);
+        statusRequest.setMerchant_product_id(inventoryList.get(position).getMaster_product_id());
+        getPresenter().updateMyInventoryStatus(getDashboardActivity(), statusRequest);
     }
 
     @Override
