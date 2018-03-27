@@ -35,6 +35,7 @@ public class RatingDialogFragment extends DialogFragment implements View.OnClick
         CommonUtility.setDialog(dialog);
         initializeData();
         setListener();
+        CommonUtility.setRating(mBinding.ratingBar);
         return mBinding.getRoot();
     }
 

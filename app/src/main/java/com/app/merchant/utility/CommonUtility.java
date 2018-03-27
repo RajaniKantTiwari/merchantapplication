@@ -27,6 +27,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.app.merchant.BuildConfig;
@@ -682,4 +683,15 @@ public class CommonUtility {
     public static String setNameWithMrp(String productname, float product_mrp) {
         return productname + "( mrp " + setRating(String.valueOf(product_mrp)) + ")";
     }
+    public static void setRating(RatingBar ratingBar){
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+
+            @Override public void onRatingChanged(RatingBar ratingBar, float rating,
+                                                  boolean fromUser) {
+                if(rating<1.0f)
+                    ratingBar.setRating(1.0f);
+            }
+        });
+    }
+
 }
