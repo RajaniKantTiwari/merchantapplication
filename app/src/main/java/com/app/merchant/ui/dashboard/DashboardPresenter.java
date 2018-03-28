@@ -57,6 +57,7 @@ import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderD
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrdersData;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
+import com.app.merchant.ui.dashboard.home.MyInventoryFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.LogUtils;
 
@@ -876,20 +877,20 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void getAllMerchantRunningProduct(DashBoardActivity activity) {
-        mView.showProgress();
+    public void getAllMerchantRunningProduct(DashBoardActivity activity, MyInventoryFragment myInventoryFragment) {
+        myInventoryFragment.showProgress();
         mRepository.getAllMerchantRunningProduct().subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<AllMerchantData>(activity) {
             @Override
             public void onResponse(AllMerchantData response) {
-                mView.hideProgress();
-                mView.onSuccess(response, 16);
+                myInventoryFragment.hideProgress();
+                myInventoryFragment.onSuccess(response, 16);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(call, 16);
+                myInventoryFragment.hideProgress();
+                myInventoryFragment.onError(call, 16);
             }
         });
     }
@@ -912,20 +913,20 @@ public class DashboardPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void updateMyInventoryStatus(DashBoardActivity activity, InventoryStatusRequest request) {
-        mView.showProgress();
+    public void updateMyInventoryStatus(DashBoardActivity activity, InventoryStatusRequest request, MyInventoryFragment myInventoryFragment) {
+        myInventoryFragment.showProgress();
         mRepository.updateMyInventoryStatus(request).subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
             public void onResponse(BaseResponse response) {
-                mView.hideProgress();
-                mView.onSuccess(response, 17);
+                myInventoryFragment.hideProgress();
+                myInventoryFragment.onSuccess(response, 17);
             }
 
             @Override
             public void onError(Throwable call, BaseResponse baseResponse) {
-                mView.hideProgress();
-                mView.onError(call, 17);
+                myInventoryFragment.hideProgress();
+                myInventoryFragment.onError(call, 17);
             }
         });
     }

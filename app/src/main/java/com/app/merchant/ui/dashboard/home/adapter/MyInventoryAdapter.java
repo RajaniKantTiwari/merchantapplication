@@ -11,9 +11,10 @@ import android.widget.ImageView;
 
 import com.app.merchant.R;
 import com.app.merchant.databinding.MyInventoryRowBinding;
-import com.app.merchant.network.request.dashboard.home.MyInventory;
 import com.app.merchant.network.response.dashboard.AllMerchant;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.utility.GlideUtils;
+import com.app.merchant.widget.CustomTextView;
 
 import java.util.ArrayList;
 
@@ -28,7 +29,7 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
     private ArrayList<AllMerchant> myInventoryList;
 
     public interface InventoryListener {
-        void onItemClick(int position);
+        void onAddInventoryClick(int position);
 
         void setInventoryStatus(int status, int position);
     }
@@ -37,7 +38,7 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
         mInflater = LayoutInflater.from(activity);
         this.activity = activity;
         this.listener = listener;
-        this.myInventoryList=myInventoryList;
+        this.myInventoryList = myInventoryList;
     }
 
     @Override
@@ -48,33 +49,48 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
 
     @Override
     public void onBindViewHolder(ProductViewHolder holder, int position) {
-
+        if (CommonUtility.isNotNull(myInventoryList) && myInventoryList.size() > position) {
+            AllMerchant data = myInventoryList.get(position);
+            GlideUtils.loadImage(activity,null,holder.productImage,null,R.drawable.icon_placeholder);
+            holder.tvProductName.setText(null);
+            holder.tvPrice.setText(data.getProduct_mrp());
+            holder.tvQty.setText(null);
+            holder.tvTotalQty.setText(null);
+        }
 
     }
 
     @Override
     public int getItemCount() {
-        return CommonUtility.isNotNull(myInventoryList)?myInventoryList.size():0;
+        return CommonUtility.isNotNull(myInventoryList) ? myInventoryList.size() : 0;
     }
 
     class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private final MyInventoryRowBinding mBinding;
+        private final CustomTextView tvProductName;
+        private final CustomTextView tvPrice;
+        private final CustomTextView tvQty;
+        private final CustomTextView tvTotalQty;
         private ImageView productImage;
 
         public ProductViewHolder(MyInventoryRowBinding itemView) {
             super(itemView.getRoot());
             mBinding = itemView;
-
-
+            productImage = itemView.productImage;
+            tvProductName = itemView.tvProductName;
+            tvPrice = itemView.tvPrice;
+            tvQty = itemView.tvQty;
+            tvTotalQty = itemView.tvTotalQty;
+            itemView.layoutAdd.setOnClickListener(this);
             mBinding.tvOnOff.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean flag) {
                     if (CommonUtility.isNotNull(listener)) {
                         if (flag) {
                             //0-on for stop selling
-                            listener.setInventoryStatus(0,getAdapterPosition());
+                            listener.setInventoryStatus(0, getAdapterPosition());
                         } else {
-                            listener.setInventoryStatus(0,getAdapterPosition());
+                            listener.setInventoryStatus(0, getAdapterPosition());
                         }
                     }
 
@@ -85,7 +101,11 @@ public class MyInventoryAdapter extends RecyclerView.Adapter<MyInventoryAdapter.
 
         @Override
         public void onClick(View view) {
-            listener.onItemClick(getAdapterPosition());
+            if(CommonUtility.isNotNull(listener)){
+                if(view==mBinding.layoutAdd){
+                    listener.onAddInventoryClick(getAdapterPosition());
+                }
+            }
         }
     }
 }

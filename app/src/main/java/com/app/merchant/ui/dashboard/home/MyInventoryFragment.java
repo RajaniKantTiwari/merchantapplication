@@ -53,7 +53,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         myInventoryAdapter = new MyInventoryAdapter(getDashboardActivity(), this, inventoryList);
         mBinding.rvInventory.setAdapter(myInventoryAdapter);
         //getPresenter().myInventoryHistory(getDashboardActivity());
-        getPresenter().getAllMerchantRunningProduct(getDashboardActivity());
+        getPresenter().getAllMerchantRunningProduct(getDashboardActivity(),this);
        /*
         UpdateMyInventoryRequest request=new UpdateMyInventoryRequest();
         getPresenter().updateMyInventory(getDashboardActivity(),request);*/
@@ -75,7 +75,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
 
     @Override
     public void attachView() {
-        getPresenter().attachView(this);
+        //getPresenter().attachView(this);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
     }
 
     @Override
-    public void onItemClick(int position) {
+    public void onAddInventoryClick(int position) {
 
     }
 
@@ -128,7 +128,7 @@ public class MyInventoryFragment extends DashboardFragment implements MyInventor
         InventoryStatusRequest statusRequest = new InventoryStatusRequest();
         statusRequest.setStatus(String.valueOf(status));
         statusRequest.setMerchant_product_id(inventoryList.get(position).getMaster_product_id());
-        getPresenter().updateMyInventoryStatus(getDashboardActivity(), statusRequest);
+        getPresenter().updateMyInventoryStatus(getDashboardActivity(), statusRequest,this);
     }
 
     @Override

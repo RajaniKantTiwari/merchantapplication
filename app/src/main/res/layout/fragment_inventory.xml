@@ -4,7 +4,8 @@
     android:id="@+id/layoutInventory"
     android:orientation="vertical"
     style="@style/match_match"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
     <LinearLayout
         style="@style/match_wrap">
         <android.support.v4.widget.Space
@@ -26,7 +27,8 @@
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvInventory"
-        style="@style/match_match"/>
+        style="@style/match_match"
+        android:paddingBottom="@dimen/margin_20"/>
 
 </LinearLayout>
 </layout>

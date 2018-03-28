@@ -21,6 +21,7 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsShowFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderDeliveredAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -233,7 +234,7 @@ public class OrderDeliveredFragment extends DashboardFragment implements OrderDe
     public void orderDetailClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.ORDER_ID,deliveredList.get(position).getId());
-        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsShowFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     private class ValueTouchListener implements LineChartOnValueSelectListener {

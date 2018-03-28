@@ -23,6 +23,7 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsShowFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedRequestAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -221,7 +222,7 @@ public class OrderReturnedRequestFragment extends DashboardFragment implements
     public void orderDetailClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.ORDER_ID,orderReturnedList.get(position).getId());
-        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsShowFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

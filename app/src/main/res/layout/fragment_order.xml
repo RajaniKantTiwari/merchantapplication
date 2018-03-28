@@ -7,7 +7,8 @@
     android:background="@color/white">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvOrder"
-        style="@style/match_match"/>
+        style="@style/match_match"
+        android:paddingBottom="@dimen/margin_20"/>
 
 </LinearLayout>
 </layout>
