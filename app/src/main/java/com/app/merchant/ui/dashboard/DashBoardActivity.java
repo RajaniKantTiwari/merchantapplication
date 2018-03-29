@@ -75,7 +75,8 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         closeDrawerLeft();
         switch (position) {
             case 0:
-                openFragment(new OrderInventoryFragment(), null, false, false, NONE);
+                openFragment(new ProductSubproductFragment(), null, false, false, NONE);
+                changeIcon(0);
                 break;
 
             case 1:
@@ -112,9 +113,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_dashboard);
         CommonUtility.register(this);
+
+        openFragment(new ProductSubproductFragment(), null, true, false, NONE);
         getSupportFragmentManager().addOnBackStackChangedListener(getListener());
         clearAllBackStack();
-        openFragment(new ProductSubproductFragment(), null, true, false, NONE);
         //pushFragment(new OrderInventoryFragment(), null, R.id.container, true, false, NONE);
         hideSoftKeyboard(mBinding.getRoot());
         initDashboardComponent();
@@ -385,9 +387,9 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                     if (manager != null) {
 
                         int backStackEntryCount = manager.getBackStackEntryCount();
-                        if (backStackEntryCount == 0) {
+                        /*if (backStackEntryCount == 0) {
                             finish();
-                        }
+                        }*/
                         Fragment fragment = manager.getFragments()
                                 .get(backStackEntryCount - 1);
                         if (previousCount > backStackEntryCount) {

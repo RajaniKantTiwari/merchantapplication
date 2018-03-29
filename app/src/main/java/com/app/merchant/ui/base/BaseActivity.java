@@ -131,9 +131,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
                 mLoadingDialog.show();
             }
 
-        } catch (Exception e) {
-            if (e.getMessage() != null)
-                LogUtils.LOGE(TAG, e.getMessage());
+        } catch (Throwable e) {
+            /*if (e.getMessage() != null)
+                LogUtils.LOGE(TAG, e.getMessage());*/
         }
     }
 
