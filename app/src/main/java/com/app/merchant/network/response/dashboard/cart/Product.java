@@ -37,10 +37,6 @@ public class Product implements Parcelable{
     private String productdescription;
     private String mrp;
 
-
-
-
-
     public Product() {
     }
 

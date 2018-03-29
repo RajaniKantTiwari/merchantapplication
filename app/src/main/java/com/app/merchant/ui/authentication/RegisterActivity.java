@@ -262,11 +262,11 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             showToast(getResources().getString(R.string.please_enter_store_name));
             mBinding.edStore.requestFocus();
             return false;
-        } else if (!CommonUtility.checkValidName(storeName)) {
+        }/* else if (!CommonUtility.checkValidName(storeName)) {
             mBinding.edStore.requestFocus();
             showToast(getResources().getString(R.string.please_enter_valid_store_name));
             return false;
-        } else if (isNull(storeImageList.get(0).getImageUrl()) || storeImageList.get(0).getImageUrl().trim().length() == 0) {
+        }*/ else if (isNull(storeImageList.get(0).getImageUrl()) || storeImageList.get(0).getImageUrl().trim().length() == 0) {
             showToast(getResources().getString(R.string.please_select_store_image));
             return false;
         } else if (isNull(storeImageList.get(1).getImageUrl()) || storeImageList.get(1).getImageUrl().trim().length() == 0) {

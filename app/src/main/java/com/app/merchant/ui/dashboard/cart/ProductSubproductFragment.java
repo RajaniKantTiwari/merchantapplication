@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.app.merchant.R;
 import com.app.merchant.databinding.FragmentProductSubproductBinding;
 import com.app.merchant.databinding.ItemCartBinding;
@@ -33,7 +32,6 @@ import com.app.merchant.ui.dashboard.cart.adapter.CategoryAdapter;
 import com.app.merchant.ui.dashboard.cart.adapter.SubCatAdapter;
 import com.app.merchant.ui.dashboard.home.FullInformationFragment;
 import com.app.merchant.ui.dashboard.home.OrderInventoryFragment;
-import com.app.merchant.ui.dashboard.home.graphfragment.OrderReceivedFragment;
 import com.app.merchant.ui.dialogfrag.AddInventoryDialogFragment;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -45,7 +43,6 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
-
 
 import static com.app.merchant.ui.base.BaseActivity.AnimationType.NONE;
 
@@ -134,7 +131,9 @@ public class ProductSubproductFragment extends DashboardFragment implements
                 ExplicitIntent.getsInstance().navigateTo(getDashboardActivity(), SearchActivity.class);
                 break;
             case R.id.addInventory:
-
+                getDashboardActivity().addFragmentInContainer(new AddProductSubproductFragment(), null, true, true, BaseActivity.AnimationType.NONE);
+                break;
+            case R.id.tvAdd:
                 getDashboardActivity().addFragmentInContainer(new AddProductSubproductFragment(), null, true, true, BaseActivity.AnimationType.NONE);
                 break;
         }
@@ -273,11 +272,15 @@ public class ProductSubproductFragment extends DashboardFragment implements
                     mBinding.tvTotal.setText(String.valueOf(0.00));
                 } else {
                     CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
+                    mBinding.layoutNoData.tvAdd.setVisibility(View.VISIBLE);
+
                 }
 
             }
         } else {
             CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);
+            mBinding.layoutNoData.tvAdd.setVisibility(View.VISIBLE);
+
         }
     }
 
@@ -291,6 +294,7 @@ public class ProductSubproductFragment extends DashboardFragment implements
         mBinding.layoutCustomer.setOnClickListener(this);
         mBinding.tvCheckout.setOnClickListener(this);
         mBinding.addInventory.setOnClickListener(this);
+        mBinding.layoutNoData.tvAdd.setOnClickListener(this);
     }
 
     @Override

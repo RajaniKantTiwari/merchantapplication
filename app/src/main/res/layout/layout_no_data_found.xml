@@ -8,16 +8,18 @@
 
         <com.app.merchant.widget.CustomTextView
             android:id="@+id/tvNoData"
-            style="@style/textview_title_wrap"
+            style="@style/textview_title_match"
             android:text="@string/no_data_found"
+            android:gravity="center"
             android:layout_centerInParent="true"
-            android:layout_toStartOf="@+id/tvStartShopping"
+            android:layout_toStartOf="@+id/tvAdd"
             android:layout_margin="@dimen/margin_20"
             android:textColor="@color/dashboardTitleColor"/>
         <com.app.merchant.widget.CustomTextView
-            android:id="@+id/tvStartShopping"
+            android:id="@+id/tvAdd"
             style="@style/textview_title_wrap"
             android:padding="@dimen/margin_10"
+            android:background="@drawable/add"
             android:layout_marginEnd="@dimen/margin_20"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"

@@ -194,10 +194,10 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
             request.setCategory(category.getId());
         }
         if (CommonUtility.isNotNull(subCategory)) {
-            request.setCategory(subCategory.getId());
+            request.setSubcategory(subCategory.getId());
         }
         if (CommonUtility.isNotNull(product)) {
-            request.setMaster_product_id(String.valueOf(product.getMasterproductid()));
+            request.setMaster_product_id(String.valueOf(product.getId()));
         }
     }
 

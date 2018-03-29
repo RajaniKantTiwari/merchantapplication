@@ -388,8 +388,9 @@
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
-        <item>@string/help</item>
+        <item>@string/address</item>
         <item>@string/term_condition</item>
+        <item>@string/help</item>
     </string-array>
     <string-array name="tax_type">
         <item>inclusive</item>

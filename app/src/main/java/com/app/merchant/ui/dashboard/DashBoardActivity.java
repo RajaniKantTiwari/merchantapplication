@@ -74,20 +74,26 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
     public void onLeftDrawerItemClicked(int position) {
         closeDrawerLeft();
         switch (position) {
-            case AppConstants.HOME:
+            case 0:
                 openFragment(new OrderInventoryFragment(), null, false, false, NONE);
                 break;
 
-            case AppConstants.EDIT_PROFILE:
+            case 1:
                 ExplicitIntent.getsInstance().navigateTo(this, EditProfileActivity.class);
+                changeIcon(3);
                 break;
-            case AppConstants.HELP:
-                ExplicitIntent.getsInstance().navigateTo(this, HelpActivity.class);
+            case 2:
+                /*ExplicitIntent.getsInstance().navigateTo(this, HelpActivity.class);
                 changeIcon(NOTIFICATION_FRAGMENT);
-                openFragment(new NotificationFragment(), null, false, false, NONE);
+                openFragment(new NotificationFragment(), null, false, false, NONE);*/
                 break;
-            case AppConstants.TERM_CONDITION:
+            case 3:
                 ExplicitIntent.getsInstance().navigateTo(this, TermConditionActivity.class);
+                break;
+            case 4:
+                 ExplicitIntent.getsInstance().navigateTo(this, HelpActivity.class);
+                /*changeIcon(NOTIFICATION_FRAGMENT);
+                openFragment(new NotificationFragment(), null, false, false, NONE);*/
                 break;
 
         }
