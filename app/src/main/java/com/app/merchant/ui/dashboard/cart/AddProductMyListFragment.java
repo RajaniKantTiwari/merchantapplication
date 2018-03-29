@@ -45,6 +45,8 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
     private String manufacturingDate;
     private String expiryDate;
     private String manufactorur;
+    private String manufactDate;
+    private String expDate;
 
     @Nullable
     @Override
@@ -183,12 +185,12 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
         request.setSelling_price(sellingPrice);
         request.setTax_type(taxType);
         request.setTax_percent(taxPercent);
-        request.setManufacturer_date(manufacturingDate);
+        request.setManufacturer_date(manufactDate);
         if (CommonUtility.isNotNull(manufactorur) && manufactorur.trim().length() > 0) {
             request.setManufacturer(manufactorur);
         }
         if (CommonUtility.isNotNull(expiryDate) && expiryDate.trim().length() > 0) {
-            request.setExpirey_date(expiryDate);
+            request.setExpirey_date(expDate);
         }
         if (CommonUtility.isNotNull(category)) {
             request.setCategory(category.getId());
@@ -209,9 +211,12 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
     @Override
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = CommonUtility.getMonth(monthOfYear) + "/" + CommonUtility.getMonth(dayOfMonth) + "/" + year;
+
         if (position == 1) {
+            manufactDate=year+"-"+CommonUtility.getMonth(monthOfYear)+"-"+CommonUtility.getMonth(dayOfMonth)+" 00:00:00";
             mBinding.tvManufactoringDate.setText(date);
         } else if (position == 2) {
+            expDate=year+"-"+CommonUtility.getMonth(monthOfYear)+"-"+CommonUtility.getMonth(dayOfMonth)+" 00:00:00";
             mBinding.tvExpiryDate.setText(date);
         }
     }
