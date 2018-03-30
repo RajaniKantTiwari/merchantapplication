@@ -104,6 +104,7 @@ public class ChatActivity extends BaseActivity implements View.OnClickListener {
 
     private void addMessageInList(DataSnapshot dataSnapshot) {
         Map map = dataSnapshot.getValue(Map.class);
+        Object user=map.get("user");
         String userName = map.get("user").toString();
         ChatMessage chatMessage = new ChatMessage();
         chatMessage.setUserName(userName);

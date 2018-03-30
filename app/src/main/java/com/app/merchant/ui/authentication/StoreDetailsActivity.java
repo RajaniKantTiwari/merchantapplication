@@ -5,7 +5,14 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityStoreDetailsBinding;
 import com.app.merchant.event.EncodedBitmap;
@@ -22,16 +29,19 @@ import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.PreferenceUtils;
+import com.firebase.client.Firebase;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
 import org.greenrobot.eventbus.Subscribe;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener,DatePickerDialog.OnDateSetListener {
+public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener, DatePickerDialog.OnDateSetListener {
     private static final String TAG = StoreDetailsActivity.class.getSimpleName();
     ActivityStoreDetailsBinding mBinding;
     @Inject
@@ -61,6 +71,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_store_details);
+        Firebase.setAndroidContext(this);
         CommonUtility.register(this);
         initilizeData();
         setListener();
@@ -105,18 +116,16 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     public void onSuccess(BaseResponse response, int requestCode) {
         if (isNotNull(response)) {
             showToast(response.getMsg());
-             if (response.getStatus().equals(AppConstants.SUCCESS)) {
-                    RegisterResponseData data=(RegisterResponseData)response;
-                    Bundle bundle = new Bundle();
-                    bundle.putString(BundleConstants.MOBILE_NUMBER,register.getMobile());
-                    bundle.putString(BundleConstants.EMAIL,register.getEmail());
-                    PreferenceUtils.setUserName(register.getMerchantname());
-                    PreferenceUtils.setMerchantId(data.getMerchantid());
-                    ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
-                }
+            if (response.getStatus().equals(AppConstants.SUCCESS)) {
+                RegisterResponseData data = (RegisterResponseData) response;
+                Bundle bundle = new Bundle();
+                bundle.putString(BundleConstants.MOBILE_NUMBER, register.getMobile());
+                bundle.putString(BundleConstants.EMAIL, register.getEmail());
+                PreferenceUtils.setMerchantId(data.getMerchantid());
+                ExplicitIntent.getsInstance().navigateTo(this, VerifyAccountActivity.class, bundle);
+            }
         }
     }
-
 
 
     @Override
@@ -127,6 +136,9 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
                 setRegisterData();
                 if (isNetworkConnected()) {
                     presenter.registerMerchant(this, register);
+                    PreferenceUtils.setUserName(register.getMerchantname());
+                    PreferenceUtils.setUserMono(register.getMobile());
+                    loginOnFireBase();
                 }
             }
         } else if (view == mBinding.layoutPayment.layoutCash) {
@@ -139,7 +151,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             selectOther();
         } else if (view == mBinding.tvAddMoreAreas) {
             addChildView(numberOfStoreAreas);
-        }else if (mBinding.tvDateOfBirth == view) {
+        } else if (mBinding.tvDateOfBirth == view) {
             CommonUtility.openDatePicker(this);
         }
     }
@@ -152,7 +164,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private void addChildView(int number) {
         View child = getLayoutInflater().inflate(R.layout.add_more_service_row, null);
         viewList.add(child);
-        numberOfStoreAreas=numberOfStoreAreas+1;
+        numberOfStoreAreas = numberOfStoreAreas + 1;
         child.findViewById(R.id.ivClose).setVisibility(View.VISIBLE);
         child.setTag(number);
         child.findViewById(R.id.ivClose).setOnClickListener(new View.OnClickListener() {
@@ -238,27 +250,27 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     }
 
     private boolean isValid() {
-        coi=mBinding.edCoi.getText().toString();
+        coi = mBinding.edCoi.getText().toString();
         legalName = mBinding.edLegalName.getText().toString();
-        adharNumber=mBinding.edAdharCard.getText().toString();
+        adharNumber = mBinding.edAdharCard.getText().toString();
         panNumber = mBinding.edPanNumber.getText().toString();
         gstNumber = mBinding.edGstNumber.getText().toString();
-        dob=mBinding.tvDateOfBirth.getText().toString();
-        nationality=mBinding.edNationality.getText().toString();
-        opentime=mBinding.edNationality.getText().toString();
-        closetime=mBinding.edCloseTime.getText().toString();
-        minorder=mBinding.edMinOrder.getText().toString();
-        avgtime=mBinding.edAverageTime.getText().toString();
+        dob = mBinding.tvDateOfBirth.getText().toString();
+        nationality = mBinding.edNationality.getText().toString();
+        opentime = mBinding.edNationality.getText().toString();
+        closetime = mBinding.edCloseTime.getText().toString();
+        minorder = mBinding.edMinOrder.getText().toString();
+        avgtime = mBinding.edAverageTime.getText().toString();
         bankName = mBinding.edBankName.getText().toString();
         branchName = mBinding.edBranch.getText().toString();
         accountNumber = mBinding.edAccountNumber.getText().toString();
         ifscCode = mBinding.edIFSCCode.getText().toString();
         deliveryCharge = mBinding.edDelivery.getText().toString();
         serviceArea = mBinding.edServiceArea.getText().toString();
-         if (isNull(legalName) || legalName.trim().length() == 0) {
+        if (isNull(legalName) || legalName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_legalname_of_company));
             return false;
-        }else if (isNull(coi) || coi.trim().length() == 0) {
+        } else if (isNull(coi) || coi.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_coi));
             return false;
         } else if (isNull(panNumber) || panNumber.trim().length() == 0) {
@@ -285,20 +297,19 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         } else if (isNull(nationality) || nationality.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_nationality));
             return false;
-        }else if (isNull(opentime) || opentime.trim().length() == 0) {
+        } else if (isNull(opentime) || opentime.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_open_time));
             return false;
-        }else if (isNull(closetime) || closetime.trim().length() == 0) {
+        } else if (isNull(closetime) || closetime.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_close_time));
             return false;
-        }else if (isNull(minorder) || minorder.trim().length() == 0) {
+        } else if (isNull(minorder) || minorder.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_min_order));
             return false;
-        }else if (isNull(avgtime) || avgtime.trim().length() == 0) {
+        } else if (isNull(avgtime) || avgtime.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_average_time));
             return false;
-        }
-        else if (isNull(bankName) || bankName.trim().length() == 0) {
+        } else if (isNull(bankName) || bankName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_bank_name));
             return false;
         } else if (isNull(branchName) || branchName.trim().length() == 0) {
@@ -352,5 +363,44 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth) {
         String date = CommonUtility.getMonth(monthOfYear) + "/" + CommonUtility.getMonth(dayOfMonth) + "/" + year;
         mBinding.tvDateOfBirth.setText(date);
+    }
+
+    private void loginOnFireBase() {
+        String url = AppConstants.FIREBASE_BASE_URL + "/users.json";
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Firebase reference = new Firebase(AppConstants.FIREBASE_BASE_URL + "/users");
+
+                if (s.equals("null")) {
+                    reference.child(PreferenceUtils.getUserMono()).child("password").setValue(PreferenceUtils.getUserName());
+                } else {
+                    try {
+                        JSONObject obj = new JSONObject(s);
+
+                        if (!obj.has(PreferenceUtils.getUserMono())) {
+                            reference.child(PreferenceUtils.getUserMono()).child("password").setValue(PreferenceUtils.getUserName());
+                            Toast.makeText(StoreDetailsActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(StoreDetailsActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError);
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(StoreDetailsActivity.this);
+        rQueue.add(request);
     }
 }

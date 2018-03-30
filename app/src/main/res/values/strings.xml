@@ -57,6 +57,7 @@
     <string name="my_insurance">My Insurance</string>
     <string name="edit_profile">Edit Profile</string>
     <string name="help">Help</string>
+    <string name="chat">Chat</string>
     <string name="senior_citizen">Senior Citizen Helpline</string>
     <string name="term_condition">Terms and Conditions</string>
     <string name="logout">Logout</string>
@@ -391,6 +392,7 @@
         <item>@string/address</item>
         <item>@string/term_condition</item>
         <item>@string/help</item>
+        <item>@string/chat</item>
     </string-array>
     <string-array name="tax_type">
         <item>inclusive</item>

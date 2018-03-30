@@ -28,6 +28,7 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.cart.Product;
 import com.app.merchant.ui.authentication.EditProfileActivity;
 import com.app.merchant.ui.base.BaseActivity;
+import com.app.merchant.ui.chat.UsersActivity;
 import com.app.merchant.ui.dashboard.adapter.DrawerAdapterLeft;
 import com.app.merchant.ui.dashboard.cart.CartFragment;
 import com.app.merchant.ui.dashboard.cart.ProductSubproductFragment;
@@ -96,6 +97,10 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 /*changeIcon(NOTIFICATION_FRAGMENT);
                 openFragment(new NotificationFragment(), null, false, false, NONE);*/
                 break;
+            case 5:
+                ExplicitIntent.getsInstance().navigateTo(this, UsersActivity.class);
+                break;
+
 
         }
     }

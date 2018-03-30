@@ -6,21 +6,30 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityLoginBinding;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.response.BaseResponse;
-import com.app.merchant.network.response.LoginResponse;
 import com.app.merchant.network.response.LoginResponseData;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.dashboard.DashBoardActivity;
 import com.app.merchant.utility.AppConstants;
-import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.PreferenceUtils;
+import com.firebase.client.Firebase;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javax.inject.Inject;
 
@@ -36,6 +45,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_login);
+        Firebase.setAndroidContext(this);
         mBinding.edEmail.setText(PreferenceUtils.getEmail());
         mBinding.edEmail.setSelection(mBinding.edEmail.getText().length());
         setListener();
@@ -97,6 +107,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
             if (isValid()) {
                 if (isNetworkConnected()) {
                     presenter.loginMerchant(this, new LoginRequest(email, password));
+                    loginOnFireBase();
                 }
             }
         } else if (view == mBinding.tvSignupForAccount) {
@@ -127,6 +138,47 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
         }
         return true;
     }
+    private void loginOnFireBase() {
 
+        String url = AppConstants.FIREBASE_BASE_URL+"/users.json";
+
+        StringRequest request = new StringRequest(Request.Method.GET, url, new Response.Listener<String>(){
+            @Override
+            public void onResponse(String s) {
+                Firebase reference = new Firebase(AppConstants.FIREBASE_BASE_URL+"/users");
+
+                if(s.equals("null")) {
+                    reference.child(PreferenceUtils.getUserMono()).child("password").setValue(PreferenceUtils.getUserName());
+                    //Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+
+                }
+                else {
+                    try {
+                        JSONObject obj = new JSONObject(s);
+
+                        if (!obj.has(PreferenceUtils.getUserMono())) {
+                            reference.child(PreferenceUtils.getUserMono()).child("password").setValue(PreferenceUtils.getUserName());
+                            Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(LoginActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            }
+
+        },new Response.ErrorListener(){
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                System.out.println("" + volleyError );
+            }
+        });
+
+        RequestQueue rQueue = Volley.newRequestQueue(LoginActivity.this);
+        rQueue.add(request);
+    }
 
 }

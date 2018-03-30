@@ -35,6 +35,8 @@
         <activity android:name=".ui.scanner.ScannerActivity" />
         <activity android:name=".ui.dashboard.SearchActivity" />
         <activity android:name=".ui.dashboard.CustomerDetailActivity" />
+        <activity android:name=".ui.chat.ChatActivity" />
+        <activity android:name=".ui.chat.UsersActivity" />
 
         <activity
             android:name="com.app.merchant.ui.dashboard.DashBoardActivity"

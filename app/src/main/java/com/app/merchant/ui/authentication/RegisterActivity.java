@@ -11,7 +11,14 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityResisterBinding;
 import com.app.merchant.event.UpdateAddress;
@@ -28,6 +35,7 @@ import com.app.merchant.utility.CommonUtility;
 import com.app.merchant.utility.ExplicitIntent;
 import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.PreferenceUtils;
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.Status;
@@ -40,6 +48,8 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import net.alhazmy13.mediapicker.Image.ImagePicker;
 
 import org.greenrobot.eventbus.EventBus;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
