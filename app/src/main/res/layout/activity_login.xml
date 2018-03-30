@@ -42,9 +42,7 @@
                     android:inputType="textEmailAddress"
                     android:imeOptions="actionNext"
                     android:paddingBottom="@dimen/margin_5"
-                    android:paddingTop="@dimen/margin_5"
-                    android:singleLine="true"
-                    app:customFont="@string/font_bold" />
+                    android:paddingTop="@dimen/margin_5"/>
 
                 <ImageView style="@style/view_layout_dark_grey" />
             </android.support.design.widget.TextInputLayout>

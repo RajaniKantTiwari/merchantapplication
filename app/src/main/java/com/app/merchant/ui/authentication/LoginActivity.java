@@ -6,7 +6,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -158,9 +157,9 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
 
                         if (!obj.has(PreferenceUtils.getUserMono())) {
                             reference.child(PreferenceUtils.getUserMono()).child("password").setValue(PreferenceUtils.getUserName());
-                            Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, "registration successful", Toast.LENGTH_LONG).show();
                         } else {
-                            Toast.makeText(LoginActivity.this, "username already exists", Toast.LENGTH_LONG).show();
+                            //Toast.makeText(LoginActivity.this, "username already exists", Toast.LENGTH_LONG).show();
                         }
 
                     } catch (JSONException e) {
