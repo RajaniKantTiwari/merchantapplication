@@ -147,8 +147,7 @@
                     android:layout_marginStart="@dimen/margin_10"
                     android:background="@drawable/grey_corner_bg"
                     android:inputType="text"
-                    android:paddingBottom="@dimen/margin_5"
-                    android:paddingTop="@dimen/margin_5"/>
+                    android:padding="@dimen/margin_5"/>
                 <com.app.merchant.widget.CustomTextView
                     style="@style/textview_description_ex_large_wrap"
                     android:padding="@dimen/margin_5"
@@ -196,6 +195,11 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/button_medium"
                     app:customFont="@string/font_bold" />
+                <View
+                    android:id="@+id/showHideView"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/margin_230"
+                    android:visibility="gone"/>
             </LinearLayout>
 
 

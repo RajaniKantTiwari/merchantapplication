@@ -42,8 +42,6 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
     private CheckoutCartAdapter mCheckoutAdapter;
     private List<PaymentOption> paymentList = new ArrayList<>();
     private List<PaymentOption> deliveryList = new ArrayList<>();
-
-
     private PaymentAdapter paymentAdapter;
     private PaymentAdapter deliveryAdapter;
 
@@ -52,6 +50,7 @@ public class CheckoutFragment extends DashboardFragment /*implements CouponAdapt
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_checkout, container, false);
         CommonUtility.register(this);
+        getDashboardActivity().showHideView(mBinding.getRoot(),mBinding.showHideView);
         initializeView();
         return mBinding.getRoot();
     }

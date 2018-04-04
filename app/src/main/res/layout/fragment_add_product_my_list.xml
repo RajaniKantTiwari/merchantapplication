@@ -243,6 +243,12 @@
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/button_large"
                 app:customFont="@string/font_bold" />
+            <View
+                android:id="@+id/showHideView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_230"
+                android:visibility="gone"/>
+
         </LinearLayout>
     </ScrollView>
 </layout>

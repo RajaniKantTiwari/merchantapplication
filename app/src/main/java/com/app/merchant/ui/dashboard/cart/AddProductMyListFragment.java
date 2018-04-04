@@ -53,6 +53,7 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_product_my_list, container, false);
         getDashboardActivity().setHeaderTitle(getString(R.string.add_product_in_list));
+        getDashboardActivity().showHideView(mBinding.getRoot(),mBinding.showHideView);
         return mBinding.getRoot();
     }
 
