@@ -616,8 +616,8 @@ public class CommonUtility {
 
     public static void openDatePicker(StoreDetailsActivity activity) {
         DatePickerDialog dpd = null;
-
         Calendar now = Calendar.getInstance();
+        now.add(Calendar.DATE, -6574);
         if (dpd == null) {
             dpd = DatePickerDialog.newInstance(
                     activity,
@@ -627,6 +627,7 @@ public class CommonUtility {
             );
         }
         dpd.vibrate(false);
+        dpd.setMaxDate(now);
         dpd.setVersion(DatePickerDialog.Version.VERSION_1);
         dpd.setAccentColor(Color.parseColor("#9C27B0"));
 

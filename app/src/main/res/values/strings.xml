@@ -388,6 +388,7 @@
     <string name="inventory">Inventory</string>
     <string name="eight_am">8:00 am</string>
     <string name="eight_pm">8:00 pm</string>
+    <string name="first_jan_2000">01/01/2000</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>

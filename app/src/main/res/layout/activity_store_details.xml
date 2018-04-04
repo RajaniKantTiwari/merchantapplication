@@ -150,7 +150,7 @@
                 android:padding="@dimen/margin_5"
                 style="@style/edit_text_style_medium"
                 android:drawableEnd="@drawable/calender"
-                android:hint="@string/may_2016"
+                android:text="@string/first_jan_2000"
                 app:customFont="@string/font_regular" />
             <ImageView
                 style="@style/view_layout_dark_grey"

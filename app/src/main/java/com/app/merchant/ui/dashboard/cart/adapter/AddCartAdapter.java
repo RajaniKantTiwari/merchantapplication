@@ -2,6 +2,7 @@ package com.app.merchant.ui.dashboard.cart.adapter;
 
 import android.content.Context;
 import android.databinding.DataBindingUtil;
+import android.graphics.Paint;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -63,7 +64,9 @@ public class AddCartAdapter extends RecyclerView.Adapter<AddCartAdapter.AddItemC
             mBinding.layoutProduct.setTag(position);
             mBinding.layoutInfo.setTag(position);
             mBinding.tvProductName.setText(CommonUtility.setNameWithMrp(mDataList.get(position).getProductname(),mDataList.get(position).getProduct_mrp()));
-            mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getProduct_mrp()));
+            mBinding.tvProductPrice.setText(String.valueOf(mDataList.get(position).getMrp()));
+            mBinding.tvProductPrice.setPaintFlags(mBinding.tvProductPrice.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+            mBinding.tvSellingPrice.setText(String.valueOf(mDataList.get(position).getAvg_price()));
             mBinding.tvQty.setText(String.valueOf(mDataList.get(position).getQty()));
             mBinding.tvProductQty.setText(mDataList.get(position).getMeasure());
             if (!TextUtils.isEmpty(mDataList.get(position).getIcon())) {
