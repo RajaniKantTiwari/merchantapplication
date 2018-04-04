@@ -135,7 +135,8 @@
                         android:paddingStart="@dimen/margin_35"
                         android:text="@string/add_into_merchant_list"
                         android:textAllCaps="true"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/white"
+                        android:visibility="gone"/>
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>

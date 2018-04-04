@@ -190,16 +190,12 @@
                 android:imeOptions="actionNext"
                 app:customFont="@string/font_regular" />
 
-            <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edOpenTime"
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOpenTime"
+                android:padding="@dimen/margin_5"
                 style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/ten_am"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLength="@integer/gstin_length"
-                android:paddingBottom="@dimen/margin_3"
-                android:paddingTop="@dimen/margin_7" />
+                android:text="@string/eight_am"
+                app:customFont="@string/font_regular" />
 
             <ImageView
                 style="@style/view_layout_dark_grey"
@@ -215,16 +211,12 @@
                 android:imeOptions="actionNext"
                 app:customFont="@string/font_regular" />
 
-            <com.app.merchant.widget.CustomEditText
-                android:id="@+id/edCloseTime"
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvCloseTime"
+                android:padding="@dimen/margin_5"
                 style="@style/edit_text_style_medium"
-                android:layout_marginTop="@dimen/margin_10"
-                android:hint="@string/five_pm"
-                android:imeOptions="actionNext"
-                android:inputType="text"
-                android:maxLength="@integer/gstin_length"
-                android:paddingBottom="@dimen/margin_3"
-                android:paddingTop="@dimen/margin_7" />
+                android:text="@string/eight_pm"
+                app:customFont="@string/font_regular" />
 
             <ImageView
                 style="@style/view_layout_dark_grey"

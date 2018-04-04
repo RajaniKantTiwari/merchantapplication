@@ -31,6 +31,7 @@ import com.app.merchant.utility.LogUtils;
 import com.app.merchant.utility.PreferenceUtils;
 import com.firebase.client.Firebase;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.json.JSONException;
@@ -41,8 +42,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener, DatePickerDialog.OnDateSetListener {
-    private static final String TAG = StoreDetailsActivity.class.getSimpleName();
+public class StoreDetailsActivity extends CommonActivity implements MvpView, View.OnClickListener,
+        DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
     ActivityStoreDetailsBinding mBinding;
     @Inject
     CommonPresenter presenter;
@@ -66,6 +67,8 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private String minorder;
     private String avgtime;
     private String coi;
+    // 1 for open 2 for close
+    private int openClose;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +105,8 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         mBinding.layoutPayment.layoutOther.setOnClickListener(this);
         mBinding.tvAddMoreAreas.setOnClickListener(this);
         mBinding.tvDateOfBirth.setOnClickListener(this);
+        mBinding.tvOpenTime.setOnClickListener(this);
+        mBinding.tvCloseTime.setOnClickListener(this);
     }
 
 
@@ -153,6 +158,12 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             addChildView(numberOfStoreAreas);
         } else if (mBinding.tvDateOfBirth == view) {
             CommonUtility.openDatePicker(this);
+        }else if(mBinding.tvOpenTime==view){
+            openClose=1;
+            CommonUtility.openTimePicker(this);
+        }else if(mBinding.tvCloseTime==view){
+            openClose=2;
+            CommonUtility.openTimePicker(this);
         }
     }
 
@@ -257,8 +268,8 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         gstNumber = mBinding.edGstNumber.getText().toString();
         dob = mBinding.tvDateOfBirth.getText().toString();
         nationality = mBinding.edNationality.getText().toString();
-        opentime = mBinding.edNationality.getText().toString();
-        closetime = mBinding.edCloseTime.getText().toString();
+        opentime = mBinding.tvOpenTime.getText().toString();
+        closetime = mBinding.tvCloseTime.getText().toString();
         minorder = mBinding.edMinOrder.getText().toString();
         avgtime = mBinding.edAverageTime.getText().toString();
         bankName = mBinding.edBankName.getText().toString();
@@ -402,5 +413,30 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
 
         RequestQueue rQueue = Volley.newRequestQueue(StoreDetailsActivity.this);
         rQueue.add(request);
+    }
+
+    @Override
+    public void onTimeSet(TimePickerDialog view, int hourOfDay, int minute, int second) {
+        String hourString = hourOfDay < 10 ? "0" + hourOfDay : "" + hourOfDay;
+        String minuteString = minute < 10 ? "0" + minute : "" + minute;
+        String secondString = second < 10 ? "0" + second : "" + second;
+        String time = hourString + ":" + minuteString;
+        if (hourOfDay > 11) {
+            if(hourOfDay==12){
+                time = hourString + ":" + minuteString;
+            }else{
+                hourOfDay=hourOfDay-12;
+                hourString = hourOfDay< 10 ? "0" + hourOfDay : "" + hourOfDay;
+                time = hourString + ":" + minuteString;
+            }
+            time = time + " pm";
+        } else {
+            time = time + " am";
+        }
+        if (openClose == 1) {
+           mBinding.tvOpenTime.setText(time);
+        } else if (openClose == 2) {
+            mBinding.tvCloseTime.setText(time);
+        }
     }
 }

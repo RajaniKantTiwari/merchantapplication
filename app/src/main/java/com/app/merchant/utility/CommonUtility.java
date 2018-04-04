@@ -22,6 +22,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -49,6 +50,8 @@ import com.app.merchant.widget.CustomEditText;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
+import com.wdullaer.materialdatetimepicker.time.Timepoint;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -629,6 +632,36 @@ public class CommonUtility {
         dpd.show(activity.getFragmentManager(), "Datepickerdialog");
     }
 
+
+    public static void openTimePicker(StoreDetailsActivity activity) {
+        TimePickerDialog tpd = null;
+        Calendar now = Calendar.getInstance();
+                /*
+                It is recommended to always create a new instance whenever you need to show a Dialog.
+                The sample app is reusing them because it is useful when looking for regressions
+                during testing
+                 */
+        tpd = TimePickerDialog.newInstance(
+                activity,
+                now.get(Calendar.HOUR_OF_DAY),
+                now.get(Calendar.MINUTE),
+                false
+        );
+
+        tpd.vibrate(false);
+        tpd.setAccentColor(Color.parseColor("#9C27B0"));
+        tpd.setTitle("TimePicker Title");
+        tpd.setTimeInterval(1, 5, 60);
+        tpd.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                Log.d("TimePicker", "Dialog was cancelled");
+            }
+        });
+        tpd.show(activity.getFragmentManager(), "Timepickerdialog");
+    }
+
+
     public static void openPicker(DashBoardActivity activity, AddProductMyListFragment fragment) {
         DatePickerDialog dpd = null;
 
@@ -683,12 +716,14 @@ public class CommonUtility {
     public static String setNameWithMrp(String productname, float product_mrp) {
         return productname + "( mrp " + setRating(String.valueOf(product_mrp)) + ")";
     }
-    public static void setRating(RatingBar ratingBar){
+
+    public static void setRating(RatingBar ratingBar) {
         ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
 
-            @Override public void onRatingChanged(RatingBar ratingBar, float rating,
-                                                  boolean fromUser) {
-                if(rating<1.0f)
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+                if (rating < 1.0f)
                     ratingBar.setRating(1.0f);
             }
         });
