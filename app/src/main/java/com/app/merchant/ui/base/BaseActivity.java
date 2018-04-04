@@ -1,7 +1,9 @@
 package com.app.merchant.ui.base;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IntDef;
@@ -14,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
@@ -84,6 +87,54 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView,
     public void hideSoftKeyboard(View view) {
         ((InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
+    public void hideSoftKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if(CommonUtility.isNotNull(imm))
+            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+    }
+    public void showHideView(View rootView,View showView){
+        /*rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                int heightDiff = rootView.getRootView().getHeight() - rootView.getHeight();
+                if (heightDiff > 170) {
+                    showView.setVisibility(View.VISIBLE);
+                    Log.e("MyActivity", "keyboard opened");
+                } else {
+                    showView.setVisibility(View.GONE);
+                    Log.e("MyActivity", "keyboard closed");
+                }
+            }
+        });*/
+
+
+        rootView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+
+                Rect r = new Rect();
+                rootView.getWindowVisibleDisplayFrame(r);
+                int screenHeight = rootView.getRootView().getHeight();
+
+                // r.bottom is the position above soft keypad or device button.
+                // if keypad is shown, the r.bottom is smaller than that before.
+                int keypadHeight = screenHeight - r.bottom;
+
+                Log.d(TAG, "keypadHeight = " + keypadHeight);
+
+                if (keypadHeight > screenHeight * 0.15) { // 0.15 ratio is perhaps enough to determine keypad height.
+                    showView.setVisibility(View.VISIBLE);
+                    Log.e("MyActivity", "keyboard opened");
+                }
+                else {
+                    showView.setVisibility(View.GONE);
+                    Log.e("MyActivity", "keyboard closed");
+                }
+            }
+        });
+    }
+
 
     @Override
     protected void onResume() {

@@ -661,7 +661,13 @@
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
                 android:textSize="@dimen/button_large"
-                app:customFont="@string/font_bold" />
+                app:customFont="@string/font_bold"
+                android:layout_marginBottom="@dimen/margin_10"/>
+            <View
+                android:id="@+id/showHideView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_230"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 </layout>

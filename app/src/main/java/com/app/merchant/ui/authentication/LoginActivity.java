@@ -106,7 +106,7 @@ public class LoginActivity extends CommonActivity implements MvpView, View.OnCli
             if (isValid()) {
                 if (isNetworkConnected()) {
                     presenter.loginMerchant(this, new LoginRequest(email, password));
-                    loginOnFireBase();
+                    //loginOnFireBase();
                 }
             }
         } else if (view == mBinding.tvSignupForAccount) {

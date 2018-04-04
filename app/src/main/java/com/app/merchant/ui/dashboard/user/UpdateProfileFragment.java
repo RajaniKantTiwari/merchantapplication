@@ -12,6 +12,7 @@ import com.app.merchant.databinding.FragmentUpdateProfileBinding;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.dashboard.DashboardFragment;
+import com.app.merchant.utility.CommonUtility;
 
 import javax.inject.Inject;
 
@@ -35,7 +36,7 @@ public class UpdateProfileFragment extends DashboardFragment {
 
     @Override
     public void initializeData() {
-
+        getDashboardActivity().showHideView(mBinding.getRoot(),mBinding.showHideView);
     }
 
     @Override

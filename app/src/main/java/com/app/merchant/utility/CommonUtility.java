@@ -114,6 +114,7 @@ public class CommonUtility {
     public static void showOkDialog(AppCompatActivity activity, OkDialogFragment.OkDialogListener listener) {
         FragmentManager fm = activity.getSupportFragmentManager();
         OkDialogFragment alertdFragment = new OkDialogFragment();
+        alertdFragment.setCancelable(false);
         alertdFragment.dialogListener(listener);
         alertdFragment.show(fm, "");
     }

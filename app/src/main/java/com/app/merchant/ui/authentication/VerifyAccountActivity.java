@@ -135,7 +135,6 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                     if (isNotNull(verifyMobileResponse)) {
                         String status = verifyMobileResponse.getStatus();
                         if (status.equals(AppConstants.SUCCESS)) {
-                            hideKeyboard();
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setEmail(email);
                             PreferenceUtils.setLogin(true);
@@ -244,6 +243,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
 
     @Override
     public void next(String str) {
+        hideSoftKeyboard();
         ExplicitIntent.getsInstance().clearPreviousNavigateTo(this, DashBoardActivity.class);
         finish();
     }
