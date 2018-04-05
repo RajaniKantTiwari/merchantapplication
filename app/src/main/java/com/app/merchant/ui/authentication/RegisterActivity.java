@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -159,6 +161,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             }
         }
     }
+
     private void getCurrentLocation() {
         // create class object
         gpsTracker = new GPSTracker(this);
@@ -173,12 +176,13 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     private void getLatLong() {
         PreferenceUtils.setLatitude(gpsTracker.getLatitude());
         PreferenceUtils.setLongitude(gpsTracker.getLongitude());
-        latitude=gpsTracker.getLatitude();
-        longitude=gpsTracker.getLongitude();
-        address=PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+        latitude = gpsTracker.getLatitude();
+        longitude = gpsTracker.getLongitude();
+        address = PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
         mBinding.tvAddress.setText(address);
         PreferenceUtils.setAddress(address);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
@@ -192,6 +196,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
                 break;
         }
     }
+
     private void address() {
         try {
             Intent intent =
@@ -226,7 +231,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
     }
 
     private boolean isValid() {
-        merchantName=mBinding.edMerchantName.getText().toString();
+        merchantName = mBinding.edMerchantName.getText().toString();
         email = mBinding.edEmail.getText().toString();
         password = mBinding.edPassword.getText().toString();
         mobileNumber = mBinding.edMobileNumber.getText().toString();
@@ -237,7 +242,7 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
             showToast(getResources().getString(R.string.please_enter_merchat_name));
             mBinding.edEmail.requestFocus();
             return false;
-        }else if (isNull(email) || email.trim().length() == 0) {
+        } else if (isNull(email) || email.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_email_address));
             mBinding.edEmail.requestFocus();
             return false;
@@ -314,15 +319,17 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
                         Place place = PlaceAutocomplete.getPlace(this, data);
                         if (CommonUtility.isNotNull(place)) {
                             LatLng latLng = place.getLatLng();
-                            PreferenceUtils.setAddress(place.getAddress().toString());
+                            //Toast.makeText(this, place.getAddress().toString(), Toast.LENGTH_SHORT).show();
+                            address=place.getAddress().toString();
+                            //PreferenceUtils.setAddress(place.getAddress().toString());
                             PreferenceUtils.setLatitude(latLng.latitude);
                             PreferenceUtils.setLongitude(latLng.longitude);
-                            latitude=latLng.latitude;
-                            longitude=latLng.longitude;
-                            address=PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+                            latitude = latLng.latitude;
+                            longitude = latLng.longitude;
+                           // address = PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+
                             PreferenceUtils.setAddress(address);
                             mBinding.tvAddress.setText(address);
-
                         }
 
                     }

@@ -7,6 +7,18 @@ import android.location.Geocoder;
 import com.app.merchant.network.response.dashboard.cart.Product;
 import com.orhanobut.hawk.Hawk;
 
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -132,6 +144,67 @@ public class PreferenceUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    public static String getLocationCityName( double lat, double lon ){
+        JSONObject result = getLocationFormGoogle(lat + "," + lon );
+        return getCityAddress(result);
+    }
+
+    protected static JSONObject getLocationFormGoogle(String placesName) {
+
+        String apiRequest = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + placesName; //+ "&ka&sensor=false"
+        HttpGet httpGet = new HttpGet(apiRequest);
+        HttpClient client = new DefaultHttpClient();
+        HttpResponse response;
+        StringBuilder stringBuilder = new StringBuilder();
+
+        try {
+            response = client.execute(httpGet);
+            HttpEntity entity = response.getEntity();
+            InputStream stream = entity.getContent();
+            int b;
+            while ((b = stream.read()) != -1) {
+                stringBuilder.append((char) b);
+            }
+        } catch (ClientProtocolException e) {
+        } catch (IOException e) {
+        }
+
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject = new JSONObject(stringBuilder.toString());
+        } catch (JSONException e) {
+
+            e.printStackTrace();
+        }
+
+        return jsonObject;
+    }
+
+    protected static String getCityAddress( JSONObject result ){
+        if( result.has("results") ){
+            try {
+                JSONArray array = result.getJSONArray("results");
+                if( array.length() > 0 ){
+                    JSONObject place = array.getJSONObject(0);
+                    JSONArray components = place.getJSONArray("address_components");
+                    for( int i = 0 ; i < components.length() ; i++ ){
+                        JSONObject component = components.getJSONObject(i);
+                        JSONArray types = component.getJSONArray("types");
+                        for( int j = 0 ; j < types.length() ; j ++ ){
+                            if( types.getString(j).equals("locality") ){
+                                return component.getString("long_name");
+                            }
+                        }
+                    }
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
         return null;
     }
 
