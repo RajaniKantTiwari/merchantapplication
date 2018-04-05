@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.databinding.DataBindingUtil;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -179,8 +180,13 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         latitude = gpsTracker.getLatitude();
         longitude = gpsTracker.getLongitude();
         address = PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
-        mBinding.tvAddress.setText(address);
-        PreferenceUtils.setAddress(address);
+        if (address == null) {
+            new LongOperation().execute();
+        } else {
+            mBinding.tvAddress.setText(address);
+            PreferenceUtils.setAddress(address);
+        }
+
     }
 
     @Override
@@ -320,13 +326,13 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
                         if (CommonUtility.isNotNull(place)) {
                             LatLng latLng = place.getLatLng();
                             //Toast.makeText(this, place.getAddress().toString(), Toast.LENGTH_SHORT).show();
-                            address=place.getAddress().toString();
+                            address = place.getAddress().toString();
                             //PreferenceUtils.setAddress(place.getAddress().toString());
                             PreferenceUtils.setLatitude(latLng.latitude);
                             PreferenceUtils.setLongitude(latLng.longitude);
                             latitude = latLng.latitude;
                             longitude = latLng.longitude;
-                           // address = PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+                            // address = PreferenceUtils.getAddress(this, PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
 
                             PreferenceUtils.setAddress(address);
                             mBinding.tvAddress.setText(address);
@@ -439,5 +445,33 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         profilePicFilePath = "";
     }
 
+    private class LongOperation extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            try {
+                address = PreferenceUtils.getLocationCityName(PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return address;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            hideProgress();
+            mBinding.tvAddress.setText(result);
+            PreferenceUtils.setAddress(result);
+        }
+
+        @Override
+        protected void onPreExecute() {
+            showProgress();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+
+        }
+    }
 
 }

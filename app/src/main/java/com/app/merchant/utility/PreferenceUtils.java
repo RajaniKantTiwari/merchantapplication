@@ -154,7 +154,7 @@ public class PreferenceUtils {
 
     protected static JSONObject getLocationFormGoogle(String placesName) {
 
-        String apiRequest = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + placesName; //+ "&ka&sensor=false"
+        String apiRequest = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + placesName+"&sensor=true";
         HttpGet httpGet = new HttpGet(apiRequest);
         HttpClient client = new DefaultHttpClient();
         HttpResponse response;
@@ -190,15 +190,13 @@ public class PreferenceUtils {
                 if( array.length() > 0 ){
                     JSONObject place = array.getJSONObject(0);
                     JSONArray components = place.getJSONArray("address_components");
+                    String address="";
                     for( int i = 0 ; i < components.length() ; i++ ){
                         JSONObject component = components.getJSONObject(i);
-                        JSONArray types = component.getJSONArray("types");
-                        for( int j = 0 ; j < types.length() ; j ++ ){
-                            if( types.getString(j).equals("locality") ){
-                                return component.getString("long_name");
-                            }
-                        }
+                        String shortAdd = component.getString("long_name");
+                        address=address+shortAdd;
                     }
+                    return address;
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
