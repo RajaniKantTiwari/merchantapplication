@@ -186,11 +186,11 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         if (view == mBinding.tvCancel) {
             CancelOrderRequest request = new CancelOrderRequest();
             request.setOrder_id(orderId);
-            getPresenter().confirmOrder(getDashboardActivity(), request);
+            getPresenter().cancelOrder(getDashboardActivity(), request);
         } else if (view == mBinding.tvConfirmOrder) {
             CancelOrderRequest request = new CancelOrderRequest();
             request.setOrder_id(orderId);
-            getPresenter().cancelOrder(getDashboardActivity(), request);
+            getPresenter().confirmOrder(getDashboardActivity(), request);
         }
     }
 
