@@ -19,7 +19,7 @@ import com.app.merchant.network.response.dashboard.chartdata.orderoutfordelivery
 import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
-import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsOutForDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderOutForDeliveryAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -218,7 +218,7 @@ public class OrderOutForDeliveryFragment extends DashboardFragment implements
     public void orderDetailClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.ORDER_ID,deliveryList.get(position).getId());
-        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsOutForDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

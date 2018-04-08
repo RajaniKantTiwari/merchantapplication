@@ -391,6 +391,9 @@
     <string name="first_jan_2000">01/01/2000</string>
     <string name="add_payment">Add Payment</string>
     <string name="out_for_delivery">Out for Delivery</string>
+    <string name="enter_reason_for_cancellation">Enter Reason for Cancellation</string>
+    <string name="confirm_cancellation">Confirm Cancellation</string>
+    <string name="reject_cancellation">Reject Cancellation</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
