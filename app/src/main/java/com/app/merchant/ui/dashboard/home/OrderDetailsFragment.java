@@ -150,12 +150,13 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         AsignAdapter adapter = new AsignAdapter(getContext(), deliveryBoyNameList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
         mBinding.deliveryBoySpiner.setAdapter(adapter);
-        mBinding.deliveryBoySpiner.post(new Runnable() {
+        //for going to specific position
+       /* mBinding.deliveryBoySpiner.post(new Runnable() {
             @Override
             public void run() {
                 mBinding.deliveryBoySpiner.setSelection(4);
             }
-        });
+        });*/
         mBinding.deliveryBoySpiner.setSelection(adapter.getCount());
         mBinding.deliveryBoySpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
