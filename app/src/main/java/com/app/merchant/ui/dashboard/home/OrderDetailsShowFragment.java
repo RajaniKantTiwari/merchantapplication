@@ -7,26 +7,19 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.app.merchant.R;
-import com.app.merchant.databinding.FragmentDeliveryOrderDetailsBinding;
 import com.app.merchant.databinding.FragmentOrderShowDetailsBinding;
-import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
-import com.app.merchant.network.request.dashboard.home.FeedBackRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.OrderDetail;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
 import com.app.merchant.network.response.dashboard.cart.Product;
-import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoy;
-import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
-import com.app.merchant.ui.adapter.AsignAdapter;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderListAdapter;
-import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomEditText;
 
 import java.util.ArrayList;
 
@@ -135,7 +128,7 @@ public class OrderDetailsShowFragment extends DashboardFragment implements Order
     }
 
     @Override
-    public void onOrderClick(int position) {
+    public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
 
     }
 }

@@ -2,8 +2,8 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        style="@style/match_wrap">
+    <LinearLayout style="@style/match_wrap">
+
         <LinearLayout
             android:id="@+id/layoutProduct"
             style="@style/wrap_wrap">
@@ -26,22 +26,24 @@
             android:orientation="vertical">
 
             <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvProductName"
                 style="@style/textview_description_smaller_wrap"
-                android:text="Green Canyne"
-                android:maxLines="2"
                 android:layout_marginBottom="@dimen/margin_2"
-                />
+                android:maxLines="2" />
+
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_large_wrap"
-                android:text="@string/qty"
                 android:layout_marginBottom="@dimen/margin_2"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical"
+                android:text="@string/qty" />
+
             <com.app.merchant.widget.CustomEditText
+                android:id="@+id/tvQuantity"
                 style="@style/textview_description_smaller_wrap"
-                android:text="5000"
                 android:background="@null"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical" />
         </LinearLayout>
+
         <LinearLayout
             style="@style/layout_hori_match_1_4"
             android:layout_marginStart="@dimen/margin_12"
@@ -50,18 +52,23 @@
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_wrap"
-                android:text="@string/mrp"
                 android:layout_marginBottom="@dimen/margin_10"
-                />
+                android:text="@string/mrp" />
+
             <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edMrp"
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:drawableStart="@drawable/rupee_blue"
-                android:drawablePadding="@dimen/margin_2"
                 android:background="@null"
-                android:text="4000000"
-                android:gravity="center_vertical"/>
+                android:drawablePadding="@dimen/margin_2"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:drawableStart="@drawable/rupee_blue"
+                android:gravity="center_vertical"
+                />
         </LinearLayout>
+
         <LinearLayout
             style="@style/layout_hori_match_1_4"
             android:layout_marginStart="@dimen/margin_12"
@@ -70,17 +77,21 @@
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_wrap"
-                android:text="@string/selling_price"
                 android:layout_marginBottom="@dimen/margin_10"
-                />
+                android:text="@string/selling_price" />
+
             <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edSellingPrice"
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
-                android:drawableStart="@drawable/rupee_blue"
-                android:drawablePadding="@dimen/margin_2"
+                android:clickable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
                 android:background="@null"
-                android:text="4000000"
-                android:gravity="center_vertical"/>
+                android:drawablePadding="@dimen/margin_2"
+                android:drawableStart="@drawable/rupee_blue"
+                android:gravity="center_vertical"
+                 />
         </LinearLayout>
 
         <RelativeLayout
@@ -91,13 +102,15 @@
             <ImageView
                 android:id="@+id/ivEditOrder"
                 style="@style/image_30"
-                android:src="@drawable/ic_ed_profile_black"/>
+                android:src="@drawable/ic_ed_profile_black" />
+
             <ImageView
+                android:id="@+id/ivCancel"
+                style="@style/image_30"
                 android:layout_below="@+id/ivEditOrder"
                 android:layout_marginTop="@dimen/margin_10"
-                style="@style/image_30"
                 android:padding="@dimen/margin_5"
-                android:src="@drawable/ic_close_grey"/>
+                android:src="@drawable/ic_close_grey" />
         </RelativeLayout>
 
     </LinearLayout>

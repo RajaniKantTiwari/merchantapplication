@@ -27,6 +27,7 @@ import com.app.merchant.ui.dashboard.home.adapter.OrderListAdapter;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomEditText;
 
 import java.util.ArrayList;
 
@@ -113,6 +114,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         try {
             Product productData = new Product();
             productData.setId(Integer.parseInt(orderId));
+            productData.setIcon(orderDetail.getIcon());
             productData.setProductname(orderDetail.getProductname());
             productData.setQty(Integer.parseInt(orderDetail.getQuantity()));
             productData.setMrp(orderDetail.getMrp());
@@ -208,7 +210,13 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     }
 
     @Override
-    public void onOrderClick(int position) {
+    public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
+      CommonUtility.makeEditable(edMrp,edSellingPrice);
+      CommonUtility.makeNonEditable(edMrp,edSellingPrice);
+    }
+
+    @Override
+    public void onCancel(int position) {
 
     }
 }

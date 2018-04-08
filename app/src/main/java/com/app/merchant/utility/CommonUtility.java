@@ -731,4 +731,23 @@ public class CommonUtility {
         });
     }
 
+    public static void makeEditable(CustomEditText edMrp, CustomEditText edSellingPrice) {
+        edMrp.setFocusable(true);
+        edMrp.setFocusableInTouchMode(true);
+        edMrp.setClickable(true);
+
+        edSellingPrice.setFocusable(true);
+        edSellingPrice.setFocusableInTouchMode(true);
+        edSellingPrice.setClickable(true);
+    }
+
+    public static void makeNonEditable(CustomEditText edMrp, CustomEditText edSellingPrice) {
+        edMrp.setFocusable(false);
+        edMrp.setFocusableInTouchMode(false);
+        edMrp.setClickable(false);
+
+        edSellingPrice.setFocusable(false);
+        edSellingPrice.setFocusableInTouchMode(false);
+        edSellingPrice.setClickable(false);
+    }
 }

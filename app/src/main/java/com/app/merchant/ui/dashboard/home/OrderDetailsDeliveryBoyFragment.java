@@ -26,6 +26,7 @@ import com.app.merchant.ui.dashboard.home.adapter.OrderListAdapter;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
 import com.app.merchant.utility.CommonUtility;
+import com.app.merchant.widget.CustomEditText;
 
 import java.util.ArrayList;
 
@@ -205,7 +206,7 @@ public class OrderDetailsDeliveryBoyFragment extends DashboardFragment implement
     }
 
     @Override
-    public void onOrderClick(int position) {
+    public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
 
     }
 }
