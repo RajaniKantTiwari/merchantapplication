@@ -209,4 +209,9 @@ public class OrderDetailsDeliveryBoyFragment extends DashboardFragment implement
     public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
 
     }
+
+    @Override
+    public void onCancel(int position) {
+
+    }
 }

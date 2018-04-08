@@ -48,6 +48,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_order_details, container, false);
+        getDashboardActivity().showHideView(mBinding.getRoot(),mBinding.showHideView);
         getDashboardActivity().setHeaderTitle(getString(R.string.order_details));
         return mBinding.getRoot();
     }
@@ -212,7 +213,7 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
     @Override
     public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
       CommonUtility.makeEditable(edMrp,edSellingPrice);
-      CommonUtility.makeNonEditable(edMrp,edSellingPrice);
+      //CommonUtility.makeNonEditable(edMrp,edSellingPrice);
     }
 
     @Override

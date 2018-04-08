@@ -131,4 +131,9 @@ public class OrderDetailsShowFragment extends DashboardFragment implements Order
     public void onEdit(CustomEditText edMrp, CustomEditText edSellingPrice, int position) {
 
     }
+
+    @Override
+    public void onCancel(int position) {
+
+    }
 }

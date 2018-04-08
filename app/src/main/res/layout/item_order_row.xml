@@ -52,13 +52,13 @@
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_wrap"
-                android:layout_marginBottom="@dimen/margin_10"
                 android:text="@string/mrp" />
 
             <com.app.merchant.widget.CustomEditText
                 android:id="@+id/edMrp"
                 style="@style/textview_description_smaller_wrap"
                 android:layout_marginEnd="@dimen/margin_20"
+                android:padding="@dimen/margin_5"
                 android:background="@null"
                 android:drawablePadding="@dimen/margin_2"
                 android:clickable="false"
@@ -86,6 +86,7 @@
                 android:layout_marginEnd="@dimen/margin_20"
                 android:clickable="false"
                 android:focusable="false"
+                android:padding="@dimen/margin_5"
                 android:focusableInTouchMode="false"
                 android:background="@null"
                 android:drawablePadding="@dimen/margin_2"

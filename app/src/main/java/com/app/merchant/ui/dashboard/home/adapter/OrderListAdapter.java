@@ -53,7 +53,7 @@ public class OrderListAdapter extends RecyclerView.Adapter<OrderListAdapter.Prod
             Product product=productList.get(position);
             GlideUtils.loadImage(activity, product.getIcon(), holder.ivProduct, null, R.drawable.icon_placeholder);
             holder.tvProductName.setText(product.getProductname());
-            holder.tvQuantity.setText(product.getQty());
+            holder.tvQuantity.setText(String.valueOf(product.getQty()));
             holder.edMrp.setText(CommonUtility.twoDecimalPlace(product.getProduct_mrp()));
             holder.edSellingPrice.setText(CommonUtility.twoDecimalPlaceString(product.getSelling_price()));
         }
