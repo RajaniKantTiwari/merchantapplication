@@ -20,7 +20,7 @@ import com.app.merchant.ui.base.BaseActivity;
 import com.app.merchant.ui.dashboard.DashboardFragment;
 import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsDeliveryBoyFragment;
-import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
+import com.app.merchant.ui.dashboard.home.OrderDetailsDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.AssignDeliveryBoyAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -215,7 +215,7 @@ public class AssignDeliveryBoyFragment extends DashboardFragment implements
         CommonUtility.showRatingDialog(getDashboardActivity(), bundle, this);*/
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.ORDER_ID,deliveryBoyList.get(position).getId());
-        getDashboardActivity().addFragmentInContainer(new OrderDetailsFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new OrderDetailsDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
 
     }
 

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        style="@style/match_match"
+        android:background="@android:color/white">
+
+        <LinearLayout
+            style="@style/match_wrap"
+            android:layout_marginBottom="@dimen/margin_7"
+            android:orientation="vertical"
+            android:padding="@dimen/margin_15">
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_35"
+                android:text="@string/customer_name" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvCustomerName"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/customer_address" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvCustomerAddress"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_value" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOrderValue"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_no" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOrderNumber"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_date" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOrderDate"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/order_status" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvOrderStatus"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:text="@string/payment_status" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvPaymentStatus"
+                style="@style/textview_description_match"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:layout_marginTop="@dimen/margin_5" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginBottom="@dimen/margin_15"
+                android:layout_marginTop="@dimen/margin_7"
+                android:text="@string/order_items" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvOrderItems"
+                style="@style/match_wrap"
+                android:paddingStart="@dimen/margin_4" />
+
+            <com.app.merchant.widget.CustomTextView
+                style="@style/textview_description_ex_large_match"
+                android:layout_marginTop="@dimen/margin_7"
+                android:text="@string/select_delivery_boy" />
+            <RelativeLayout
+                style="@style/match_wrap"
+                android:layout_marginTop="@dimen/margin_5"
+                android:layout_marginBottom="@dimen/margin_5"
+                android:background="@drawable/grey_corner_bg">
+
+                <Spinner
+                    android:id="@+id/deliveryBoySpiner"
+                    style="@style/match_wrap"
+                    android:dropDownWidth="@dimen/margin_230"
+                    android:overlapAnchor="false" />
+            </RelativeLayout>
+
+
+
+                <com.app.merchant.widget.CustomTextView
+                    style="@style/textview_description_match"
+                    android:text="@string/out_for_delivery"
+                    android:layout_marginTop="@dimen/margin_5"
+                    android:textAllCaps="true"/>
+
+            <com.app.merchant.widget.CustomEditText
+                android:id="@+id/edSellingPrice"
+                style="@style/textview_description_match"
+                android:layout_marginEnd="@dimen/margin_20"
+                android:padding="@dimen/margin_5"
+                android:background="@null"
+                android:gravity="center_vertical"
+                />
+            <ImageView
+                style="@style/view_layout_dark_grey"
+                android:layout_marginBottom="@dimen/margin_20" />
+
+            <com.app.merchant.widget.CustomTextView
+                android:id="@+id/tvAddPayment"
+                style="@style/textview_description_wrap"
+                android:text="@string/add_payment"
+                android:layout_gravity="right"
+                android:textAllCaps="true" />
+            <View
+                android:id="@+id/showHideView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/margin_230"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </ScrollView>
+</layout>
