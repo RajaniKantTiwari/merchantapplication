@@ -13,6 +13,7 @@ import com.app.merchant.network.request.dashboard.cart.CartRequest;
 import com.app.merchant.network.request.dashboard.cart.CategoryRequest;
 import com.app.merchant.network.request.dashboard.cart.CategorySubCatRequest;
 import com.app.merchant.network.request.dashboard.cart.CheckoutRequest;
+import com.app.merchant.network.request.dashboard.cart.ConfirmOrderRequest;
 import com.app.merchant.network.request.dashboard.cart.DeleteCartRequest;
 import com.app.merchant.network.request.dashboard.cart.InventoryStatusRequest;
 import com.app.merchant.network.request.dashboard.cart.MerchantProductListRequest;
@@ -146,7 +147,7 @@ public interface Repository {
 
     Observable<BaseResponse> assignDeliveryBoyToOrder(AssignedDeliveryBoyRequest request);
 
-    Observable<BaseResponse> confirmOrder(CancelOrderRequest request);
+    Observable<BaseResponse> confirmOrder(ConfirmOrderRequest request);
 
     Observable<OrderDetailsData> getPartialOrderDetail(OrderRequest request);
 

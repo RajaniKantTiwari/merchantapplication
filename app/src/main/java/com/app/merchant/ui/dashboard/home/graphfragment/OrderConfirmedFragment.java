@@ -14,6 +14,7 @@ import com.app.merchant.databinding.FragmentOrderConfirmedBinding;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
+import com.app.merchant.network.request.dashboard.cart.ConfirmOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.Order;
 import com.app.merchant.network.response.dashboard.OrderData;
@@ -299,8 +300,8 @@ public class OrderConfirmedFragment extends DashboardFragment implements
 
     @Override
     public void orderConfirmed() {
-        CancelOrderRequest request = new CancelOrderRequest();
-        request.setOrder_id(orderList.get(orderPosition).getId());
+        ConfirmOrderRequest request = new ConfirmOrderRequest();
+        request.setOrderid(orderList.get(orderPosition).getId());
         getPresenter().confirmOrder(getDashboardActivity(), request);
     }
 

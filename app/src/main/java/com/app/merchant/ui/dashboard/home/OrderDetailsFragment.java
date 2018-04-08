@@ -14,6 +14,7 @@ import com.app.merchant.databinding.FragmentOrderDetailsBinding;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
+import com.app.merchant.network.request.dashboard.cart.ConfirmOrderRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.dashboard.OrderDetail;
 import com.app.merchant.network.response.dashboard.OrderDetailsData;
@@ -149,6 +150,12 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
         AsignAdapter adapter = new AsignAdapter(getContext(), deliveryBoyNameList);
         adapter.setDropDownViewResource(R.layout.spinner_row);
         mBinding.deliveryBoySpiner.setAdapter(adapter);
+        mBinding.deliveryBoySpiner.post(new Runnable() {
+            @Override
+            public void run() {
+                mBinding.deliveryBoySpiner.setSelection(4);
+            }
+        });
         mBinding.deliveryBoySpiner.setSelection(adapter.getCount());
         mBinding.deliveryBoySpiner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -188,8 +195,8 @@ public class OrderDetailsFragment extends DashboardFragment implements OrderList
             request.setOrder_id(orderId);
             getPresenter().cancelOrder(getDashboardActivity(), request);
         } else if (view == mBinding.tvConfirmOrder) {
-            CancelOrderRequest request = new CancelOrderRequest();
-            request.setOrder_id(orderId);
+            ConfirmOrderRequest request = new ConfirmOrderRequest();
+            request.setOrderid(orderId);
             getPresenter().confirmOrder(getDashboardActivity(), request);
         }
     }
