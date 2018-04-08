@@ -25,6 +25,7 @@ import com.app.merchant.ui.dashboard.home.AssignNewDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsOutForDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.OrderDetailsShowFragment;
+import com.app.merchant.ui.dashboard.home.OrderReturnRequestDeliveryFragment;
 import com.app.merchant.ui.dashboard.home.adapter.OrderReturnedRequestAdapter;
 import com.app.merchant.ui.dialogfrag.DeliveryBoyDialogFragment;
 import com.app.merchant.ui.dialogfrag.RatingDialogFragment;
@@ -223,7 +224,7 @@ public class OrderReturnedRequestFragment extends DashboardFragment implements
     public void orderDetailClick(int position) {
         Bundle bundle = new Bundle();
         bundle.putString(BundleConstants.ORDER_ID,orderReturnedList.get(position).getId());
-        getDashboardActivity().addFragmentInContainer(new OrderDetailsOutForDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
+        getDashboardActivity().addFragmentInContainer(new OrderReturnRequestDeliveryFragment(), bundle, true, true, BaseActivity.AnimationType.NONE);
     }
 
     @Override

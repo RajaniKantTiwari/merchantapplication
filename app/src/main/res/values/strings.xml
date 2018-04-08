@@ -394,6 +394,8 @@
     <string name="enter_reason_for_cancellation">Enter Reason for Cancellation</string>
     <string name="confirm_cancellation">Confirm Cancellation</string>
     <string name="reject_cancellation">Reject Cancellation</string>
+    <string name="confirm_return">Confirm Return</string>
+    <string name="cancel_return">Cancel Return</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
