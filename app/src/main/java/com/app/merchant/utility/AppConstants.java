@@ -50,6 +50,8 @@ public interface AppConstants {
     int HELP = 4;
     int SENIOR_CITIZEN = 5;
     int TERM_CONDITION = 6;
+    String TITLE = "title";
+    String VISIBLE = "visible";
     int PAYMENT_HEIGHT = 48;
     long SPLASH_TIME = 800;
     int CORNER_RADIUS = 10;

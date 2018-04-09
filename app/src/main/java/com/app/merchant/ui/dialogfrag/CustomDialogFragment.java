@@ -49,8 +49,8 @@ public class CustomDialogFragment extends DialogFragment implements View.OnClick
     private void initializeData() {
         Bundle bundle = getArguments();
         if (CommonUtility.isNotNull(bundle)) {
-            mBinding.tvMessage.setText(bundle.getString(BundleConstants.TITLE));
-            if (bundle.getBoolean(BundleConstants.VISIBLE, false)) {
+            mBinding.tvMessage.setText(bundle.getString(AppConstants.TITLE));
+            if (bundle.getBoolean(AppConstants.VISIBLE, false)) {
                 mBinding.edMobileNumber.setVisibility(View.VISIBLE);
                 ((BaseActivity) getActivity()).showKeyboard();
             }

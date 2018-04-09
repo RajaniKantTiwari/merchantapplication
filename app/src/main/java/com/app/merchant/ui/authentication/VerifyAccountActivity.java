@@ -32,6 +32,8 @@ import com.app.merchant.utility.PreferenceUtils;
 
 import javax.inject.Inject;
 
+import io.fabric.sdk.android.services.common.CommonUtils;
+
 /**
  * Created by on 23/12/17.
  */
@@ -71,7 +73,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         mBinding.edFourth.setOnKeyListener(this);
         mBinding.tvResend.setOnClickListener(this);
         mBinding.tvChange.setOnClickListener(this);
-
+        mBinding.tvResend.setOnClickListener(this);
     }
 
     public void initializeData() {
@@ -79,7 +81,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
         if (isNotNull(intent)) {
             Bundle bundle = intent.getExtras();
             if (isNotNull(bundle)) {
-                email=bundle.getString(BundleConstants.EMAIL);
+                email = bundle.getString(BundleConstants.EMAIL);
                 mobileNumber = bundle.getString(BundleConstants.MOBILE_NUMBER);
             }
         }
@@ -96,6 +98,14 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
             Bundle bundle = new Bundle();
             bundle.putString(BundleConstants.TITLE, getResources().getString(R.string.please_enter_mobile_number));
             bundle.putBoolean(BundleConstants.VISIBLE, true);
+            CommonUtility.showDialog(this, bundle, this);
+        } else if (mBinding.tvResend == view) {
+            presenter.verifyMobileNumber(this, new VerifyMobileRequest(mobileNumber, Integer.parseInt(otpNumber.toString())));
+        } else if (mBinding.tvChange == view) {
+            //CommonUtils.clicked(mBinding.tvChange);
+            Bundle bundle = new Bundle();
+            bundle.putString(AppConstants.TITLE, getResources().getString(R.string.please_enter_mobile_number));
+            bundle.putBoolean(AppConstants.VISIBLE, true);
             CommonUtility.showDialog(this, bundle, this);
         }
     }
@@ -138,7 +148,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
                             PreferenceUtils.setAuthToken(verifyMobileResponse.getAuthkey());
                             PreferenceUtils.setEmail(email);
                             PreferenceUtils.setLogin(true);
-                           CommonUtility.showOkDialog(this,this);
+                            CommonUtility.showOkDialog(this, this);
                         } else {
                             hideKeyboard();
                             showToast(getResources().getString(R.string.server_error));

@@ -62,7 +62,7 @@
     <string name="term_condition">Terms and Conditions</string>
     <string name="logout">Logout</string>
     <string name="verify_account">Verify Account</string>
-    <string name="please_enter_verification_code">Please enter the verification code we \nsent to your email address</string>
+    <string name="please_enter_verification_code">Please enter the verification code we \nsent to your mobile number</string>
     <string name="resend_otp">Resend OTP</string>
     <string name="change_number">Change Number</string>
     <string name="otp_has_been_send">Otp has been send</string>

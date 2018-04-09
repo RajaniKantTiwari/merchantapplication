@@ -200,9 +200,9 @@ public class OrderReturnRequestDeliveryFragment extends DashboardFragment implem
         FeedBackRequest request = new FeedBackRequest();
         request.setOrder_id(orderId);
         request.setRatings(String.valueOf(mBinding.ratingBar.getRating()));
-        if (CommonUtility.isNotNull(mBinding.edFeedBack.getText().toString()) && mBinding.edFeedBack.getText().toString().trim().length() > 0) {
+        /*if (CommonUtility.isNotNull(mBinding.edFeedBack.getText().toString()) && mBinding.edFeedBack.getText().toString().trim().length() > 0) {
             request.setFeedback(mBinding.edFeedBack.getText().toString().trim());
-        }
+        }*/
         getPresenter().addOrderFeedback(getDashboardActivity(), request);
     }
 
