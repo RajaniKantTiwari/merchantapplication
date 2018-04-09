@@ -10,8 +10,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-
-
 import com.app.merchant.MerchantApplication;
 import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityVerifyAccountBinding;
@@ -241,8 +239,7 @@ public class VerifyAccountActivity extends CommonActivity implements TextWatcher
     @Override
     public void ok(String str) {
         mobileNumber = str;
-        /*presenter.registerMerchant(this, new RegisterRequest(userName, mobileNumber,
-                PreferenceUtils.getLatitude(), PreferenceUtils.getLongitude()));*/
+        presenter.verifyMobileNumber(this, new VerifyMobileRequest(mobileNumber, Integer.parseInt(otpNumber.toString())));
         hideKeyboard();
     }
 
