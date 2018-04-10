@@ -11,6 +11,8 @@ import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -61,7 +63,9 @@ import javax.inject.Inject;
 
 import static com.app.merchant.utility.AppConstants.PERMISSIONS_REQUEST_LOCATION;
 
-public class RegisterActivity extends CommonActivity implements MvpView, View.OnClickListener, StoreImageAdapter.ImageListener {
+public class RegisterActivity extends CommonActivity
+        implements MvpView, View.OnClickListener,
+        StoreImageAdapter.ImageListener, View.OnFocusChangeListener {
     private static final String TAG = RegisterActivity.class.getSimpleName();
     ActivityResisterBinding mBinding;
     private GPSTracker gpsTracker;
@@ -117,10 +121,28 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
         mBinding.layoutProduct.setOnClickListener(this);
         mBinding.layoutService.setOnClickListener(this);
         mBinding.tvLocateMe.setOnClickListener(this);
+        mBinding.edEmail.setOnFocusChangeListener(this);
+        mBinding.edMobileNumber.setOnFocusChangeListener(this);
     }
 
     public void initializeData() {
 
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        switch (v.getId()) {
+            case R.id.edEmail:
+                if (!hasFocus) {
+                    presenter.veryfyEmail(this);
+                }
+                break;
+            case R.id.edMobileNumber:
+                if (!hasFocus) {
+                    presenter.veryfyMobile(this);
+                }
+                break;
+        }
     }
 
     @Override
@@ -132,7 +154,9 @@ public class RegisterActivity extends CommonActivity implements MvpView, View.On
 
     @Override
     public void onSuccess(BaseResponse response, int requestCode) {
-
+        if (CommonUtility.isNotNull(response)) {
+            showToast(response.getMsg());
+        }
     }
 
     @Override

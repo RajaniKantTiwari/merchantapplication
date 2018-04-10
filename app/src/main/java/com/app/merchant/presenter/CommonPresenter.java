@@ -16,6 +16,7 @@ import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.network.response.UserSearchResponseData;
 import com.app.merchant.network.response.VerifyMobileResponse;
 import com.app.merchant.network.request.CustomerPhoneRequest;
+import com.app.merchant.ui.authentication.RegisterActivity;
 import com.app.merchant.ui.base.MvpView;
 import com.app.merchant.ui.base.Presenter;
 import com.app.merchant.ui.dashboard.CustomerDetailActivity;
@@ -137,6 +138,44 @@ public class CommonPresenter implements Presenter<MvpView> {
             public void onError(Throwable call, BaseResponse baseResponse) {
                 mView.hideProgress();
                 mView.onError(call, 1);
+            }
+        });
+    }
+
+    public void veryfyEmail(RegisterActivity activity) {
+        mView.showProgress();
+        mRepository.veryfyEmail().
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 1);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(call, 1);
+            }
+        });
+    }
+
+    public void veryfyMobile(RegisterActivity activity) {
+        mView.showProgress();
+        mRepository.veryfyMobile().
+                subscribeOn(Schedulers.io()).
+                observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
+            @Override
+            public void onResponse(BaseResponse response) {
+                mView.hideProgress();
+                mView.onSuccess(response, 2);
+            }
+
+            @Override
+            public void onError(Throwable call, BaseResponse baseResponse) {
+                mView.hideProgress();
+                mView.onError(call, 2);
             }
         });
     }

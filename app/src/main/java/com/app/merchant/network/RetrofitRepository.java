@@ -332,5 +332,15 @@ public class RetrofitRepository implements Repository {
         return apiService.updateMyInventoryStatus(request);
     }
 
+    @Override
+    public Observable<BaseResponse> veryfyEmail() {
+        return apiService.veryfyEmail();
+    }
+
+    @Override
+    public Observable<BaseResponse> veryfyMobile() {
+        return apiService.veryfyMobile();
+    }
+
 
 }

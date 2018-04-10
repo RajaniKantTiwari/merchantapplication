@@ -168,4 +168,8 @@ public interface Repository {
     Observable<BaseResponse> updateMyInventory(UpdateMyInventoryRequest request);
 
     Observable<BaseResponse> updateMyInventoryStatus(InventoryStatusRequest request);
+
+    Observable<BaseResponse> veryfyEmail();
+
+    Observable<BaseResponse> veryfyMobile();
 }

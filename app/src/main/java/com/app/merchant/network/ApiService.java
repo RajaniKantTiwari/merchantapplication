@@ -224,4 +224,10 @@ public interface ApiService {
     @POST("shopping/get_partial_order_details")
     Observable<OrderDetailsData> getPartialOrderDetail(@Body OrderRequest request);
 
+    @POST("register/verifymobile")
+    Observable<BaseResponse> veryfyMobile();
+
+    @POST("register/verifyemail")
+    Observable<BaseResponse> veryfyEmail();
+
 }
