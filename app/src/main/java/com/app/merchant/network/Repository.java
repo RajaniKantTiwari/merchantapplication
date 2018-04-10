@@ -5,6 +5,8 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
+import com.app.merchant.network.request.dashboard.EmailRequest;
+import com.app.merchant.network.request.dashboard.MobileRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -62,7 +64,6 @@ import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrderData;
 import com.app.merchant.network.response.dashboard.deliveryboy.DeliveryBoyOrdersData;
 
-import io.reactivex.Completable;
 import io.reactivex.Observable;
 
 
@@ -169,7 +170,7 @@ public interface Repository {
 
     Observable<BaseResponse> updateMyInventoryStatus(InventoryStatusRequest request);
 
-    Observable<BaseResponse> veryfyEmail();
+    Observable<BaseResponse> veryfyEmail(EmailRequest request);
 
-    Observable<BaseResponse> veryfyMobile();
+    Observable<BaseResponse> veryfyMobile(MobileRequest request);
 }

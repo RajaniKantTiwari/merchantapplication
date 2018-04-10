@@ -6,6 +6,8 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
+import com.app.merchant.network.request.dashboard.EmailRequest;
+import com.app.merchant.network.request.dashboard.MobileRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -225,9 +227,9 @@ public interface ApiService {
     Observable<OrderDetailsData> getPartialOrderDetail(@Body OrderRequest request);
 
     @POST("register/verifymobile")
-    Observable<BaseResponse> veryfyMobile();
+    Observable<BaseResponse> veryfyMobile(@Body MobileRequest request);
 
     @POST("register/verifyemail")
-    Observable<BaseResponse> veryfyEmail();
+    Observable<BaseResponse> veryfyEmail(@Body EmailRequest request);
 
 }

@@ -6,6 +6,8 @@ import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
 import com.app.merchant.network.request.dashboard.AssignedDeliveryBoyRequest;
+import com.app.merchant.network.request.dashboard.EmailRequest;
+import com.app.merchant.network.request.dashboard.MobileRequest;
 import com.app.merchant.network.request.dashboard.OrderRequest;
 import com.app.merchant.network.request.dashboard.ProductRequest;
 import com.app.merchant.network.request.dashboard.cart.CancelOrderRequest;
@@ -333,13 +335,13 @@ public class RetrofitRepository implements Repository {
     }
 
     @Override
-    public Observable<BaseResponse> veryfyEmail() {
-        return apiService.veryfyEmail();
+    public Observable<BaseResponse> veryfyEmail(EmailRequest request) {
+        return apiService.veryfyEmail(request);
     }
 
     @Override
-    public Observable<BaseResponse> veryfyMobile() {
-        return apiService.veryfyMobile();
+    public Observable<BaseResponse> veryfyMobile(MobileRequest request) {
+        return apiService.veryfyMobile(request);
     }
 
 

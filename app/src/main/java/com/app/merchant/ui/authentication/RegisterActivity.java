@@ -28,6 +28,8 @@ import com.app.merchant.R;
 import com.app.merchant.databinding.ActivityResisterBinding;
 import com.app.merchant.event.UpdateAddress;
 import com.app.merchant.network.request.RegisterRequest;
+import com.app.merchant.network.request.dashboard.EmailRequest;
+import com.app.merchant.network.request.dashboard.MobileRequest;
 import com.app.merchant.network.request.dashboard.StoreImage;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.presenter.CommonPresenter;
@@ -134,12 +136,16 @@ public class RegisterActivity extends CommonActivity
         switch (v.getId()) {
             case R.id.edEmail:
                 if (!hasFocus) {
-                    presenter.veryfyEmail(this);
+                    if(CommonUtility.checkValidEmail(mBinding.edEmail.getText().toString().trim())){
+                        presenter.veryfyEmail(this,new EmailRequest(mBinding.edEmail.getText().toString().trim()));
+                    }
                 }
                 break;
             case R.id.edMobileNumber:
                 if (!hasFocus) {
-                    presenter.veryfyMobile(this);
+                    if(mBinding.edMobileNumber.getText().toString().trim().length()==10) {
+                        presenter.veryfyMobile(this,new MobileRequest(mBinding.edMobileNumber.getText().toString().trim()));
+                    }
                 }
                 break;
         }

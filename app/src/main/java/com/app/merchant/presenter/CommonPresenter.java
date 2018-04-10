@@ -9,6 +9,8 @@ import com.app.merchant.network.request.CustomerRequest;
 import com.app.merchant.network.request.LoginRequest;
 import com.app.merchant.network.request.RegisterRequest;
 import com.app.merchant.network.request.VerifyMobileRequest;
+import com.app.merchant.network.request.dashboard.EmailRequest;
+import com.app.merchant.network.request.dashboard.MobileRequest;
 import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.CustomerDetailData;
 import com.app.merchant.network.response.LoginResponseData;
@@ -142,9 +144,8 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void veryfyEmail(RegisterActivity activity) {
-        mView.showProgress();
-        mRepository.veryfyEmail().
+    public void veryfyEmail(RegisterActivity activity, EmailRequest request) {
+        mRepository.veryfyEmail(request).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
@@ -161,9 +162,8 @@ public class CommonPresenter implements Presenter<MvpView> {
         });
     }
 
-    public void veryfyMobile(RegisterActivity activity) {
-        mView.showProgress();
-        mRepository.veryfyMobile().
+    public void veryfyMobile(RegisterActivity activity, MobileRequest request) {
+        mRepository.veryfyMobile(request).
                 subscribeOn(Schedulers.io()).
                 observeOn(AndroidSchedulers.mainThread()).subscribeWith(new DefaultApiObserver<BaseResponse>(activity) {
             @Override
