@@ -188,19 +188,19 @@ public class DashBoardActivity extends BaseActivity implements DrawerAdapterLeft
                 case 1:
                     if (i == position) {
                         mBinding.bottomLayout.viewBar2.setVisibility(View.VISIBLE);
-                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.ic_gift);
+                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.orders);
                     } else {
                         mBinding.bottomLayout.viewBar2.setVisibility(View.INVISIBLE);
-                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.ic_gift_light);
+                        mBinding.bottomLayout.imageViewBar2.setImageResource(R.drawable.orders_light);
                     }
                     break;
                 case 2:
                     if (i == position) {
                         mBinding.bottomLayout.viewBar3.setVisibility(View.VISIBLE);
-                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.ic_notification);
+                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.delivery);
                     } else {
                         mBinding.bottomLayout.viewBar3.setVisibility(View.INVISIBLE);
-                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.ic_notification_light);
+                        mBinding.bottomLayout.imageViewBar3.setImageResource(R.drawable.delivery_light);
                     }
                     break;
                 case 3:

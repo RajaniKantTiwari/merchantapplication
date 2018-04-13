@@ -50,7 +50,7 @@
                     <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/imageViewBar2"
                         style="@style/home_view"
-                        android:src="@drawable/ic_gift_light" />
+                        android:src="@drawable/orders" />
                 </RelativeLayout>
 
             </RelativeLayout>
@@ -72,7 +72,7 @@
                     <android.support.v7.widget.AppCompatImageView
                         android:id="@+id/imageViewBar3"
                         style="@style/home_view"
-                        android:src="@drawable/ic_notification_light" />
+                        android:src="@drawable/delivery" />
                 </RelativeLayout>
 
             </RelativeLayout>
