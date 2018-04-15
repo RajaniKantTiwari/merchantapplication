@@ -11,21 +11,11 @@
             android:id="@+id/layoutCash"
             style="@style/wrap_wrap">
 
-            <RadioButton
-                android:id="@+id/radioCash"
+            <CheckBox
+                android:id="@+id/chkCash"
                 style="@style/textview_description_wrap"
-                android:buttonTint="@color/radio_button_color"
-                android:clickable="false"
-                android:checked="true"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
-
-            <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_large_wrap"
-                android:layout_marginStart="@dimen/margin_3_minus"
-                android:text="@string/cash"
-                android:textColor="@color/gr_color"
-                app:customFont="@string/font_regular" />
+                android:layout_marginStart="@dimen/margin_8"
+                android:text="@string/cash" />
         </LinearLayout>
 
         <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
@@ -34,21 +24,10 @@
             android:id="@+id/layoutCard"
             style="@style/wrap_wrap">
 
-            <RadioButton
-                android:id="@+id/radioCard"
+            <CheckBox
+                android:id="@+id/chkCard"
                 style="@style/textview_description_wrap"
-                android:buttonTint="@color/radio_button_color"
-
-                android:clickable="false"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
-
-            <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_large_wrap"
-                android:layout_marginStart="@dimen/margin_3_minus"
-                android:text="@string/card"
-                android:textColor="@color/gr_color"
-                app:customFont="@string/font_regular" />
+                android:text="@string/card" />
         </LinearLayout>
 
         <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
@@ -57,20 +36,10 @@
             android:id="@+id/layoutPaytm"
             style="@style/wrap_wrap">
 
-            <RadioButton
-                android:id="@+id/radioPaytm"
+            <CheckBox
+                android:id="@+id/chkPaytm"
                 style="@style/textview_description_wrap"
-                android:buttonTint="@color/radio_button_color"
-                android:clickable="false"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
-
-            <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_large_wrap"
-                android:layout_marginStart="@dimen/margin_3_minus"
-                android:text="@string/paytm"
-                android:textColor="@color/gr_color"
-                app:customFont="@string/font_regular" />
+                android:text="@string/paytm" />
         </LinearLayout>
 
         <android.support.v4.widget.Space style="@style/layout_hori_match_1" />
@@ -79,20 +48,10 @@
             android:id="@+id/layoutOther"
             style="@style/wrap_wrap">
 
-            <RadioButton
-                android:id="@+id/radioOther"
+            <CheckBox
+                android:id="@+id/chkOther"
                 style="@style/textview_description_wrap"
-                android:buttonTint="@color/radio_button_color"
-                android:clickable="false"
-                android:scaleX="0.7"
-                android:scaleY="0.7" />
-
-            <com.app.merchant.widget.CustomTextView
-                style="@style/textview_description_large_wrap"
-                android:layout_marginStart="@dimen/margin_3_minus"
-                android:text="@string/other"
-                android:textColor="@color/gr_color"
-                app:customFont="@string/font_regular" />
+                android:text="@string/other" />
         </LinearLayout>
 
         <android.support.v4.widget.Space style="@style/layout_hori_match_3" />

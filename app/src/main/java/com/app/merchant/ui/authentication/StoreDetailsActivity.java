@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -21,7 +20,6 @@ import com.app.merchant.network.response.BaseResponse;
 import com.app.merchant.network.response.RegisterResponseData;
 import com.app.merchant.presenter.CommonPresenter;
 import com.app.merchant.ui.base.MvpView;
-import com.app.merchant.ui.dialogfrag.OkDialogFragment;
 import com.app.merchant.ui.uploadfile.UploadImage;
 import com.app.merchant.utility.AppConstants;
 import com.app.merchant.utility.BundleConstants;
@@ -55,7 +53,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
     private String accountNumber;
     private String ifscCode;
     private String deliveryCharge;
-    private String serviceArea;
+    //private String serviceArea;
     private RegisterRequest register;
     private int numberOfStoreAreas;
     private List<View> viewList = new ArrayList<>();
@@ -146,14 +144,6 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
                     loginOnFireBase();
                 }
             }
-        } else if (view == mBinding.layoutPayment.layoutCash) {
-            selectCash();
-        } else if (view == mBinding.layoutPayment.layoutCard) {
-            selectCard();
-        } else if (view == mBinding.layoutPayment.layoutPaytm) {
-            selectPaytm();
-        } else if (view == mBinding.layoutPayment.layoutOther) {
-            selectOther();
         } else if (view == mBinding.tvAddMoreAreas) {
             addChildView(numberOfStoreAreas);
         } else if (mBinding.tvDateOfBirth == view) {
@@ -208,57 +198,31 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
             register.setAvgtime(avgtime);
             setPaymentOption();
             register.setDelivery(deliveryCharge);
-            register.setServicingarea(serviceArea);
-            if (CommonUtility.isNotNull(viewList) && viewList.size() > 0) {
+            //register.setServicingarea(serviceArea);
+            /*if (CommonUtility.isNotNull(viewList) && viewList.size() > 0) {
                 ArrayList<String> otherServiceArea = new ArrayList<>();
                 for (int i = 0; i < viewList.size(); i++) {
                     EditText edServiceArea = viewList.get(i).findViewById(R.id.edServiceArea);
                     otherServiceArea.add(edServiceArea.getText().toString());
                 }
                 register.setOtherServiceArea(otherServiceArea);
-            }
+            }*/
         }
     }
 
     private void setPaymentOption() {
-        if (mBinding.layoutPayment.radioCash.isChecked()) {
-            register.setPaymentmode(getResources().getString(R.string.optioncash));
-        } else if (mBinding.layoutPayment.radioCard.isChecked()) {
-            register.setPaymentmode(getResources().getString(R.string.optioncard));
-        } else if (mBinding.layoutPayment.radioPaytm.isChecked()) {
-            register.setPaymentmode(getResources().getString(R.string.optionpaytm));
-        } else if (mBinding.layoutPayment.radioOther.isChecked()) {
-            register.setPaymentmode(getResources().getString(R.string.optionother));
+        if (mBinding.layoutPayment.chkCash.isChecked()) {
+            register.setPaymentmode(register.getPaymentmode()+","+getResources().getString(R.string.optioncash));
+        } else if (mBinding.layoutPayment.chkCard.isChecked()) {
+            register.setPaymentmode(register.getPaymentmode()+","+getResources().getString(R.string.optioncard));
+        } else if (mBinding.layoutPayment.chkPaytm.isChecked()) {
+            register.setPaymentmode(register.getPaymentmode()+","+getResources().getString(R.string.optionpaytm));
+        } else if (mBinding.layoutPayment.chkOther.isChecked()) {
+            register.setPaymentmode(register.getPaymentmode()+","+getResources().getString(R.string.optionother));
         }
     }
 
-    private void selectOther() {
-        mBinding.layoutPayment.radioCash.setChecked(false);
-        mBinding.layoutPayment.radioCard.setChecked(false);
-        mBinding.layoutPayment.radioPaytm.setChecked(false);
-        mBinding.layoutPayment.radioOther.setChecked(true);
-    }
 
-    private void selectPaytm() {
-        mBinding.layoutPayment.radioCash.setChecked(false);
-        mBinding.layoutPayment.radioCard.setChecked(false);
-        mBinding.layoutPayment.radioPaytm.setChecked(true);
-        mBinding.layoutPayment.radioOther.setChecked(false);
-    }
-
-    private void selectCard() {
-        mBinding.layoutPayment.radioCash.setChecked(false);
-        mBinding.layoutPayment.radioCard.setChecked(true);
-        mBinding.layoutPayment.radioPaytm.setChecked(false);
-        mBinding.layoutPayment.radioOther.setChecked(false);
-    }
-
-    private void selectCash() {
-        mBinding.layoutPayment.radioCash.setChecked(true);
-        mBinding.layoutPayment.radioCard.setChecked(false);
-        mBinding.layoutPayment.radioPaytm.setChecked(false);
-        mBinding.layoutPayment.radioOther.setChecked(false);
-    }
 
     private boolean isValid() {
         coi = mBinding.edCoi.getText().toString();
@@ -277,7 +241,7 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         accountNumber = mBinding.edAccountNumber.getText().toString();
         ifscCode = mBinding.edIFSCCode.getText().toString();
         deliveryCharge = mBinding.edDelivery.getText().toString();
-        serviceArea = mBinding.edServiceArea.getText().toString();
+        //serviceArea = mBinding.edServiceArea.getText().toString();
         if (isNull(legalName) || legalName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_legalname_of_company));
             return false;
@@ -335,10 +299,15 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         } else if (isNull(deliveryCharge) || deliveryCharge.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_delivery_charge));
             return false;
-        } else if (isNull(serviceArea) || serviceArea.trim().length() == 0) {
-            showToast(getResources().getString(R.string.please_enter_service_area));
+        }else if (!mBinding.layoutPayment.chkCash.isChecked()&&!mBinding.layoutPayment.chkCard.isChecked()&&
+                !mBinding.layoutPayment.chkPaytm.isChecked()&&mBinding.layoutPayment.chkOther.isChecked()) {
+            showToast(getResources().getString(R.string.please_check_atleast_one_payment_method));
             return false;
         }
+        /*else if (isNull(serviceArea) || serviceArea.trim().length() == 0) {
+            showToast(getResources().getString(R.string.please_enter_service_area));
+            return false;
+        }*/
         return true;
 
     }

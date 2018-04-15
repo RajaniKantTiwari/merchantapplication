@@ -132,6 +132,6 @@
     <integer name="mono_length">10</integer>
     <integer name="pan_length">10</integer>
     <integer name="gstin_length">15</integer>
-
+    <integer name="coi_length">12</integer>
 
 </resources>

@@ -55,6 +55,7 @@
                 style="@style/edit_text_style_medium"
                 android:layout_marginTop="@dimen/margin_10"
                 android:hint="@string/enter_coi"
+                android:maxLength="@integer/coi_length"
                 android:inputType="text"
                 android:maxLines="1"
                 android:imeOptions="actionNext"
@@ -241,6 +242,8 @@
                 android:imeOptions="actionNext"
                 android:inputType="number"
                 android:maxLength="@integer/gstin_length"
+                android:drawableStart="@drawable/rupee_blue"
+                android:drawablePadding="@dimen/margin_5"
                 android:paddingBottom="@dimen/margin_3"
                 android:paddingTop="@dimen/margin_7" />
 
@@ -386,7 +389,7 @@
                 style="@style/view_layout_dark_grey"
                 android:layout_marginBottom="@dimen/margin_20" />
 
-            <com.app.merchant.widget.CustomTextView
+           <!-- <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_ex_large_match"
                 android:text="@string/servicing_areas"
                 app:customFont="@string/font_regular" />
@@ -398,11 +401,11 @@
                 android:hint="@string/servicing_areas"
                 android:imeOptions="actionNext"
                 android:paddingBottom="@dimen/margin_3"
-                android:paddingTop="@dimen/margin_7" />
+                android:paddingTop="@dimen/margin_7" />-->
 
-            <ImageView
+            <!--<ImageView
                 style="@style/view_layout_dark_grey"
-                />
+                />-->
             <LinearLayout
                 android:id="@+id/layoutMoreService"
                 style="@style/match_wrap"
@@ -418,7 +421,8 @@
                 style="@style/textview_description_small_match"
                 android:padding="@dimen/margin_7"
                 android:text="@string/add_more_areas"
-                android:textColor="@color/green_color" />
+                android:textColor="@color/green_color"
+                android:visibility="gone"/>
 
             <com.app.merchant.widget.CustomTextView
                 style="@style/textview_description_large_match"

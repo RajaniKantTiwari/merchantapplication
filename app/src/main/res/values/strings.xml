@@ -308,7 +308,7 @@
     <string name="five_pm">5 pm</string>
     <string name="min_order">Minimum Order</string>
     <string name="five">5</string>
-    <string name="average_time">Average Time</string>
+    <string name="average_time">Average time to deliver</string>
     <string name="thirty_min">30 min</string>
     <string name="nationality">Nationality</string>
     <string name="indian">Indian</string>
@@ -396,6 +396,7 @@
     <string name="reject_cancellation">Reject Cancellation</string>
     <string name="confirm_return">Confirm Return</string>
     <string name="cancel_return">Cancel Return</string>
+    <string name="please_check_atleast_one_payment_method">Please Check atleast One payment Method</string>
     <string-array name="left_drawer">
         <item>@string/home</item>
         <item>@string/edit_profile</item>
