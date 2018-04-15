@@ -299,8 +299,10 @@ public class StoreDetailsActivity extends CommonActivity implements MvpView, Vie
         } else if (isNull(deliveryCharge) || deliveryCharge.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_delivery_charge));
             return false;
-        }else if (!mBinding.layoutPayment.chkCash.isChecked()&&!mBinding.layoutPayment.chkCard.isChecked()&&
-                !mBinding.layoutPayment.chkPaytm.isChecked()&&mBinding.layoutPayment.chkOther.isChecked()) {
+        }else if (!mBinding.layoutPayment.chkCash.isChecked()&&
+                !mBinding.layoutPayment.chkCard.isChecked()&&
+                !mBinding.layoutPayment.chkPaytm.isChecked()
+                &&!mBinding.layoutPayment.chkOther.isChecked()) {
             showToast(getResources().getString(R.string.please_check_atleast_one_payment_method));
             return false;
         }
