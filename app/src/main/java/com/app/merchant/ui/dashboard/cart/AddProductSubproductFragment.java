@@ -283,7 +283,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
             if (CommonUtility.isNotNull(subCatList) && subCatList.size() > 0) {
                 mSubCatList.clear();
                 mSubCatList.addAll(subCatList);
-                mSubCatList.get(0).setSelected(true);
+                //mSubCatList.get(0).setSelected(true);
                 mSubCategoryAdapter.notifyDataSetChanged();
             }
         }
@@ -297,7 +297,7 @@ public class AddProductSubproductFragment extends DashboardFragment implements
             if (CommonUtility.isNotNull(categoryList) && categoryList.size() > 0) {
                 mCatList.clear();
                 mCatList.addAll(categoryList);
-                mCatList.get(0).setSelected(true);
+                //mCatList.get(0).setSelected(true);
                 mCategoryAdapter.notifyDataSetChanged();
             } else {
                 CommonUtility.setVisibility(mBinding.layoutMain, mBinding.layoutNoData.layoutNoData, false);

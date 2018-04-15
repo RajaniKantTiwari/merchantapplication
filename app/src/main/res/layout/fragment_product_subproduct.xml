@@ -34,12 +34,13 @@
                     android:gravity="center"
                     android:layout_toStartOf="@+id/addInventory"
                     android:textAllCaps="true" />
+
                 <ImageView
                     android:id="@+id/addInventory"
                     style="@style/image_30"
                     android:layout_alignParentEnd="true"
-                    android:src="@drawable/add"
-                    android:layout_marginEnd="@dimen/margin_5"/>
+                    android:layout_alignParentTop="true"
+                    android:src="@drawable/add" />
             </RelativeLayout>
 
             <ImageView

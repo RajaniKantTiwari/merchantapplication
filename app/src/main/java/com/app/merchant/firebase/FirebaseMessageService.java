@@ -33,7 +33,6 @@ public class FirebaseMessageService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
         super.onMessageReceived(remoteMessage);
-
         if(remoteMessage!=null){
             ShortcutBadger.applyCount(getApplicationContext(), 5);
             //ShortcutBadger.removeCount(getApplicationContext());

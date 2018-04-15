@@ -75,6 +75,9 @@ public class AddProductMyListFragment extends DashboardFragment implements DateP
         }
         if (CommonUtility.isNotNull(product)) {
             mBinding.tvProductName.setText(product.getProductname());
+            mBinding.edMrp.setText(String.valueOf(product.getMrp()));
+            mBinding.edSelling.setText(String.valueOf(product.getSelling_price()));
+
             GlideUtils.loadImage(getContext(), product.getIcon(), mBinding.ivProductImage, null, R.drawable.icon_placeholder);
         }
 
