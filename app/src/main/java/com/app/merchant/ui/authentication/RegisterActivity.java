@@ -276,7 +276,7 @@ public class RegisterActivity extends CommonActivity
         storeName = mBinding.edStore.getText().toString();
         if (isNull(merchantName) || merchantName.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_merchat_name));
-            mBinding.edEmail.requestFocus();
+            mBinding.edMerchantName.requestFocus();
             return false;
         } else if (isNull(email) || email.trim().length() == 0) {
             showToast(getResources().getString(R.string.please_enter_email_address));
